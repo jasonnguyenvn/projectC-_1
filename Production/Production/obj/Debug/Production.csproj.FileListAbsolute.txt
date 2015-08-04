@@ -1,0 +1,5 @@
+Z:\Projects\projectC-_1\Production\Production\bin\Debug\Production.dll
+Z:\Projects\projectC-_1\Production\Production\bin\Debug\Production.pdb
+Z:\Projects\projectC-_1\Production\Production\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\projectC-_1\Production\Production\obj\Debug\Production.dll
+Z:\Projects\projectC-_1\Production\Production\obj\Debug\Production.pdb
