@@ -8,8 +8,8 @@
     <ProjectGuid>{F98C5579-A29A-4FF2-8CCA-27FB1CDEB26F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>abstractModel</RootNamespace>
-    <AssemblyName>abstractModel</AssemblyName>
+    <RootNamespace>DataModel</RootNamespace>
+    <AssemblyName>DataModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="dataModel.cs" />
     <Compile Include="dataModelWithControl.cs" />
-    <Compile Include="DataObjectInterface.cs" />
+    <Compile Include="DataObject.cs" />
     <Compile Include="DataObjectParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

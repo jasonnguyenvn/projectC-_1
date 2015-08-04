@@ -6,11 +6,19 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace abstractModel
+namespace DataModel
 {
     public abstract class dataModel<T> : object where T : DataObject
     {
-        protected readonly List<T> _data;
+        private readonly List<T> _data;
+
+        protected List<T> Data
+        {
+            get { return _data; }
+        } 
+
+
+
         private readonly string _host;
         private readonly int _port;
         private readonly string _dbname;
@@ -99,8 +107,26 @@ namespace abstractModel
             return this.createSQLCommand(commandText, CommandType.Text, null);
         }
 
+        public List<T> getItems(string where_filter)
+        {
+            this.conn.Open();
+            SqlDataReader dr = this.getRows();
 
-        protected SqlDataReader getRows(string where_filter)
+            List<T> result = new List<T>();
+
+            while (dr.Read())
+            {
+                T temp = this._parser.parse(dr);
+                result.Add(temp);
+            }
+
+            dr.Close();
+            this.conn.Close();
+
+            return result;
+        }
+
+        public SqlDataReader getRows(string where_filter)
         {
             string command = "SELECT * FROM " + this._tbname;
             if (where_filter.Equals("") == false)
@@ -110,12 +136,12 @@ namespace abstractModel
             return dr;
         }
 
-        protected SqlDataReader getRows()
+        public SqlDataReader getRows()
         {
             return this.getRows("");
         }
 
-        protected int insertNewRow(string[] keys, List<SqlParameter> parameters)
+        public T insertNewRow(string[] keys, List<SqlParameter> parameters)
         {
             if (keys.Length != parameters.Count)
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
@@ -141,15 +167,20 @@ namespace abstractModel
             SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                         parameters);
             int result = cmd.ExecuteNonQuery();
-
             this.conn.Close();
 
-            return result;
+            if (result <= 0)
+                return null;
+
+            T newItem = this._parser.parse(keys, parameters);
+            this._data.Add(newItem);
+
+            return newItem;
 
         }
 
 
-        protected int updateNewRow(string[] keys, List<SqlParameter> parameters)
+        public List<T> updateRows(string[] keys, List<SqlParameter> parameters, string where_filter)
         {
             if (keys.Length != parameters.Count)
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
@@ -170,14 +201,23 @@ namespace abstractModel
 
             }
 
+            if (where_filter.Equals("") == false)
+                commandText += " WHERE " + where_filter;
+
             this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                         parameters);
             int result = cmd.ExecuteNonQuery();
-
             this.conn.Close();
 
-            return result;
+            if (result <= 0)
+                return new List<T>();
+
+            List<T> resultList = this.getItems(where_filter);
+            if (resultList.Count < 0)
+                throw new Exception("DATA MODEL INVALID");
+
+            return resultList;
 
         }
 
