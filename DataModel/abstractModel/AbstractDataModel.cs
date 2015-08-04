@@ -158,7 +158,7 @@ namespace DataModel
             return this.getRows("");
         }
 
-        public T insertNewRow(string[] keys, List<SqlParameter> parameters)
+        public virtual T insertNewRow(string[] keys, List<SqlParameter> parameters)
         {
             if (keys.Length != parameters.Count)
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
@@ -197,7 +197,7 @@ namespace DataModel
         }
 
 
-        public List<T> updateRows(string[] keys, List<SqlParameter> parameters, string where_filter)
+        public virtual List<T> updateRows(string[] keys, List<SqlParameter> parameters, string where_filter)
         {
             if (keys.Length != parameters.Count)
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
@@ -238,7 +238,7 @@ namespace DataModel
 
         }
 
-        public List<T> deleteRows(string where_filter)
+        public virtual List<T> deleteRows(string where_filter)
         {
             List<T> deletedList = this.getItems(where_filter);
             if (deletedList.Count <= 0)

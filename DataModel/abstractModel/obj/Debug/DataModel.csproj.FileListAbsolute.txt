@@ -1,3 +1,4 @@
+Z:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll.config
 Z:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
 Z:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
 Z:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache

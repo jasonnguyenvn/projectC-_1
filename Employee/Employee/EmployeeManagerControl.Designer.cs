@@ -41,15 +41,18 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 22);
+            this.dataGridView1.Location = new System.Drawing.Point(19, 22);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(335, 302);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(376, 539);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(440, 279);
+            this.btnAdd.Location = new System.Drawing.Point(440, 505);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(104, 45);
             this.btnAdd.TabIndex = 1;
@@ -59,7 +62,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(550, 279);
+            this.btnUpdate.Location = new System.Drawing.Point(550, 505);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(104, 45);
             this.btnUpdate.TabIndex = 2;
@@ -68,7 +71,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(660, 279);
+            this.btnDelete.Location = new System.Drawing.Point(660, 505);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(104, 45);
             this.btnDelete.TabIndex = 3;
@@ -95,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(437, 74);
+            this.label2.Location = new System.Drawing.Point(433, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 6;
@@ -104,7 +107,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(506, 67);
+            this.textBox2.Location = new System.Drawing.Point(506, 52);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(258, 20);
             this.textBox2.TabIndex = 7;
@@ -122,7 +125,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
             this.Name = "EmployeeManagerControl";
-            this.Size = new System.Drawing.Size(837, 373);
+            this.Size = new System.Drawing.Size(779, 582);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

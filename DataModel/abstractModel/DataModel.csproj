@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dataModel.cs" />
-    <Compile Include="dataModelWithControl.cs" />
+    <Compile Include="AbstractDataModel.cs" />
+    <Compile Include="DataModelWithControl.cs" />
     <Compile Include="DataObject.cs" />
     <Compile Include="DataObjectParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

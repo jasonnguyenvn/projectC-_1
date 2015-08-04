@@ -7,11 +7,11 @@ using System.Data.SqlClient;
 
 namespace DataModel
 {
-    class dataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
+    public class DataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
     {
         protected readonly DataGridView _control;
 
-        public dataModelWithControl(string host, int port, string dbname, 
+        public DataModelWithControl(string host, int port, string dbname, 
                         string username, string password, string table_name,
             DataObjectParser<T> parser) :
             // init parent's part
@@ -20,7 +20,7 @@ namespace DataModel
             this._control = null;
         }
 
-        public dataModelWithControl(DataGridView control, 
+        public DataModelWithControl(DataGridView control, 
                                     DataGridViewColumn [] columns, 
                                     string host, 
                                     int port, 
@@ -34,10 +34,9 @@ namespace DataModel
         {
             this._control = control;
             this._control.Columns.AddRange(columns);
-            this.resetControl();
         }
 
-        public override void resetControl()
+        public void resetControl()
         {
             if (this._control == null)
                 throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
