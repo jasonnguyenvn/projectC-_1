@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Employee
 {
-    public partial class UserControl1 : UserControl
+    public partial class EmployeeManagerControl : UserControl
     {
-        public UserControl1()
+        public EmployeeManagerControl()
         {
             InitializeComponent();
         }
@@ -19,6 +19,11 @@ namespace Employee
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("test");
         }
     }
 }

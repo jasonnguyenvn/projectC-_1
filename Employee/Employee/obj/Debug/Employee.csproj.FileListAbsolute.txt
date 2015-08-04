@@ -1,0 +1,7 @@
+Z:\Projects\projectC-_1\Employee\Employee\bin\Debug\Employee.dll
+Z:\Projects\projectC-_1\Employee\Employee\bin\Debug\Employee.pdb
+Z:\Projects\projectC-_1\Employee\Employee\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\projectC-_1\Employee\Employee\obj\Debug\Employee.EmployeeManagerControl.resources
+Z:\Projects\projectC-_1\Employee\Employee\obj\Debug\Employee.csproj.GenerateResource.Cache
+Z:\Projects\projectC-_1\Employee\Employee\obj\Debug\Employee.dll
+Z:\Projects\projectC-_1\Employee\Employee\obj\Debug\Employee.pdb

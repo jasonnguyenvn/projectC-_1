@@ -8,7 +8,7 @@ using System.Data;
 
 namespace abstractModel
 {
-    public class dataModel<T>
+    public abstract class dataModel<T>
     {
         private List<T> _data;
         private string _host;
@@ -27,7 +27,8 @@ namespace abstractModel
         } 
 
 
-        public dataModel(string host, int port, string dbname, string username, string password, string table_name)
+        public dataModel(string host, int port, string dbname, string username,
+                            string password, string table_name)
         {
             this._host = host;
             this._port = port;
@@ -38,14 +39,14 @@ namespace abstractModel
             this._tbname = table_name;
 
             this._data = new List<T>();
-            this.conn = this.createConnect();
+            this.conn = this.createConnection();
         }
 
 
-        protected SqlConnection createConnect()
+        protected SqlConnection createConnection()
         {
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"server="+this._host
+            conn.ConnectionString = "server="+this._host
                                     +";database="+this._dbname
                                     +";User ID="+this._username
                                     +";Password="+this._password+";";
@@ -53,21 +54,24 @@ namespace abstractModel
         }
 
 
-        protected SqlParameter createSQLParam(string key, SqlDbType dbType, object value, int size)
+        protected SqlParameter createSQLParam(string key, SqlDbType dbType, 
+                                                object value, int size)
         {
             SqlParameter param = new SqlParameter(key, dbType, size);
             param.Value = value;
             return param;
         }
 
-        protected SqlParameter createSQLParam(string key, SqlDbType dbType, object value)
+        protected SqlParameter createSQLParam(string key, SqlDbType dbType, 
+                                                    object value)
         {
             SqlParameter param = new SqlParameter(key, dbType);
             param.Value = value;
             return param;
         }
 
-        protected SqlCommand createSQLCommand(string commandText, CommandType commandType, List<SqlParameter> parameters)
+        protected SqlCommand createSQLCommand(string commandText, 
+                CommandType commandType, List<SqlParameter> parameters)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = this.conn;
@@ -109,6 +113,74 @@ namespace abstractModel
         {
             return this.getRows("");
         }
+
+        protected int insertNewRow(string[] keys, List<SqlParameter> parameters)
+        {
+            if (keys.Length != parameters.Count)
+                throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
+                                          + " THE NUMBER OF PARAMETER");
+
+            string commandText = "INSERT INTO " + this._tbname + "(";
+            string valueParams = "";
+
+            bool first = true;
+            foreach (string aKey in keys)
+            {
+                if (first == false)
+                    commandText += ",";
+                else first = false;
+                commandText += aKey;
+                string currentParam = "@"+aKey;
+                valueParams += currentParam;
+
+            }
+            commandText += ") VALUES (" + valueParams + ")";
+
+            this.conn.Open();
+            SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
+                                                        parameters);
+            int result = cmd.ExecuteNonQuery();
+
+            this.conn.Close();
+
+            return result;
+
+        }
+
+
+        protected int updateNewRow(string[] keys, List<SqlParameter> parameters)
+        {
+            if (keys.Length != parameters.Count)
+                throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
+                                          + " THE NUMBER OF PARAMETER");
+
+            string commandText = "UPDATE " + this._tbname + " SET";
+            string valueParams = "";
+
+            bool first = true;
+            foreach (string aKey in keys)
+            {
+                if (first == false)
+                    commandText += ",";
+                else first = false;
+                commandText += aKey + "=";
+                string currentParam = "@" + aKey;
+                valueParams += currentParam;
+
+            }
+
+            this.conn.Open();
+            SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
+                                                        parameters);
+            int result = cmd.ExecuteNonQuery();
+
+            this.conn.Close();
+
+            return result;
+
+        }
+
+
 
 
     }

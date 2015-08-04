@@ -1,6 +1,6 @@
 ﻿namespace Employee
 {
-    partial class UserControl1
+    partial class EmployeeManagerControl
     {
         /// <summary>
         /// Required designer variable.
@@ -55,6 +55,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
@@ -108,7 +109,7 @@
             this.textBox2.Size = new System.Drawing.Size(258, 20);
             this.textBox2.TabIndex = 7;
             // 
-            // UserControl1
+            // EmployeeManagerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +121,7 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "UserControl1";
+            this.Name = "EmployeeManagerControl";
             this.Size = new System.Drawing.Size(837, 373);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
