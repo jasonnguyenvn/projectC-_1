@@ -64,7 +64,7 @@ namespace DataModel
             return updateItem;
         }
 
-
+        //Hau
         public override List<T> updateRows(string[] keys, List<SqlParameter> parameters, string where_filter)
         {
             List<T> result = base.updateRows(keys, parameters, where_filter);
