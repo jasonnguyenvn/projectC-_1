@@ -8,7 +8,7 @@ using System.Data;
 
 namespace DataModel
 {
-    public abstract class dataModel<T> : object where T : DataObject
+    public abstract class AbstractDataModel<T> : object where T : DataObject
     {
         private readonly List<T> _data;
 
@@ -37,7 +37,7 @@ namespace DataModel
         } 
 
 
-        public dataModel(string host, int port, string dbname, string username,
+        public AbstractDataModel(string host, int port, string dbname, string username,
                             string password, string table_name,
                             DataObjectParser<T> parser)
         {
@@ -53,6 +53,23 @@ namespace DataModel
 
             this._data = new List<T>();
             this.conn = this.createConnection();
+        }
+
+        public void resetModel()
+        {
+            this.conn.Open();
+            SqlDataReader dr = this.getRows();
+
+            this._data.Clear();
+
+            while (dr.Read())
+            {
+                T temp = this._parser.parse(dr);
+                this._data.Add(temp);
+            }
+
+            dr.Close();
+            this.conn.Close();
         }
 
 
@@ -221,8 +238,30 @@ namespace DataModel
 
         }
 
+        public List<T> deleteRows(string where_filter)
+        {
+            List<T> deletedList = this.getItems(where_filter);
+            if (deletedList.Count <= 0)
+                return new List<T>();
 
+            string commandText = "DELETE FROM " + this._tbname;
+            if (where_filter.Equals("") == false)
+                commandText += " WHERE " + where_filter;
 
+            this.conn.Open();
+            SqlCommand cmd = this.createSQLCommand(commandText);
+            int result = cmd.ExecuteNonQuery();
+            this.conn.Close();
+
+            if (result <= 0)
+                return new List<T>();
+
+            int index = this._data.IndexOf(deletedList[0]);
+            int rangeToDelete = deletedList.Count;
+            this._data.RemoveRange(index, rangeToDelete);
+
+            return deletedList;
+        }
 
     }
 }

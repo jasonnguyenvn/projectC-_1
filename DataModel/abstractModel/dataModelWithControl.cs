@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DataModel
 {
-    class dataModelWithControl<T> : dataModel<T> where T : DataObject
+    class dataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
     {
         protected readonly DataGridView _control;
 
@@ -17,6 +17,7 @@ namespace DataModel
             // init parent's part
             base(host, port, dbname, username, password, table_name, parser)
         {
+            this._control = null;
         }
 
         public dataModelWithControl(DataGridView control, 
@@ -33,55 +34,83 @@ namespace DataModel
         {
             this._control = control;
             this._control.Columns.AddRange(columns);
+            this.resetControl();
         }
 
-        public void resetControl()
+        public override void resetControl()
         {
-            this.conn.Open();
-            SqlDataReader dr = this.getRows();
+            if (this._control == null)
+                throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
 
-            this.Data.Clear();
+            base.resetModel();
             this._control.Rows.Clear();
-
-            while (dr.Read())
+            foreach (T item in this.Data)
             {
-                T temp = this._parser.parse(dr);
-                this.Data.Add(temp);
-                this._control.Rows.Add(temp.convertToRow());
+                this._control.Rows.Add(item.convertToRow());
             }
-
-            dr.Close();
-            this.conn.Close();
         }
 
-        public int updateRow(int index, T updateData)
+        public T updateRow(int index, T updateData)
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();
             List<SqlParameter> getParams = updateData.SqlParams();
-            List<T> result = base.updateRows(keys, getParams, where_filter);
-            if (result.Count < 0)
-                return -1;
+            List<T> result = this.updateRows(keys, getParams, where_filter);
 
-            this.commitUpdate(index, result[0]);
+            if (result == null)
+                return null;
+            
+            T updateItem = result[0];
 
-            return 1;
+            return updateItem;
         }
+
+
+        public override List<T> updateRows(string[] keys, List<SqlParameter> parameters, string where_filter)
+        {
+            List<T> result = base.updateRows(keys, parameters, where_filter);
+            if (result.Count < 0)
+                return null;
+
+            if (this._control != null)
+            {
+                foreach (T updateItem in result)
+                {
+                    int index = this.Data.IndexOf(updateItem);
+                    this.commitUpdate(index);
+                }
+            }
+
+            return result;
+        }
+
 
         public T insertNewRow(T newItem)
         {
             string[] keys = newItem.SqlKeys();
             List<SqlParameter> getParams = newItem.SqlParams();
-            T result = this.insertNewRow(keys, getParams);
+
+            return this.insertNewRow(keys, getParams);
+        }
+
+        public override T insertNewRow(string[] keys, List<SqlParameter> parameters)
+        {
+            T result = base.insertNewRow(keys, parameters);
             if (result == null)
                 return null;
-            this._control.Rows.Add(result.convertToRow());
+
+            if (this._control != null)
+                this._control.Rows.Add(result.convertToRow());
 
             return result;
         }
 
-        protected void commitUpdate(int index, T item)
+        public T commitUpdate(int index)
         {
+            if (this._control == null)
+                throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
+
+            T item = this.Data[index];
             DataGridViewRow updateRow = this._control.Rows[index];
             object[] data = item.convertToRow();
             int noOfProp = item.getNoOfProp();
@@ -89,6 +118,34 @@ namespace DataModel
             {
                 updateRow.Cells[i].Value = data[i].ToString();
             }
+
+            return item;
+        }
+
+        public override List<T> deleteRows(string where_filter)
+        {
+            List<T> deletedList = this.getItems(where_filter);
+            if (deletedList.Count <= 0)
+                return new List<T>();
+
+            string commandText = "DELETE FROM " + this.Tbname;
+            if (where_filter.Equals("") == false)
+                commandText += " WHERE " + where_filter;
+
+            this.conn.Open();
+            SqlCommand cmd = this.createSQLCommand(commandText);
+            int result = cmd.ExecuteNonQuery();
+            this.conn.Close();
+
+            if (result <= 0)
+                return new List<T>();
+
+            int index = this.Data.IndexOf(deletedList[0]);
+            int rangeToDelete = deletedList.Count;
+            this.Data.RemoveRange(index, rangeToDelete);
+            this.Data.RemoveRange(index, rangeToDelete);
+
+            return deletedList;
         }
 
     }
