@@ -8,16 +8,18 @@ using System.Data;
 
 namespace abstractModel
 {
-    public abstract class dataModel<T>
+    public abstract class dataModel<T> : object where T : DataObject
     {
-        private List<T> _data;
-        private string _host;
-        private int _port;
-        private string _dbname;
-        private string _username;
-        private string _password;
+        protected readonly List<T> _data;
+        private readonly string _host;
+        private readonly int _port;
+        private readonly string _dbname;
+        private readonly string _username;
+        private readonly string _password;
 
-        protected SqlConnection conn;
+        protected readonly DataObjectParser<T> _parser;
+
+        protected readonly SqlConnection conn;
 
         private readonly string _tbname;
 
@@ -28,7 +30,8 @@ namespace abstractModel
 
 
         public dataModel(string host, int port, string dbname, string username,
-                            string password, string table_name)
+                            string password, string table_name,
+                            DataObjectParser<T> parser)
         {
             this._host = host;
             this._port = port;
@@ -37,6 +40,8 @@ namespace abstractModel
             this._password = password;
 
             this._tbname = table_name;
+
+            this._parser = parser;
 
             this._data = new List<T>();
             this.conn = this.createConnection();
@@ -100,12 +105,8 @@ namespace abstractModel
             string command = "SELECT * FROM " + this._tbname;
             if (where_filter.Equals("") == false)
                 command += " WHERE " + where_filter;
-            this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(command);
             SqlDataReader dr = cmd.ExecuteReader();
-
-            dr.Close();
-            this.conn.Close();
             return dr;
         }
 
