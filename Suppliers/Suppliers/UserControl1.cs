@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Employees
+namespace Suppliers
 {
     public partial class UserControl1 : UserControl
     {

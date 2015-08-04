@@ -1,4 +1,4 @@
-﻿namespace Employees
+﻿namespace Suppliers
 {
     partial class UserControl1
     {
