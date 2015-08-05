@@ -43,7 +43,7 @@
             this.cbDiscontinued = new System.Windows.Forms.CheckBox();
             this.btnproAdd = new System.Windows.Forms.Button();
             this.btnproUpdate = new System.Windows.Forms.Button();
-            this.btnproRemote = new System.Windows.Forms.Button();
+            this.btnproRemove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,20 +176,20 @@
             this.btnproUpdate.Text = "Update";
             this.btnproUpdate.UseVisualStyleBackColor = true;
             // 
-            // btnproRemote
+            // btnproRemove
             // 
-            this.btnproRemote.Location = new System.Drawing.Point(391, 264);
-            this.btnproRemote.Name = "btnproRemote";
-            this.btnproRemote.Size = new System.Drawing.Size(75, 23);
-            this.btnproRemote.TabIndex = 15;
-            this.btnproRemote.Text = "Remute";
-            this.btnproRemote.UseVisualStyleBackColor = true;
+            this.btnproRemove.Location = new System.Drawing.Point(391, 264);
+            this.btnproRemove.Name = "btnproRemove";
+            this.btnproRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnproRemove.TabIndex = 15;
+            this.btnproRemove.Text = "Remove";
+            this.btnproRemove.UseVisualStyleBackColor = true;
             // 
             // products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnproRemote);
+            this.Controls.Add(this.btnproRemove);
             this.Controls.Add(this.btnproUpdate);
             this.Controls.Add(this.btnproAdd);
             this.Controls.Add(this.cbDiscontinued);
@@ -230,6 +230,6 @@
         private System.Windows.Forms.CheckBox cbDiscontinued;
         private System.Windows.Forms.Button btnproAdd;
         private System.Windows.Forms.Button btnproUpdate;
-        private System.Windows.Forms.Button btnproRemote;
+        private System.Windows.Forms.Button btnproRemove;
     }
 }

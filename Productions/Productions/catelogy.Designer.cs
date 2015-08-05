@@ -36,7 +36,7 @@
             this.btnCaAdd = new System.Windows.Forms.Button();
             this.rtxtDiscription = new System.Windows.Forms.RichTextBox();
             this.btnCaUpdate = new System.Windows.Forms.Button();
-            this.btnCaRemute = new System.Windows.Forms.Button();
+            this.btnCaRemove = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -109,14 +109,14 @@
             this.btnCaUpdate.Text = "Update";
             this.btnCaUpdate.UseVisualStyleBackColor = true;
             // 
-            // btnCaRemute
+            // btnCaRemove
             // 
-            this.btnCaRemute.Location = new System.Drawing.Point(353, 262);
-            this.btnCaRemute.Name = "btnCaRemute";
-            this.btnCaRemute.Size = new System.Drawing.Size(75, 23);
-            this.btnCaRemute.TabIndex = 9;
-            this.btnCaRemute.Text = "Remute";
-            this.btnCaRemute.UseVisualStyleBackColor = true;
+            this.btnCaRemove.Location = new System.Drawing.Point(353, 262);
+            this.btnCaRemove.Name = "btnCaRemove";
+            this.btnCaRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnCaRemove.TabIndex = 9;
+            this.btnCaRemove.Text = "Remove";
+            this.btnCaRemove.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -134,7 +134,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnCaRemute);
+            this.Controls.Add(this.btnCaRemove);
             this.Controls.Add(this.btnCaUpdate);
             this.Controls.Add(this.rtxtDiscription);
             this.Controls.Add(this.btnCaAdd);
@@ -161,7 +161,7 @@
         private System.Windows.Forms.Button btnCaAdd;
         private System.Windows.Forms.RichTextBox rtxtDiscription;
         private System.Windows.Forms.Button btnCaUpdate;
-        private System.Windows.Forms.Button btnCaRemute;
+        private System.Windows.Forms.Button btnCaRemove;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
