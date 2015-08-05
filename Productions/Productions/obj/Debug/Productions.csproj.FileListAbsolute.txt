@@ -1,0 +1,7 @@
+E:\Project\Productions\Productions\bin\Debug\Productions.dll
+E:\Project\Productions\Productions\bin\Debug\Productions.pdb
+E:\Project\Productions\Productions\obj\Debug\ResolveAssemblyReference.cache
+E:\Project\Productions\Productions\obj\Debug\Productions.catelogy.resources
+E:\Project\Productions\Productions\obj\Debug\Productions.csproj.GenerateResource.Cache
+E:\Project\Productions\Productions\obj\Debug\Productions.dll
+E:\Project\Productions\Productions\obj\Debug\Productions.pdb

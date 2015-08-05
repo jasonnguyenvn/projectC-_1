@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C9C214DB-8171-408E-9D3E-87C7F6E4BB33}</ProjectGuid>
+    <ProjectGuid>{D58622E2-8F48-45FC-BCBB-CFF2FC82F864}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Productions</RootNamespace>
-    <AssemblyName>Productions</AssemblyName>
+    <RootNamespace>Employees</RootNamespace>
+    <AssemblyName>Employees</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DataModel\abstractModel\bin\Debug\DataModel.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,28 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="products.cs">
+    <Compile Include="Employees.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="products.Designer.cs">
-      <DependentUpon>products.cs</DependentUpon>
+    <Compile Include="Employees.Designer.cs">
+      <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="catelogy.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="catelogy.Designer.cs">
-      <DependentUpon>catelogy.cs</DependentUpon>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="catelogy.resx">
-      <DependentUpon>catelogy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="products.resx">
-      <DependentUpon>products.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
