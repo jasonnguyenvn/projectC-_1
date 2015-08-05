@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0ED719FC-3D61-4CC8-BE0F-72A3986047D6}</ProjectGuid>
+    <ProjectGuid>{C9C214DB-8171-408E-9D3E-87C7F6E4BB33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Suppliers</RootNamespace>
-    <AssemblyName>Suppliers</AssemblyName>
+    <RootNamespace>Productions</RootNamespace>
+    <AssemblyName>Productions</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

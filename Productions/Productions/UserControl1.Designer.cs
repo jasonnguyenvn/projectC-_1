@@ -1,4 +1,4 @@
-﻿namespace Suppliers
+﻿namespace Productions
 {
     partial class UserControl1
     {
