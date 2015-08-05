@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Suppliers
 {
-    public partial class UserControl1 : UserControl
+    public partial class Suppliers : UserControl
     {
-        public UserControl1()
+        public Suppliers()
         {
             InitializeComponent();
         }
