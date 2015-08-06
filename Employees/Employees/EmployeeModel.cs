@@ -223,6 +223,16 @@ namespace Employees
             this.phone = "";
             this.mgrid = -1;
         }
+
+        public override string getErrorMessage(int errorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int isValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class EmployeeParser : DataObjectParser<Employee>

@@ -163,6 +163,16 @@ namespace Suppliers
             this.phone = "";
             this.fax = "";
         }
+
+        public override string getErrorMessage(int errorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int isValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class SupplierParser : DataObjectParser<Supplier>
