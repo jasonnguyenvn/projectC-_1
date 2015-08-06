@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Employees.Properties {
+namespace Productions.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -35,9 +35,9 @@ namespace Employees.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1433")]
-        public int DB_PORT {
+        public string DB_PORT {
             get {
-                return ((int)(this["DB_PORT"]));
+                return ((string)(this["DB_PORT"]));
             }
         }
         

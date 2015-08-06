@@ -246,7 +246,7 @@ namespace Employees
             for (int i = 0; i < noOfProp; i++)
             {
                 SqlParameter param = sqlParams[i];
-                if(keys[i].Equals(param.ParameterName)==false))
+                if(keys[i].Equals(param.ParameterName)==false)
                     throw new Exception("INVALID KEY TO PARSE EMPLOYE. "
                                 + " KEYNAME: " + param.ParameterName );
                 switch (keys[i])
@@ -256,6 +256,9 @@ namespace Employees
                         break;
                     case "lastname":
                         result.Lastname = param.Value.ToString();
+                        break;
+                    case "firstname":
+                        result.Firstname = param.Value.ToString();
                         break;
                     case "title":
                         result.Title = param.Value.ToString();
@@ -283,6 +286,9 @@ namespace Employees
                         break;
                     case "country":
                         result.Country = param.Value.ToString();
+                        break;
+                    case "phone":
+                        result.Phone = param.Value.ToString();
                         break;
                     case "mgrid":
                         result.Mgrid = int.Parse(param.Value.ToString());
@@ -313,7 +319,21 @@ namespace Employees
     // to Database.
     public class EmployeeModel : DataModelWithControl<Employee>
     {
-
+        private void _initTable()
+        {
+            string[] keys = Employee.Sql_keys;
+            foreach (string aKey in keys)
+            {
+                System.Windows.Forms.DataGridViewColumn column;
+                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+                column.HeaderText = aKey;
+                column.Name = "cl_" + aKey;
+                column.SortMode = System.Windows.Forms
+                                    .DataGridViewColumnSortMode
+                                    .NotSortable;
+                this._control.Columns.Add(column);
+            }
+        }
 
         public override List<SqlParameter> SqlParams(Employee item)
         {
