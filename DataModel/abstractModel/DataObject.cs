@@ -14,5 +14,8 @@ namespace DataModel
         //public abstract List<SqlParameter> SqlParams();
         public abstract void copyTo(DataObject other);
         public abstract string getWhereFilterToUpdateSingleRow();
+
+        public abstract int isValid();
+        public abstract string getErrorMessage(int errorCode);
     }
 }
