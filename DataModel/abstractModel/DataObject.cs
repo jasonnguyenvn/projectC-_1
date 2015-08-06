@@ -11,7 +11,7 @@ namespace DataModel
         public abstract object[] convertToRow();
         public abstract int getNoOfProp();
         public abstract string[] SqlKeys();
-        public abstract List<SqlParameter> SqlParams();
+        //public abstract List<SqlParameter> SqlParams();
         public abstract void copyTo(DataObject other);
         public abstract string getWhereFilterToUpdateSingleRow();
     }
