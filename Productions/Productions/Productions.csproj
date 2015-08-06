@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataModel, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DataModel, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DataModel\abstractModel\bin\Debug\DataModel.dll</HintPath>
     </Reference>
