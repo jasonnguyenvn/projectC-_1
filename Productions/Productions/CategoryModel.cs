@@ -94,6 +94,16 @@ namespace Categoryions
             this.categoryname = "";
             this.description = "";
         }
+
+        public override string getErrorMessage(int errorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int isValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class CategoryParser : DataObjectParser<Category>
