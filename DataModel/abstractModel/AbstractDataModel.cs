@@ -79,7 +79,7 @@ namespace DataModel
             conn.ConnectionString = "server="+this._host
                                     +";database="+this._dbname
                                     + ";uid=" + this._username
-                                    +";pwd="+this._password+";";
+                                    +";pwd="+this._password;
             return conn;
         }
 
