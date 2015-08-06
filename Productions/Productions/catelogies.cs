@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Productions
 {
-    public partial class catelogy : UserControl
+    public partial class catelogies : UserControl
     {
-        public catelogy()
+        public catelogies()
         {
             InitializeComponent();
         }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvProducts = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.btnproAdd = new System.Windows.Forms.Button();
             this.btnproUpdate = new System.Windows.Forms.Button();
             this.btnproRemove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,16 +56,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "productID";
             // 
-            // dataGridView1
+            // gvProducts
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(347, 268);
-            this.dataGridView1.TabIndex = 1;
+            this.gvProducts.AllowUserToAddRows = false;
+            this.gvProducts.AllowUserToDeleteRows = false;
+            this.gvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvProducts.Location = new System.Drawing.Point(17, 19);
+            this.gvProducts.Name = "gvProducts";
+            this.gvProducts.ReadOnly = true;
+            this.gvProducts.Size = new System.Drawing.Size(347, 268);
+            this.gvProducts.TabIndex = 1;
             // 
             // label2
             // 
@@ -203,11 +203,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gvProducts);
             this.Controls.Add(this.label1);
             this.Name = "products";
-            this.Size = new System.Drawing.Size(758, 398);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Size = new System.Drawing.Size(704, 307);
+            ((System.ComponentModel.ISupportInitialize)(this.gvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +216,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvProducts;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

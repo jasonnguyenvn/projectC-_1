@@ -56,7 +56,7 @@
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtManagerID = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvEmployees = new System.Windows.Forms.DataGridView();
             this.tbEmployeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbLastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbFirstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,7 +74,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -303,12 +303,12 @@
             this.txtManagerID.Size = new System.Drawing.Size(200, 20);
             this.txtManagerID.TabIndex = 27;
             // 
-            // dataGridView1
+            // gvEmployees
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gvEmployees.AllowUserToAddRows = false;
+            this.gvEmployees.AllowUserToDeleteRows = false;
+            this.gvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbEmployeeID,
             this.tbLastname,
             this.tbFirstname,
@@ -323,10 +323,10 @@
             this.tbCountry,
             this.tbPhone,
             this.tbManagerID});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(446, 453);
-            this.dataGridView1.TabIndex = 28;
+            this.gvEmployees.Location = new System.Drawing.Point(22, 25);
+            this.gvEmployees.Name = "gvEmployees";
+            this.gvEmployees.Size = new System.Drawing.Size(446, 453);
+            this.gvEmployees.TabIndex = 28;
             // 
             // tbEmployeeID
             // 
@@ -432,7 +432,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gvEmployees);
             this.Controls.Add(this.txtManagerID);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtCountry);
@@ -463,7 +463,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Employees";
             this.Size = new System.Drawing.Size(813, 501);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,7 +499,7 @@
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtManagerID;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvEmployees;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbEmployeeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbLastname;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbFirstname;
