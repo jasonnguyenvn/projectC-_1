@@ -78,8 +78,8 @@ namespace DataModel
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = "server="+this._host
                                     +";database="+this._dbname
-                                    +";User ID="+this._username
-                                    +";Password="+this._password+";";
+                                    + ";uid=" + this._username
+                                    +";pwd="+this._password+";";
             return conn;
         }
 
@@ -262,6 +262,8 @@ namespace DataModel
 
             return deletedList;
         }
+
+        public abstract List<SqlParameter> SqlParams(T item);
 
     }
 }

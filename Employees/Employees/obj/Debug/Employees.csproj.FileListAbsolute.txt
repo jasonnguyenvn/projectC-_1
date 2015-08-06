@@ -6,3 +6,13 @@ D:\Project\projectC-_1\Employees\Employees\obj\Debug\ResGen.read.1.tlog
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\ResGen.write.1.tlog
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.dll
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.pdb
+Z:\Projects\projectC-_1\Employees\Employees\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.Employees.resources
+Z:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.csproj.GenerateResource.Cache
+Z:\Projects\projectC-_1\Employees\Employees\bin\Debug\Employees.dll.config
+Z:\Projects\projectC-_1\Employees\Employees\bin\Debug\Employees.dll
+Z:\Projects\projectC-_1\Employees\Employees\bin\Debug\Employees.pdb
+Z:\Projects\projectC-_1\Employees\Employees\bin\Debug\DataModel.dll
+Z:\Projects\projectC-_1\Employees\Employees\bin\Debug\DataModel.pdb
+Z:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.dll
+Z:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.pdb
