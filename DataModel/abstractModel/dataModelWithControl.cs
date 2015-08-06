@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DataModel
 {
-    public class DataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
+    public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
     {
         protected readonly DataGridView _control;
 
@@ -53,7 +53,7 @@ namespace DataModel
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();
-            List<SqlParameter> getParams = updateData.SqlParams();
+            List<SqlParameter> getParams = this.SqlParams(updateData);
             List<T> result = this.updateRows(keys, getParams, where_filter);
 
             if (result == null)
@@ -87,7 +87,7 @@ namespace DataModel
         public T insertNewRow(T newItem)
         {
             string[] keys = newItem.SqlKeys();
-            List<SqlParameter> getParams = newItem.SqlParams();
+            List<SqlParameter> getParams = this.SqlParams(newItem);
 
             return this.insertNewRow(keys, getParams);
         }
