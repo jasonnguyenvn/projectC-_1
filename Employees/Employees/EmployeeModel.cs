@@ -106,6 +106,7 @@ namespace Employees
             get { return country; }
             set { country = value; }
         }
+
         private string phone;
 
         public string Phone
