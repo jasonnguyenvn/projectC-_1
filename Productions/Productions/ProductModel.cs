@@ -129,6 +129,16 @@ namespace Productions
             this.unitprice = "";
             this.discontinued = true;
         }
+
+        public override string getErrorMessage(int errorCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int isValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class ProductParser : DataObjectParser<Product>
