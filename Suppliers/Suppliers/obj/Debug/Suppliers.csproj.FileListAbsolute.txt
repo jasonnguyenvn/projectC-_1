@@ -1,0 +1,3 @@
+Z:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.Suppliers.resources
+Z:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.csproj.GenerateResource.Cache

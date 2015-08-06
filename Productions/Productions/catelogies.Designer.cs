@@ -1,6 +1,6 @@
 ﻿namespace Productions
 {
-    partial class catelogy
+    partial class catelogies
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,8 +37,8 @@
             this.rtxtDiscription = new System.Windows.Forms.RichTextBox();
             this.btnCaUpdate = new System.Windows.Forms.Button();
             this.btnCaRemove = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.gvCategories = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -118,22 +118,22 @@
             this.btnCaRemove.Text = "Remove";
             this.btnCaRemove.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // gvCategories
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(283, 254);
-            this.dataGridView1.TabIndex = 10;
+            this.gvCategories.AllowUserToAddRows = false;
+            this.gvCategories.AllowUserToDeleteRows = false;
+            this.gvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvCategories.Location = new System.Drawing.Point(21, 31);
+            this.gvCategories.Name = "gvCategories";
+            this.gvCategories.ReadOnly = true;
+            this.gvCategories.Size = new System.Drawing.Size(283, 254);
+            this.gvCategories.TabIndex = 10;
             // 
             // catelogy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gvCategories);
             this.Controls.Add(this.btnCaRemove);
             this.Controls.Add(this.btnCaUpdate);
             this.Controls.Add(this.rtxtDiscription);
@@ -145,7 +145,7 @@
             this.Controls.Add(this.label1);
             this.Name = "catelogy";
             this.Size = new System.Drawing.Size(672, 333);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,6 +162,6 @@
         private System.Windows.Forms.RichTextBox rtxtDiscription;
         private System.Windows.Forms.Button btnCaUpdate;
         private System.Windows.Forms.Button btnCaRemove;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvCategories;
     }
 }
