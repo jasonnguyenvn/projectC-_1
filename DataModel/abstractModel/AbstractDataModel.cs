@@ -164,14 +164,20 @@ namespace DataModel
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
                                           + " THE NUMBER OF PARAMETER");
 
-            string commandText = "INSERT INTO " + this._tbname + "(";
+            string commandText = "INSERT INTO " + this._tbname + " (";
             string valueParams = "";
 
             bool first = true;
             foreach (string aKey in keys)
             {
+                if (aKey == this._parser.getPrimaryKey())
+                    continue;
+
                 if (first == false)
+                {
                     commandText += ",";
+                    valueParams += " , ";
+                }
                 else first = false;
                 commandText += aKey;
                 string currentParam = "@"+aKey;

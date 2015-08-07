@@ -5,3 +5,14 @@ E:\Project\Productions\Productions\obj\Debug\Productions.catelogy.resources
 E:\Project\Productions\Productions\obj\Debug\Productions.csproj.GenerateResource.Cache
 E:\Project\Productions\Productions\obj\Debug\Productions.dll
 E:\Project\Productions\Productions\obj\Debug\Productions.pdb
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\ResolveAssemblyReference.cache
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\Productions.catelogies.resources
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\Productions.products.resources
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\Productions.csproj.GenerateResource.Cache
+E:\Project\projectC-_1\Productions\Productions\bin\Debug\Productions.dll.config
+E:\Project\projectC-_1\Productions\Productions\bin\Debug\Productions.dll
+E:\Project\projectC-_1\Productions\Productions\bin\Debug\Productions.pdb
+E:\Project\projectC-_1\Productions\Productions\bin\Debug\DataModel.dll
+E:\Project\projectC-_1\Productions\Productions\bin\Debug\DataModel.pdb
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\Productions.dll
+E:\Project\projectC-_1\Productions\Productions\obj\Debug\Productions.pdb

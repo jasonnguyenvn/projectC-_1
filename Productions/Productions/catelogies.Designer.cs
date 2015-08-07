@@ -34,7 +34,7 @@
             this.txtCaID = new System.Windows.Forms.TextBox();
             this.txtCaName = new System.Windows.Forms.TextBox();
             this.btnCaAdd = new System.Windows.Forms.Button();
-            this.rtxtDiscription = new System.Windows.Forms.RichTextBox();
+            this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.btnCaUpdate = new System.Windows.Forms.Button();
             this.btnCaRemove = new System.Windows.Forms.Button();
             this.gvCategories = new System.Windows.Forms.DataGridView();
@@ -91,14 +91,15 @@
             this.btnCaAdd.TabIndex = 6;
             this.btnCaAdd.Text = "Add";
             this.btnCaAdd.UseVisualStyleBackColor = true;
+            this.btnCaAdd.Click += new System.EventHandler(this.btnCaAdd_Click);
             // 
-            // rtxtDiscription
+            // rtxtDescription
             // 
-            this.rtxtDiscription.Location = new System.Drawing.Point(431, 119);
-            this.rtxtDiscription.Name = "rtxtDiscription";
-            this.rtxtDiscription.Size = new System.Drawing.Size(204, 96);
-            this.rtxtDiscription.TabIndex = 7;
-            this.rtxtDiscription.Text = "";
+            this.rtxtDescription.Location = new System.Drawing.Point(431, 119);
+            this.rtxtDescription.Name = "rtxtDescription";
+            this.rtxtDescription.Size = new System.Drawing.Size(204, 96);
+            this.rtxtDescription.TabIndex = 7;
+            this.rtxtDescription.Text = "";
             // 
             // btnCaUpdate
             // 
@@ -129,21 +130,21 @@
             this.gvCategories.Size = new System.Drawing.Size(283, 254);
             this.gvCategories.TabIndex = 10;
             // 
-            // catelogy
+            // catelogies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gvCategories);
             this.Controls.Add(this.btnCaRemove);
             this.Controls.Add(this.btnCaUpdate);
-            this.Controls.Add(this.rtxtDiscription);
+            this.Controls.Add(this.rtxtDescription);
             this.Controls.Add(this.btnCaAdd);
             this.Controls.Add(this.txtCaName);
             this.Controls.Add(this.txtCaID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "catelogy";
+            this.Name = "catelogies";
             this.Size = new System.Drawing.Size(672, 333);
             ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).EndInit();
             this.ResumeLayout(false);
@@ -159,7 +160,7 @@
         private System.Windows.Forms.TextBox txtCaID;
         private System.Windows.Forms.TextBox txtCaName;
         private System.Windows.Forms.Button btnCaAdd;
-        private System.Windows.Forms.RichTextBox rtxtDiscription;
+        private System.Windows.Forms.RichTextBox rtxtDescription;
         private System.Windows.Forms.Button btnCaUpdate;
         private System.Windows.Forms.Button btnCaRemove;
         private System.Windows.Forms.DataGridView gvCategories;
