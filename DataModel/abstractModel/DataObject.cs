@@ -18,6 +18,5 @@ namespace DataModel
         public abstract int isValid();
         public abstract string getErrorMessage(int errorCode);
 
-        public abstract string getPrimaryKey();
     }
 }

@@ -119,11 +119,6 @@ namespace Productions
         }
 
 
-
-        public override string getPrimaryKey()
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class CategoryParser : DataObjectParser<Category>
@@ -170,7 +165,7 @@ namespace Productions
                     case "categoryname":
                         result.CategoryName = param.Value.ToString();
                         break;
-                    case "discription":
+                    case "description":
                         result.Description = param.Value.ToString();
                         break;
                 }

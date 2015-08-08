@@ -168,10 +168,15 @@ namespace DataModel
             string valueParams = "";
 
             bool first = true;
-            foreach (string aKey in keys)
+            SqlParameter changeIndex = null;
+            for (int i=0; i<keys.Length; i++)
             {
+                string aKey = keys[i];
                 if (aKey == this._parser.getPrimaryKey())
+                {
+                    changeIndex = parameters[i];
                     continue;
+                }
 
                 if (first == false)
                 {
@@ -184,17 +189,18 @@ namespace DataModel
                 valueParams += currentParam;
 
             }
-            commandText += ") VALUES (" + valueParams + ")";
+            commandText += ")  OUTPUT INSERTED." + this._parser.getPrimaryKey() + "  VALUES (" + valueParams + ")";
 
             this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                         parameters);
-            int result = cmd.ExecuteNonQuery();
+            int result = (int) cmd.ExecuteScalar();
             this.conn.Close();
 
-            if (result <= 0)
+            if (result < 0)
                 return null;
 
+            changeIndex.Value = result;
             T newItem = this._parser.parse(keys, parameters);
             this._data.Add(newItem);
 

@@ -27,3 +27,14 @@ z:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.products.r
 z:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.csproj.GenerateResource.Cache
 z:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.dll
 z:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.pdb
+C:\Projects\projectC-_1\Productions\Productions\bin\Debug\Productions.dll.config
+C:\Projects\projectC-_1\Productions\Productions\bin\Debug\Productions.dll
+C:\Projects\projectC-_1\Productions\Productions\bin\Debug\Productions.pdb
+C:\Projects\projectC-_1\Productions\Productions\bin\Debug\DataModel.dll
+C:\Projects\projectC-_1\Productions\Productions\bin\Debug\DataModel.pdb
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.catelogies.resources
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.products.resources
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.csproj.GenerateResource.Cache
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.dll
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.pdb
