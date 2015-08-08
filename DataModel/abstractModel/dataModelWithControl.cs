@@ -20,8 +20,7 @@ namespace DataModel
             this._control = null;
         }
 
-        public DataModelWithControl(DataGridView control, 
-                                    DataGridViewColumn [] columns, 
+        public DataModelWithControl(DataGridView control,  
                                     string host, 
                                     int port, 
                                     string dbname,  
@@ -33,7 +32,6 @@ namespace DataModel
             base(host, port, dbname, username, password, table_name, parser)
         {
             this._control = control;
-            this._control.Columns.AddRange(columns);
         }
 
         public void resetControl()
