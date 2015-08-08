@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Productions
 {
-    // Hau added new class Category
+    // Hau added new class Category.
     // This class describes Categorys.
     public class Category : DataModel.DataObject
     {
