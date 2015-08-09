@@ -1,0 +1,5 @@
+Z:\Projects\projectC-_1\abstractModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\projectC-_1\abstractModel\abstractModel\bin\Debug\abstractModel.dll
+Z:\Projects\projectC-_1\abstractModel\abstractModel\bin\Debug\abstractModel.pdb
+Z:\Projects\projectC-_1\abstractModel\abstractModel\obj\Debug\abstractModel.dll
+Z:\Projects\projectC-_1\abstractModel\abstractModel\obj\Debug\abstractModel.pdb
