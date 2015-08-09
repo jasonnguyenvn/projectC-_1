@@ -249,6 +249,11 @@ namespace Suppliers
 
             return this.parse(Supplier.Sql_keys, Params);
         }
+
+        public override string getPrimaryKey()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

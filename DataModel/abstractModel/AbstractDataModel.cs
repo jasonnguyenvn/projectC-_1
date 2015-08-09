@@ -12,7 +12,7 @@ namespace DataModel
     {
         private readonly List<T> _data;
 
-        protected List<T> Data
+        public List<T> Data
         {
             get { return _data; }
         } 
@@ -127,14 +127,14 @@ namespace DataModel
         public List<T> getItems(string where_filter)
         {
             this.conn.Open();
-            SqlDataReader dr = this.getRows();
+            SqlDataReader dr = this.getRows(where_filter);
 
             List<T> result = new List<T>();
 
             while (dr.Read())
             {
                 T temp = this._parser.parse(dr);
-                result.Add(temp);
+                result.Add(this.Data[this._data.IndexOf(temp)]);
             }
 
             dr.Close();
@@ -168,10 +168,15 @@ namespace DataModel
             string valueParams = "";
 
             bool first = true;
-            foreach (string aKey in keys)
+            SqlParameter changeIndex = null;
+            for (int i=0; i<keys.Length; i++)
             {
+                string aKey = keys[i];
                 if (aKey == this._parser.getPrimaryKey())
+                {
+                    changeIndex = parameters[i];
                     continue;
+                }
 
                 if (first == false)
                 {
@@ -184,17 +189,18 @@ namespace DataModel
                 valueParams += currentParam;
 
             }
-            commandText += ") VALUES (" + valueParams + ")";
+            commandText += ")  OUTPUT INSERTED." + this._parser.getPrimaryKey() + "  VALUES (" + valueParams + ")";
 
             this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                         parameters);
-            int result = cmd.ExecuteNonQuery();
+            int result = (int) cmd.ExecuteScalar();
             this.conn.Close();
 
-            if (result <= 0)
+            if (result < 0)
                 return null;
 
+            changeIndex.Value = result;
             T newItem = this._parser.parse(keys, parameters);
             this._data.Add(newItem);
 
@@ -209,18 +215,18 @@ namespace DataModel
                 throw new Exception("THE NUMBER OF INSERT KEY DOES NOT EQUAL TO"
                                           + " THE NUMBER OF PARAMETER");
 
-            string commandText = "UPDATE " + this._tbname + " SET";
-            string valueParams = "";
+            string commandText = "UPDATE " + this._tbname + " SET ";
 
             bool first = true;
             foreach (string aKey in keys)
             {
+                if (aKey == this._parser.getPrimaryKey())
+                    continue;
+
                 if (first == false)
                     commandText += ",";
                 else first = false;
-                commandText += aKey + "=";
-                string currentParam = "@" + aKey;
-                valueParams += currentParam;
+                commandText += aKey + "="+ "@" + aKey;
 
             }
 
@@ -239,6 +245,11 @@ namespace DataModel
             List<T> resultList = this.getItems(where_filter);
             if (resultList.Count < 0)
                 throw new Exception("DATA MODEL INVALID");
+            foreach (T anItem in resultList)
+            {
+                T updateNew = this._parser.parse(keys, parameters);
+                updateNew.copyTo(anItem);
+            }
 
             return resultList;
 

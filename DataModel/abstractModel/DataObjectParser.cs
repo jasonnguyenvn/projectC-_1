@@ -10,7 +10,7 @@ namespace DataModel
     {
         public abstract T parse(SqlDataReader dr);
         public abstract T parse(string[] keys, List<SqlParameter> sqlParams);
-
+        // d
         public abstract string getPrimaryKey();
     }
 }

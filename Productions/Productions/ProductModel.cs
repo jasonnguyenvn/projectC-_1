@@ -140,13 +140,6 @@ namespace Productions
         {
             throw new NotImplementedException();
         }
-
-
-
-        public override string getPrimaryKey()
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class ProductParser : DataObjectParser<Product>
@@ -259,4 +252,5 @@ namespace Productions
             throw new NotImplementedException();
         }
     }
+
 }
