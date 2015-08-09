@@ -321,6 +321,11 @@ namespace Employees
 
             return this.parse(Employee.Sql_keys, Params);
         }
+
+        public override string getPrimaryKey()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

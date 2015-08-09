@@ -47,7 +47,7 @@ namespace DataModel
             }
         }
 
-        public T updateRow(int index, T updateData)
+        public T updateRow( T updateData)
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();
@@ -140,7 +140,11 @@ namespace DataModel
             int index = this.Data.IndexOf(deletedList[0]);
             int rangeToDelete = deletedList.Count;
             this.Data.RemoveRange(index, rangeToDelete);
-            this.Data.RemoveRange(index, rangeToDelete);
+            rangeToDelete += index;
+            for(int i=index; i<rangeToDelete; i++)
+            {
+                this._control.Rows.RemoveAt(i);
+            }
 
             return deletedList;
         }

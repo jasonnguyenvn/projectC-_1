@@ -100,8 +100,7 @@ namespace Productions
         public override string getErrorMessage(int errorCode)
         {
             switch(errorCode){
-                case -1: return "invalid ID";
-                case -2: return "Category is empty";
+                case -2: return "Category Name cannot be empty";
             }
             return "";
         }
@@ -111,8 +110,6 @@ namespace Productions
         // < 0 => error
         public override int isValid()
         {
-            if (this.categoryid < 0)
-                return -1;
             if (this.categoryname.Equals(""))
                 return -2;
             return 1;
@@ -155,7 +152,7 @@ namespace Productions
             {
                 SqlParameter param = sqlParams[i];
                 if (keys[i].Equals(param.ParameterName) == false)
-                    throw new Exception("INVALID KEY TO PARSE EMPLOYE. "
+                    throw new Exception("INVALID KEY TO PARSE Category. "
                                 + " KEYNAME: " + param.ParameterName);
                 switch (keys[i])
                 {
@@ -225,7 +222,6 @@ namespace Productions
 
         public override List<SqlParameter> SqlParams(Category item)
         {
-            // ID
             SqlParameter ID = this.createSQLParam("categoryid", SqlDbType.Int, item.CategoryID);
             SqlParameter Name = this.createSQLParam("categoryname", SqlDbType.VarChar, item.CategoryName, 15);
             SqlParameter Description = this.createSQLParam("description", SqlDbType.NVarChar, item.Description, 200);
