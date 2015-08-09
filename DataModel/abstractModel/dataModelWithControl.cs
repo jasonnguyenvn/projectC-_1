@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DataModel
 {
-    public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
+    public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : BaseDataObject
     {
         protected readonly DataGridView _control;
 
@@ -20,8 +20,7 @@ namespace DataModel
             this._control = null;
         }
 
-        public DataModelWithControl(DataGridView control, 
-                                    DataGridViewColumn [] columns, 
+        public DataModelWithControl(DataGridView control,  
                                     string host, 
                                     int port, 
                                     string dbname,  
@@ -33,7 +32,6 @@ namespace DataModel
             base(host, port, dbname, username, password, table_name, parser)
         {
             this._control = control;
-            this._control.Columns.AddRange(columns);
         }
 
         public void resetControl()
@@ -49,7 +47,7 @@ namespace DataModel
             }
         }
 
-        public T updateRow(int index, T updateData)
+        public T updateRow( T updateData)
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();
@@ -142,7 +140,11 @@ namespace DataModel
             int index = this.Data.IndexOf(deletedList[0]);
             int rangeToDelete = deletedList.Count;
             this.Data.RemoveRange(index, rangeToDelete);
-            this.Data.RemoveRange(index, rangeToDelete);
+            rangeToDelete += index;
+            for(int i=index; i<rangeToDelete; i++)
+            {
+                this._control.Rows.RemoveAt(i);
+            }
 
             return deletedList;
         }

@@ -29,17 +29,6 @@
         private void InitializeComponent()
         {
             this.gvSuppliers = new System.Windows.Forms.DataGridView();
-            this.clSupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clCompName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clContName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clContTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clAddr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clFax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.txtAddr = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -65,6 +54,17 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.clFax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clPos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clRegion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clAddr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clContTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clContName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clCompName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvSuppliers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,76 +86,11 @@
             this.clPhone,
             this.clFax});
             this.gvSuppliers.Location = new System.Drawing.Point(14, 27);
+            this.gvSuppliers.MultiSelect = false;
             this.gvSuppliers.Name = "gvSuppliers";
             this.gvSuppliers.ReadOnly = true;
             this.gvSuppliers.Size = new System.Drawing.Size(511, 467);
             this.gvSuppliers.TabIndex = 1;
-            // 
-            // clSupID
-            // 
-            this.clSupID.HeaderText = "Suppliers ID";
-            this.clSupID.Name = "clSupID";
-            this.clSupID.ReadOnly = true;
-            // 
-            // clCompName
-            // 
-            this.clCompName.HeaderText = "Company Name";
-            this.clCompName.Name = "clCompName";
-            this.clCompName.ReadOnly = true;
-            // 
-            // clContName
-            // 
-            this.clContName.HeaderText = "Contact Name";
-            this.clContName.Name = "clContName";
-            this.clContName.ReadOnly = true;
-            // 
-            // clContTitle
-            // 
-            this.clContTitle.HeaderText = "Contact Title";
-            this.clContTitle.Name = "clContTitle";
-            this.clContTitle.ReadOnly = true;
-            // 
-            // clAddr
-            // 
-            this.clAddr.HeaderText = "Address";
-            this.clAddr.Name = "clAddr";
-            this.clAddr.ReadOnly = true;
-            // 
-            // clCity
-            // 
-            this.clCity.HeaderText = "City";
-            this.clCity.Name = "clCity";
-            this.clCity.ReadOnly = true;
-            // 
-            // clRegion
-            // 
-            this.clRegion.HeaderText = "Region";
-            this.clRegion.Name = "clRegion";
-            this.clRegion.ReadOnly = true;
-            // 
-            // clPos
-            // 
-            this.clPos.HeaderText = "Postal Code";
-            this.clPos.Name = "clPos";
-            this.clPos.ReadOnly = true;
-            // 
-            // clCountry
-            // 
-            this.clCountry.HeaderText = "Country";
-            this.clCountry.Name = "clCountry";
-            this.clCountry.ReadOnly = true;
-            // 
-            // clPhone
-            // 
-            this.clPhone.HeaderText = "Phone";
-            this.clPhone.Name = "clPhone";
-            this.clPhone.ReadOnly = true;
-            // 
-            // clFax
-            // 
-            this.clFax.HeaderText = "Fax";
-            this.clFax.Name = "clFax";
-            this.clFax.ReadOnly = true;
             // 
             // cbCountry
             // 
@@ -374,6 +309,72 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
+            // clFax
+            // 
+            this.clFax.HeaderText = "Fax";
+            this.clFax.Name = "clFax";
+            this.clFax.ReadOnly = true;
+            // 
+            // clPhone
+            // 
+            this.clPhone.HeaderText = "Phone";
+            this.clPhone.Name = "clPhone";
+            this.clPhone.ReadOnly = true;
+            // 
+            // clCountry
+            // 
+            this.clCountry.HeaderText = "Country";
+            this.clCountry.Name = "clCountry";
+            this.clCountry.ReadOnly = true;
+            // 
+            // clPos
+            // 
+            this.clPos.HeaderText = "Postal Code";
+            this.clPos.Name = "clPos";
+            this.clPos.ReadOnly = true;
+            // 
+            // clRegion
+            // 
+            this.clRegion.HeaderText = "Region";
+            this.clRegion.Name = "clRegion";
+            this.clRegion.ReadOnly = true;
+            // 
+            // clCity
+            // 
+            this.clCity.HeaderText = "City";
+            this.clCity.Name = "clCity";
+            this.clCity.ReadOnly = true;
+            // 
+            // clAddr
+            // 
+            this.clAddr.HeaderText = "Address";
+            this.clAddr.Name = "clAddr";
+            this.clAddr.ReadOnly = true;
+            // 
+            // clContTitle
+            // 
+            this.clContTitle.HeaderText = "Contact Title";
+            this.clContTitle.Name = "clContTitle";
+            this.clContTitle.ReadOnly = true;
+            // 
+            // clContName
+            // 
+            this.clContName.HeaderText = "Contact Name";
+            this.clContName.Name = "clContName";
+            this.clContName.ReadOnly = true;
+            // 
+            // clCompName
+            // 
+            this.clCompName.HeaderText = "Company Name";
+            this.clCompName.Name = "clCompName";
+            this.clCompName.ReadOnly = true;
+            // 
+            // clSupID
+            // 
+            this.clSupID.HeaderText = "Suppliers ID";
+            this.clSupID.Name = "clSupID";
+            this.clSupID.ReadOnly = true;
+            // 
             // Suppliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,17 +416,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gvSuppliers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clSupID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clCompName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clContName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clContTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clAddr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clRegion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clPos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clCountry;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clFax;
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.TextBox txtAddr;
         private System.Windows.Forms.TextBox txtPhone;
@@ -451,5 +441,16 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clSupID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clCompName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clContName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clContTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clAddr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clRegion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clPos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clCountry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clFax;
     }
 }

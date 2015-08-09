@@ -31,10 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCaID = new System.Windows.Forms.TextBox();
-            this.txtCaName = new System.Windows.Forms.TextBox();
+            this.txtCatID = new System.Windows.Forms.TextBox();
+            this.txtCatName = new System.Windows.Forms.TextBox();
             this.btnCaAdd = new System.Windows.Forms.Button();
-            this.rtxtDiscription = new System.Windows.Forms.RichTextBox();
+            this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.btnCaUpdate = new System.Windows.Forms.Button();
             this.btnCaRemove = new System.Windows.Forms.Button();
             this.gvCategories = new System.Windows.Forms.DataGridView();
@@ -64,24 +64,24 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(326, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Discription";
+            this.label3.Text = "Description";
             // 
-            // txtCaID
+            // txtCatID
             // 
-            this.txtCaID.Enabled = false;
-            this.txtCaID.Location = new System.Drawing.Point(431, 31);
-            this.txtCaID.Name = "txtCaID";
-            this.txtCaID.Size = new System.Drawing.Size(204, 20);
-            this.txtCaID.TabIndex = 3;
+            this.txtCatID.Enabled = false;
+            this.txtCatID.Location = new System.Drawing.Point(431, 31);
+            this.txtCatID.Name = "txtCatID";
+            this.txtCatID.Size = new System.Drawing.Size(204, 20);
+            this.txtCatID.TabIndex = 3;
             // 
             // txtCaName
             // 
-            this.txtCaName.Location = new System.Drawing.Point(431, 75);
-            this.txtCaName.Name = "txtCaName";
-            this.txtCaName.Size = new System.Drawing.Size(204, 20);
-            this.txtCaName.TabIndex = 4;
+            this.txtCatName.Location = new System.Drawing.Point(431, 75);
+            this.txtCatName.Name = "txtCaName";
+            this.txtCatName.Size = new System.Drawing.Size(204, 20);
+            this.txtCatName.TabIndex = 4;
             // 
             // btnCaAdd
             // 
@@ -91,14 +91,15 @@
             this.btnCaAdd.TabIndex = 6;
             this.btnCaAdd.Text = "Add";
             this.btnCaAdd.UseVisualStyleBackColor = true;
+            this.btnCaAdd.Click += new System.EventHandler(this.btnCaAdd_Click);
             // 
-            // rtxtDiscription
+            // rtxtDescription
             // 
-            this.rtxtDiscription.Location = new System.Drawing.Point(431, 119);
-            this.rtxtDiscription.Name = "rtxtDiscription";
-            this.rtxtDiscription.Size = new System.Drawing.Size(204, 96);
-            this.rtxtDiscription.TabIndex = 7;
-            this.rtxtDiscription.Text = "";
+            this.rtxtDescription.Location = new System.Drawing.Point(431, 119);
+            this.rtxtDescription.Name = "rtxtDescription";
+            this.rtxtDescription.Size = new System.Drawing.Size(204, 96);
+            this.rtxtDescription.TabIndex = 7;
+            this.rtxtDescription.Text = "";
             // 
             // btnCaUpdate
             // 
@@ -108,6 +109,7 @@
             this.btnCaUpdate.TabIndex = 8;
             this.btnCaUpdate.Text = "Update";
             this.btnCaUpdate.UseVisualStyleBackColor = true;
+            this.btnCaUpdate.Click += new System.EventHandler(this.btnCaUpdate_Click);
             // 
             // btnCaRemove
             // 
@@ -117,6 +119,7 @@
             this.btnCaRemove.TabIndex = 9;
             this.btnCaRemove.Text = "Remove";
             this.btnCaRemove.UseVisualStyleBackColor = true;
+            this.btnCaRemove.Click += new System.EventHandler(this.btnCaRemove_Click);
             // 
             // gvCategories
             // 
@@ -124,26 +127,28 @@
             this.gvCategories.AllowUserToDeleteRows = false;
             this.gvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvCategories.Location = new System.Drawing.Point(21, 31);
+            this.gvCategories.MultiSelect = false;
             this.gvCategories.Name = "gvCategories";
             this.gvCategories.ReadOnly = true;
             this.gvCategories.Size = new System.Drawing.Size(283, 254);
             this.gvCategories.TabIndex = 10;
+            this.gvCategories.SelectionChanged += new System.EventHandler(this.gvCategories_SelectionChanged);
             // 
-            // catelogy
+            // catelogies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gvCategories);
             this.Controls.Add(this.btnCaRemove);
             this.Controls.Add(this.btnCaUpdate);
-            this.Controls.Add(this.rtxtDiscription);
+            this.Controls.Add(this.rtxtDescription);
             this.Controls.Add(this.btnCaAdd);
-            this.Controls.Add(this.txtCaName);
-            this.Controls.Add(this.txtCaID);
+            this.Controls.Add(this.txtCatName);
+            this.Controls.Add(this.txtCatID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "catelogy";
+            this.Name = "catelogies";
             this.Size = new System.Drawing.Size(672, 333);
             ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).EndInit();
             this.ResumeLayout(false);
@@ -156,10 +161,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCaID;
-        private System.Windows.Forms.TextBox txtCaName;
+        private System.Windows.Forms.TextBox txtCatID;
+        private System.Windows.Forms.TextBox txtCatName;
         private System.Windows.Forms.Button btnCaAdd;
-        private System.Windows.Forms.RichTextBox rtxtDiscription;
+        private System.Windows.Forms.RichTextBox rtxtDescription;
         private System.Windows.Forms.Button btnCaUpdate;
         private System.Windows.Forms.Button btnCaRemove;
         private System.Windows.Forms.DataGridView gvCategories;

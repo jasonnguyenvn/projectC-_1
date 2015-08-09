@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using DataModel;
+using System.Windows.Forms;
+using System.Data;
 
-namespace Categoryions
+namespace Productions
 {
-    // Hau added new class Category
+    // Hau added new class Category.
     // This class describes Categorys.
-    public class Category : DataObject
+    public class Category : BaseDataObject
     {
         private int categoryid;
 
@@ -59,7 +61,7 @@ namespace Categoryions
             return result;
         }
 
-        public override void copyTo(DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Category otherEmp = (Category)other;
             otherEmp.categoryid = this.categoryid;
@@ -97,22 +99,43 @@ namespace Categoryions
 
         public override string getErrorMessage(int errorCode)
         {
-            throw new NotImplementedException();
+            switch(errorCode){
+                case -2: return "Category Name cannot be empty";
+            }
+            return "";
         }
 
+
+        // =1 => valid
+        // < 0 => error
         public override int isValid()
         {
-            throw new NotImplementedException();
+            if (this.categoryname.Equals(""))
+                return -2;
+            return 1;
         }
+
+
     }
 
     public class CategoryParser : DataObjectParser<Category>
     {
+        public override string getPrimaryKey()
+        {
+            return "categoryid";
+        }
+
         private CategoryModel _dataModel;
 
-        public CategoryParser(CategoryModel dataModel)
+        public CategoryModel DataModel
         {
-            this._dataModel = dataModel;
+            get { return _dataModel; }
+            set { _dataModel = value; }
+        }
+
+        public CategoryParser()
+        {
+           
         }
 
         public override Category parse(string[] keys,
@@ -129,7 +152,7 @@ namespace Categoryions
             {
                 SqlParameter param = sqlParams[i];
                 if (keys[i].Equals(param.ParameterName) == false)
-                    throw new Exception("INVALID KEY TO PARSE EMPLOYE. "
+                    throw new Exception("INVALID KEY TO PARSE Category. "
                                 + " KEYNAME: " + param.ParameterName);
                 switch (keys[i])
                 {
@@ -139,7 +162,7 @@ namespace Categoryions
                     case "categoryname":
                         result.CategoryName = param.Value.ToString();
                         break;
-                    case "discription":
+                    case "description":
                         result.Description = param.Value.ToString();
                         break;
                 }
@@ -155,10 +178,13 @@ namespace Categoryions
             for (int i = 0; i < count; i++)
             {
                 SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
+                Params.Add(param);
             }
 
             return this.parse(Category.Sql_keys, Params);
         }
+
+        
     }
 
 
@@ -168,6 +194,16 @@ namespace Categoryions
     // to Database.
     public class CategoryModel : DataModelWithControl<Category>
     {
+        
+
+        public CategoryModel(DataGridView control,  string host, 
+            int port, string dbname, string username, string password, string table_name, CategoryParser parser) :
+            base(control,host, port, dbname, username, password, table_name, parser)
+
+        {
+            this._initTable();
+        }
+
         private void _initTable()
         {
             string[] keys = Category.Sql_keys;
@@ -186,7 +222,17 @@ namespace Categoryions
 
         public override List<SqlParameter> SqlParams(Category item)
         {
-            throw new NotImplementedException();
+            SqlParameter ID = this.createSQLParam("categoryid", SqlDbType.Int, item.CategoryID);
+            SqlParameter Name = this.createSQLParam("categoryname", SqlDbType.VarChar, item.CategoryName, 15);
+            SqlParameter Description = this.createSQLParam("description", SqlDbType.NVarChar, item.Description, 200);
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(ID);
+            list.Add(Name);
+            list.Add(Description);
+
+            return list;
+
         }
     }
 }

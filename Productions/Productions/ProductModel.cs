@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using DataModel;
+using System.Windows.Forms;
 
 namespace Productions
 {
     // Hau added new class Product
     // This class describes Products.
-    public class Product : DataObject
+    public class Product : BaseDataObject
     {
         private int productid;
 
@@ -88,7 +89,7 @@ namespace Productions
             return result;
         }
 
-        public override void copyTo(DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Product otherEmp = (Product)other;
             otherEmp.productid = this.productid;
@@ -143,11 +144,23 @@ namespace Productions
 
     public class ProductParser : DataObjectParser<Product>
     {
+        public override string getPrimaryKey()
+        {
+            throw new NotImplementedException();
+        }
+
+
         private ProductModel _dataModel;
 
-        public ProductParser(ProductModel dataModel)
+        public ProductModel DataModel
         {
-            this._dataModel = dataModel;
+            get { return _dataModel; }
+            set { _dataModel = value; }
+        }
+
+        public ProductParser()
+        {
+            this._dataModel = null;
         }
 
         public override Product parse(string[] keys,
@@ -202,6 +215,7 @@ namespace Productions
             for (int i = 0; i < count; i++)
             {
                 SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
+                Params.Add(param);
             }
 
             return this.parse(Product.Sql_keys, Params);
@@ -215,6 +229,14 @@ namespace Productions
     // to Database.
     public class ProductModel : DataModelWithControl<Product>
     {
+         public ProductModel(DataGridView control,  string host,
+            int port, string dbname, string username, string password, string table_name, ProductParser parser) :
+            base(control, host, port, dbname,username, password, table_name, parser)
+
+        {
+            this._initTable();
+        }
+
         private void _initTable()
         {
             string[] keys = Product.Sql_keys;
@@ -229,6 +251,7 @@ namespace Productions
                                     .NotSortable;
                 this._control.Columns.Add(column);
             }
+
         }
 
         public override List<SqlParameter> SqlParams(Product item)
@@ -236,4 +259,5 @@ namespace Productions
             throw new NotImplementedException();
         }
     }
+
 }

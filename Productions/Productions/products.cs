@@ -14,6 +14,32 @@ namespace Productions
         public products()
         {
             InitializeComponent();
+            this._initModel();
+        }
+
+
+        private ProductModel dataModel;
+        protected void _initModel()
+        {
+            Productions.Properties.Settings setting = new Productions.Properties.Settings();
+
+            ProductParser newParser = new ProductParser();
+
+            dataModel = new ProductModel(
+                                this.gvProducts, 
+                                setting.DB_HOST, 
+                                setting.DB_PORT, 
+                                setting.DB_NAME, 
+                                setting.DB_USER, 
+                                setting.DB_PASS, 
+                                "Production.Products", 
+                                newParser);
+            
+            dataModel = new ProductModel(this.gvProducts, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Products", newParser);
+            
+            newParser.DataModel = dataModel;
+
+            dataModel.resetControl();
         }
     }
 }
