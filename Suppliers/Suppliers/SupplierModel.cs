@@ -4,12 +4,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using DataModel;
+using System.Windows.Forms;
 
 namespace Suppliers
 {
     // Hau added new class Supplier
     // This class describes Suppliers.
-    public class Supplier : DataObject
+    public class Supplier : BaseDataObject
     {
         private int supplierid;
 
@@ -27,12 +28,12 @@ namespace Suppliers
             set { companyname = value; }
         }
 
-        private string contacttile;
+        private string contacttitle;
 
         public string ContactTitle
         {
-            get { return contacttile; }
-            set { contacttile = value; }
+            get { return contacttitle; }
+            set { contacttitle = value; }
         }
 
         private string address;
@@ -94,9 +95,9 @@ namespace Suppliers
         public static readonly string[] Sql_keys =
         {
             "supplierid",
-            "suppliername",
+            "companyname",
             "contactname",
-            "contacttile",
+            "contacttitle",
             "address",
             "city",
             "region",
@@ -116,17 +117,17 @@ namespace Suppliers
             object[] result = {
                 this.supplierid.ToString(),
                 this.companyname,
-                this.contacttile
+                this.contacttitle
             };
             return result;
         }
 
-        public override void copyTo(DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Supplier otherEmp = (Supplier)other;
             otherEmp.supplierid = this.supplierid;
             otherEmp.companyname = this.companyname;
-            otherEmp.contacttile = this.contacttile;
+            otherEmp.contacttitle = this.contacttitle;
         }
 
         public override int getNoOfProp()
@@ -154,7 +155,7 @@ namespace Suppliers
         {
             this.supplierid = -1;
             this.companyname = "";
-            this.contacttile = "";
+            this.contacttitle = "";
             this.address = "";
             this.city = "";
             this.region = "";
@@ -179,9 +180,15 @@ namespace Suppliers
     {
         private SupplierModel _dataModel;
 
-        public SupplierParser(SupplierModel dataModel)
+        public SupplierModel DataModel
         {
-            this._dataModel = dataModel;
+            get { return _dataModel; }
+            set { _dataModel = value; }
+        }
+
+        public SupplierParser()
+        {
+            this._dataModel = null;
         }
 
         public override Supplier parse(string[] keys,
@@ -205,10 +212,10 @@ namespace Suppliers
                     case "supplierid":
                         result.SupplierID = int.Parse(param.Value.ToString());
                         break;
-                    case "suppliername":
+                    case "companyname":
                         result.CompanyName = param.Value.ToString();
                         break;
-                    case "contacttile":
+                    case "contacttitle":
                         result.ContactTitle = param.Value.ToString();
                         break;
                     case "address":
@@ -245,6 +252,7 @@ namespace Suppliers
             for (int i = 0; i < count; i++)
             {
                 SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
+                Params.Add(param);
             }
 
             return this.parse(Supplier.Sql_keys, Params);
@@ -263,6 +271,16 @@ namespace Suppliers
     // to Database.
     public class SupplierModel : DataModelWithControl<Supplier>
     {
+
+        public SupplierModel(DataGridView control, string host, 
+            int port, string dbname, string username, string password, string table_name, SupplierParser parser) :
+            base(control,host, port, dbname, username, password, table_name, parser)
+
+        {
+            this._initTable();
+        }
+
+
         private void _initTable()
         {
             string[] keys = Supplier.Sql_keys;

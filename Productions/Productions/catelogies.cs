@@ -24,9 +24,16 @@ namespace Productions
             Productions.Properties.Settings setting = new Productions.Properties.Settings();
 
             CategoryParser newParser = new CategoryParser();
-            
-            //datamodel = new CategoryModel(this.gvCategories, setting.DB_HOST, setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
-            
+
+            dataModel = new CategoryModel(
+                                this.gvCategories,
+                                setting.DB_HOST,
+                                setting.DB_PORT,
+                                setting.DB_NAME,
+                                setting.DB_USER,
+                                setting.DB_PASS,
+                                "Production.Categories",
+                                newParser);
             dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
             
             newParser.DataModel = dataModel;

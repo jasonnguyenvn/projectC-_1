@@ -11,7 +11,7 @@ namespace Productions
 {
     // Hau added new class Category.
     // This class describes Categorys.
-    public class Category : DataModel.DataObject
+    public class Category : BaseDataObject
     {
         private int categoryid;
 
@@ -61,7 +61,7 @@ namespace Productions
             return result;
         }
 
-        public override void copyTo(DataModel.DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Category otherEmp = (Category)other;
             otherEmp.categoryid = this.categoryid;

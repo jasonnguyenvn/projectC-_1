@@ -8,7 +8,7 @@ using System.Data;
 
 namespace DataModel
 {
-    public abstract class AbstractDataModel<T> : object where T : DataObject
+    public abstract class AbstractDataModel<T> : object where T : BaseDataObject
     {
         private readonly List<T> _data;
 

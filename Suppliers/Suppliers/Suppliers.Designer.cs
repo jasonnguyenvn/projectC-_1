@@ -86,6 +86,7 @@
             this.clPhone,
             this.clFax});
             this.gvSuppliers.Location = new System.Drawing.Point(14, 27);
+            this.gvSuppliers.MultiSelect = false;
             this.gvSuppliers.Name = "gvSuppliers";
             this.gvSuppliers.ReadOnly = true;
             this.gvSuppliers.Size = new System.Drawing.Size(511, 467);
@@ -242,6 +243,7 @@
             // 
             // txtSupID
             // 
+            this.txtSupID.Enabled = false;
             this.txtSupID.Location = new System.Drawing.Point(670, 29);
             this.txtSupID.Name = "txtSupID";
             this.txtSupID.Size = new System.Drawing.Size(100, 20);

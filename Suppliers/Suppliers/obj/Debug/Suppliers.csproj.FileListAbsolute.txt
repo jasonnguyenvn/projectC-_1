@@ -1,3 +1,10 @@
-c:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\ResolveAssemblyReference.cache
-c:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.Suppliers.resources
-c:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.csproj.GenerateResource.Cache
+C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.Suppliers.resources
+C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.csproj.GenerateResource.Cache
+C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.dll.config
+C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.dll
+C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.pdb
+C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.dll
+C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.pdb
+C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.dll
+C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.pdb
