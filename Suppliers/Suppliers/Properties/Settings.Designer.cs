@@ -35,9 +35,9 @@ namespace Suppliers.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1433")]
-        public string DB_PORT {
+        public int DB_PORT {
             get {
-                return ((string)(this["DB_PORT"]));
+                return ((int)(this["DB_PORT"]));
             }
         }
         

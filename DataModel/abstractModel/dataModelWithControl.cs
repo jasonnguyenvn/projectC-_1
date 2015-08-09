@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DataModel
 {
-    public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : DataObject
+    public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : BaseDataObject
     {
         protected readonly DataGridView _control;
 

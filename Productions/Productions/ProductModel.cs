@@ -10,7 +10,7 @@ namespace Productions
 {
     // Hau added new class Product
     // This class describes Products.
-    public class Product : DataModel.DataObject
+    public class Product : BaseDataObject
     {
         private int productid;
 
@@ -89,7 +89,7 @@ namespace Productions
             return result;
         }
 
-        public override void copyTo(DataModel.DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Product otherEmp = (Product)other;
             otherEmp.productid = this.productid;
@@ -152,9 +152,15 @@ namespace Productions
 
         private ProductModel _dataModel;
 
-        public ProductParser(ProductModel dataModel)
+        public ProductModel DataModel
         {
-            this._dataModel = dataModel;
+            get { return _dataModel; }
+            set { _dataModel = value; }
+        }
+
+        public ProductParser()
+        {
+            this._dataModel = null;
         }
 
         public override Product parse(string[] keys,
@@ -209,6 +215,7 @@ namespace Productions
             for (int i = 0; i < count; i++)
             {
                 SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
+                Params.Add(param);
             }
 
             return this.parse(Product.Sql_keys, Params);
