@@ -206,6 +206,7 @@
             // 
             // txtEmployeeID
             // 
+            this.txtEmployeeID.Enabled = false;
             this.txtEmployeeID.Location = new System.Drawing.Point(599, 25);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(129, 20);
@@ -324,7 +325,9 @@
             this.tbPhone,
             this.tbManagerID});
             this.gvEmployees.Location = new System.Drawing.Point(22, 25);
+            this.gvEmployees.MultiSelect = false;
             this.gvEmployees.Name = "gvEmployees";
+            this.gvEmployees.ReadOnly = true;
             this.gvEmployees.Size = new System.Drawing.Size(446, 453);
             this.gvEmployees.TabIndex = 28;
             // 
@@ -332,71 +335,85 @@
             // 
             this.tbEmployeeID.HeaderText = "EmpID";
             this.tbEmployeeID.Name = "tbEmployeeID";
+            this.tbEmployeeID.ReadOnly = true;
             // 
             // tbLastname
             // 
             this.tbLastname.HeaderText = "Last Name";
             this.tbLastname.Name = "tbLastname";
+            this.tbLastname.ReadOnly = true;
             // 
             // tbFirstname
             // 
             this.tbFirstname.HeaderText = "First Name";
             this.tbFirstname.Name = "tbFirstname";
+            this.tbFirstname.ReadOnly = true;
             // 
             // tbTitle
             // 
             this.tbTitle.HeaderText = "Title";
             this.tbTitle.Name = "tbTitle";
+            this.tbTitle.ReadOnly = true;
             // 
             // tbTitleofCourtesy
             // 
             this.tbTitleofCourtesy.HeaderText = "TitleOfCourtesy";
             this.tbTitleofCourtesy.Name = "tbTitleofCourtesy";
+            this.tbTitleofCourtesy.ReadOnly = true;
             // 
             // tbBirthday
             // 
             this.tbBirthday.HeaderText = "Birthday";
             this.tbBirthday.Name = "tbBirthday";
+            this.tbBirthday.ReadOnly = true;
             // 
             // tbHireday
             // 
             this.tbHireday.HeaderText = "Hireday";
             this.tbHireday.Name = "tbHireday";
+            this.tbHireday.ReadOnly = true;
             // 
             // tbAddress
             // 
             this.tbAddress.HeaderText = "Address";
             this.tbAddress.Name = "tbAddress";
+            this.tbAddress.ReadOnly = true;
             // 
             // tbCity
             // 
             this.tbCity.HeaderText = "City";
             this.tbCity.Name = "tbCity";
+            this.tbCity.ReadOnly = true;
             // 
             // tbRegion
             // 
             this.tbRegion.HeaderText = "Region";
             this.tbRegion.Name = "tbRegion";
+            this.tbRegion.ReadOnly = true;
             // 
             // tbPostalcode
             // 
             this.tbPostalcode.HeaderText = "Postal Code";
             this.tbPostalcode.Name = "tbPostalcode";
+            this.tbPostalcode.ReadOnly = true;
             // 
             // tbCountry
             // 
             this.tbCountry.HeaderText = "Country";
             this.tbCountry.Name = "tbCountry";
+            this.tbCountry.ReadOnly = true;
             // 
             // tbPhone
             // 
             this.tbPhone.HeaderText = "Phone";
             this.tbPhone.Name = "tbPhone";
+            this.tbPhone.ReadOnly = true;
             // 
             // tbManagerID
             // 
             this.tbManagerID.HeaderText = "MgrID";
             this.tbManagerID.Name = "tbManagerID";
+            this.tbManagerID.ReadOnly = true;
             // 
             // btnAdd
             // 

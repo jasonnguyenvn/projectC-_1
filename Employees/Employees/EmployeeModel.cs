@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using DataModel;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Employees
 {
     // Hau added new class Employee
     // This class describes Employees.
-    public class Employee : DataObject
+    public class Employee : BaseDataObject
     {
         private int empid;
 
@@ -135,7 +136,7 @@ namespace Employees
             "address",
             "city",
             "region",
-            "postatalcode",
+            "postalcode",
             "country",
             "phone",
             "mgrid"
@@ -167,7 +168,7 @@ namespace Employees
             return result;
         }
 
-        public override void copyTo(DataObject other)
+        public override void copyTo(BaseDataObject other)
         {
             Employee otherEmp = (Employee) other;
             otherEmp.empid = this.empid;
@@ -239,9 +240,15 @@ namespace Employees
     {
         private EmployeeModel _dataModel;
 
-        public EmployeeParser(EmployeeModel dataModel)
+        public EmployeeModel DataModel
         {
-            this._dataModel = dataModel;
+            get { return _dataModel; }
+            set { _dataModel = value; }
+        }
+
+        public EmployeeParser()
+        {
+            this._dataModel = null;
         }
 
         public override Employee parse(string[] keys, 
@@ -258,7 +265,7 @@ namespace Employees
             {
                 SqlParameter param = sqlParams[i];
                 if(keys[i].Equals(param.ParameterName)==false)
-                    throw new Exception("INVALID KEY TO PARSE EMPLOYE. "
+                    throw new Exception("INVALID KEY TO PARSE EMPLOYEE. "
                                 + " KEYNAME: " + param.ParameterName );
                 switch (keys[i])
                 {
@@ -302,7 +309,11 @@ namespace Employees
                         result.Phone = param.Value.ToString();
                         break;
                     case "mgrid":
-                        result.Mgrid = int.Parse(param.Value.ToString());
+                        try
+                        {
+                            result.Mgrid = int.Parse(param.Value.ToString());
+                        }
+                        catch { }
                         break;
                 }
             }
@@ -317,6 +328,7 @@ namespace Employees
             for (int i = 0; i < count; i++)
             {
                 SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
+                Params.Add(param);
             }
 
             return this.parse(Employee.Sql_keys, Params);
@@ -335,9 +347,18 @@ namespace Employees
     // to Database.
     public class EmployeeModel : DataModelWithControl<Employee>
     {
+        public EmployeeModel(DataGridView control,  string host, 
+            int port, string dbname, string username, string password, string table_name, EmployeeParser parser) :
+            base(control,host, port, dbname, username, password, table_name, parser)
+
+        {
+            this._initTable();
+        }
+
         private void _initTable()
         {
             string[] keys = Employee.Sql_keys;
+            this._control.Columns.Clear();
             foreach (string aKey in keys)
             {
                 System.Windows.Forms.DataGridViewColumn column;

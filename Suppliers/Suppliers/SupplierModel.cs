@@ -117,7 +117,14 @@ namespace Suppliers
             object[] result = {
                 this.supplierid.ToString(),
                 this.companyname,
-                this.contacttitle
+                this.contacttitle,
+                this.address,
+                this.city,
+                this.region,
+                this.postalcode,
+                this.country,
+                this.phone,
+                this.fax
             };
             return result;
         }
@@ -284,6 +291,7 @@ namespace Suppliers
         private void _initTable()
         {
             string[] keys = Supplier.Sql_keys;
+            this._control.Columns.Clear();
             foreach (string aKey in keys)
             {
                 System.Windows.Forms.DataGridViewColumn column;
