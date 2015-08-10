@@ -363,7 +363,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(555, 471);
+            this.btnRemove.Location = new System.Drawing.Point(798, 471);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 27;
@@ -383,7 +383,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(799, 471);
+            this.btnClear.Location = new System.Drawing.Point(552, 471);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 29;

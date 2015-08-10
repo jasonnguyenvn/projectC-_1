@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using DataModel;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Productions
 {
@@ -138,7 +139,16 @@ namespace Productions
 
         public override int isValid()
         {
-            throw new NotImplementedException();
+            if (this.productname.Equals(""))
+                return -2;
+            if (this.supplierid.Equals(""))
+                return -3;
+            if (this.categoryid.Equals(""))
+                return -4;
+            if (this.unitprice.Equals(""))
+                return -5;
+         
+            return 1;
         }
     }
 
@@ -146,7 +156,7 @@ namespace Productions
     {
         public override string getPrimaryKey()
         {
-            throw new NotImplementedException();
+            return "productid";
         }
 
 
@@ -160,7 +170,7 @@ namespace Productions
 
         public ProductParser()
         {
-            this._dataModel = null;
+           
         }
 
         public override Product parse(string[] keys,
@@ -256,7 +266,22 @@ namespace Productions
 
         public override List<SqlParameter> SqlParams(Product item)
         {
-            throw new NotImplementedException();
+            SqlParameter ID = this.createSQLParam("productid", SqlDbType.Int, item.ProductID);
+            SqlParameter Name = this.createSQLParam("productname", SqlDbType.NVarChar, item.ProductName, 40);
+            SqlParameter supID = this.createSQLParam("supplierid", SqlDbType.Int, item.SupplierID);
+            SqlParameter catID = this.createSQLParam("categoryid", SqlDbType.Int, item.CategoryID);
+            SqlParameter UnitPrice = this.createSQLParam("unitprice", SqlDbType.Money, item.UnitPrice);
+            SqlParameter Discontinued  =   this.createSQLParam("discontinued", SqlDbType.Bit, item.Discontinued);
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(ID);
+            list.Add(Name);
+            list.Add(supID);
+            list.Add(catID);
+            list.Add(UnitPrice);
+            list.Add(Discontinued);
+
+            return list;
         }
     }
 
