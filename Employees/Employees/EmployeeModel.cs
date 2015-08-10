@@ -5,6 +5,7 @@ using System.Text;
 using DataModel;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Employees
 {
@@ -227,12 +228,37 @@ namespace Employees
 
         public override string getErrorMessage(int errorCode)
         {
-            throw new NotImplementedException();
+            switch(errorCode)
+            {
+                case -1: return "Firstname is empty";
+                case -2: return "Lastname is empty";
+                case -3: return "Title is empty";
+                case -4: return "TitleofCourtesy is empty";
+                case -5: return "Employee must be 18 or older";
+                case -6: return "Address is empty";
+                case -7: return "City is empty";
+                case -10: return "Country is empty";
+                case -11: return "Phone is empty";
+                
+            }
+            return "";
         }
 
         public override int isValid()
         {
-            throw new NotImplementedException();
+            if (this.firstname.Equals("")) return -1;
+            if (this.lastname.Equals("")) return -2;
+            if (this.title.Equals("")) return -3;
+            if (this.titleofcourtesy.Equals("")) return -4;
+            if (DateTime.Now.Year-this.Birthdate.Year<18) return -5;
+            if (this.address.Equals("")) return -6;
+            if (this.city.Equals("")) return -7;
+            if (this.country.Equals("")) return -10;
+            if (this.phone.Equals("")) return -11;
+            
+
+            return 1;
+
         }
     }
 
@@ -336,7 +362,7 @@ namespace Employees
 
         public override string getPrimaryKey()
         {
-            throw new NotImplementedException();
+            return "empid";
         }
     }
 
@@ -374,7 +400,43 @@ namespace Employees
 
         public override List<SqlParameter> SqlParams(Employee item)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> result = new List<SqlParameter>();
+
+            SqlParameter empid = this.createSQLParam("empid", SqlDbType.Int, item.Empid);
+            SqlParameter lastname = this.createSQLParam("lastname", SqlDbType.NVarChar, item.Lastname, 20);
+            SqlParameter firstname = this.createSQLParam("firstname", SqlDbType.NVarChar, item.Firstname, 10);
+            SqlParameter title = this.createSQLParam("title", SqlDbType.NVarChar, item.Title, 30);
+            SqlParameter titleofcourtesy = this.createSQLParam("titleofcourtesy", SqlDbType.VarChar, item.Titleofcourtesy, 25);
+            SqlParameter birthdate = this.createSQLParam("birthdate", SqlDbType.DateTime, item.Birthdate);
+            SqlParameter hiredate = this.createSQLParam("hiredate", SqlDbType.DateTime, item.Hiredate);
+            SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address, 60);
+            SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City, 15);
+            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
+            SqlParameter postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+            SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
+            SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
+            SqlParameter mgrid = null;
+            if(item.Mgrid>=0)
+                mgrid = this.createSQLParam("mgrid", SqlDbType.Int, item.Mgrid);
+            else 
+                mgrid = this.createSQLParam("mgrid", SqlDbType.Int, DBNull.Value);
+
+            result.Add(empid);
+            result.Add(lastname);
+            result.Add(firstname);
+            result.Add(title);
+            result.Add(titleofcourtesy);
+            result.Add(birthdate);
+            result.Add(hiredate);
+            result.Add(address);
+            result.Add(city);
+            result.Add(region);
+            result.Add(postalcode);
+            result.Add(country);
+            result.Add(phone);
+            result.Add(mgrid);
+
+            return result;
         }
     }
 }
