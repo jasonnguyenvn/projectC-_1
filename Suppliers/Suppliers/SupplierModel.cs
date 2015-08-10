@@ -205,22 +205,16 @@ namespace Suppliers
                 return -2;
             if (this.city.Equals(""))
                 return -2;
-<<<<<<< HEAD
-=======
-            if (this.region.Equals(""))
+            /*if (this.region.Equals(""))
                 return -2;
             if (this.postalcode.Equals(""))
-                return -2;
->>>>>>> 43ab0f06ba906f00cba59a80b347a31f728e1a82
+                return -2;*/
             if (this.country.Equals(""))
                 return -2;
             if (this.phone.Equals(""))
                 return -2;
-<<<<<<< HEAD
-=======
-            if (this.fax.Equals(""))
-                return -2;
->>>>>>> 43ab0f06ba906f00cba59a80b347a31f728e1a82
+            /*if (this.fax.Equals(""))
+                return -2;*/
             return 1;
         }
     }

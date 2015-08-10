@@ -455,10 +455,9 @@
             this.btnClearForm.TabIndex = 32;
             this.btnClearForm.Text = "Clear";
             this.btnClearForm.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
+
             this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
-=======
->>>>>>> 43ab0f06ba906f00cba59a80b347a31f728e1a82
+
             // 
             // Employees
             // 
