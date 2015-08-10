@@ -8,3 +8,13 @@ C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.dll
 C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.pdb
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.dll
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.pdb
+D:\Project\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.dll.config
+D:\Project\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.dll
+D:\Project\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.pdb
+D:\Project\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.dll
+D:\Project\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.pdb
+D:\Project\projectC-_1\Suppliers\Suppliers\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.Suppliers.resources
+D:\Project\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.csproj.GenerateResource.Cache
+D:\Project\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.dll
+D:\Project\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.pdb

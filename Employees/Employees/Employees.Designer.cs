@@ -74,6 +74,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnClearForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).BeginInit();
             this.SuspendLayout();
             // 
@@ -330,6 +331,7 @@
             this.gvEmployees.ReadOnly = true;
             this.gvEmployees.Size = new System.Drawing.Size(446, 453);
             this.gvEmployees.TabIndex = 28;
+            this.gvEmployees.SelectionChanged += new System.EventHandler(this.gvEmployees_SelectionChanged);
             // 
             // tbEmployeeID
             // 
@@ -417,35 +419,49 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(724, 455);
+            this.btnAdd.Location = new System.Drawing.Point(755, 455);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 29;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(634, 455);
+            this.btnUpdate.Location = new System.Drawing.Point(665, 455);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 30;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(553, 455);
+            this.btnDelete.Location = new System.Drawing.Point(569, 455);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 31;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Location = new System.Drawing.Point(486, 454);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(75, 23);
+            this.btnClearForm.TabIndex = 32;
+            this.btnClearForm.Text = "Clear";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // Employees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
@@ -479,7 +495,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Employees";
-            this.Size = new System.Drawing.Size(813, 501);
+            this.Size = new System.Drawing.Size(845, 494);
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -534,5 +550,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnClearForm;
     }
 }
