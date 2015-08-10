@@ -185,10 +185,13 @@ namespace Employees
 
             this.gvEmployees.ClearSelection();
         }
+<<<<<<< HEAD
 
         private void btnClearForm_Click(object sender, EventArgs e)
         {
             this.clearForm();
         }
+=======
+>>>>>>> 43ab0f06ba906f00cba59a80b347a31f728e1a82
     }
 }
