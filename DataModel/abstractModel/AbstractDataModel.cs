@@ -283,4 +283,5 @@ namespace DataModel
         public abstract List<SqlParameter> SqlParams(T item);
 
     }
+   
 }
