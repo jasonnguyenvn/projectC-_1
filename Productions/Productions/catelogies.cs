@@ -50,7 +50,7 @@ namespace Productions
 
             int check = newCat.isValid();
 
-            if (check < -1)
+            if (check < 0)
             {
                 MessageBox.Show(newCat.getErrorMessage(check));
             }
