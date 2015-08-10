@@ -205,15 +205,9 @@ namespace Suppliers
                 return -2;
             if (this.city.Equals(""))
                 return -2;
-            if (this.region.Equals(""))
-                return -2;
-            if (this.postalcode.Equals(""))
-                return -2;
             if (this.country.Equals(""))
                 return -2;
             if (this.phone.Equals(""))
-                return -2;
-            if (this.fax.Equals(""))
                 return -2;
             return 1;
         }

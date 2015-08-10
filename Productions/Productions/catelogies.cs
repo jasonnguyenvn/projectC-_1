@@ -34,7 +34,7 @@ namespace Productions
                                 setting.DB_PASS,
                                 "Production.Categories",
                                 newParser);
-            dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
+            //dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
             
             newParser.DataModel = dataModel;
 
