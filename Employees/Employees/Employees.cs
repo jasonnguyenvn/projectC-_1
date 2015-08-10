@@ -185,5 +185,10 @@ namespace Employees
 
             this.gvEmployees.ClearSelection();
         }
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            this.clearForm();
+        }
     }
 }
