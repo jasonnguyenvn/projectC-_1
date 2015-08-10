@@ -134,7 +134,11 @@ namespace Productions
 
         public override string getErrorMessage(int errorCode)
         {
-            throw new NotImplementedException();
+            switch (errorCode)
+            {
+                case -2: return "Product Name cannot be empty";
+            }
+            return "";
         }
 
         public override int isValid()

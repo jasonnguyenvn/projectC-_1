@@ -58,6 +58,7 @@ namespace Productions
                 this.dataModel.insertNewRow(newCat);
                 //this.datamodel.resetControl();
                 MessageBox.Show("Completed");
+                clearAll();
             }
         }
 
@@ -85,6 +86,7 @@ namespace Productions
                 int IdToDelete = int.Parse(this.txtCatID.Text.Trim());
                 this.dataModel.deleteRows("categoryid="+IdToDelete);
                 MessageBox.Show("Deleted.");
+                clearAll();
             }
             catch(Exception ex)
             {
@@ -110,11 +112,26 @@ namespace Productions
                 //int IdOfRow = this.gvCategories.Rows.IndexOf(this.gvCategories.SelectedRows[0]);
                 this.dataModel.updateRow(updateData);
                 MessageBox.Show("Updated.");
+                clearAll();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        protected void clearAll()
+        {
+            this.txtCatID.Text = "";
+            this.txtCatName.Text = "";
+            this.rtxtDescription.Text = "";
+
+            this.gvCategories.ClearSelection();
+
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearAll();
         }
     }
 }
