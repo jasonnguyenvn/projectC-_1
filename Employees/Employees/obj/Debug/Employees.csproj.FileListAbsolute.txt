@@ -2,8 +2,6 @@ D:\Project\projectC-_1\Employees\Employees\bin\Debug\Employees.dll
 D:\Project\projectC-_1\Employees\Employees\bin\Debug\Employees.pdb
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\ResolveAssemblyReference.cache
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.Employees.resources
-D:\Project\projectC-_1\Employees\Employees\obj\Debug\ResGen.read.1.tlog
-D:\Project\projectC-_1\Employees\Employees\obj\Debug\ResGen.write.1.tlog
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.dll
 D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.pdb
 c:\Projects\projectC-_1\Employees\Employees\obj\Debug\ResolveAssemblyReference.cache
@@ -16,3 +14,7 @@ C:\Projects\projectC-_1\Employees\Employees\bin\Debug\DataModel.dll
 C:\Projects\projectC-_1\Employees\Employees\bin\Debug\DataModel.pdb
 C:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.dll
 C:\Projects\projectC-_1\Employees\Employees\obj\Debug\Employees.pdb
+D:\Project\projectC-_1\Employees\Employees\bin\Debug\Employees.dll.config
+D:\Project\projectC-_1\Employees\Employees\bin\Debug\DataModel.dll
+D:\Project\projectC-_1\Employees\Employees\bin\Debug\DataModel.pdb
+D:\Project\projectC-_1\Employees\Employees\obj\Debug\Employees.csproj.GenerateResource.Cache
