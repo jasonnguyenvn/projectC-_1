@@ -174,7 +174,7 @@
             // 
             // btnproUpdate
             // 
-            this.btnproUpdate.Location = new System.Drawing.Point(754, 293);
+            this.btnproUpdate.Location = new System.Drawing.Point(673, 264);
             this.btnproUpdate.Name = "btnproUpdate";
             this.btnproUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnproUpdate.TabIndex = 14;
@@ -184,7 +184,7 @@
             // 
             // btnproRemove
             // 
-            this.btnproRemove.Location = new System.Drawing.Point(559, 293);
+            this.btnproRemove.Location = new System.Drawing.Point(597, 264);
             this.btnproRemove.Name = "btnproRemove";
             this.btnproRemove.Size = new System.Drawing.Size(75, 23);
             this.btnproRemove.TabIndex = 15;
@@ -194,7 +194,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(559, 264);
+            this.btnClear.Location = new System.Drawing.Point(515, 264);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 16;
@@ -224,7 +224,7 @@
             this.Controls.Add(this.gvProducts);
             this.Controls.Add(this.label1);
             this.Name = "products";
-            this.Size = new System.Drawing.Size(859, 350);
+            this.Size = new System.Drawing.Size(859, 316);
             ((System.ComponentModel.ISupportInitialize)(this.gvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
