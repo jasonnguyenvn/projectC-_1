@@ -19,8 +19,29 @@ namespace Employees
             this._initModel();
         }
 
+        public Employees(string host, int port, string dbname, string username,
+            string password, string table_name, EmployeeParser parser)
+        {
+            this.InitializeComponent();
+
+            EmployeeParser newParser = new EmployeeParser();
+            dataModel = new EmployeeModel(
+                                this.gvEmployees,
+                                host,
+                                port,
+                                dbname,
+                                username,
+                                password,
+                                "HR.Employees",
+                                newParser);
+            newParser.DataModel = dataModel;
+
+            dataModel.resetControl();
+        }
+
         protected void _initModel()
         {
+            this.gvEmployees.Columns.Clear();
             Settings setting = new Settings();
 
             EmployeeParser newParser = new EmployeeParser();
@@ -156,7 +177,7 @@ namespace Employees
                 return;
             }
            
-            DialogResult dialogResult = MessageBox.Show("Are you sure to Delete ?", "Delete", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 int ID = int.Parse(this.txtEmployeeID.Text.Trim());

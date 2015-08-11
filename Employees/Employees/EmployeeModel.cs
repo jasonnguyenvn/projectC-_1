@@ -125,6 +125,15 @@ namespace Employees
             set { mgrid = value; }
         }
 
+        private bool jobStatus;
+
+        public bool JobStatus
+        {
+            get { return jobStatus; }
+            set { jobStatus = value; }
+        }
+
+
         public static readonly string[] Sql_keys =
         {
             "empid",
@@ -140,7 +149,8 @@ namespace Employees
             "postalcode",
             "country",
             "phone",
-            "mgrid"
+            "mgrid",
+            "jobStatus"
         };
 
         public override string[] SqlKeys()
@@ -164,7 +174,8 @@ namespace Employees
                 this.postalcode,
                 this.country,
                 this.phone,
-                this.mgrid.ToString()
+                this.mgrid.ToString(),
+                this.jobStatus.ToString()
             };
             return result;
         }
@@ -224,6 +235,7 @@ namespace Employees
             this.country = "";
             this.phone = "";
             this.mgrid = -1;
+            this.jobStatus = true;
         }
 
         public override string getErrorMessage(int errorCode)
@@ -341,6 +353,9 @@ namespace Employees
                         }
                         catch { }
                         break;
+                    case "jobStatus":
+                        result.JobStatus = param.Value.Equals(true) ? true : false;
+                        break;
                 }
             }
 
@@ -373,28 +388,26 @@ namespace Employees
     // to Database.
     public class EmployeeModel : DataModelWithControl<Employee>
     {
-        public EmployeeModel(DataGridView control,  string host, 
+        public EmployeeModel(object control,  string host, 
             int port, string dbname, string username, string password, string table_name, EmployeeParser parser) :
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-            this._initTable();
+                this._initTable();
         }
 
         private void _initTable()
         {
             string[] keys = Employee.Sql_keys;
-            this._control.Columns.Clear();
+            this.DataSource.Columns.Clear();
+            
             foreach (string aKey in keys)
             {
-                System.Windows.Forms.DataGridViewColumn column;
-                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-                column.HeaderText = aKey;
-                column.Name = "cl_" + aKey;
-                column.SortMode = System.Windows.Forms
-                                    .DataGridViewColumnSortMode
-                                    .NotSortable;
-                this._control.Columns.Add(column);
+                DataColumn column;
+                column = new System.Data.DataColumn();
+                column.Caption = aKey;
+                column.ColumnName =  aKey;
+                this.DataSource.Columns.Add(column);
             }
         }
 
@@ -416,6 +429,7 @@ namespace Employees
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
             SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
             SqlParameter mgrid = null;
+            SqlParameter jobStatus = this.createSQLParam("jobStatus", SqlDbType.Bit, item.JobStatus);
             if(item.Mgrid>=0)
                 mgrid = this.createSQLParam("mgrid", SqlDbType.Int, item.Mgrid);
             else 
@@ -435,8 +449,51 @@ namespace Employees
             result.Add(country);
             result.Add(phone);
             result.Add(mgrid);
+            result.Add(jobStatus);
 
             return result;
+        }
+
+        public override void resetControl()
+        {
+            if (this._control == null && this._webControl == null)
+                throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
+
+            /*if (this._webControl != null)
+            {
+                this.resetForWebcontrol();
+                return;
+            }*/
+
+            base.resetModel();
+            this.DataSource.Rows.Clear();
+            foreach (Employee item in this.Data)
+            {
+                if (item.JobStatus == false)
+                    continue;
+                this.DataSource.Rows.Add(item.convertToRow());
+            }
+
+            if (this._webControl != null)
+                this._webControl.DataBind();
+        }
+
+        public override List<Employee> deleteRows(string where_filter)
+        {
+            List<Employee> deletedList = this.getItems(where_filter);
+            if (deletedList.Count <= 0)
+                return new List<Employee>();
+
+            foreach (Employee emp in deletedList)
+            {
+                emp.JobStatus = false;
+                this.updateRow(emp);
+                int delIndex = this.Data.IndexOf(emp);
+                this.Data.RemoveAt(delIndex);
+                this.DataSource.Rows.RemoveAt(delIndex);
+            }
+
+            return deletedList;
         }
     }
 }

@@ -209,14 +209,10 @@ namespace Productions
             string[] keys = Category.Sql_keys;
             foreach (string aKey in keys)
             {
-                System.Windows.Forms.DataGridViewColumn column;
-                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-                column.HeaderText = aKey;
-                column.Name = "cl_" + aKey;
-                column.SortMode = System.Windows.Forms
-                                    .DataGridViewColumnSortMode
-                                    .NotSortable;
-                this._control.Columns.Add(column);
+                System.Data.DataColumn column;
+                column = new System.Data.DataColumn();
+                column.ColumnName = aKey;
+                this.DataSource.Columns.Add(column);
             }
         }
 

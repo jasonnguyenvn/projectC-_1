@@ -1,6 +1,6 @@
 ﻿namespace Productions
 {
-    partial class catelogies
+    partial class Categories
     {
         /// <summary> 
         /// Required designer variable.
