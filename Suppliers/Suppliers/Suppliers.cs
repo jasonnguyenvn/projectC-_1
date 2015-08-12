@@ -17,6 +17,26 @@ namespace Suppliers
             InitializeComponent();
             this._initModel();
         }
+
+        public Suppliers(string host, int port, string dbname, string username,
+            string password, string table_name, EmployeeParser parser)
+        {
+            this.InitializeComponent();
+
+            SupplierParser newParser = new SupplierParser();
+            dataModel = new SupplierModel(
+                                this.gvSuppliers,
+                                host,
+                                port,
+                                dbname,
+                                username,
+                                password,
+                                "HR.Employees",
+                                newParser);
+            newParser.DataModel = dataModel;
+            dataModel.resetControl();
+        }
+
         private SupplierModel dataModel;
         protected void _initModel()
         {

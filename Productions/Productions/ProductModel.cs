@@ -211,8 +211,7 @@ namespace Productions
                         result.UnitPrice = param.Value.ToString();
                         break;
                     case "discontinued":
-                        string get = param.Value.ToString();
-                        if (get == "1")
+                        if (param.Value.Equals(true))
                             result.Discontinued = true;
                         else result.Discontinued = false;
                         break;
@@ -256,14 +255,10 @@ namespace Productions
             string[] keys = Product.Sql_keys;
             foreach (string aKey in keys)
             { 
-                System.Windows.Forms.DataGridViewColumn column;
-                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-                column.HeaderText = aKey;
-                column.Name = "cl_" + aKey;
-                column.SortMode = System.Windows.Forms
-                                    .DataGridViewColumnSortMode
-                                    .NotSortable;
-                this._control.Columns.Add(column);
+                System.Data.DataColumn column;
+                column = new System.Data.DataColumn();
+                column.ColumnName = aKey;
+                this.DataSource.Columns.Add(column);
             }
 
         }

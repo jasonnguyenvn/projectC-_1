@@ -9,14 +9,34 @@ using System.Windows.Forms;
 
 namespace Productions
 {
-    public partial class catelogies : UserControl
+    public partial class Categories : UserControl
     {
         private CategoryModel dataModel;
 
-        public catelogies()
+        public Categories()
         {
             InitializeComponent();
             this._initModel();
+        }
+
+        public Categories(string host, int port, string dbname, string username,
+            string password, string table_name, CategoryParser parser)
+        {
+            this.InitializeComponent();
+
+            CategoryParser newParser = new CategoryParser();
+            dataModel = new CategoryModel(
+                                this.gvCategories,
+                                host,
+                                port,
+                                dbname,
+                                username,
+                                password,
+                                "HR.Employees",
+                                newParser);
+            newParser.DataModel = dataModel;
+
+            dataModel.resetControl();
         }
 
         protected void _initModel()
@@ -34,7 +54,7 @@ namespace Productions
                                 setting.DB_PASS,
                                 "Production.Categories",
                                 newParser);
-            //dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
+            dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
             
             newParser.DataModel = dataModel;
 

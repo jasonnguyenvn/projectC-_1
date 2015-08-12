@@ -1,6 +1,6 @@
 ﻿namespace Employees
 {
-    partial class Employees
+    partial class EmployeeControl
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -43,19 +39,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
-            this.txtLastname = new System.Windows.Forms.TextBox();
-            this.txtFirstname = new System.Windows.Forms.TextBox();
-            this.txtTitle = new System.Windows.Forms.TextBox();
-            this.txtTitleofCourtesy = new System.Windows.Forms.TextBox();
-            this.dTPBirthday = new System.Windows.Forms.DateTimePicker();
-            this.dTPHireday = new System.Windows.Forms.DateTimePicker();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtRegion = new System.Windows.Forms.TextBox();
-            this.txtPostalCode = new System.Windows.Forms.TextBox();
-            this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtManagerID = new System.Windows.Forms.TextBox();
             this.gvEmployees = new System.Windows.Forms.DataGridView();
             this.tbEmployeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbLastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,90 +54,66 @@
             this.tbCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnClearForm = new System.Windows.Forms.Button();
+            this.GridViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtManagerID = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtPostalCode = new System.Windows.Forms.TextBox();
+            this.txtRegion = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).BeginInit();
+            this.GridViewMenu.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(495, 25);
+            this.label1.Location = new System.Drawing.Point(7, 361);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Employee ID";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(496, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "First Name";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(495, 60);
+            this.label3.Location = new System.Drawing.Point(3, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Last Name";
+            this.label3.Text = "Name";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(496, 127);
+            this.label4.Location = new System.Drawing.Point(3, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Title";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(495, 155);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Title of courtesy";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(496, 184);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Birthday";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(495, 214);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Hireday";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(495, 246);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Address";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(495, 277);
+            this.label9.Location = new System.Drawing.Point(3, 68);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(24, 13);
             this.label9.TabIndex = 8;
@@ -163,7 +122,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(496, 309);
+            this.label10.Location = new System.Drawing.Point(3, 100);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 9;
@@ -172,7 +131,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(495, 334);
+            this.label11.Location = new System.Drawing.Point(3, 128);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 13);
             this.label11.TabIndex = 10;
@@ -181,7 +140,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(496, 368);
+            this.label12.Location = new System.Drawing.Point(3, 159);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 11;
@@ -190,7 +149,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(495, 399);
+            this.label13.Location = new System.Drawing.Point(3, 190);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(38, 13);
             this.label13.TabIndex = 12;
@@ -199,7 +158,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(496, 429);
+            this.label14.Location = new System.Drawing.Point(3, 220);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(63, 13);
             this.label14.TabIndex = 13;
@@ -208,107 +167,16 @@
             // txtEmployeeID
             // 
             this.txtEmployeeID.Enabled = false;
-            this.txtEmployeeID.Location = new System.Drawing.Point(599, 25);
+            this.txtEmployeeID.Location = new System.Drawing.Point(113, 354);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(129, 20);
             this.txtEmployeeID.TabIndex = 14;
-            // 
-            // txtLastname
-            // 
-            this.txtLastname.Location = new System.Drawing.Point(599, 60);
-            this.txtLastname.Name = "txtLastname";
-            this.txtLastname.Size = new System.Drawing.Size(200, 20);
-            this.txtLastname.TabIndex = 15;
-            // 
-            // txtFirstname
-            // 
-            this.txtFirstname.Location = new System.Drawing.Point(599, 94);
-            this.txtFirstname.Name = "txtFirstname";
-            this.txtFirstname.Size = new System.Drawing.Size(200, 20);
-            this.txtFirstname.TabIndex = 16;
-            // 
-            // txtTitle
-            // 
-            this.txtTitle.Location = new System.Drawing.Point(599, 124);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(200, 20);
-            this.txtTitle.TabIndex = 17;
-            // 
-            // txtTitleofCourtesy
-            // 
-            this.txtTitleofCourtesy.Location = new System.Drawing.Point(599, 155);
-            this.txtTitleofCourtesy.Name = "txtTitleofCourtesy";
-            this.txtTitleofCourtesy.Size = new System.Drawing.Size(200, 20);
-            this.txtTitleofCourtesy.TabIndex = 18;
-            // 
-            // dTPBirthday
-            // 
-            this.dTPBirthday.Location = new System.Drawing.Point(599, 184);
-            this.dTPBirthday.Name = "dTPBirthday";
-            this.dTPBirthday.Size = new System.Drawing.Size(200, 20);
-            this.dTPBirthday.TabIndex = 19;
-            // 
-            // dTPHireday
-            // 
-            this.dTPHireday.Location = new System.Drawing.Point(599, 214);
-            this.dTPHireday.Name = "dTPHireday";
-            this.dTPHireday.Size = new System.Drawing.Size(200, 20);
-            this.dTPHireday.TabIndex = 20;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(599, 243);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(200, 20);
-            this.txtAddress.TabIndex = 21;
-            // 
-            // txtCity
-            // 
-            this.txtCity.Location = new System.Drawing.Point(599, 274);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(200, 20);
-            this.txtCity.TabIndex = 22;
-            // 
-            // txtRegion
-            // 
-            this.txtRegion.Location = new System.Drawing.Point(599, 306);
-            this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(200, 20);
-            this.txtRegion.TabIndex = 23;
-            // 
-            // txtPostalCode
-            // 
-            this.txtPostalCode.Location = new System.Drawing.Point(599, 334);
-            this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(200, 20);
-            this.txtPostalCode.TabIndex = 24;
-            // 
-            // txtCountry
-            // 
-            this.txtCountry.Location = new System.Drawing.Point(599, 365);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(200, 20);
-            this.txtCountry.TabIndex = 25;
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(599, 396);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(200, 20);
-            this.txtPhone.TabIndex = 26;
-            // 
-            // txtManagerID
-            // 
-            this.txtManagerID.Location = new System.Drawing.Point(599, 429);
-            this.txtManagerID.Name = "txtManagerID";
-            this.txtManagerID.Size = new System.Drawing.Size(200, 20);
-            this.txtManagerID.TabIndex = 27;
             // 
             // gvEmployees
             // 
             this.gvEmployees.AllowUserToAddRows = false;
             this.gvEmployees.AllowUserToDeleteRows = false;
+            this.gvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.gvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbEmployeeID,
@@ -325,12 +193,15 @@
             this.tbCountry,
             this.tbPhone,
             this.tbManagerID});
-            this.gvEmployees.Location = new System.Drawing.Point(22, 25);
+            this.gvEmployees.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gvEmployees.Location = new System.Drawing.Point(0, 0);
             this.gvEmployees.MultiSelect = false;
             this.gvEmployees.Name = "gvEmployees";
             this.gvEmployees.ReadOnly = true;
-            this.gvEmployees.Size = new System.Drawing.Size(446, 453);
+            this.gvEmployees.Size = new System.Drawing.Size(513, 528);
             this.gvEmployees.TabIndex = 28;
+            this.gvEmployees.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gvEmployees_MouseClick);
+            this.gvEmployees.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvEmployees_MouseDoubleClick);
             this.gvEmployees.SelectionChanged += new System.EventHandler(this.gvEmployees_SelectionChanged);
             // 
             // tbEmployeeID
@@ -338,202 +209,338 @@
             this.tbEmployeeID.HeaderText = "EmpID";
             this.tbEmployeeID.Name = "tbEmployeeID";
             this.tbEmployeeID.ReadOnly = true;
+            this.tbEmployeeID.Width = 5;
             // 
             // tbLastname
             // 
             this.tbLastname.HeaderText = "Last Name";
             this.tbLastname.Name = "tbLastname";
             this.tbLastname.ReadOnly = true;
+            this.tbLastname.Width = 5;
             // 
             // tbFirstname
             // 
             this.tbFirstname.HeaderText = "First Name";
             this.tbFirstname.Name = "tbFirstname";
             this.tbFirstname.ReadOnly = true;
+            this.tbFirstname.Width = 5;
             // 
             // tbTitle
             // 
             this.tbTitle.HeaderText = "Title";
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.ReadOnly = true;
+            this.tbTitle.Width = 5;
             // 
             // tbTitleofCourtesy
             // 
             this.tbTitleofCourtesy.HeaderText = "TitleOfCourtesy";
             this.tbTitleofCourtesy.Name = "tbTitleofCourtesy";
             this.tbTitleofCourtesy.ReadOnly = true;
+            this.tbTitleofCourtesy.Width = 5;
             // 
             // tbBirthday
             // 
             this.tbBirthday.HeaderText = "Birthday";
             this.tbBirthday.Name = "tbBirthday";
             this.tbBirthday.ReadOnly = true;
+            this.tbBirthday.Width = 5;
             // 
             // tbHireday
             // 
             this.tbHireday.HeaderText = "Hireday";
             this.tbHireday.Name = "tbHireday";
             this.tbHireday.ReadOnly = true;
+            this.tbHireday.Width = 5;
             // 
             // tbAddress
             // 
             this.tbAddress.HeaderText = "Address";
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.ReadOnly = true;
+            this.tbAddress.Width = 5;
             // 
             // tbCity
             // 
             this.tbCity.HeaderText = "City";
             this.tbCity.Name = "tbCity";
             this.tbCity.ReadOnly = true;
+            this.tbCity.Width = 5;
             // 
             // tbRegion
             // 
             this.tbRegion.HeaderText = "Region";
             this.tbRegion.Name = "tbRegion";
             this.tbRegion.ReadOnly = true;
+            this.tbRegion.Width = 5;
             // 
             // tbPostalcode
             // 
             this.tbPostalcode.HeaderText = "Postal Code";
             this.tbPostalcode.Name = "tbPostalcode";
             this.tbPostalcode.ReadOnly = true;
+            this.tbPostalcode.Width = 5;
             // 
             // tbCountry
             // 
             this.tbCountry.HeaderText = "Country";
             this.tbCountry.Name = "tbCountry";
             this.tbCountry.ReadOnly = true;
+            this.tbCountry.Width = 5;
             // 
             // tbPhone
             // 
             this.tbPhone.HeaderText = "Phone";
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.ReadOnly = true;
+            this.tbPhone.Width = 5;
             // 
             // tbManagerID
             // 
             this.tbManagerID.HeaderText = "MgrID";
             this.tbManagerID.Name = "tbManagerID";
             this.tbManagerID.ReadOnly = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(755, 455);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 29;
-            this.btnAdd.Text = "ADD";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(665, 455);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 30;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(569, 455);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 31;
-            this.btnDelete.Text = "DELETE";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.tbManagerID.Width = 5;
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(486, 454);
+            this.btnClearForm.Location = new System.Drawing.Point(162, 309);
             this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(75, 23);
+            this.btnClearForm.Size = new System.Drawing.Size(90, 23);
             this.btnClearForm.TabIndex = 32;
-            this.btnClearForm.Text = "Clear";
+            this.btnClearForm.Text = "Clear Filter";
             this.btnClearForm.UseVisualStyleBackColor = true;
-
             this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
-
             // 
-            // Employees
+            // GridViewMenu
+            // 
+            this.GridViewMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.GridViewMenu.Name = "GridViewMenu";
+            this.GridViewMenu.Size = new System.Drawing.Size(110, 48);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.btnClearForm);
+            this.splitContainer1.Panel1.Controls.Add(this.btnDelete);
+            this.splitContainer1.Panel1.Controls.Add(this.txtEmployeeID);
+            this.splitContainer1.Panel1.Controls.Add(this.btnUpdate);
+            this.splitContainer1.Panel1.Controls.Add(this.btnAdd);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.gvEmployees);
+            this.splitContainer1.Size = new System.Drawing.Size(898, 555);
+            this.splitContainer1.SplitterDistance = 381;
+            this.splitContainer1.TabIndex = 36;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtManagerID);
+            this.panel1.Controls.Add(this.txtPhone);
+            this.panel1.Controls.Add(this.txtCountry);
+            this.panel1.Controls.Add(this.txtPostalCode);
+            this.panel1.Controls.Add(this.txtRegion);
+            this.panel1.Controls.Add(this.txtCity);
+            this.panel1.Controls.Add(this.txtTitle);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtName);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Location = new System.Drawing.Point(3, 56);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(360, 247);
+            this.panel1.TabIndex = 38;
+            // 
+            // txtManagerID
+            // 
+            this.txtManagerID.Location = new System.Drawing.Point(78, 220);
+            this.txtManagerID.Name = "txtManagerID";
+            this.txtManagerID.Size = new System.Drawing.Size(263, 20);
+            this.txtManagerID.TabIndex = 65;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(78, 190);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(263, 20);
+            this.txtPhone.TabIndex = 64;
+            // 
+            // txtCountry
+            // 
+            this.txtCountry.Location = new System.Drawing.Point(78, 159);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(263, 20);
+            this.txtCountry.TabIndex = 63;
+            // 
+            // txtPostalCode
+            // 
+            this.txtPostalCode.Location = new System.Drawing.Point(78, 128);
+            this.txtPostalCode.Name = "txtPostalCode";
+            this.txtPostalCode.Size = new System.Drawing.Size(263, 20);
+            this.txtPostalCode.TabIndex = 62;
+            // 
+            // txtRegion
+            // 
+            this.txtRegion.Location = new System.Drawing.Point(78, 100);
+            this.txtRegion.Name = "txtRegion";
+            this.txtRegion.Size = new System.Drawing.Size(263, 20);
+            this.txtRegion.TabIndex = 61;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(78, 68);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(263, 20);
+            this.txtCity.TabIndex = 60;
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.Location = new System.Drawing.Point(78, 40);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(263, 20);
+            this.txtTitle.TabIndex = 38;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(78, 9);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(263, 20);
+            this.txtName.TabIndex = 37;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(81, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(282, 26);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Employees Manager";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Employees.Properties.Resources.Users;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(64, 47);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 35;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::Employees.Properties.Resources.Filter2HS;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(258, 309);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(86, 23);
+            this.btnSearch.TabIndex = 33;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::Employees.Properties.Resources.DeleteHS1;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnDelete.Location = new System.Drawing.Point(92, 389);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 31;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Image = global::Employees.Properties.Resources.NewCardHS;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(173, 389);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(95, 23);
+            this.btnUpdate.TabIndex = 30;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::Employees.Properties.Resources.NewDocumentHS;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAdd.Location = new System.Drawing.Point(273, 389);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 29;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // EmployeeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnClearForm);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.gvEmployees);
-            this.Controls.Add(this.txtManagerID);
-            this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.txtCountry);
-            this.Controls.Add(this.txtPostalCode);
-            this.Controls.Add(this.txtRegion);
-            this.Controls.Add(this.txtCity);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.dTPHireday);
-            this.Controls.Add(this.dTPBirthday);
-            this.Controls.Add(this.txtTitleofCourtesy);
-            this.Controls.Add(this.txtTitle);
-            this.Controls.Add(this.txtFirstname);
-            this.Controls.Add(this.txtLastname);
-            this.Controls.Add(this.txtEmployeeID);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "Employees";
-            this.Size = new System.Drawing.Size(845, 494);
+            this.Controls.Add(this.splitContainer1);
+            this.Name = "EmployeeControl";
+            this.Size = new System.Drawing.Size(898, 555);
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).EndInit();
+            this.GridViewMenu.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtEmployeeID;
-        private System.Windows.Forms.TextBox txtLastname;
-        private System.Windows.Forms.TextBox txtFirstname;
-        private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.TextBox txtTitleofCourtesy;
-        private System.Windows.Forms.DateTimePicker dTPBirthday;
-        private System.Windows.Forms.DateTimePicker dTPHireday;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtCity;
-        private System.Windows.Forms.TextBox txtRegion;
-        private System.Windows.Forms.TextBox txtPostalCode;
-        private System.Windows.Forms.TextBox txtCountry;
-        private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtManagerID;
+        public System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.DataGridView gvEmployees;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbEmployeeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbLastname;
@@ -553,5 +560,21 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClearForm;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ContextMenuStrip GridViewMenu;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtTitle;
+        public System.Windows.Forms.TextBox txtPhone;
+        public System.Windows.Forms.TextBox txtCountry;
+        public System.Windows.Forms.TextBox txtPostalCode;
+        public System.Windows.Forms.TextBox txtRegion;
+        public System.Windows.Forms.TextBox txtCity;
+        public System.Windows.Forms.TextBox txtManagerID;
     }
 }
