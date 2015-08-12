@@ -10,17 +10,55 @@ using Employees.Properties;
 
 namespace Employees
 {
-    public partial class Employees : UserControl
+    public partial class EmployeeControl : UserControl
     {
         private EmployeeModel dataModel;
-        public Employees()
+        private bool _loaded = false;
+
+        public bool Loaded
+        {
+            get { return _loaded; }
+            set { _loaded = value; }
+        }
+
+        public EmployeeModel DataModel
+        {
+            get { return dataModel; }
+        }
+        private EmployeeEditForm editItemForm;
+
+        public EmployeeControl()
         {
             InitializeComponent();
+            //this.gvEmployees.ContextMenuStrip = this.GridViewMenu;
             this._initModel();
+        }
+
+        public EmployeeControl(string host, int port, string dbname, string username,
+            string password, string table_name, EmployeeParser parser)
+        {
+            this.InitializeComponent();
+
+            
+
+            EmployeeParser newParser = new EmployeeParser();
+            dataModel = new EmployeeModel(
+                                this.gvEmployees,
+                                host,
+                                port,
+                                dbname,
+                                username,
+                                password,
+                                "HR.Employees",
+                                newParser);
+            newParser.DataModel = dataModel;
+
+            dataModel.resetControl();
         }
 
         protected void _initModel()
         {
+            this.gvEmployees.Columns.Clear();
             Settings setting = new Settings();
 
             EmployeeParser newParser = new EmployeeParser();
@@ -39,6 +77,7 @@ namespace Employees
             newParser.DataModel = dataModel;
 
             dataModel.resetControl();
+            this.editItemForm = new EmployeeEditForm(dataModel);
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -48,7 +87,13 @@ namespace Employees
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Employee newEmp = new Employee();
+            this.txtEmployeeID.Text = "";
+            this.gvEmployees.ClearSelection();
+            this.editItemForm.NewEmpMode = true;
+            this.editItemForm.clearForm();
+            this.editItemForm.ShowDialog();
+
+            /*Employee newEmp = new Employee();
             newEmp.Empid = -1;
             newEmp.Lastname = this.txtLastname.Text;
             newEmp.Firstname = this.txtFirstname.Text;
@@ -81,18 +126,28 @@ namespace Employees
                 this.dataModel.insertNewRow(newEmp);
                 MessageBox.Show("Completed adding");
                 this.clearForm();
-            }
+            }*/
             
+        }
+
+        protected void doUpdate()
+        {
+            this.txtEmployeeID.Text = "";
+            this.gvEmployees.ClearSelection();
+            this.editItemForm.ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(this.txtEmployeeID.Text.Equals(""))
+            if (this.gvEmployees.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("You must select an Employee first"); 
                 return;
             }
-            try
+
+            doUpdate();
+
+            /*try
             {
                 Employee updateEmp = new Employee();
                 updateEmp.Empid = int.Parse(this.txtEmployeeID.Text.Trim());
@@ -122,7 +177,7 @@ namespace Employees
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
         private void gvEmployees_SelectionChanged(object sender, EventArgs e)
@@ -132,7 +187,7 @@ namespace Employees
                 int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
                 Employee selectedItem = this.dataModel.Data[selectedIndex];
                 this.txtEmployeeID.Text = selectedItem.Empid.ToString();
-                this.txtLastname.Text = selectedItem.Lastname;
+                /*this.txtLastname.Text = selectedItem.Lastname;
                 this.txtFirstname.Text = selectedItem.Firstname;
                 this.txtTitle.Text = selectedItem.Title;
                 this.txtTitleofCourtesy.Text = selectedItem.Titleofcourtesy;
@@ -145,10 +200,19 @@ namespace Employees
                 this.txtCountry.Text = selectedItem.Country;
                 this.txtPhone.Text = selectedItem.Phone;
                 this.txtManagerID.Text = selectedItem.Mgrid.ToString();
+                this.btnAdd.Enabled = false;*/
+
+                this.editItemForm.NewEmpMode = false;
+                this.editItemForm.setNewData(selectedItem);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
+        {  
+              this.doDelete();
+        }
+
+        protected void doDelete()
         {
             if (this.txtEmployeeID.Text.Equals(""))
             {
@@ -156,26 +220,20 @@ namespace Employees
                 return;
             }
            
-            DialogResult dialogResult = MessageBox.Show("Are you sure to Delete ?", "Delete", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 int ID = int.Parse(this.txtEmployeeID.Text.Trim());
                 this.dataModel.deleteRows(" empid=" + ID);
                 this.clearForm(); 
             }
-          
         }
 
         private void clearForm()
         {
             this.txtEmployeeID.Text = "";
-            this.txtLastname.Text = "";
-            this.txtFirstname.Text = "";
+            this.txtName.Text = "";
             this.txtTitle.Text = "";
-            this.txtTitleofCourtesy.Text = "";
-            this.dTPBirthday.Value = DateTime.Now;
-            this.dTPHireday.Value = DateTime.Now;
-            this.txtAddress.Text = "";
             this.txtCity.Text = "";
             this.txtRegion.Text = "";
             this.txtPostalCode.Text = "";
@@ -188,7 +246,75 @@ namespace Employees
 
         private void btnClearForm_Click(object sender, EventArgs e)
         {
+            this.dataModel.resetControl();
             this.clearForm();
+        }
+
+        private void gvEmployees_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.gvEmployees.SelectedRows.Count > 0)
+            {
+                doUpdate();
+            }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doUpdate();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                this.doDelete();
+        }
+
+        private void gvEmployees_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right
+                    && this.gvEmployees.SelectedRows.Count > 0)
+            {
+                
+                this.GridViewMenu.Show(Cursor.Position);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.gvEmployees.ClearSelection();
+            string sqlFilter = "jobStatus=1 ";
+            if (this.txtName.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Text.Trim());
+                
+            }
+            if (this.txtTitle.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Text.Trim());
+            }
+            if (this.txtCity.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Text.Trim());
+            }
+            if (this.txtRegion.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Text.Trim());
+            }
+            if (this.txtCountry.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Text.Trim());
+            }
+
+            if (this.txtPhone.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Text.Trim());
+            }
+
+            if (this.txtManagerID.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Text.Trim());
+            }
+
+            this.dataModel.resetControl(sqlFilter);
         }
     }
 }

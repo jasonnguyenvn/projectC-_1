@@ -10,9 +10,9 @@ E:\Project\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
 E:\Project\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
 E:\Project\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
 E:\Project\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb
-c:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll.config
-c:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
-c:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
-c:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache
-c:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
-c:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll.config
+C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
+C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb
