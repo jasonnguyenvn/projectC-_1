@@ -55,10 +55,10 @@ namespace DataModel
             this.conn = this.createConnection();
         }
 
-        public void resetModel()
+        public void resetModel(string filter)
         {
             this.conn.Open();
-            SqlDataReader dr = this.getRows();
+            SqlDataReader dr = this.getRows(filter);
 
             this._data.Clear();
 

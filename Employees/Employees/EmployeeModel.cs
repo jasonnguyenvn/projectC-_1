@@ -196,6 +196,8 @@ namespace Employees
             otherEmp.postalcode = this.postalcode;
             otherEmp.country = this.country;
             otherEmp.phone = this.phone;
+            otherEmp.mgrid = this.mgrid;
+            otherEmp.jobStatus = this.jobStatus;
         }
 
         public override int getNoOfProp()
@@ -393,23 +395,10 @@ namespace Employees
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-                this._initTable();
+                this._initTable(Employee.Sql_keys);
         }
 
-        private void _initTable()
-        {
-            string[] keys = Employee.Sql_keys;
-            this.DataSource.Columns.Clear();
-            
-            foreach (string aKey in keys)
-            {
-                DataColumn column;
-                column = new System.Data.DataColumn();
-                column.Caption = aKey;
-                column.ColumnName =  aKey;
-                this.DataSource.Columns.Add(column);
-            }
-        }
+        
 
         public override List<SqlParameter> SqlParams(Employee item)
         {
@@ -454,28 +443,11 @@ namespace Employees
             return result;
         }
 
-        public override void resetControl()
+        public void resetControl()
         {
-            if (this._control == null && this._webControl == null)
-                throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
 
-            /*if (this._webControl != null)
-            {
-                this.resetForWebcontrol();
-                return;
-            }*/
-
-            base.resetModel();
-            this.DataSource.Rows.Clear();
-            foreach (Employee item in this.Data)
-            {
-                if (item.JobStatus == false)
-                    continue;
-                this.DataSource.Rows.Add(item.convertToRow());
-            }
-
-            if (this._webControl != null)
-                this._webControl.DataBind();
+            base.resetControl(" jobStatus='1'");
+            
         }
 
         public override List<Employee> deleteRows(string where_filter)

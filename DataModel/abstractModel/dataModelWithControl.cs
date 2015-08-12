@@ -66,8 +66,33 @@ namespace DataModel
 
         }
 
+
+        protected virtual void _initTable(string[] keys)
+        {
+            this.DataSource.Columns.Clear();
+
+            foreach (string aKey in keys)
+            {
+                DataColumn column;
+                column = new System.Data.DataColumn();
+                column.Caption = aKey;
+                column.ColumnName = aKey;
+                this.DataSource.Columns.Add(column);
+            }
+
+            if (this._control != null)
+            {
+                foreach (System.Windows.Forms.DataGridViewColumn col in this._control.Columns)
+                {
+                    col.SortMode = System.Windows.Forms
+                                        .DataGridViewColumnSortMode
+                                        .NotSortable;
+                }
+            }
+
+        }
      
-        public virtual void resetControl()
+        public virtual void resetControl(string filter)
         {
             if (this._control == null && this._webControl==null)
                 throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
@@ -78,7 +103,7 @@ namespace DataModel
                 return;
             }*/
 
-            base.resetModel();
+            base.resetModel(filter);
             this._datasource.Rows.Clear();
             foreach (T item in this.Data)
             {
@@ -127,7 +152,7 @@ namespace DataModel
         }
 
 
-        public T insertNewRow(T newItem)
+        public virtual T insertNewRow(T newItem)
         {
             string[] keys = newItem.SqlKeys();
             List<SqlParameter> getParams = this.SqlParams(newItem);
