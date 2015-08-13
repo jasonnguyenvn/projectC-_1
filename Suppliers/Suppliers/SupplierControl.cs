@@ -10,16 +10,20 @@ using Suppliers.Properties;
 
 namespace Suppliers
 {
-    public partial class Suppliers : UserControl
+    public partial class SupplierControl : UserControl
     {
-        public Suppliers()
+        public bool Loadded = false;
+        private EditSupplier editForm;
+        private DeleteOptionsForm warningForm;
+
+        public SupplierControl()
         {
             InitializeComponent();
             this._initModel();
         }
 
-        public Suppliers(string host, int port, string dbname, string username,
-            string password, string table_name, EmployeeParser parser)
+        public SupplierControl(string host, int port, string dbname, string username,
+            string password, string table_name, SupplierParser parser)
         {
             this.InitializeComponent();
 
@@ -37,7 +41,14 @@ namespace Suppliers
             dataModel.resetControl();
         }
 
+
+
         private SupplierModel dataModel;
+
+        public SupplierModel DataModel
+        {
+            get { return dataModel; }
+        }
         protected void _initModel()
         {
             Settings  setting = new Settings();
@@ -58,11 +69,20 @@ namespace Suppliers
             newParser.DataModel = dataModel;
 
             dataModel.resetControl();
+            this.editForm = new EditSupplier(dataModel);
+            this.warningForm = new DeleteOptionsForm();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Supplier newSup = new Supplier();
+            this.gvSuppliers.ClearSelection();
+            this.txtSupID.Text = "";
+            this.editForm.clearForm();
+            this.editForm.AddNewMode = true;
+            this.editForm.ShowDialog();
+
+
+            /*Supplier newSup = new Supplier();
             newSup.SupplierID = -1;
             newSup.CompanyName = this.txtCompName.Text;
             newSup.Contactname = this.txtContname.Text;
@@ -85,7 +105,15 @@ namespace Suppliers
                 this.dataModel.insertNewRow(newSup);
                 MessageBox.Show("Completed");
                 clearAll();
-            }
+            }*/
+        }
+
+        private void doUpdate()
+        {
+            this.gvSuppliers.ClearSelection();
+            this.txtSupID.Text = "";
+            this.editForm.AddNewMode = false;
+            this.editForm.ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -96,6 +124,8 @@ namespace Suppliers
                 return;
             }
 
+            this.doUpdate();
+            /*
             try
             {
                 Supplier updateData = new Supplier();
@@ -118,26 +148,30 @@ namespace Suppliers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
+
+
 
         private void gvSuppliers_SelectionChanged(object sender, EventArgs e)
         {
             if (this.gvSuppliers.SelectedRows.Count > 0)
             {
+                this.editForm.clearForm();
                 int selectedIndex = this.gvSuppliers.Rows.IndexOf(this.gvSuppliers.SelectedRows[0]);
                 Supplier selectedItem = this.dataModel.Data[selectedIndex];
                 this.txtSupID.Text = selectedItem.SupplierID.ToString();
-                this.txtCompName.Text = selectedItem.CompanyName;
-                this.txtContname.Text = selectedItem.Contactname;
-                this.txtContTitle.Text = selectedItem.ContactTitle;
-                this.txtAddr.Text = selectedItem.Address;
-                this.txtCity.Text = selectedItem.City;
-                this.txtRegion.Text = selectedItem.Region;
-                this.txtPos.Text = selectedItem.Postalcode;
-                this.cbCountry.Text = selectedItem.Country;
-                this.txtPhone.Text = selectedItem.Phone;
-                this.txtFax.Text = selectedItem.Fax;
+                this.editForm.txtSupID.Text = selectedItem.SupplierID.ToString();
+                this.editForm.txtCompName.Text = selectedItem.CompanyName;
+                this.editForm.txtContname.Text = selectedItem.Contactname;
+                this.editForm.txtContTitle.Text = selectedItem.ContactTitle;
+                this.editForm.txtAddr.Text = selectedItem.Address;
+                this.editForm.txtCity.Text = selectedItem.City;
+                this.editForm.txtRegion.Text = selectedItem.Region;
+                this.editForm.txtPos.Text = selectedItem.Postalcode;
+                this.editForm.cbCountry.Text = selectedItem.Country;
+                this.editForm.txtPhone.Text = selectedItem.Phone;
+                this.editForm.txtFax.Text = selectedItem.Fax;
 
             }
         }
@@ -147,20 +181,13 @@ namespace Suppliers
             this.txtSupID.Text = "";
             this.txtCompName.Text = "";
             this.txtContname.Text = "";
-            this.txtContTitle.Text = "";
             this.txtAddr.Text = "";
             this.txtCity.Text = "";
-            this.txtRegion.Text = "";
-            this.txtPos.Text = "";
             this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
             this.gvSuppliers.ClearSelection();
         }
-
-
-
-
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -170,22 +197,68 @@ namespace Suppliers
                 return;
             }
 
+            this.doDelete();
+            
+        }
+
+        private void doDelete()
+        {
             try
             {
                 int idToDelete = int.Parse(this.txtSupID.Text.Trim());
-                this.dataModel.deleteRows("supplierid =" + idToDelete );
+                this.dataModel.deleteRows("supplierid =" + idToDelete);
                 MessageBox.Show("Deleted");
                 clearAll();
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show(ex.Message);
+                this.warningForm.ShowDialog();
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            clearAll();
+
+        }
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            this.clearAll();
+        }
+
+        private void gvSuppliers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.gvSuppliers.SelectedRows.Count > 0)
+            {
+                doUpdate();
+            }
+        }
+
+        private void meUpdate_Click(object sender, EventArgs e)
+        {
+            if (this.gvSuppliers.SelectedRows.Count > 0)
+            {
+                doUpdate();
+            }
+        }
+
+        private void meDelete_Click(object sender, EventArgs e)
+        {
+            if (this.gvSuppliers.SelectedRows.Count > 0)
+            {
+                doDelete();
+            }
+        }
+
+        private void gvSuppliers_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right
+                    && this.gvSuppliers.SelectedRows.Count > 0)
+            {
+
+                this.contextMenu.Show(Cursor.Position);
+            }
         }
     }
 }
