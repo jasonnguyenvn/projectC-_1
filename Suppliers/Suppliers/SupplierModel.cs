@@ -102,6 +102,14 @@ namespace Suppliers
             set { fax = value; }
         }
 
+        private bool continued;
+
+        public bool Continued
+        {
+            get { return continued; }
+            set { continued = value; }
+        }
+
         public static readonly string[] Sql_keys =
         {
             "supplierid",
@@ -114,7 +122,8 @@ namespace Suppliers
             "postalcode",
             "country",
             "phone",
-            "fax"
+            "fax",
+            "continued"
         };
 
         public override string[] SqlKeys()
@@ -135,17 +144,26 @@ namespace Suppliers
                 this.postalcode,
                 this.country,
                 this.phone,
-                this.fax
+                this.fax,
+                this.continued.ToString()
             };
             return result;
         }
 
         public override void copyTo(BaseDataObject other)
         {
-            Supplier otherEmp = (Supplier)other;
-            otherEmp.supplierid = this.supplierid;
-            otherEmp.companyname = this.companyname;
-            otherEmp.contacttitle = this.contacttitle;
+            Supplier otherSupp = (Supplier)other;
+            otherSupp.supplierid = this.supplierid;
+            otherSupp.companyname = this.companyname;
+            otherSupp.contacttitle = this.contacttitle;
+            otherSupp.address = this.address;
+            otherSupp.city = this.city;
+            otherSupp.region = this.region;
+            otherSupp.postalcode = this.postalcode;
+            otherSupp.country = this.country;
+            otherSupp.phone = this.phone;
+            otherSupp.fax = this.fax;
+            otherSupp.continued = this.continued;
         }
 
         public override int getNoOfProp()
@@ -182,6 +200,7 @@ namespace Suppliers
             this.country = "";
             this.phone = "";
             this.fax = "";
+            this.continued = true;
         }
 
         public override string getErrorMessage(int errorCode)
@@ -285,6 +304,9 @@ namespace Suppliers
                     case "fax":
                         result.Fax = param.Value.ToString();
                         break;
+                    case "continued":
+                        result.Continued = param.Value.Equals(true) ? true : false;
+                        break;
                 }
             }
 
@@ -323,25 +345,13 @@ namespace Suppliers
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-            this._initTable();
+            this._control.Columns.Clear();
+            this._initTable(Supplier.Sql_keys);
         }
 
-
-        private void _initTable()
+        public void resetControl()
         {
-            string[] keys = Supplier.Sql_keys;
-            this._control.Columns.Clear();
-            foreach (string aKey in keys)
-            {
-                System.Windows.Forms.DataGridViewColumn column;
-                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-                column.HeaderText = aKey;
-                column.Name = "cl_" + aKey;
-                column.SortMode = System.Windows.Forms
-                                    .DataGridViewColumnSortMode
-                                    .NotSortable;
-                this._control.Columns.Add(column);
-            }
+            this.resetControl(" continued=1");
         }
 
         public override List<SqlParameter> SqlParams(Supplier item)
@@ -358,6 +368,7 @@ namespace Suppliers
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country,15);
             SqlParameter phone = this.createSQLParam("phone", SqlDbType.NVarChar, item.Phone,24);
             SqlParameter fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax,24);
+            SqlParameter continued = this.createSQLParam("continued", SqlDbType.Bit, item.Continued);
 
             list.Add(supplierID);
             list.Add(companyName);
@@ -370,6 +381,7 @@ namespace Suppliers
             list.Add(country);
             list.Add(phone);
             list.Add(fax);
+            list.Add(continued);
 
             return list;
 

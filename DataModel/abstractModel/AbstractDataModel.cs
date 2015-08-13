@@ -58,18 +58,28 @@ namespace DataModel
         public void resetModel(string filter)
         {
             this.conn.Open();
-            SqlDataReader dr = this.getRows(filter);
-
-            this._data.Clear();
-
-            while (dr.Read())
+            try
             {
-                T temp = this._parser.parse(dr);
-                this._data.Add(temp);
-            }
+                SqlDataReader dr = this.getRows(filter);
 
-            dr.Close();
-            this.conn.Close();
+                this._data.Clear();
+
+                while (dr.Read())
+                {
+                    T temp = this._parser.parse(dr);
+                    this._data.Add(temp);
+                }
+
+                dr.Close();
+            }
+            catch
+            {
+                throw new Exception("Reset model exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
         }
 
 
@@ -126,34 +136,49 @@ namespace DataModel
 
         public List<T> getItems(string where_filter)
         {
-            this.conn.Open();
-            SqlDataReader dr = this.getRows(where_filter);
-
             List<T> result = new List<T>();
-
-            while (dr.Read())
+            try
             {
-                T temp = this._parser.parse(dr);
-                result.Add(this.Data[this._data.IndexOf(temp)]);
-            }
+                this.conn.Open();
+                SqlDataReader dr = this.getRows(where_filter);
 
-            dr.Close();
-            this.conn.Close();
+
+
+                while (dr.Read())
+                {
+                    T temp = this._parser.parse(dr);
+                    result.Add(this.Data[this._data.IndexOf(temp)]);
+                }
+
+                dr.Close();
+
+            }
+            catch
+            {
+                throw new Exception("Get rows exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
 
             return result;
         }
 
-        public SqlDataReader getRows(string where_filter)
+        private SqlDataReader getRows(string where_filter)
         {
             string command = "SELECT * FROM " + this._tbname;
             if (where_filter.Equals("") == false)
                 command += " WHERE " + where_filter;
+            SqlDataReader dr;
+    
             SqlCommand cmd = this.createSQLCommand(command);
-            SqlDataReader dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
+      
             return dr;
         }
 
-        public SqlDataReader getRows()
+        private SqlDataReader getRows()
         {
             return this.getRows("");
         }
@@ -191,18 +216,32 @@ namespace DataModel
             }
             commandText += ")  OUTPUT INSERTED." + this._parser.getPrimaryKey() + "  VALUES (" + valueParams + ")";
 
-            this.conn.Open();
-            SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
-                                                        parameters);
-            int result = (int) cmd.ExecuteScalar();
-            this.conn.Close();
+            T newItem;
+            try
+            {
+                this.conn.Open();
+                SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
+                                                            parameters);
+            
 
-            if (result < 0)
-                return null;
+                int result = (int)cmd.ExecuteScalar();
 
-            changeIndex.Value = result;
-            T newItem = this._parser.parse(keys, parameters);
-            this._data.Add(newItem);
+
+                if (result < 0)
+                    return null;
+
+                changeIndex.Value = result;
+                newItem = this._parser.parse(keys, parameters);
+                this._data.Add(newItem);
+            }
+            catch
+            {
+                throw new Exception("Insert Exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
 
             return newItem;
 
@@ -233,24 +272,40 @@ namespace DataModel
             if (where_filter.Equals("") == false)
                 commandText += " WHERE " + where_filter;
 
-            this.conn.Open();
-            SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
-                                                        parameters);
-            int result = cmd.ExecuteNonQuery();
-            this.conn.Close();
-
-            if (result <= 0)
-                return new List<T>();
-
-            List<T> resultList = this.getItems(where_filter);
-            if (resultList.Count < 0)
-                throw new Exception("DATA MODEL INVALID");
-            foreach (T anItem in resultList)
+            List<T> resultList = new List<T>();
+            try
             {
-                T updateNew = this._parser.parse(keys, parameters);
-                updateNew.copyTo(anItem);
+                this.conn.Open();
+                SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
+                                                            parameters);
+
+                               
+
+                int result = cmd.ExecuteNonQuery();
+
+
+                if (result <= 0)
+                    return new List<T>();
+
+                resultList = this.getItems(where_filter);
+                if (resultList.Count < 0)
+                    throw new Exception("DATA MODEL INVALID");
+                foreach (T anItem in resultList)
+                {
+                    T updateNew = this._parser.parse(keys, parameters);
+                    updateNew.copyTo(anItem);
+                }
+            }
+            catch
+            {
+                throw new Exception("Update exception");
+            }
+            finally
+            {
+                this.conn.Close();
             }
 
+            
             return resultList;
 
         }
@@ -265,10 +320,23 @@ namespace DataModel
             if (where_filter.Equals("") == false)
                 commandText += " WHERE " + where_filter;
 
-            this.conn.Open();
-            SqlCommand cmd = this.createSQLCommand(commandText);
-            int result = cmd.ExecuteNonQuery();
-            this.conn.Close();
+           
+            int result = 0;
+            try
+            {
+                this.conn.Open();
+                SqlCommand cmd = this.createSQLCommand(commandText);
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw new Exception("Delete exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
 
             if (result <= 0)
                 return new List<T>();

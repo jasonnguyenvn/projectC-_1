@@ -12,3 +12,5 @@ C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Employees.dl
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.MainForm.resources
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.AboutBox1.resources
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.AboutControl.resources
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.dll
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.pdb
