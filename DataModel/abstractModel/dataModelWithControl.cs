@@ -216,8 +216,21 @@ namespace DataModel
 
             this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(commandText);
-            int result = cmd.ExecuteNonQuery();
-            this.conn.Close();
+            int result = 0;
+            try
+            {
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw new Exception("Delete exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
 
             if (result <= 0)
                 return new List<T>();

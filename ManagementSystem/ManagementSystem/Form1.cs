@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 using DataModel;
 using Employees;
+using Suppliers;
 
 namespace ManagementSystem
 {
     public partial class MainForm : Form
     {
         private EmployeeControl EmpControl;
+        private SupplierControl SuppControl;
         private AboutControl aboutBox;
 
         public MainForm()
@@ -30,7 +32,14 @@ namespace ManagementSystem
             EmpControl.AutoSize = true;
             EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
+            SuppControl = new SupplierControl();
+            SuppControl.Dock = DockStyle.Fill;
+            SuppControl.AutoSize = true;
+            SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+
             aboutBox = new AboutControl();
+
             
         }
 
@@ -63,6 +72,18 @@ namespace ManagementSystem
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             this.panel1.Controls.Clear();
+            try
+            {
+                if (this.SuppControl.Loadded == true)
+                    this.SuppControl.DataModel.resetControl();
+                else this.SuppControl.Loadded = true;
+                this.panel1.Controls.Add(this.SuppControl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
