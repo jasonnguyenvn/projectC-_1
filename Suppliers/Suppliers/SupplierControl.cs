@@ -19,6 +19,31 @@ namespace Suppliers
         public SupplierControl()
         {
             InitializeComponent();
+            //this.gvSuppliers.ContextMenuStrip = this.GridViewMenu;
+            Settings setting = new Settings();
+
+            try
+            {
+                SupplierParser newParser = new SupplierParser();
+
+                dataModel = new SupplierModel(
+                                    this.gvSuppliers,
+                                    setting.DB_HOST,
+                                    setting.DB_PORT,
+                                    setting.DB_NAME,
+                                    setting.DB_USER,
+                                    setting.DB_PASS,
+                                    "Production.Suppliers",
+                                    newParser);
+                //dataModel = new SupplierModel(this.gvSuppliers, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "HR.Suppliers", newParser);
+
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             this._initModel();
         }
 
@@ -27,20 +52,48 @@ namespace Suppliers
         {
             this.InitializeComponent();
 
+            
+
             SupplierParser newParser = new SupplierParser();
-            dataModel = new SupplierModel(
-                                this.gvSuppliers,
-                                host,
-                                port,
-                                dbname,
-                                username,
-                                password,
-                                "HR.Employees",
-                                newParser);
-            newParser.DataModel = dataModel;
-            dataModel.resetControl();
+            try
+            {
+                dataModel = new SupplierModel(
+                                    this.gvSuppliers,
+                                    host,
+                                    port,
+                                    dbname,
+                                    username,
+                                    password,
+                                    "Production.Suppliers",
+                                    newParser);
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            this._initModel();
         }
 
+        protected void _initModel()
+        {
+            this.gvSuppliers.Columns.Clear();
+
+            try
+            {
+                dataModel.resetControl();
+                this.editForm = new EditSupplier(dataModel);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            this.warningForm = new DeleteOptionsForm();
+
+        }
 
 
         private SupplierModel dataModel;
@@ -49,29 +102,7 @@ namespace Suppliers
         {
             get { return dataModel; }
         }
-        protected void _initModel()
-        {
-            Settings  setting = new Settings();
-
-            SupplierParser newParser = new SupplierParser();
-
-            dataModel = new SupplierModel(
-                                this.gvSuppliers,
-                                setting.DB_HOST,
-                                setting.DB_PORT,
-                                setting.DB_NAME,
-                                setting.DB_USER,
-                                setting.DB_PASS,
-                                "Production.Suppliers",
-                                newParser);
-           //dataModel = new SupplierModel(this.gvSuppliers, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Suppliers", newParser);
-
-            newParser.DataModel = dataModel;
-
-            dataModel.resetControl();
-            this.editForm = new EditSupplier(dataModel);
-            this.warningForm = new DeleteOptionsForm();
-        }
+       
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -203,6 +234,9 @@ namespace Suppliers
 
         private void doDelete()
         {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+                return;
             try
             {
                 int idToDelete = int.Parse(this.txtSupID.Text.Trim());
@@ -219,12 +253,58 @@ namespace Suppliers
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            this.gvSuppliers.ClearSelection();
+            string sqlFilter = " continued=1 ";
+            if (this.txtCompName.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Text.Trim());
+            }
+            if (this.txtContname.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  contactname LIKE '%{0}%' ", txtContname.Text.Trim());
+            }
+            if (this.txtAddr.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  address LIKE '%{0}%' ", txtAddr.Text.Trim());
+            }
+            if (this.txtCity.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  city LIKE '%{0}%' ", txtCity.Text.Trim());
+            }
+            if (this.cbCountry.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  country LIKE '%{0}%' ", cbCountry.Text.Trim());
+            }
+            if (this.txtPhone.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  phone LIKE '%{0}%' ", txtPhone.Text.Trim());
+            }
+            if (this.txtFax.Text.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  fax LIKE '%{0}%' ", txtFax.Text.Trim());
+            }
 
+            try
+            {
+                this.dataModel.resetControl(sqlFilter);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)
         {
             this.clearAll();
+            try
+            {
+                this.dataModel.resetControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void gvSuppliers_MouseDoubleClick(object sender, MouseEventArgs e)

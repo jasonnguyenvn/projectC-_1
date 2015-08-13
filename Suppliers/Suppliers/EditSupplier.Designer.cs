@@ -55,9 +55,11 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(233, 448);
+            this.btnSave.Image = global::SuppliersControl.Properties.Resources.saveHS;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnSave.Location = new System.Drawing.Point(227, 448);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(81, 23);
             this.btnSave.TabIndex = 49;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;

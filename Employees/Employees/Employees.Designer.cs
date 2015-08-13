@@ -203,12 +203,12 @@
             this.tbCountry,
             this.tbPhone,
             this.tbManagerID});
-            this.gvEmployees.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gvEmployees.Location = new System.Drawing.Point(0, 0);
+            this.gvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvEmployees.Location = new System.Drawing.Point(5, 5);
             this.gvEmployees.MultiSelect = false;
             this.gvEmployees.Name = "gvEmployees";
             this.gvEmployees.ReadOnly = true;
-            this.gvEmployees.Size = new System.Drawing.Size(494, 488);
+            this.gvEmployees.Size = new System.Drawing.Size(484, 477);
             this.gvEmployees.TabIndex = 28;
             this.gvEmployees.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gvEmployees_MouseClick);
             this.gvEmployees.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvEmployees_MouseDoubleClick);
@@ -360,6 +360,7 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.gvEmployees);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 25);
             this.splitContainer1.Size = new System.Drawing.Size(898, 507);
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 36;
@@ -397,6 +398,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 8);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
@@ -409,7 +411,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 255);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 268);
             this.tableLayoutPanel1.TabIndex = 70;
             // 
             // txtManagerID
@@ -475,9 +477,10 @@
             this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.txtEmployeeID);
             this.panel5.Controls.Add(this.btnUpdate);
-            this.panel5.Location = new System.Drawing.Point(3, 264);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(3, 277);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(392, 106);
+            this.panel5.Size = new System.Drawing.Size(394, 60);
             this.panel5.TabIndex = 69;
             // 
             // btnSearch
@@ -562,15 +565,15 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel5, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 54);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.83664F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.16336F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.Size = new System.Drawing.Size(400, 453);
             this.tableLayoutPanel2.TabIndex = 71;
             // 

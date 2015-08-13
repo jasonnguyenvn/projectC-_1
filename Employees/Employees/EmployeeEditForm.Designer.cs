@@ -338,6 +338,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(370, 500);
             this.Name = "EmployeeEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Employee";
             this.ResumeLayout(false);
             this.PerformLayout();

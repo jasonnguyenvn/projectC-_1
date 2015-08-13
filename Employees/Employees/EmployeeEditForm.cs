@@ -53,6 +53,7 @@ namespace Employees
                 newEmp.Mgrid = int.Parse(this.txtManagerID.Text);
             }
             catch { newEmp.Mgrid = -1; }
+            newEmp.JobStatus = true;
 
             try
             {

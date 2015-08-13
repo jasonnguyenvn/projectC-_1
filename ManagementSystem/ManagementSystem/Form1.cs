@@ -27,15 +27,22 @@ namespace ManagementSystem
 
         private void initControls()
         {
-            EmpControl = new EmployeeControl();
-            EmpControl.Dock = DockStyle.Fill;
-            EmpControl.AutoSize = true;
-            EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            try
+            {
+                EmpControl = new EmployeeControl();
+                EmpControl.Dock = DockStyle.Fill;
+                EmpControl.AutoSize = true;
+                EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
-            SuppControl = new SupplierControl();
-            SuppControl.Dock = DockStyle.Fill;
-            SuppControl.AutoSize = true;
-            SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                SuppControl = new SupplierControl();
+                SuppControl.Dock = DockStyle.Fill;
+                SuppControl.AutoSize = true;
+                SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
             aboutBox = new AboutControl();
