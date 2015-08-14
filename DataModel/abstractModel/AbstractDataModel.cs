@@ -145,7 +145,7 @@ namespace DataModel
                 while (dr.Read())
                 {
                     T temp = this._parser.parse(dr);
-                    result.Add(this.Data[this._data.IndexOf(temp)]);
+                    result.Add(temp);
                 }
 
                 dr.Close();
@@ -230,6 +230,7 @@ namespace DataModel
 
                 changeIndex.Value = result;
                 newItem = this._parser.parse(keys, parameters);
+                
                 this._data.Add(newItem);
             }
             catch(Exception ex)

@@ -174,7 +174,7 @@ namespace CustomerControl
 
         public override string getWhereFilterToUpdateSingleRow()
         {
-            return " customerid=" + this.customerid;
+            return " custid=" + this.customerid;
         }
 
         public override bool Equals(object obj)

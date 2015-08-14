@@ -171,6 +171,8 @@ namespace DataModel
                 this.resetForWebcontrol();
                 return result;
             }*/
+            if (this._webControl == null && this._control == null)
+                return result;
 
             this._datasource.Rows.Add(result.convertToRow());
 
@@ -234,6 +236,9 @@ namespace DataModel
 
             if (result <= 0)
                 return new List<T>();
+
+            if (this._control == null && this._webControl == null)
+                return deletedList;
 
             /*if (this._webControl != null)
             {

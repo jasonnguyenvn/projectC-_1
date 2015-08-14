@@ -32,6 +32,45 @@ namespace Employees
             doUpdate_Add();
         }
 
+        protected void showErrors(Employee empData, int [] errorSet)
+        {
+            foreach (int eachError in errorSet)
+            {
+                if (eachError == -1)
+                {
+                    if(this.txtLastname.Text.Equals(""))
+                        this.errProvider.SetError(this.txtLastname,
+                            empData.getErrorMessage(eachError));
+                    if (this.txtFirstname.Text.Equals(""))
+                        this.errProvider.SetError(this.txtFirstname,
+                            empData.getErrorMessage(eachError));
+                    if (this.txtTitle.Text.Equals(""))
+                        this.errProvider.SetError(this.txtTitle,
+                            empData.getErrorMessage(eachError));
+                    if (this.cbTitleofCourtesy.Text.Equals(""))
+                        this.errProvider.SetError(this.cbTitleofCourtesy,
+                            empData.getErrorMessage(eachError));
+                    if (this.txtAddress.Text.Equals(""))
+                        this.errProvider.SetError(this.txtAddress,
+                            empData.getErrorMessage(eachError));
+                    if (this.txtCity.Text.Equals(""))
+                        this.errProvider.SetError(this.txtCity,
+                            empData.getErrorMessage(eachError));
+                    if (this.cbCountry.Text.Equals(""))
+                        this.errProvider.SetError(this.cbCountry,
+                            empData.getErrorMessage(eachError));
+                    if (this.txtPhone.Text.Equals(""))
+                        this.errProvider.SetError(this.txtPhone,
+                            empData.getErrorMessage(eachError));
+                }
+                if (eachError == -5)
+                {
+                    this.errProvider.SetError(this.dTPBirthday,
+                        empData.getErrorMessage(eachError));
+                }
+            }
+        }
+
         protected void doUpdate_Add()
         {
             Employee newEmp = new Employee();
@@ -39,7 +78,7 @@ namespace Employees
             newEmp.Lastname = this.txtLastname.Text;
             newEmp.Firstname = this.txtFirstname.Text;
             newEmp.Title = this.txtTitle.Text;
-            newEmp.Titleofcourtesy = this.txtTitleofCourtesy.Text;
+            newEmp.Titleofcourtesy = this.cbTitleofCourtesy.Text;
             newEmp.Birthdate = this.dTPBirthday.Value;
             newEmp.Hiredate = this.dTPHireday.Value;
             newEmp.Address = this.txtAddress.Text;
@@ -58,11 +97,11 @@ namespace Employees
             try
             {
 
-                int check = newEmp.isValid();
+                int[] check = newEmp.isValid_multi();
 
-                if (check < 0)
+                if (check.Length>0)
                 {
-                    MessageBox.Show(newEmp.getErrorMessage(check));
+                    this.showErrors(newEmp, check);
 
                 }
                 else
@@ -91,7 +130,7 @@ namespace Employees
             this.txtLastname.Text = "";
             this.txtFirstname.Text = "";
             this.txtTitle.Text = "";
-            this.txtTitleofCourtesy.Text = "";
+            this.cbTitleofCourtesy.Text = "";
             this.dTPBirthday.Value = DateTime.Now;
             this.dTPHireday.Value = DateTime.Now;
             this.txtAddress.Text = "";
@@ -110,7 +149,7 @@ namespace Employees
             this.txtLastname.Text = data.Lastname;
             this.txtFirstname.Text = data.Firstname;
             this.txtTitle.Text = data.Title;
-            this.txtTitleofCourtesy.Text = data.Titleofcourtesy;
+            this.cbTitleofCourtesy.Text = data.Titleofcourtesy;
             this.dTPBirthday.Value = data.Birthdate;
             this.dTPHireday.Value = data.Hiredate;
             this.txtAddress.Text = data.Address;
