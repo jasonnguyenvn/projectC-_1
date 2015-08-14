@@ -125,6 +125,15 @@ namespace Employees
             set { mgrid = value; }
         }
 
+        private bool jobStatus;
+
+        public bool JobStatus
+        {
+            get { return jobStatus; }
+            set { jobStatus = value; }
+        }
+
+
         public static readonly string[] Sql_keys =
         {
             "empid",
@@ -140,7 +149,8 @@ namespace Employees
             "postalcode",
             "country",
             "phone",
-            "mgrid"
+            "mgrid",
+            "jobStatus"
         };
 
         public override string[] SqlKeys()
@@ -164,7 +174,8 @@ namespace Employees
                 this.postalcode,
                 this.country,
                 this.phone,
-                this.mgrid.ToString()
+                this.mgrid.ToString(),
+                this.jobStatus.ToString()
             };
             return result;
         }
@@ -185,6 +196,8 @@ namespace Employees
             otherEmp.postalcode = this.postalcode;
             otherEmp.country = this.country;
             otherEmp.phone = this.phone;
+            otherEmp.mgrid = this.mgrid;
+            otherEmp.jobStatus = this.jobStatus;
         }
 
         public override int getNoOfProp()
@@ -224,6 +237,7 @@ namespace Employees
             this.country = "";
             this.phone = "";
             this.mgrid = -1;
+            this.jobStatus = true;
         }
 
         public override string getErrorMessage(int errorCode)
@@ -341,6 +355,9 @@ namespace Employees
                         }
                         catch { }
                         break;
+                    case "jobStatus":
+                        result.JobStatus = param.Value.Equals(true) ? true : false;
+                        break;
                 }
             }
 
@@ -373,30 +390,15 @@ namespace Employees
     // to Database.
     public class EmployeeModel : DataModelWithControl<Employee>
     {
-        public EmployeeModel(DataGridView control,  string host, 
+        public EmployeeModel(object control,  string host, 
             int port, string dbname, string username, string password, string table_name, EmployeeParser parser) :
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-            this._initTable();
+                this._initTable(Employee.Sql_keys);
         }
 
-        private void _initTable()
-        {
-            string[] keys = Employee.Sql_keys;
-            this._control.Columns.Clear();
-            foreach (string aKey in keys)
-            {
-                System.Windows.Forms.DataGridViewColumn column;
-                column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-                column.HeaderText = aKey;
-                column.Name = "cl_" + aKey;
-                column.SortMode = System.Windows.Forms
-                                    .DataGridViewColumnSortMode
-                                    .NotSortable;
-                this._control.Columns.Add(column);
-            }
-        }
+        
 
         public override List<SqlParameter> SqlParams(Employee item)
         {
@@ -416,6 +418,7 @@ namespace Employees
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
             SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
             SqlParameter mgrid = null;
+            SqlParameter jobStatus = this.createSQLParam("jobStatus", SqlDbType.Bit, item.JobStatus);
             if(item.Mgrid>=0)
                 mgrid = this.createSQLParam("mgrid", SqlDbType.Int, item.Mgrid);
             else 
@@ -435,8 +438,74 @@ namespace Employees
             result.Add(country);
             result.Add(phone);
             result.Add(mgrid);
+            result.Add(jobStatus);
 
             return result;
+        }
+
+        public void resetControl()
+        {
+
+            base.resetControl(" jobStatus='1'");
+            
+        }
+
+        public override List<Employee> deleteRows(string where_filter)
+        {
+            List<Employee> deletedList = this.getItems(where_filter);
+            if (deletedList.Count <= 0)
+                return new List<Employee>();
+
+            foreach (Employee emp in deletedList)
+            {
+                emp.JobStatus = false;
+                this.updateRow(emp);
+                int delIndex = this.Data.IndexOf(emp);
+                this.Data.RemoveAt(delIndex);
+                this.DataSource.Rows.RemoveAt(delIndex);
+            }
+
+            return deletedList;
+        }
+
+        public void filter(string txtName, string txtTitle, string txtCity,
+            string txtRegion, string txtCountry, string txtPhone, string txtManagerID)
+        {
+            string sqlFilter = "jobStatus=1 ";
+            if (txtName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Trim());
+
+            }
+            if (txtTitle.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Trim());
+            }
+            if (txtCity.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Trim());
+            }
+            if (txtRegion.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Trim());
+            }
+            if (txtCountry.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Trim());
+            }
+
+            if (txtPhone.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Trim());
+            }
+
+            if (txtManagerID.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Trim());
+            }
+
+            this.resetControl(sqlFilter);
+            
         }
     }
 }

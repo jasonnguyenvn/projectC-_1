@@ -1,0 +1,10 @@
+D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.csproj.GenerateResource.Cache
+D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.CustomerControl.resources
+D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\CustomerControl.dll.config
+D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\CustomerControl.dll
+D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\CustomerControl.pdb
+D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.dll
+D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.pdb
+D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.dll
+D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.pdb
