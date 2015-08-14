@@ -8,3 +8,12 @@ D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.dll
 D:\Project\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.pdb
 D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.dll
 D:\Project\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.pdb
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.CustomerControl.resources
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.csproj.GenerateResource.Cache
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.dll
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\bin\Debug\CustomerControl.dll
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\bin\Debug\CustomerControl.pdb
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.dll
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\bin\Debug\DataModel.pdb
+C:\Projects\projectC-_1\CustomerControl\CustomerControl\obj\Debug\CustomerControl.pdb

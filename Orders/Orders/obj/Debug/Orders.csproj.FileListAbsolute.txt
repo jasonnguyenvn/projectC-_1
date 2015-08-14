@@ -1,0 +1,5 @@
+D:\Project\projectC-_1\Orders\Orders\bin\Debug\Orders.dll
+D:\Project\projectC-_1\Orders\Orders\bin\Debug\Orders.pdb
+D:\Project\projectC-_1\Orders\Orders\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\projectC-_1\Orders\Orders\obj\Debug\Orders.dll
+D:\Project\projectC-_1\Orders\Orders\obj\Debug\Orders.pdb
