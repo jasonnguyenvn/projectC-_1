@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Data;
 
 namespace DataModel
 {
     public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : BaseDataObject
     {
+        protected readonly GridView _webControl;
         protected readonly DataGridView _control;
+        private readonly DataTable _datasource;
+
+        public DataTable DataSource
+        {
+            get { return _datasource; }
+        }
 
         public DataModelWithControl(string host, int port, string dbname, 
                         string username, string password, string table_name,
@@ -20,7 +34,7 @@ namespace DataModel
             this._control = null;
         }
 
-        public DataModelWithControl(DataGridView control,  
+        public DataModelWithControl(object control,  
                                     string host, 
                                     int port, 
                                     string dbname,  
@@ -31,20 +45,73 @@ namespace DataModel
             // init parent's part
             base(host, port, dbname, username, password, table_name, parser)
         {
-            this._control = control;
+            this._datasource = new DataTable();
+            if (control is DataGridView)
+            {
+                this._control = (DataGridView)control;
+                this._control.DataSource = this._datasource;
+            }
+            else
+            {
+                if (control is GridView)
+                {
+                    this._webControl = (GridView)control;
+                    this._webControl.DataSource = this._datasource;
+                    this._webControl.AutoGenerateSelectButton = true;
+                    this._webControl.AllowPaging = true;
+                }
+                else
+                    throw new Exception("INVALID CONTROL OBJECT");
+            }
+
         }
 
-        public void resetControl()
+
+        protected virtual void _initTable(string[] keys)
         {
-            if (this._control == null)
+            this.DataSource.Columns.Clear();
+
+            foreach (string aKey in keys)
+            {
+                DataColumn column;
+                column = new System.Data.DataColumn();
+                column.Caption = aKey;
+                column.ColumnName = aKey;
+                this.DataSource.Columns.Add(column);
+            }
+
+            if (this._control != null)
+            {
+                foreach (System.Windows.Forms.DataGridViewColumn col in this._control.Columns)
+                {
+                    col.SortMode = System.Windows.Forms
+                                        .DataGridViewColumnSortMode
+                                        .NotSortable;
+                }
+            }
+
+        }
+     
+        public virtual void resetControl(string filter)
+        {
+            if (this._control == null && this._webControl==null)
                 throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
 
-            base.resetModel();
-            this._control.Rows.Clear();
+            /*if (this._webControl != null)
+            {
+                this.resetForWebcontrol();
+                return;
+            }*/
+
+            base.resetModel(filter);
+            this._datasource.Rows.Clear();
             foreach (T item in this.Data)
             {
-                this._control.Rows.Add(item.convertToRow());
+                this._datasource.Rows.Add(item.convertToRow());
             }
+
+            if (this._webControl != null)
+                this._webControl.DataBind();
         }
 
         public T updateRow( T updateData)
@@ -78,11 +145,14 @@ namespace DataModel
                 }
             }
 
+            if (this._webControl != null)
+                this._webControl.DataBind();
+
             return result;
         }
 
 
-        public T insertNewRow(T newItem)
+        public virtual T insertNewRow(T newItem)
         {
             string[] keys = newItem.SqlKeys();
             List<SqlParameter> getParams = this.SqlParams(newItem);
@@ -96,24 +166,39 @@ namespace DataModel
             if (result == null)
                 return null;
 
-            if (this._control != null)
-                this._control.Rows.Add(result.convertToRow());
+            /*if (this._webControl != null)
+            {
+                this.resetForWebcontrol();
+                return result;
+            }*/
+
+            this._datasource.Rows.Add(result.convertToRow());
+
+            if (this._webControl != null)
+                this._webControl.DataBind();
 
             return result;
         }
 
         public T commitUpdate(int index)
         {
-            if (this._control == null)
+            if (this._control == null && this._webControl == null)
                 throw new Exception("THIS MODEL HAVE NOT SET A CONTROL YET!");
 
             T item = this.Data[index];
-            DataGridViewRow updateRow = this._control.Rows[index];
+
+            /*if (this._webControl != null)
+            {
+                this.resetForWebcontrol();
+                return item;
+            }*/
+
+            DataRow updateRow = this._datasource.Rows[index];
             object[] data = item.convertToRow();
             int noOfProp = item.getNoOfProp();
             for (int i = 0; i < noOfProp; i++)
             {
-                updateRow.Cells[i].Value = data[i].ToString();
+                updateRow.SetField(i, data[i]);
             }
 
             return item;
@@ -131,11 +216,33 @@ namespace DataModel
 
             this.conn.Open();
             SqlCommand cmd = this.createSQLCommand(commandText);
-            int result = cmd.ExecuteNonQuery();
-            this.conn.Close();
+            int result = 0;
+            try
+            {
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw new Exception("Delete exception");
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
 
             if (result <= 0)
                 return new List<T>();
+
+            /*if (this._webControl != null)
+            {
+                this.resetForWebcontrol();
+                return deletedList;
+            }*/
+
+            /*if (this._control == null && this._webControl==null)
+                return deletedList;*/
 
             int index = this.Data.IndexOf(deletedList[0]);
             int rangeToDelete = deletedList.Count;
@@ -143,8 +250,11 @@ namespace DataModel
             rangeToDelete += index;
             for(int i=index; i<rangeToDelete; i++)
             {
-                this._control.Rows.RemoveAt(i);
+                this._datasource.Rows.RemoveAt(i);
             }
+
+            if (this._webControl != null)
+                this._webControl.DataBind();
 
             return deletedList;
         }
