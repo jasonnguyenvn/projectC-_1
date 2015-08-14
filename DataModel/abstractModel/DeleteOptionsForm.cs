@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Media;
 
-namespace Suppliers
+namespace WinForm_Dialogs
 {
     public enum UserOption  {
         Option1 = 1,
@@ -19,10 +20,28 @@ namespace Suppliers
     {
         private UserOption option = UserOption.Cancel;
 
+        
+
+        public UserOption GetUserOption
+        {
+            get { return option; }
+            set { option = value; }
+        }
+
         public DeleteOptionsForm()
         {
             InitializeComponent();
         }
+
+        public DeleteOptionsForm(String Title, string Option1, string Option2)
+        {
+            InitializeComponent();
+            this.Text = Title;
+            this.lbTitle.Text = Title;
+            this.lbOption1.Text = Option1;
+            this.lbOption2.Text = Option2;
+        }
+
 
         private void btnChoose1_Click(object sender, EventArgs e)
         {
@@ -40,6 +59,11 @@ namespace Suppliers
         {
             option = UserOption.Option2;
             this.Close();
+        }
+
+        private void DeleteOptionsForm_Load(object sender, EventArgs e)
+        {
+            SystemSounds.Hand.Play();
         }
     }
 }

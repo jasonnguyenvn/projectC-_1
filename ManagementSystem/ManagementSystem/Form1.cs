@@ -8,8 +8,10 @@ using System.Text;
 using System.Windows.Forms;
 
 using DataModel;
+using Base_Intefaces;
 using Employees;
 using Suppliers;
+using Productions;
 
 namespace ManagementSystem
 {
@@ -17,7 +19,10 @@ namespace ManagementSystem
     {
         private EmployeeControl EmpControl;
         private SupplierControl SuppControl;
+        private CategoryControl CatControl;
         private AboutControl aboutBox;
+
+        private BaseControlInteface currentControl;
 
         public MainForm()
         {
@@ -27,15 +32,28 @@ namespace ManagementSystem
 
         private void initControls()
         {
-            EmpControl = new EmployeeControl();
-            EmpControl.Dock = DockStyle.Fill;
-            EmpControl.AutoSize = true;
-            EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            try
+            {
+                EmpControl = new EmployeeControl();
+                EmpControl.Dock = DockStyle.Fill;
+                EmpControl.AutoSize = true;
+                EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                this.currentControl = EmpControl;
 
-            SuppControl = new SupplierControl();
-            SuppControl.Dock = DockStyle.Fill;
-            SuppControl.AutoSize = true;
-            SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                SuppControl = new SupplierControl();
+                SuppControl.Dock = DockStyle.Fill;
+                SuppControl.AutoSize = true;
+                SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                CatControl = new CategoryControl();
+                CatControl.Dock = DockStyle.Fill;
+                CatControl.AutoSize = true;
+                CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
             aboutBox = new AboutControl();
@@ -43,20 +61,29 @@ namespace ManagementSystem
             
         }
 
-        private void btnOpenEmployees_Click(object sender, EventArgs e)
+        private void loadControl(BaseControlInteface control)
         {
+            this.currentControl.resetControl();
+            this.panel1.Controls.Clear();
+
             try
             {
-                this.panel1.Controls.Clear();
-                if (this.EmpControl.Loaded == true)
-                    this.EmpControl.DataModel.resetControl();
-                else this.EmpControl.Loaded = true;
-                this.panel1.Controls.Add(this.EmpControl);
+                if (control.isLoaded() == true)
+                    control.resetData();
+                else control.setLoadStatus(true);
+                this.panel1.Controls.Add(control.getThis());
+                this.currentControl = control;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        private void btnOpenEmployees_Click(object sender, EventArgs e)
+        {
+            this.loadControl(this.EmpControl);
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
@@ -66,23 +93,12 @@ namespace ManagementSystem
 
         private void btnCategories_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.CatControl);
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
-            try
-            {
-                if (this.SuppControl.Loadded == true)
-                    this.SuppControl.DataModel.resetControl();
-                else this.SuppControl.Loadded = true;
-                this.panel1.Controls.Add(this.SuppControl);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.loadControl(this.SuppControl);
 
         }
 

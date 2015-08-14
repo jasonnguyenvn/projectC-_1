@@ -386,5 +386,60 @@ namespace Suppliers
             return list;
 
         }
+
+        public List<Supplier> SafetyDelete(string where_filter)
+        {
+            List<Supplier> deletedList = this.getItems(where_filter);
+            if (deletedList.Count <= 0)
+                return new List<Supplier>();
+
+            foreach (Supplier emp in deletedList)
+            {
+                emp.Continued = false;
+                this.updateRow(emp);
+                int delIndex = this.Data.IndexOf(emp);
+                this.Data.RemoveAt(delIndex);
+                this.DataSource.Rows.RemoveAt(delIndex);
+            }
+
+            return deletedList;
+        }
+
+        public void filter(string txtCompName, string txtContname, string txtAddr,
+            string txtCity, string cbCountry, string txtPhone, string txtFax)
+        {
+            string sqlFilter = " continued=1 ";
+            if (txtCompName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Trim());
+            }
+            if (txtContname.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  contactname LIKE '%{0}%' ", txtContname.Trim());
+            }
+            if (txtAddr.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  address LIKE '%{0}%' ", txtAddr.Trim());
+            }
+            if (txtCity.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  city LIKE '%{0}%' ", txtCity.Trim());
+            }
+            if (cbCountry.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  country LIKE '%{0}%' ", cbCountry.Trim());
+            }
+            if (txtPhone.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  phone LIKE '%{0}%' ", txtPhone.Trim());
+            }
+            if (txtFax.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  fax LIKE '%{0}%' ", txtFax.Trim());
+            }
+            
+            this.resetControl(sqlFilter);
+            
+        }
     }
 }

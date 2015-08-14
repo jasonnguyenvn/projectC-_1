@@ -72,9 +72,9 @@ namespace DataModel
 
                 dr.Close();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Reset model exception");
+                throw new Exception("Reset model exception: "+ex.Message);
             }
             finally
             {
@@ -141,9 +141,7 @@ namespace DataModel
             {
                 this.conn.Open();
                 SqlDataReader dr = this.getRows(where_filter);
-
-
-
+                
                 while (dr.Read())
                 {
                     T temp = this._parser.parse(dr);
@@ -153,9 +151,9 @@ namespace DataModel
                 dr.Close();
 
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Get rows exception");
+                throw new Exception("Get rows exception: "+ex.Message);
             }
             finally
             {
@@ -234,9 +232,9 @@ namespace DataModel
                 newItem = this._parser.parse(keys, parameters);
                 this._data.Add(newItem);
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Insert Exception");
+                throw new Exception("Insert Exception: "+ex);
             }
             finally
             {
@@ -287,6 +285,19 @@ namespace DataModel
                 if (result <= 0)
                     return new List<T>();
 
+                
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Update exception: "+ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
+            try
+            {
                 resultList = this.getItems(where_filter);
                 if (resultList.Count < 0)
                     throw new Exception("DATA MODEL INVALID");
@@ -296,13 +307,9 @@ namespace DataModel
                     updateNew.copyTo(anItem);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Update exception");
-            }
-            finally
-            {
-                this.conn.Close();
+                throw new Exception("Unkonw exception: " + ex.Message);
             }
 
             
@@ -329,9 +336,9 @@ namespace DataModel
 
                 result = cmd.ExecuteNonQuery();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Delete exception");
+                throw new Exception("Delete exception: "+ex.Message);
             }
             finally
             {
