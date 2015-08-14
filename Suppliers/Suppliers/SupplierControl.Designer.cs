@@ -41,7 +41,6 @@
             this.clCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clFax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbCountry = new System.Windows.Forms.ComboBox();
             this.txtAddr = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtFax = new System.Windows.Forms.TextBox();
@@ -57,33 +56,34 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnClearForm = new System.Windows.Forms.Button();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.meUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.meDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvSuppliers)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +91,7 @@
             // 
             this.gvSuppliers.AllowUserToAddRows = false;
             this.gvSuppliers.AllowUserToDeleteRows = false;
+            this.gvSuppliers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.gvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvSuppliers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSupID,
@@ -110,7 +111,7 @@
             this.gvSuppliers.Name = "gvSuppliers";
             this.gvSuppliers.ReadOnly = true;
             this.gvSuppliers.Size = new System.Drawing.Size(489, 389);
-            this.gvSuppliers.TabIndex = 1;
+            this.gvSuppliers.TabIndex = 10;
             this.gvSuppliers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gvSuppliers_MouseClick);
             this.gvSuppliers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvSuppliers_MouseDoubleClick);
             this.gvSuppliers.SelectionChanged += new System.EventHandler(this.gvSuppliers_SelectionChanged);
@@ -120,85 +121,77 @@
             this.clSupID.HeaderText = "Suppliers ID";
             this.clSupID.Name = "clSupID";
             this.clSupID.ReadOnly = true;
+            this.clSupID.Width = 5;
             // 
             // clCompName
             // 
             this.clCompName.HeaderText = "Company Name";
             this.clCompName.Name = "clCompName";
             this.clCompName.ReadOnly = true;
+            this.clCompName.Width = 5;
             // 
             // clContName
             // 
             this.clContName.HeaderText = "Contact Name";
             this.clContName.Name = "clContName";
             this.clContName.ReadOnly = true;
+            this.clContName.Width = 5;
             // 
             // clContTitle
             // 
             this.clContTitle.HeaderText = "Contact Title";
             this.clContTitle.Name = "clContTitle";
             this.clContTitle.ReadOnly = true;
+            this.clContTitle.Width = 5;
             // 
             // clAddr
             // 
             this.clAddr.HeaderText = "Address";
             this.clAddr.Name = "clAddr";
             this.clAddr.ReadOnly = true;
+            this.clAddr.Width = 5;
             // 
             // clCity
             // 
             this.clCity.HeaderText = "City";
             this.clCity.Name = "clCity";
             this.clCity.ReadOnly = true;
+            this.clCity.Width = 5;
             // 
             // clRegion
             // 
             this.clRegion.HeaderText = "Region";
             this.clRegion.Name = "clRegion";
             this.clRegion.ReadOnly = true;
+            this.clRegion.Width = 5;
             // 
             // clPos
             // 
             this.clPos.HeaderText = "Postal Code";
             this.clPos.Name = "clPos";
             this.clPos.ReadOnly = true;
+            this.clPos.Width = 5;
             // 
             // clCountry
             // 
             this.clCountry.HeaderText = "Country";
             this.clCountry.Name = "clCountry";
             this.clCountry.ReadOnly = true;
+            this.clCountry.Width = 5;
             // 
             // clPhone
             // 
             this.clPhone.HeaderText = "Phone";
             this.clPhone.Name = "clPhone";
             this.clPhone.ReadOnly = true;
+            this.clPhone.Width = 5;
             // 
             // clFax
             // 
             this.clFax.HeaderText = "Fax";
             this.clFax.Name = "clFax";
             this.clFax.ReadOnly = true;
-            // 
-            // cbCountry
-            // 
-            this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Items.AddRange(new object[] {
-            "Viet Nam",
-            "Laos",
-            "Cambodia",
-            "Myanmar",
-            "Thailand",
-            "Brunei",
-            "Philippines",
-            "Singapore",
-            "Indonesia",
-            "Malaysia"});
-            this.cbCountry.Location = new System.Drawing.Point(91, 128);
-            this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(270, 21);
-            this.cbCountry.TabIndex = 25;
+            this.clFax.Width = 5;
             // 
             // txtAddr
             // 
@@ -206,42 +199,42 @@
             this.txtAddr.Multiline = true;
             this.txtAddr.Name = "txtAddr";
             this.txtAddr.Size = new System.Drawing.Size(270, 34);
-            this.txtAddr.TabIndex = 18;
+            this.txtAddr.TabIndex = 3;
             // 
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(91, 155);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(270, 20);
-            this.txtPhone.TabIndex = 19;
+            this.txtPhone.TabIndex = 6;
             // 
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(91, 181);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(270, 20);
-            this.txtFax.TabIndex = 17;
+            this.txtFax.TabIndex = 7;
             // 
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(91, 102);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(270, 20);
-            this.txtCity.TabIndex = 16;
+            this.txtCity.TabIndex = 4;
             // 
             // txtContname
             // 
             this.txtContname.Location = new System.Drawing.Point(91, 29);
             this.txtContname.Name = "txtContname";
             this.txtContname.Size = new System.Drawing.Size(270, 20);
-            this.txtContname.TabIndex = 24;
+            this.txtContname.TabIndex = 2;
             // 
             // txtCompName
             // 
             this.txtCompName.Location = new System.Drawing.Point(91, 3);
             this.txtCompName.Name = "txtCompName";
             this.txtCompName.Size = new System.Drawing.Size(270, 20);
-            this.txtCompName.TabIndex = 22;
+            this.txtCompName.TabIndex = 1;
             // 
             // txtSupID
             // 
@@ -324,28 +317,6 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Suppliers ID";
             // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(102, 31);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 27;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::SuppliersControl.Properties.Resources.NewDocumentHS;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAdd.Location = new System.Drawing.Point(291, 31);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 26;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(507, 891);
@@ -360,7 +331,7 @@
             this.btnClearForm.Location = new System.Drawing.Point(88, 3);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(90, 23);
-            this.btnClearForm.TabIndex = 34;
+            this.btnClearForm.TabIndex = 9;
             this.btnClearForm.Text = "Clear Filter";
             this.btnClearForm.UseVisualStyleBackColor = true;
             this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
@@ -375,6 +346,7 @@
             // 
             // meUpdate
             // 
+            this.meUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
             this.meUpdate.Name = "meUpdate";
             this.meUpdate.Size = new System.Drawing.Size(109, 22);
             this.meUpdate.Text = "Update";
@@ -382,6 +354,7 @@
             // 
             // meDelete
             // 
+            this.meDelete.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
             this.meDelete.Name = "meDelete";
             this.meDelete.Size = new System.Drawing.Size(109, 22);
             this.meDelete.Text = "Delete";
@@ -407,26 +380,6 @@
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 37;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 41);
-            this.panel2.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(87, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(268, 26);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Suppliers Manager";
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -441,6 +394,55 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.86567F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 335);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtSupID);
+            this.panel3.Controls.Add(this.btnAdd);
+            this.panel3.Controls.Add(this.btnRemove);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(3, 248);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(394, 84);
+            this.panel3.TabIndex = 1;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::SuppliersControl.Properties.Resources.NewDocumentHS;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAdd.Location = new System.Drawing.Point(291, 31);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 11;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnRemove.Location = new System.Drawing.Point(91, 31);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(86, 23);
+            this.btnRemove.TabIndex = 13;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(199, 31);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(88, 23);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -477,6 +479,223 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 239);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // cbCountry
+            // 
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Items.AddRange(new object[] {
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas, The",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia and Herzegovina",
+            "Botswana",
+            "Brazil",
+            "Brunei",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burma",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Colombia",
+            "Comoros",
+            "Congo, Democratic Republic of the",
+            "Congo, Republic of the",
+            "Costa Rica",
+            "Cote d\'Ivoire",
+            "Croatia",
+            "Cuba",
+            "Curacao",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "East Timor (see Timor-Leste)",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Gambia, The",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Greece",
+            "Grenada",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Holy See",
+            "Honduras",
+            "Hong Kong",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Korea, North",
+            "Korea, South",
+            "Kosovo",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macau",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Mauritania",
+            "Mauritius",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "Netherlands Antilles",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "North Korea",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Palestinian Territories",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Vincent and the Grenadines",
+            "Samoa",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Sint Maarten",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Korea",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "UK",
+            "United Kingdom",
+            "USA",
+            "United States of America",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"});
+            this.cbCountry.Location = new System.Drawing.Point(91, 128);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(270, 21);
+            this.cbCountry.TabIndex = 5;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnSearch);
@@ -487,31 +706,6 @@
             this.panel1.Size = new System.Drawing.Size(300, 58);
             this.panel1.TabIndex = 26;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.txtSupID);
-            this.panel3.Controls.Add(this.btnAdd);
-            this.panel3.Controls.Add(this.btnRemove);
-            this.panel3.Controls.Add(this.btnUpdate);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(3, 248);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(394, 84);
-            this.panel3.TabIndex = 1;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(199, 31);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 23);
-            this.btnUpdate.TabIndex = 28;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // btnSearch
             // 
             this.btnSearch.Image = global::SuppliersControl.Properties.Resources.Filter2HS;
@@ -519,10 +713,20 @@
             this.btnSearch.Location = new System.Drawing.Point(184, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(86, 23);
-            this.btnSearch.TabIndex = 35;
+            this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(400, 41);
+            this.panel2.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -534,6 +738,16 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 35;
             this.pictureBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(87, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(268, 26);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Suppliers Manager";
             // 
             // SupplierControl
             // 
@@ -548,14 +762,14 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -564,7 +778,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gvSuppliers;
-        private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.TextBox txtAddr;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtFax;
@@ -608,5 +821,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cbCountry;
     }
 }

@@ -60,6 +60,13 @@ namespace SuppliersControl.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DeleteHS {
+            get {
+                object obj = ResourceManager.GetObject("DeleteHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DialHS {
             get {
                 object obj = ResourceManager.GetObject("DialHS", resourceCulture);

@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Suppliers.Properties;
+using Base_Intefaces;
+using WinForm_Dialogs;
 
 namespace Suppliers
 {
-    public partial class SupplierControl : UserControl
+    public partial class SupplierControl : UserControl , ControlInteface<SupplierModel, Supplier>
     {
         public bool Loadded = false;
         private EditSupplier editForm;
@@ -214,7 +216,6 @@ namespace Suppliers
             this.txtContname.Text = "";
             this.txtAddr.Text = "";
             this.txtCity.Text = "";
-            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
             this.gvSuppliers.ClearSelection();
@@ -237,16 +238,21 @@ namespace Suppliers
             DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
                 return;
+            int idToDelete = int.Parse(this.txtSupID.Text.Trim());
+            string deleteSql = "supplierid =" + idToDelete;
             try
             {
-                int idToDelete = int.Parse(this.txtSupID.Text.Trim());
-                this.dataModel.deleteRows("supplierid =" + idToDelete);
+
+                this.dataModel.deleteRows(deleteSql);
                 MessageBox.Show("Deleted");
                 clearAll();
             }
             catch 
             {
                 this.warningForm.ShowDialog();
+                UserOption result = this.warningForm.GetUserOption;
+                if (result == UserOption.Option1)
+                    this.dataModel.SafetyDelete(deleteSql);
             }
         }
 
@@ -254,39 +260,11 @@ namespace Suppliers
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.gvSuppliers.ClearSelection();
-            string sqlFilter = " continued=1 ";
-            if (this.txtCompName.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Text.Trim());
-            }
-            if (this.txtContname.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  contactname LIKE '%{0}%' ", txtContname.Text.Trim());
-            }
-            if (this.txtAddr.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  address LIKE '%{0}%' ", txtAddr.Text.Trim());
-            }
-            if (this.txtCity.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  city LIKE '%{0}%' ", txtCity.Text.Trim());
-            }
-            if (this.cbCountry.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  country LIKE '%{0}%' ", cbCountry.Text.Trim());
-            }
-            if (this.txtPhone.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  phone LIKE '%{0}%' ", txtPhone.Text.Trim());
-            }
-            if (this.txtFax.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND  fax LIKE '%{0}%' ", txtFax.Text.Trim());
-            }
 
             try
             {
-                this.dataModel.resetControl(sqlFilter);
+                this.dataModel.filter(txtCompName.Text, txtContname.Text, txtAddr.Text,
+                    txtCity.Text, cbCountry.Text, txtPhone.Text, txtFax.Text);
             }
             catch (Exception ex)
             {
@@ -340,5 +318,42 @@ namespace Suppliers
                 this.contextMenu.Show(Cursor.Position);
             }
         }
+
+
+
+
+        #region ControlInteface<SupplierModel,Supplier> Members
+
+        public SupplierModel getDataModel()
+        {
+            return this.dataModel;
+        }
+
+        public bool isLoaded()
+        {
+            return this.Loadded;
+        }
+
+        public void resetControl()
+        {
+            this.clearAll();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.Loadded = status;
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        #endregion
     }
 }

@@ -328,19 +328,21 @@
             this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.GridViewMenu.Name = "GridViewMenu";
-            this.GridViewMenu.Size = new System.Drawing.Size(110, 48);
+            this.GridViewMenu.Size = new System.Drawing.Size(153, 70);
             // 
             // updateToolStripMenuItem
             // 
+            this.updateToolStripMenuItem.Image = global::Employees.Properties.Resources.saveHS;
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.updateToolStripMenuItem.Text = "Update";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
+            this.deleteToolStripMenuItem.Image = global::Employees.Properties.Resources.DeleteHS1;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 

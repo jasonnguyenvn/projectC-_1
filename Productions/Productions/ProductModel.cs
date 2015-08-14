@@ -250,6 +250,11 @@ namespace Productions
             this._initTable();
         }
 
+        public void resetControl()
+        {
+            this.resetControl("");
+        }
+
         private void _initTable()
         {
             string[] keys = Product.Sql_keys;

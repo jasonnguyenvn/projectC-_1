@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Employees.Properties;
+using Base_Intefaces;
 
 namespace Employees
 {
-    public partial class EmployeeControl : UserControl
+    public partial class EmployeeControl : UserControl, ControlInteface<EmployeeModel, Employee>
     {
         private EmployeeModel dataModel;
         private bool _loaded = false;
@@ -313,42 +314,11 @@ namespace Employees
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.gvEmployees.ClearSelection();
-            string sqlFilter = "jobStatus=1 ";
-            if (this.txtName.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Text.Trim());
-                
-            }
-            if (this.txtTitle.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Text.Trim());
-            }
-            if (this.txtCity.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Text.Trim());
-            }
-            if (this.txtRegion.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Text.Trim());
-            }
-            if (this.txtCountry.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Text.Trim());
-            }
-
-            if (this.txtPhone.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Text.Trim());
-            }
-
-            if (this.txtManagerID.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Text.Trim());
-            }
-
+            
             try
             {
-                this.dataModel.resetControl(sqlFilter);
+                this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
+                    txtRegion.Text, txtCountry.Text, txtPhone.Text, txtManagerID.Text);
             }
             catch (Exception ex)
             {
@@ -358,5 +328,39 @@ namespace Employees
 
 
 
+
+        #region ControlInteface<EmployeeModel,Employee> Members
+
+        public EmployeeModel getDataModel()
+        {
+            return this.dataModel;
+        }
+
+        public bool isLoaded()
+        {
+            return this.Loaded;
+        }
+
+        public void resetControl()
+        {
+            this.clearForm();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.Loaded = status;
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        #endregion
     }
 }

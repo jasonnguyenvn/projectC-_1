@@ -1,6 +1,6 @@
 ﻿namespace Productions
 {
-    partial class Products
+    partial class ProductControl
     {
         /// <summary>
         /// Required designer variable.

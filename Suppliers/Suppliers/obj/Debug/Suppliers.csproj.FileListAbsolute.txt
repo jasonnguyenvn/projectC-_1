@@ -14,7 +14,6 @@ C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\Suppliers.pdb
 C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.dll
 C:\Projects\projectC-_1\Suppliers\Suppliers\bin\Debug\DataModel.pdb
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\ResolveAssemblyReference.cache
-C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.DeleteOptionsForm.resources
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.EditSupplier.resources
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\SuppliersControl.Properties.Resources.resources
 C:\Projects\projectC-_1\Suppliers\Suppliers\obj\Debug\Suppliers.SupplierControl.resources

@@ -39,6 +39,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Employees\Employees\bin\Debug\Employees.dll</HintPath>
     </Reference>
+    <Reference Include="Productions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Productions\Productions\bin\Debug\Productions.dll</HintPath>
+    </Reference>
     <Reference Include="Suppliers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Suppliers\Suppliers\bin\Debug\Suppliers.dll</HintPath>

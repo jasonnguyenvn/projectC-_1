@@ -46,7 +46,7 @@ namespace Employees
             newEmp.City = this.txtCity.Text;
             newEmp.Region = this.txtRegion.Text;
             newEmp.Postalcode = this.txtPostalCode.Text;
-            newEmp.Country = this.txtCountry.Text;
+            newEmp.Country = this.cbCountry.Text;
             newEmp.Phone = this.txtPhone.Text;
             try
             {
@@ -98,7 +98,7 @@ namespace Employees
             this.txtCity.Text = "";
             this.txtRegion.Text = "";
             this.txtPostalCode.Text = "";
-            this.txtCountry.Text = "";
+            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtManagerID.Text = "";
             this.btnSave.Enabled = true;
@@ -117,7 +117,7 @@ namespace Employees
             this.txtCity.Text = data.City;
             this.txtRegion.Text = data.Region;
             this.txtPostalCode.Text = data.Postalcode;
-            this.txtCountry.Text = data.Country;
+            this.cbCountry.Text = data.Country;
             this.txtPhone.Text = data.Phone;
             this.txtManagerID.Text = data.Mgrid.ToString();
         }

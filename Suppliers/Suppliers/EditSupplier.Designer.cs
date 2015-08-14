@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSupplier));
             this.btnSave = new System.Windows.Forms.Button();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.txtAddr = new System.Windows.Forms.TextBox();
@@ -67,22 +68,221 @@
             // 
             // cbCountry
             // 
+            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Items.AddRange(new object[] {
-            "Viet Nam",
-            "Laos",
-            "Cambodia",
-            "Myanmar",
-            "Thailand",
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas, The",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia and Herzegovina",
+            "Botswana",
+            "Brazil",
             "Brunei",
-            "Philippines",
-            "Singapore",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burma",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Colombia",
+            "Comoros",
+            "Congo, Democratic Republic of the",
+            "Congo, Republic of the",
+            "Costa Rica",
+            "Cote d\'Ivoire",
+            "Croatia",
+            "Cuba",
+            "Curacao",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "East Timor (see Timor-Leste)",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Gambia, The",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Greece",
+            "Grenada",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Holy See",
+            "Honduras",
+            "Hong Kong",
+            "Hungary",
+            "Iceland",
+            "India",
             "Indonesia",
-            "Malaysia"});
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Korea, North",
+            "Korea, South",
+            "Kosovo",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macau",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Mauritania",
+            "Mauritius",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "Netherlands Antilles",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "North Korea",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Palestinian Territories",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Vincent and the Grenadines",
+            "Samoa",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Sint Maarten",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Korea",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "UK",
+            "United Kingdom",
+            "USA",
+            "United States of America",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"});
             this.cbCountry.Location = new System.Drawing.Point(134, 342);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(174, 21);
-            this.cbCountry.TabIndex = 48;
+            this.cbCountry.TabIndex = 9;
             // 
             // txtAddr
             // 
@@ -90,63 +290,63 @@
             this.txtAddr.Multiline = true;
             this.txtAddr.Name = "txtAddr";
             this.txtAddr.Size = new System.Drawing.Size(174, 48);
-            this.txtAddr.TabIndex = 41;
+            this.txtAddr.TabIndex = 5;
             // 
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(134, 381);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(174, 20);
-            this.txtPhone.TabIndex = 42;
+            this.txtPhone.TabIndex = 10;
             // 
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(134, 412);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(174, 20);
-            this.txtFax.TabIndex = 40;
+            this.txtFax.TabIndex = 11;
             // 
             // txtRegion
             // 
             this.txtRegion.Location = new System.Drawing.Point(134, 267);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(174, 20);
-            this.txtRegion.TabIndex = 38;
+            this.txtRegion.TabIndex = 7;
             // 
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(134, 225);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(174, 20);
-            this.txtCity.TabIndex = 39;
+            this.txtCity.TabIndex = 6;
             // 
             // txtContTitle
             // 
             this.txtContTitle.Location = new System.Drawing.Point(134, 129);
             this.txtContTitle.Name = "txtContTitle";
             this.txtContTitle.Size = new System.Drawing.Size(174, 20);
-            this.txtContTitle.TabIndex = 46;
+            this.txtContTitle.TabIndex = 4;
             // 
             // txtContname
             // 
             this.txtContname.Location = new System.Drawing.Point(134, 90);
             this.txtContname.Name = "txtContname";
             this.txtContname.Size = new System.Drawing.Size(174, 20);
-            this.txtContname.TabIndex = 47;
+            this.txtContname.TabIndex = 3;
             // 
             // txtCompName
             // 
             this.txtCompName.Location = new System.Drawing.Point(134, 51);
             this.txtCompName.Name = "txtCompName";
             this.txtCompName.Size = new System.Drawing.Size(174, 20);
-            this.txtCompName.TabIndex = 45;
+            this.txtCompName.TabIndex = 2;
             // 
             // txtPos
             // 
             this.txtPos.Location = new System.Drawing.Point(134, 305);
             this.txtPos.Name = "txtPos";
             this.txtPos.Size = new System.Drawing.Size(100, 20);
-            this.txtPos.TabIndex = 43;
+            this.txtPos.TabIndex = 8;
             // 
             // txtSupID
             // 
@@ -154,7 +354,7 @@
             this.txtSupID.Location = new System.Drawing.Point(134, 17);
             this.txtSupID.Name = "txtSupID";
             this.txtSupID.Size = new System.Drawing.Size(100, 20);
-            this.txtSupID.TabIndex = 44;
+            this.txtSupID.TabIndex = 1;
             // 
             // label11
             // 
@@ -284,13 +484,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(338, 510);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(338, 510);
             this.Name = "EditSupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EditSupplier";
+            this.Text = "Edit Supplier";
             this.ResumeLayout(false);
             this.PerformLayout();
 
