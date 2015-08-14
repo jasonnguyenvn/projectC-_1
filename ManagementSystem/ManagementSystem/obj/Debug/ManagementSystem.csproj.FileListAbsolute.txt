@@ -14,3 +14,5 @@ C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSy
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.AboutControl.resources
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.dll
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.pdb
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Productions.dll
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Productions.pdb

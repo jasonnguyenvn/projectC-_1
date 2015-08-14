@@ -6,61 +6,101 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Productions.Properties;
+
+using Base_Intefaces;
+using WinForm_Dialogs;
+
 
 namespace Productions
 {
-    public partial class Categories : UserControl
+    public partial class CategoryControl : UserControl, ControlInteface<CategoryModel, Category>
     {
         private CategoryModel dataModel;
 
-        public Categories()
+        private DeleteOptionsForm warningForm;
+        private bool loaded = false;
+
+        public CategoryControl()
         {
             InitializeComponent();
+            //this.gvCatetories.ContextMenuStrip = this.GridViewMenu;
+            Settings setting = new Settings();
+
+            try
+            {
+                CategoryParser newParser = new CategoryParser();
+
+                dataModel = new CategoryModel(
+                                    this.gvCategories,
+                                    setting.DB_HOST,
+                                    setting.DB_PORT,
+                                    setting.DB_NAME,
+                                    setting.DB_USER,
+                                    setting.DB_PASS,
+                                    "Production.Categories",
+                                    newParser);
+                dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
+
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             this._initModel();
         }
 
-        public Categories(string host, int port, string dbname, string username,
+        public CategoryControl(string host, int port, string dbname, string username,
             string password, string table_name, CategoryParser parser)
         {
             this.InitializeComponent();
 
-            CategoryParser newParser = new CategoryParser();
-            dataModel = new CategoryModel(
-                                this.gvCategories,
-                                host,
-                                port,
-                                dbname,
-                                username,
-                                password,
-                                "HR.Employees",
-                                newParser);
-            newParser.DataModel = dataModel;
+            
 
-            dataModel.resetControl();
+            CategoryParser newParser = new CategoryParser();
+            try
+            {
+                dataModel = new  CategoryModel(
+                                    this.gvCategories,
+                                    host,
+                                    port,
+                                    dbname,
+                                    username,
+                                    password,
+                                    "Production.Categories",
+                                    newParser);
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            this._initModel();
         }
 
         protected void _initModel()
         {
-            Productions.Properties.Settings setting = new Productions.Properties.Settings();
+            this.gvCategories.Columns.Clear();
 
-            CategoryParser newParser = new CategoryParser();
+            try
+            {
+                dataModel.resetControl();
+                //this.editForm = new EditCatetories(dataModel);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            dataModel = new CategoryModel(
-                                this.gvCategories,
-                                setting.DB_HOST,
-                                setting.DB_PORT,
-                                setting.DB_NAME,
-                                setting.DB_USER,
-                                setting.DB_PASS,
-                                "Production.Categories",
-                                newParser);
-            dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
-            
-            newParser.DataModel = dataModel;
+            this.warningForm = new DeleteOptionsForm("WARNING: This category holds some products", 
+                                "(1) SAFETY DELETE: Deactive this category in the manager.", 
+                                "(2) Delete this supplier and all of its data.");
 
-            dataModel.resetControl();
         }
-
         private void btnCaAdd_Click(object sender, EventArgs e)
         {
             Category newCat = new Category();
@@ -153,5 +193,43 @@ namespace Productions
         {
             clearAll();
         }
+
+        #region ControlInteface<CategoryModel,Category> Members
+
+        public CategoryModel getDataModel()
+        {
+            return this.dataModel;
+        }
+
+        #endregion
+
+        #region BaseControlInteface Members
+
+        public bool isLoaded()
+        {
+            return this.loaded;
+        }
+
+        public void resetControl()
+        {
+            this.clearAll();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.loaded = status;
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        #endregion
     }
 }

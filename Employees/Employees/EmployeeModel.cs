@@ -467,5 +467,45 @@ namespace Employees
 
             return deletedList;
         }
+
+        public void filter(string txtName, string txtTitle, string txtCity,
+            string txtRegion, string txtCountry, string txtPhone, string txtManagerID)
+        {
+            string sqlFilter = "jobStatus=1 ";
+            if (txtName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Trim());
+
+            }
+            if (txtTitle.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Trim());
+            }
+            if (txtCity.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Trim());
+            }
+            if (txtRegion.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Trim());
+            }
+            if (txtCountry.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Trim());
+            }
+
+            if (txtPhone.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Trim());
+            }
+
+            if (txtManagerID.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Trim());
+            }
+
+            this.resetControl(sqlFilter);
+            
+        }
     }
 }
