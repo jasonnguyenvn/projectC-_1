@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Employees.aspx.cs" Inherits="WebForms.Employees" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Template.Master" AutoEventWireup="true" CodeBehind="Employees.aspx.cs" Inherits="WebForms.Employees" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <title>Employee Manager</title>
@@ -29,7 +29,7 @@
         	min-height: 600px;
         	padding-top: 25px;
         	padding-left: 15px;
-        	padding-right: 5px;
+        	padding-right: 10px;
         	padding-bottom: 10px;
         }
         
@@ -193,7 +193,7 @@
                             CssClass="table table-bordered table-hover dataTable" >
                             <PagerSettings Position="TopAndBottom" />
                             <RowStyle ForeColor="#000066" Height="20px" 
-                                HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
                             <FooterStyle BackColor="White" ForeColor="#000066" />
                             <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" 
                                 Wrap="False" CssClass="page_row" VerticalAlign="Middle" />

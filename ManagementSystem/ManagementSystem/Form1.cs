@@ -73,6 +73,8 @@ namespace ManagementSystem
                 else control.setLoadStatus(true);
                 this.panel1.Controls.Add(control.getThis());
                 this.currentControl = control;
+                this.Text = this.currentControl.getName() + " - Company Mangement";
+
             }
             catch (Exception ex)
             {
@@ -116,6 +118,7 @@ namespace ManagementSystem
         {
             this.panel1.Controls.Clear();
             this.panel1.Controls.Add(this.aboutBox);
+            this.Text = "About Company Mangement 0.6.9.1";
         }
     }
 }

@@ -116,6 +116,11 @@ namespace Productions
         }
 
 
+
+        public override int[] isValid_multi()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class CategoryParser : DataObjectParser<Category>

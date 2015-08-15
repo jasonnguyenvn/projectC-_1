@@ -10,7 +10,6 @@ C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Employees.pd
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\DataModel.pdb
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Employees.dll
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.MainForm.resources
-C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.AboutBox1.resources
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.AboutControl.resources
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.dll
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\Suppliers.pdb

@@ -278,7 +278,7 @@ namespace Employees
 
         }
 
-        public override string[] getErrorMessage(int[] errorCodes)
+        /*public override string[] getErrorMessage(int[] errorCodes)
         {
             List<string> result = new List<string>();
 
@@ -288,7 +288,7 @@ namespace Employees
             }
 
             return result.ToArray();
-        }
+        }*/
 
         public override int[] isValid_multi()
         {

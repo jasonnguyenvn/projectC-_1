@@ -364,5 +364,14 @@ namespace Employees
         }
 
         #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Employees Manager";
+        }
+
+        #endregion
     }
 }

@@ -59,21 +59,21 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnClearForm = new System.Windows.Forms.Button();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.meUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.meDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.meUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.meDelete = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gvSuppliers)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -110,7 +110,7 @@
             this.gvSuppliers.MultiSelect = false;
             this.gvSuppliers.Name = "gvSuppliers";
             this.gvSuppliers.ReadOnly = true;
-            this.gvSuppliers.Size = new System.Drawing.Size(489, 389);
+            this.gvSuppliers.Size = new System.Drawing.Size(509, 389);
             this.gvSuppliers.TabIndex = 10;
             this.gvSuppliers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gvSuppliers_MouseClick);
             this.gvSuppliers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvSuppliers_MouseDoubleClick);
@@ -239,9 +239,9 @@
             // txtSupID
             // 
             this.txtSupID.Enabled = false;
-            this.txtSupID.Location = new System.Drawing.Point(210, 3);
+            this.txtSupID.Location = new System.Drawing.Point(207, 3);
             this.txtSupID.Name = "txtSupID";
-            this.txtSupID.Size = new System.Drawing.Size(156, 20);
+            this.txtSupID.Size = new System.Drawing.Size(159, 20);
             this.txtSupID.TabIndex = 21;
             // 
             // label11
@@ -311,7 +311,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 10);
+            this.label1.Location = new System.Drawing.Point(105, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 11;
@@ -344,25 +344,10 @@
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.Size = new System.Drawing.Size(110, 48);
             // 
-            // meUpdate
-            // 
-            this.meUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
-            this.meUpdate.Name = "meUpdate";
-            this.meUpdate.Size = new System.Drawing.Size(109, 22);
-            this.meUpdate.Text = "Update";
-            this.meUpdate.Click += new System.EventHandler(this.meUpdate_Click);
-            // 
-            // meDelete
-            // 
-            this.meDelete.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
-            this.meDelete.Name = "meDelete";
-            this.meDelete.Size = new System.Drawing.Size(109, 22);
-            this.meDelete.Text = "Delete";
-            this.meDelete.Click += new System.EventHandler(this.meDelete_Click);
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -370,14 +355,15 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
-            this.splitContainer1.Panel1MinSize = 400;
+            this.splitContainer1.Panel1MinSize = 380;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gvSuppliers);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 25);
+            this.splitContainer1.Panel2MinSize = 100;
             this.splitContainer1.Size = new System.Drawing.Size(903, 419);
-            this.splitContainer1.SplitterDistance = 400;
+            this.splitContainer1.SplitterDistance = 380;
             this.splitContainer1.TabIndex = 37;
             // 
             // tableLayoutPanel1
@@ -392,7 +378,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.13433F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.86567F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 335);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 335);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel3
@@ -405,44 +391,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 248);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(394, 84);
+            this.panel3.Size = new System.Drawing.Size(374, 84);
             this.panel3.TabIndex = 1;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::SuppliersControl.Properties.Resources.NewDocumentHS;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAdd.Location = new System.Drawing.Point(291, 31);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 11;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
-            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnRemove.Location = new System.Drawing.Point(91, 31);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(86, 23);
-            this.btnRemove.TabIndex = 13;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(199, 31);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 23);
-            this.btnUpdate.TabIndex = 12;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -476,7 +426,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 239);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(374, 239);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // cbCountry
@@ -703,8 +653,64 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(91, 207);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 58);
+            this.panel1.Size = new System.Drawing.Size(280, 58);
             this.panel1.TabIndex = 26;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(380, 41);
+            this.panel2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(87, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(268, 26);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Suppliers Manager";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::SuppliersControl.Properties.Resources.NewDocumentHS;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAdd.Location = new System.Drawing.Point(286, 31);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(80, 23);
+            this.btnAdd.TabIndex = 11;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnRemove.Location = new System.Drawing.Point(108, 31);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(86, 23);
+            this.btnRemove.TabIndex = 13;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Image = global::SuppliersControl.Properties.Resources.NewCardHS;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(207, 31);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(78, 23);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSearch
             // 
@@ -718,16 +724,6 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 41);
-            this.panel2.TabIndex = 0;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -739,15 +735,21 @@
             this.pictureBox2.TabIndex = 35;
             this.pictureBox2.TabStop = false;
             // 
-            // label4
+            // meUpdate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(87, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(268, 26);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Suppliers Manager";
+            this.meUpdate.Image = global::SuppliersControl.Properties.Resources.saveHS;
+            this.meUpdate.Name = "meUpdate";
+            this.meUpdate.Size = new System.Drawing.Size(109, 22);
+            this.meUpdate.Text = "Update";
+            this.meUpdate.Click += new System.EventHandler(this.meUpdate_Click);
+            // 
+            // meDelete
+            // 
+            this.meDelete.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
+            this.meDelete.Name = "meDelete";
+            this.meDelete.Size = new System.Drawing.Size(109, 22);
+            this.meDelete.Text = "Delete";
+            this.meDelete.Click += new System.EventHandler(this.meDelete_Click);
             // 
             // SupplierControl
             // 
@@ -823,4 +825,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cbCountry;
     }
+
+
 }

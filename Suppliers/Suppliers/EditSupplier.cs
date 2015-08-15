@@ -40,6 +40,34 @@ namespace Suppliers
             this.doSave_Update();
         }
 
+        private void showErrors(Supplier supp, int code)
+        {
+            if (code == -2)
+            {
+                if (this.txtCompName.Text.Equals(""))
+                    this.errorProvider.SetError(txtCompName,
+                            supp.getErrorMessage(code));
+                if (this.txtContname.Text.Equals(""))
+                    this.errorProvider.SetError(txtContname,
+                            supp.getErrorMessage(code));
+                if (this.txtContTitle.Text.Equals(""))
+                    this.errorProvider.SetError(txtContTitle,
+                            supp.getErrorMessage(code));
+                if (this.txtAddr.Text.Equals(""))
+                    this.errorProvider.SetError(txtAddr,
+                            supp.getErrorMessage(code));
+                if (this.txtCity.Text.Equals(""))
+                    this.errorProvider.SetError(txtCity,
+                            supp.getErrorMessage(code));
+                if (this.cbCountry.Text.Equals(""))
+                    this.errorProvider.SetError(cbCountry,
+                            supp.getErrorMessage(code));
+                if (this.txtPhone.Text.Equals(""))
+                    this.errorProvider.SetError(txtPhone,
+                            supp.getErrorMessage(code));
+            }
+        }
+
         private void doSave_Update()
         {
             Supplier newSup = new Supplier();
@@ -58,7 +86,7 @@ namespace Suppliers
             int check = newSup.isValid();
             if (check < 0)
             {
-                MessageBox.Show(newSup.getErrorMessage(check));
+                showErrors(newSup, check);
             }
             else
             {

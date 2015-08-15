@@ -154,6 +154,11 @@ namespace Productions
          
             return 1;
         }
+
+        public override int[] isValid_multi()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class ProductParser : DataObjectParser<Product>

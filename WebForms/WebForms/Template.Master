@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebForms.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.Master.cs" Inherits="WebForms.Site1" %>
 
 <!DOCTYPE html>
 
@@ -147,7 +147,6 @@
                   </li>
                 </ul>
               </li>
-            
             </ul>
           </div>
         </nav>
@@ -158,7 +157,9 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
 
-          <!-- search form (Optional) -->
+          
+          
+        <!-- search form (Optional) -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search..."/>
@@ -168,6 +169,12 @@
             </div>
           </form>
           <!-- /.search form -->
+          
+          <a class="btn btn-block btn-social btn-github" 
+                href="https://github.com/jasonnguyenvn/projectC-_1">
+                    <i class="fa fa-github"></i> Clone this Project
+           </a>
+                  
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
@@ -179,8 +186,29 @@
             <li class="treeview">
               <a href="#"><span>Human Resources</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
+                <li><a href="Edit-Emp.aspx">Add new employee...</a></li>
                 <li><a href="Employees.aspx">Employee Manager</a></li>
-                <li><a href="Edit-Emp.aspx">Add new employee</a></li>
+                
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#"><span>Productions</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Add new Product...</a></li>
+                <li><a href="#">Products Manager</a></li>
+                <li><a href="#">Categories Manager</a></li>
+                <li><a href="#">Suppliers Manager</a></li>
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#"><span>Sales</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Add new Order...</a></li>
+                <li><a href="#">Orders Manager</a></li>
+                <li><a href="#">Customer Manager</a></li>
+                
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->

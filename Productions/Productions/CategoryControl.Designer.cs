@@ -45,7 +45,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(474, 34);
+            this.label1.Location = new System.Drawing.Point(456, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 0;
@@ -54,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 78);
+            this.label2.Location = new System.Drawing.Point(456, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 1;
@@ -63,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(474, 122);
+            this.label3.Location = new System.Drawing.Point(456, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 2;
@@ -72,16 +72,16 @@
             // txtCatID
             // 
             this.txtCatID.Enabled = false;
-            this.txtCatID.Location = new System.Drawing.Point(579, 31);
+            this.txtCatID.Location = new System.Drawing.Point(549, 31);
             this.txtCatID.Name = "txtCatID";
-            this.txtCatID.Size = new System.Drawing.Size(204, 20);
+            this.txtCatID.Size = new System.Drawing.Size(234, 20);
             this.txtCatID.TabIndex = 3;
             // 
             // txtCatName
             // 
-            this.txtCatName.Location = new System.Drawing.Point(579, 75);
+            this.txtCatName.Location = new System.Drawing.Point(549, 75);
             this.txtCatName.Name = "txtCatName";
-            this.txtCatName.Size = new System.Drawing.Size(204, 20);
+            this.txtCatName.Size = new System.Drawing.Size(234, 20);
             this.txtCatName.TabIndex = 4;
             // 
             // btnCaAdd
@@ -96,17 +96,17 @@
             // 
             // rtxtDescription
             // 
-            this.rtxtDescription.Location = new System.Drawing.Point(579, 119);
+            this.rtxtDescription.Location = new System.Drawing.Point(549, 119);
             this.rtxtDescription.Name = "rtxtDescription";
-            this.rtxtDescription.Size = new System.Drawing.Size(204, 96);
+            this.rtxtDescription.Size = new System.Drawing.Size(234, 96);
             this.rtxtDescription.TabIndex = 7;
             this.rtxtDescription.Text = "";
             // 
             // btnCaUpdate
             // 
-            this.btnCaUpdate.Location = new System.Drawing.Point(627, 262);
+            this.btnCaUpdate.Location = new System.Drawing.Point(635, 262);
             this.btnCaUpdate.Name = "btnCaUpdate";
-            this.btnCaUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnCaUpdate.Size = new System.Drawing.Size(72, 23);
             this.btnCaUpdate.TabIndex = 8;
             this.btnCaUpdate.Text = "Update";
             this.btnCaUpdate.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // catelogies
+            // CategoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,7 +160,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "catelogies";
+            this.Name = "CategoryControl";
             this.Size = new System.Drawing.Size(812, 311);
             ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).EndInit();
             this.ResumeLayout(false);

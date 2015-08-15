@@ -45,7 +45,7 @@ namespace WebForms
             }
             else
                 currentFilter = (string)Session["emp_filter"];
-
+            //this.scriptLb.Text = currentFilter;
             EmployeeParser newParser = new EmployeeParser();
             this.dataModel = new EmployeeModel(this.gvEmployees, @".\SQL2008",
                  1433, "TSQLFundamentals2008","sa", "123456", "HR.Employees", newParser);
@@ -169,8 +169,11 @@ namespace WebForms
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            this.clearGVSelection();
-            this.clearFilter();
+            string newFilter = "jobStatus=1 ";
+            Session["emp_filter"] = newFilter;
+            Response.Redirect("Employees.aspx");
+            /*this.clearGVSelection();
+            this.clearFilter();*/
         }
 
         protected void bntDelete_Click(object sender, EventArgs e)

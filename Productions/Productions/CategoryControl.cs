@@ -231,5 +231,14 @@ namespace Productions
         }
 
         #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Categories Manager";
+        }
+
+        #endregion
     }
 }

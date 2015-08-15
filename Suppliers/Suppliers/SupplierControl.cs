@@ -355,5 +355,14 @@ namespace Suppliers
         }
 
         #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Suppliers Manager";
+        }
+
+        #endregion
     }
 }

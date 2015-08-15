@@ -236,6 +236,33 @@ namespace Suppliers
                 return -2;*/
             return 1;
         }
+
+
+        public override int[] isValid_multi()
+        {
+            List<int> result = new List<int>();
+            if (this.companyname.Equals(""))
+                result.Add(-2);
+            if (this.contactname.Equals(""))
+                result.Add(-2);
+            if (this.contacttitle.Equals(""))
+                result.Add(-2);
+            if (this.address.Equals(""))
+               result.Add(-2);
+            if (this.city.Equals(""))
+                result.Add(-2);
+            /*if (this.region.Equals(""))
+                return -2;
+            if (this.postalcode.Equals(""))
+                return -2;*/
+            if (this.country.Equals(""))
+                result.Add(-2);
+            if (this.phone.Equals(""))
+                result.Add(-2);
+            /*if (this.fax.Equals(""))
+                return -2;*/
+            return result.ToArray();
+        }
     }
 
     public class SupplierParser : DataObjectParser<Supplier>

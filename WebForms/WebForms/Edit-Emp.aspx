@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Edit-Emp.aspx.cs" Inherits="WebForms.Edit_Emp" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Template.Master" AutoEventWireup="true" CodeBehind="Edit-Emp.aspx.cs" Inherits="WebForms.Edit_Emp" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
     <title>Add/Edit an Employee</title>
     

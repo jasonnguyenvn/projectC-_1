@@ -81,6 +81,13 @@ namespace SuppliersControl.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap NewCardHS {
+            get {
+                object obj = ResourceManager.GetObject("NewCardHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap NewDocumentHS {
             get {
                 object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
