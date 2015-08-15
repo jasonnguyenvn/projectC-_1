@@ -4,37 +4,41 @@
     <title>Employee Manager</title>
 </asp:Content>
 
+<asp:Content ID="content_header" ContentPlaceHolderID="content_header" runat=server>
+    <section class="content-header">
+      <h1>
+        Human Resources
+        <small>Employee Manager</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">HR</li>
+      </ol>
+    </section>
+</asp:Content>
+
 <asp:Content ID="mainContent" ContentPlaceHolderID="mainContent" Runat="Server">
      <style>
+         .page_row > td > table > tbody > tr > td
+         {
+         	min-width: 20px;
+         	margin-right: 20px;
+         }
         #content 
         {
-        	width: 95%;
         	min-height: 600px;
         	padding-top: 25px;
         	padding-left: 15px;
         	padding-right: 5px;
         	padding-bottom: 10px;
         }
-        #left_side, #right_side
-        {
-        	display: block;
-        	float: left;
-        	min-height: 200px;
-        }
-        #left_side 
-        {
-        	width: 40%;
-        	
-        }
-        #right_side
-        {
-        	width: 60%;
-        }
         
         #dataTable 
         {
         	display: block;
         	overflow: scroll;
+        	max-height: 300px;
+        	width: 100%;
         }
         div.a_row 
         {
@@ -60,26 +64,35 @@
         {
         	position: relative;
         	margin-bottom: 10px;
+        	
         }
         #edit_form
         {
         	display: block;
         	margin-top: 10px;
+        	width: 100%;
         }
         
         
     </style>
      <asp:Label ID="scriptLb" runat="server"></asp:Label>
      
-      <div class="box box-primary" style="max-height:500px;">
+      <div class="box box-primary" style="height:auto;">
         <div class="box-header with-border">
           <h3 class="box-title">Employee Manager</h3>
-          
-        </div><!-- /.box-header -->
-        <div class="box-body no-padding">
+          <div class="box-tools pull-right">
+                    <div class="has-feedback">
+                     
+                    </div>
+                  </div><!-- /.box-tools -->
+            </div><!-- /.box-header -->
+            
+        
+        <div class="box-body no-padding" style="height:auto;">
            
-            <div id="content">
-                <div id="left_side">
+            <div id="content" class="row">
+             
+                <div class="col-md-5">
                     <div id="filter">
                         <div class="a_row">
                             <div class="row_left">
@@ -159,27 +172,37 @@
                         </div>
                     </div>
                 </div>
-                <div id="right_side">
+                <div class="col-md-7" style="height:auto;" >
+                    <div class="box-tools pull-right">
+                    <div class="has-feedback">
+                     <asp:Button ID="bntDelete" runat="server" Text="Delete" Enabled="False" 
+                                onclick="bntDelete_Click" CssClass="btn  btn-danger btn-default"  />
+                        <asp:Button ID="btnUpdate" runat="server" Text="Update" Enabled="False" 
+                            onclick="btnUpdate_Click" CssClass="btn btn-info btn-default"  />
+                        <asp:Button ID="btnAdd" runat="server" Text="Add new..." 
+                            onclick="btnAdd_Click"  CssClass="btn  btn-primary btn-default"  />
+                    </div>
+                    </div>
                     <div id="dataTable">
-                        <asp:GridView ID="gvEmployees" runat="server" 
-                            onpageindexchanging="gvEmployees_PageIndexChanging" CellPadding="4" 
+                        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateSelectButton="True" 
+                            CellPadding="0" CellSpacing="6" EnableTheming="True" ForeColor="#333333" 
+                            GridLines="None" HorizontalAlign="Left" AllowPaging="True" 
+                            EnableModelValidation="True" 
+                            onpageindexchanging="gvEmployees_PageIndexChanging" 
                             onselectedindexchanged="gvEmployees_SelectedIndexChanged" 
-                            AutoGenerateSelectButton="True" CellSpacing="3" ForeColor="#333333" 
-                            GridLines="None" HorizontalAlign="Center" CaptionAlign="Top" 
-                            EmptyDataText="###NULL###">
-                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" 
-                                Height="25px" VerticalAlign="Middle" Wrap="False" />
-                            <EmptyDataRowStyle HorizontalAlign="Center" Wrap="False" />
-                            <FooterStyle BackColor="#5D7B9D" ForeColor="White" 
-                                HorizontalAlign="Left" Font-Bold="True" />
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" 
-                                HorizontalAlign="Center" Wrap="False" />
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" 
-                                Height="25px" HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
-                            <EditRowStyle BackColor="#999999" />
-                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" 
+                            CssClass="table table-bordered table-hover dataTable" >
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle ForeColor="#000066" Height="20px" 
                                 HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                            <FooterStyle BackColor="White" ForeColor="#000066" />
+                            <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" 
+                                Wrap="False" CssClass="page_row" VerticalAlign="Middle" />
+                            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" 
+                                Height="25px" HorizontalAlign="Center" Width="80px" />
+                            <EditRowStyle BackColor="#999999" />
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        </asp:GridView>
                         </asp:GridView>
                         
                         
@@ -194,20 +217,6 @@
                                         Width="132px" ></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="a_row">
-                                <div class="row_left">
-                                    _
-                                </div>
-                                <div class="row_right">
-                                  <asp:Button ID="bntDelete" runat="server" Text="Delete" Enabled="False" 
-                                onclick="bntDelete_Click" CssClass="btn btn-default"  />
-                                <asp:Button ID="btnUpdate" runat="server" Text="Update" Enabled="False" 
-                                    onclick="btnUpdate_Click" CssClass="btn btn-default"  />
-                                <asp:Button ID="btnAdd" runat="server" Text="Add new..." 
-                                    onclick="btnAdd_Click"  CssClass="btn btn-default"  />
-                                </div>
-                            </div>
-                            
                             
                             
                         </div>

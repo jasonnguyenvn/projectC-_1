@@ -13,24 +13,38 @@ using System.Xml.Linq;
 
 using DataModel;
 using Employees;
+using System.Collections.Generic;
 
 namespace WebForms
 {
     public partial class Employees : System.Web.UI.Page
     {
         private EmployeeModel dataModel;
+        private List<Control> textboxs;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             loadData();
+            this.textboxs = new List<Control>();
+            this.textboxs.Add(txtName);
+            this.textboxs.Add(txtTitle);
+            this.textboxs.Add(txtCity);
+            this.textboxs.Add(txtRegion);
+            this.textboxs.Add(txtCountry);
+            this.textboxs.Add(txtPhone);
+            this.textboxs.Add(cbManagerID);
         }
 
         protected void loadData()
         {
-            //if (Session["emp_filter"] == null)
+            string currentFilter ;
+            if (IsPostBack == false)
+            {
                 Session["emp_filter"] = "jobStatus=1 ";
-
-            string currentFilter = (string)Session["emp_filter"];
+                currentFilter = "jobStatus=1 "; 
+            }
+            else
+                currentFilter = (string)Session["emp_filter"];
 
             EmployeeParser newParser = new EmployeeParser();
             this.dataModel = new EmployeeModel(this.gvEmployees, @".\SQL2008",
@@ -47,6 +61,8 @@ namespace WebForms
                 Session["current_error"] = ex.Message;
                 Response.Redirect("serverError.aspx");
             }
+
+            
         }
 
         protected void loadEmpIDS()
@@ -101,12 +117,13 @@ namespace WebForms
             }
         }
 
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             clearGVSelection();
             try
             {
-                string newFilter = "jobStatus=1 ";
+                string newFilter = " ";
                 newFilter += this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
                     txtRegion.Text, txtCountry.Text, txtPhone.Text, cbManagerID.Text);
 
@@ -180,5 +197,6 @@ namespace WebForms
         {
             Response.Redirect("Edit-Emp.aspx");
         }
+
     }
 }
