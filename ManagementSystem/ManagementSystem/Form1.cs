@@ -120,5 +120,10 @@ namespace ManagementSystem
             this.panel1.Controls.Add(this.aboutBox);
             this.Text = "About Company Mangement 0.6.9.1";
         }
+
+        private void btnShippers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

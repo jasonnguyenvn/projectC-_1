@@ -262,14 +262,8 @@ namespace Productions
 
         private void _initTable()
         {
-            string[] keys = Product.Sql_keys;
-            foreach (string aKey in keys)
-            { 
-                System.Data.DataColumn column;
-                column = new System.Data.DataColumn();
-                column.ColumnName = aKey;
-                this.DataSource.Columns.Add(column);
-            }
+            this._control.Columns.Clear();
+            this._initTable(Product.Sql_keys);
 
         }
 

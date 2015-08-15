@@ -33,6 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAbout = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.btnSuppliers = new System.Windows.Forms.Button();
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnShippers = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -91,10 +92,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
-            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.btnAbout);
             this.panel2.Controls.Add(this.btnOders);
             this.panel2.Controls.Add(this.btnCustomers);
+            this.panel2.Controls.Add(this.btnShippers);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.btnSuppliers);
             this.panel2.Controls.Add(this.btnCategories);
             this.panel2.Controls.Add(this.btnProducts);
@@ -111,10 +113,19 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.labelVersion);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(3, 300);
+            this.panel3.Location = new System.Drawing.Point(3, 342);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(192, 100);
             this.panel3.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Version 0.6.9.1.3628";
             // 
             // labelVersion
             // 
@@ -131,7 +142,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 8);
+            this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 13);
             this.label1.TabIndex = 0;
@@ -142,10 +153,10 @@
             this.btnAbout.AutoSize = true;
             this.btnAbout.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAbout.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAbout.Location = new System.Drawing.Point(0, 252);
+            this.btnAbout.Location = new System.Drawing.Point(0, 294);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(198, 42);
-            this.btnAbout.TabIndex = 6;
+            this.btnAbout.TabIndex = 7;
             this.btnAbout.Text = "&About";
             this.btnAbout.UseVisualStyleBackColor = false;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -155,10 +166,10 @@
             this.btnOders.AutoSize = true;
             this.btnOders.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOders.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOders.Location = new System.Drawing.Point(0, 210);
+            this.btnOders.Location = new System.Drawing.Point(0, 252);
             this.btnOders.Name = "btnOders";
             this.btnOders.Size = new System.Drawing.Size(198, 42);
-            this.btnOders.TabIndex = 5;
+            this.btnOders.TabIndex = 6;
             this.btnOders.Text = "Orders";
             this.btnOders.UseVisualStyleBackColor = false;
             this.btnOders.Click += new System.EventHandler(this.btnOders_Click);
@@ -168,10 +179,10 @@
             this.btnCustomers.AutoSize = true;
             this.btnCustomers.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCustomers.Location = new System.Drawing.Point(0, 168);
+            this.btnCustomers.Location = new System.Drawing.Point(0, 210);
             this.btnCustomers.Name = "btnCustomers";
             this.btnCustomers.Size = new System.Drawing.Size(198, 42);
-            this.btnCustomers.TabIndex = 4;
+            this.btnCustomers.TabIndex = 5;
             this.btnCustomers.Text = "Customers";
             this.btnCustomers.UseVisualStyleBackColor = false;
             this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
@@ -215,14 +226,18 @@
             this.btnProducts.UseVisualStyleBackColor = false;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
-            // label2
+            // btnShippers
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Version 0.6.9.1.3628";
+            this.btnShippers.AutoSize = true;
+            this.btnShippers.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnShippers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnShippers.Location = new System.Drawing.Point(0, 168);
+            this.btnShippers.Name = "btnShippers";
+            this.btnShippers.Size = new System.Drawing.Size(198, 42);
+            this.btnShippers.TabIndex = 4;
+            this.btnShippers.Text = "Shippers";
+            this.btnShippers.UseVisualStyleBackColor = false;
+            this.btnShippers.Click += new System.EventHandler(this.btnShippers_Click);
             // 
             // MainForm
             // 
@@ -260,6 +275,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnShippers;
 
     }
 }

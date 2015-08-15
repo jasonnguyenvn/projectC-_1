@@ -81,6 +81,13 @@ namespace Employees.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap employees_app_icon {
+            get {
+                object obj = ResourceManager.GetObject("employees-app-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Filter2HS {
             get {
                 object obj = ResourceManager.GetObject("Filter2HS", resourceCulture);

@@ -462,8 +462,14 @@ namespace Employees
             SqlParameter hiredate = this.createSQLParam("hiredate", SqlDbType.DateTime, item.Hiredate);
             SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address, 60);
             SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City, 15);
-            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
-            SqlParameter postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+            SqlParameter region;
+            if(item.Region.Equals(""))
+               region = this.createSQLParam("region", SqlDbType.NVarChar,  DBNull.Value, 15);
+            else region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15); 
+            SqlParameter postalcode;
+            if(item.Postalcode.Equals(""))
+                postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, DBNull.Value, 10);
+            else postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
             SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
             SqlParameter mgrid = null;

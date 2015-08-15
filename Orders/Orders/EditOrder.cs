@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Orders
 {
-    public partial class CreateOrder : Form
+    public partial class EditOrder : Form
     {
-        public CreateOrder()
+        public EditOrder()
         {
             InitializeComponent();
         }

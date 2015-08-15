@@ -102,6 +102,13 @@ namespace SuppliersControl.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap supplierIcon2 {
+            get {
+                object obj = ResourceManager.GetObject("supplierIcon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Warning {
             get {
                 object obj = ResourceManager.GetObject("Warning", resourceCulture);

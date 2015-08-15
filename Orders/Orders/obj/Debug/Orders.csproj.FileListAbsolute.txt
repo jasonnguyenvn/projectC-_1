@@ -6,8 +6,11 @@ D:\Project\projectC-_1\Orders\Orders\obj\Debug\Orders.pdb
 C:\Projects\projectC-_1\Orders\Orders\bin\Debug\Orders.dll
 C:\Projects\projectC-_1\Orders\Orders\bin\Debug\Orders.pdb
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\ResolveAssemblyReference.cache
-C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.CreateOrder.resources
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.UserControl1.resources
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.csproj.GenerateResource.Cache
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.dll
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.pdb
+C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.EditOrder.resources
+C:\Projects\projectC-_1\Orders\Orders\bin\Debug\DataModel.dll
+C:\Projects\projectC-_1\Orders\Orders\bin\Debug\DataModel.pdb
+C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.Properties.Resources.resources

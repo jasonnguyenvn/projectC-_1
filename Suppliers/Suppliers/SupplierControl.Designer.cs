@@ -198,7 +198,7 @@
             this.txtAddr.Location = new System.Drawing.Point(91, 55);
             this.txtAddr.Multiline = true;
             this.txtAddr.Name = "txtAddr";
-            this.txtAddr.Size = new System.Drawing.Size(270, 34);
+            this.txtAddr.Size = new System.Drawing.Size(270, 41);
             this.txtAddr.TabIndex = 3;
             // 
             // txtPhone
@@ -373,7 +373,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 41);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.13433F));
@@ -663,14 +663,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(380, 41);
+            this.panel2.Size = new System.Drawing.Size(380, 60);
             this.panel2.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(87, 3);
+            this.label4.Location = new System.Drawing.Point(86, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(268, 26);
             this.label4.TabIndex = 36;
@@ -727,10 +727,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Image = global::SuppliersControl.Properties.Resources.DialHS;
+            this.pictureBox2.Image = global::SuppliersControl.Properties.Resources.supplierIcon2;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(64, 41);
+            this.pictureBox2.Size = new System.Drawing.Size(80, 60);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 35;
             this.pictureBox2.TabStop = false;

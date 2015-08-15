@@ -390,11 +390,24 @@ namespace Suppliers
             SqlParameter contactTitle = this.createSQLParam("contacttitle", SqlDbType.NVarChar, item.ContactTitle,30);
             SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address,60);
             SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City,15);
-            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region,15);
-            SqlParameter postalCode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+
+            SqlParameter region;
+            if (item.Region.Equals(""))
+                region = this.createSQLParam("region", SqlDbType.NVarChar, DBNull.Value, 15);
+            else region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
+            SqlParameter postalcode;
+            if (item.Postalcode.Equals(""))
+                postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, DBNull.Value, 10);
+            else postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country,15);
             SqlParameter phone = this.createSQLParam("phone", SqlDbType.NVarChar, item.Phone,24);
-            SqlParameter fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax,24);
+
+            SqlParameter fax;
+            if(item.Fax.Equals(""))
+                 fax = this.createSQLParam("fax", SqlDbType.NVarChar, DBNull.Value, 24);
+            else fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax, 24);
+
             SqlParameter continued = this.createSQLParam("continued", SqlDbType.Bit, item.Continued);
 
             list.Add(supplierID);
@@ -404,7 +417,7 @@ namespace Suppliers
             list.Add(address);
             list.Add(city);
             list.Add(region);
-            list.Add(postalCode);
+            list.Add(postalcode);
             list.Add(country);
             list.Add(phone);
             list.Add(fax);
