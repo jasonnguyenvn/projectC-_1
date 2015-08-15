@@ -115,7 +115,7 @@ namespace Suppliers
             this.editForm.ShowDialog();
 
 
-            /*Supplier newSup = new Supplier();
+           /* Supplier newSup = new Supplier();
             newSup.SupplierID = -1;
             newSup.CompanyName = this.txtCompName.Text;
             newSup.Contactname = this.txtContname.Text;
