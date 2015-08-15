@@ -102,6 +102,8 @@ namespace Employees
             {
                 MessageBox.Show(ex.Message);
             }
+            this.cbManagerID.Items.Add("");
+            this.cbManagerID.Items.AddRange(this.dataModel.getEmployeeIDs());
 
         }
 
@@ -263,9 +265,9 @@ namespace Employees
             this.txtCity.Text = "";
             this.txtRegion.Text = "";
             this.txtPostalCode.Text = "";
-            this.txtCountry.Text = "";
+            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
-            this.txtManagerID.Text = "";
+            this.cbManagerID.Text = "";
 
             this.gvEmployees.ClearSelection();
         }
@@ -318,7 +320,7 @@ namespace Employees
             try
             {
                 this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
-                    txtRegion.Text, txtCountry.Text, txtPhone.Text, txtManagerID.Text);
+                    txtRegion.Text, cbCountry.Text, txtPhone.Text, cbManagerID.Text);
             }
             catch (Exception ex)
             {
