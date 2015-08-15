@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeEditForm));
-            this.txtManagerID = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.txtRegion = new System.Windows.Forms.TextBox();
@@ -60,15 +59,9 @@
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.cbTitleofCourtesy = new System.Windows.Forms.ComboBox();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbManagerID = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtManagerID
-            // 
-            this.txtManagerID.Location = new System.Drawing.Point(106, 413);
-            this.txtManagerID.Name = "txtManagerID";
-            this.txtManagerID.Size = new System.Drawing.Size(231, 20);
-            this.txtManagerID.TabIndex = 14;
             // 
             // txtPhone
             // 
@@ -522,15 +515,24 @@
             // 
             this.errProvider.ContainerControl = this;
             // 
+            // cbManagerID
+            // 
+            this.cbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbManagerID.FormattingEnabled = true;
+            this.cbManagerID.Location = new System.Drawing.Point(106, 413);
+            this.cbManagerID.Name = "cbManagerID";
+            this.cbManagerID.Size = new System.Drawing.Size(231, 21);
+            this.cbManagerID.TabIndex = 14;
+            // 
             // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 473);
+            this.Controls.Add(this.cbManagerID);
             this.Controls.Add(this.cbTitleofCourtesy);
             this.Controls.Add(this.cbCountry);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtManagerID);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtPostalCode);
             this.Controls.Add(this.txtRegion);
@@ -573,7 +575,6 @@
         #endregion
 
         public System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.TextBox txtManagerID;
         public System.Windows.Forms.TextBox txtPhone;
         public System.Windows.Forms.TextBox txtPostalCode;
         public System.Windows.Forms.TextBox txtRegion;
@@ -602,5 +603,6 @@
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.ComboBox cbTitleofCourtesy;
         private System.Windows.Forms.ErrorProvider errProvider;
+        private System.Windows.Forms.ComboBox cbManagerID;
     }
 }

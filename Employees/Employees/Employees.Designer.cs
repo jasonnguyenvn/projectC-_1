@@ -62,9 +62,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtManagerID = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtRegion = new System.Windows.Forms.TextBox();
@@ -79,6 +77,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cbManagerID = new System.Windows.Forms.ComboBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).BeginInit();
             this.GridViewMenu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -159,7 +159,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 156);
+            this.label13.Location = new System.Drawing.Point(3, 157);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(38, 13);
             this.label13.TabIndex = 12;
@@ -168,7 +168,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 182);
+            this.label14.Location = new System.Drawing.Point(3, 183);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(63, 13);
             this.label14.TabIndex = 13;
@@ -398,13 +398,12 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74F));
+            this.tableLayoutPanel1.Controls.Add(this.cbCountry, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtManagerID, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label13, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtPhone, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtCountry, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtPostalCode, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtTitle, 1, 1);
@@ -415,6 +414,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.cbManagerID, 1, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -431,26 +431,12 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 268);
             this.tableLayoutPanel1.TabIndex = 70;
             // 
-            // txtManagerID
-            // 
-            this.txtManagerID.Location = new System.Drawing.Point(105, 185);
-            this.txtManagerID.Name = "txtManagerID";
-            this.txtManagerID.Size = new System.Drawing.Size(286, 20);
-            this.txtManagerID.TabIndex = 65;
-            // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(105, 159);
+            this.txtPhone.Location = new System.Drawing.Point(105, 160);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(286, 20);
             this.txtPhone.TabIndex = 64;
-            // 
-            // txtCountry
-            // 
-            this.txtCountry.Location = new System.Drawing.Point(105, 133);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(286, 20);
-            this.txtCountry.TabIndex = 63;
             // 
             // txtPostalCode
             // 
@@ -491,7 +477,7 @@
             // 
             this.panel3.Controls.Add(this.btnClearForm);
             this.panel3.Controls.Add(this.btnSearch);
-            this.panel3.Location = new System.Drawing.Point(105, 211);
+            this.panel3.Location = new System.Drawing.Point(105, 213);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(286, 37);
             this.panel3.TabIndex = 66;
@@ -588,6 +574,232 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "Employees Manager";
             // 
+            // cbManagerID
+            // 
+            this.cbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbManagerID.FormattingEnabled = true;
+            this.cbManagerID.Location = new System.Drawing.Point(105, 186);
+            this.cbManagerID.Name = "cbManagerID";
+            this.cbManagerID.Size = new System.Drawing.Size(283, 21);
+            this.cbManagerID.TabIndex = 67;
+            // 
+            // cbCountry
+            // 
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Items.AddRange(new object[] {
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas, The",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia and Herzegovina",
+            "Botswana",
+            "Brazil",
+            "Brunei",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burma",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Colombia",
+            "Comoros",
+            "Congo, Democratic Republic of the",
+            "Congo, Republic of the",
+            "Costa Rica",
+            "Cote d\'Ivoire",
+            "Croatia",
+            "Cuba",
+            "Curacao",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "East Timor (see Timor-Leste)",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Gambia, The",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Greece",
+            "Grenada",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Holy See",
+            "Honduras",
+            "Hong Kong",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Korea, North",
+            "Korea, South",
+            "Kosovo",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macau",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Mauritania",
+            "Mauritius",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "Netherlands Antilles",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "North Korea",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Palestinian Territories",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Vincent and the Grenadines",
+            "Samoa",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Sint Maarten",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Korea",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "UK",
+            "United Kingdom",
+            "USA",
+            "United States of America",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"});
+            this.cbCountry.Location = new System.Drawing.Point(105, 133);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(286, 21);
+            this.cbCountry.TabIndex = 68;
+            // 
             // EmployeeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,15 +869,15 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtTitle;
         public System.Windows.Forms.TextBox txtPhone;
-        public System.Windows.Forms.TextBox txtCountry;
         public System.Windows.Forms.TextBox txtPostalCode;
         public System.Windows.Forms.TextBox txtRegion;
         public System.Windows.Forms.TextBox txtCity;
-        public System.Windows.Forms.TextBox txtManagerID;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cbManagerID;
+        private System.Windows.Forms.ComboBox cbCountry;
     }
 }

@@ -34,7 +34,7 @@ namespace WebForms
                  1433, "TSQLFundamentals2008", "sa", "123456", "HR.Employees", newParser);
             newParser.DataModel = this.dataModel;
 
-            /*try
+            try
             {
                 this.dataModel.resetModel("");
             }
@@ -42,8 +42,10 @@ namespace WebForms
             {
                 Session["current_error"] = ex.Message;
                 Response.Redirect("serverError.aspx");
-            }*/
+            }
 
+            if (this.IsPostBack == false)
+                this.loadEmpIDS();
             
 
             if((Request.Params.Get("empid")!=null)) 
@@ -57,6 +59,16 @@ namespace WebForms
                 
             }
 
+        }
+
+        protected void loadEmpIDS()
+        {
+            this.cbManagerID.Items.Add("");
+            object[] getIds = this.dataModel.getEmployeeIDs();
+            foreach (object eachItem in getIds)
+            {
+                this.cbManagerID.Items.Add(eachItem.ToString());
+            }
         }
 
         protected void loadEmpData()
@@ -95,8 +107,17 @@ namespace WebForms
             newEmp.Firstname = this.txtFirstname.Text;
             newEmp.Title = this.txtTitle.Text;
             newEmp.Titleofcourtesy = this.txtTitleOfCoursy.Text;
-            newEmp.Birthdate = DateTime.Parse( this.txtBirthday.Text);
-            newEmp.Hiredate = DateTime.Parse( this.txtHireday.Text);
+            try
+            {
+
+                newEmp.Birthdate = DateTime.Parse(this.txtBirthday.Text);
+                newEmp.Hiredate = DateTime.Parse(this.txtHireday.Text);
+            }
+            catch
+            {
+                this.script.Text = "<script>alert(\"INVALID DATE FORMAT AT BIRTHDATE OR HIREDATE\");</script>";
+                return;
+            }
             newEmp.Address = this.txtAddress.Text;
             newEmp.City = this.txtCity.Text;
             newEmp.Region = this.txtRegion.Text;
@@ -105,7 +126,7 @@ namespace WebForms
             newEmp.Phone = this.txtPhone.Text;
             try
             {
-                newEmp.Mgrid = int.Parse(this.txtManagerID.Text);
+                newEmp.Mgrid = int.Parse(this.cbManagerID.Text);
             }
             catch { newEmp.Mgrid = -1; }
             newEmp.JobStatus = true;
@@ -118,7 +139,8 @@ namespace WebForms
                 if (check < 0)
                 {
                     //MessageBox.Show(newEmp.getErrorMessage(check));
-
+                    this.script.Text = "<script>alert(\""+newEmp.getErrorMessage(check)+"\");</script>";
+                    return;
                 }
                 else
                 {
@@ -142,5 +164,6 @@ namespace WebForms
 
             Response.Redirect("Employees.aspx");
         }
+
     }
 }

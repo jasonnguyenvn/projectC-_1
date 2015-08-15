@@ -145,7 +145,7 @@ namespace DataModel
                 while (dr.Read())
                 {
                     T temp = this._parser.parse(dr);
-                    result.Add(temp);
+                    result.Add(this.Data[this.Data.IndexOf(temp)]);
                 }
 
                 dr.Close();

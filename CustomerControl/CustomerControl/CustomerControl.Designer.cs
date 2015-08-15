@@ -51,6 +51,9 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtFax = new System.Windows.Forms.TextBox();
             this.cbCountry = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +67,7 @@
             this.gvCustomers.ReadOnly = true;
             this.gvCustomers.Size = new System.Drawing.Size(353, 252);
             this.gvCustomers.TabIndex = 0;
+            this.gvCustomers.SelectionChanged += new System.EventHandler(this.gvCustomers_SelectionChanged);
             // 
             // label1
             // 
@@ -166,6 +170,7 @@
             // 
             // txtCusID
             // 
+            this.txtCusID.Enabled = false;
             this.txtCusID.Location = new System.Drawing.Point(97, 16);
             this.txtCusID.Name = "txtCusID";
             this.txtCusID.Size = new System.Drawing.Size(92, 20);
@@ -254,10 +259,43 @@
             this.cbCountry.Size = new System.Drawing.Size(148, 21);
             this.cbCountry.TabIndex = 3;
             // 
-            // UserControl1
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(279, 298);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(393, 298);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(507, 298);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 4;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // CustomerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cbCountry);
             this.Controls.Add(this.txtAddr);
             this.Controls.Add(this.txtFax);
@@ -281,7 +319,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gvCustomers);
-            this.Name = "UserControl1";
+            this.Name = "CustomerControl";
             this.Size = new System.Drawing.Size(652, 361);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers)).EndInit();
@@ -315,5 +353,8 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.ComboBox cbCountry;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnRemove;
     }
 }

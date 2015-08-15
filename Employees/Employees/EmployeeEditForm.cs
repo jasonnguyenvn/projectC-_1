@@ -25,6 +25,8 @@ namespace Employees
         {
             InitializeComponent();
             this.dataModel = _dataModel;
+            this.cbManagerID.Items.Add("");
+            this.cbManagerID.Items.AddRange(dataModel.getEmployeeIDs());
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -89,7 +91,7 @@ namespace Employees
             newEmp.Phone = this.txtPhone.Text;
             try
             {
-                newEmp.Mgrid = int.Parse(this.txtManagerID.Text);
+                newEmp.Mgrid = int.Parse(this.cbManagerID.Text);
             }
             catch { newEmp.Mgrid = -1; }
             newEmp.JobStatus = true;
@@ -139,7 +141,7 @@ namespace Employees
             this.txtPostalCode.Text = "";
             this.cbCountry.Text = "";
             this.txtPhone.Text = "";
-            this.txtManagerID.Text = "";
+            this.cbManagerID.Text = "";
             this.btnSave.Enabled = true;
         }
 
@@ -158,7 +160,7 @@ namespace Employees
             this.txtPostalCode.Text = data.Postalcode;
             this.cbCountry.Text = data.Country;
             this.txtPhone.Text = data.Phone;
-            this.txtManagerID.Text = data.Mgrid.ToString();
+            this.cbManagerID.Text = data.Mgrid.ToString();
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)

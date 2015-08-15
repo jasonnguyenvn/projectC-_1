@@ -27,7 +27,7 @@ namespace WebForms
 
         protected void loadData()
         {
-            if (Session["emp_filter"] == null)
+            //if (Session["emp_filter"] == null)
                 Session["emp_filter"] = "jobStatus=1 ";
 
             string currentFilter = (string)Session["emp_filter"];
@@ -39,11 +39,23 @@ namespace WebForms
             try
             {
                 this.dataModel.resetControl(currentFilter);
+                if (this.IsPostBack == false)
+                    this.loadEmpIDS();
             }
             catch(Exception ex)
             {
                 Session["current_error"] = ex.Message;
                 Response.Redirect("serverError.aspx");
+            }
+        }
+
+        protected void loadEmpIDS()
+        {
+            this.cbManagerID.Items.Add("");
+            object[] getIds = this.dataModel.getEmployeeIDs();
+            foreach (object eachItem in getIds)
+            {
+                this.cbManagerID.Items.Add(eachItem.ToString());
             }
         }
 
@@ -58,7 +70,7 @@ namespace WebForms
             this.gvEmployees.SelectedIndex = -1;
             this.btnUpdate.Enabled = false;
             this.bntDelete.Enabled = false;
-            
+            this.txtID.Text = "";
         }
 
         protected void clearFilter()
@@ -80,7 +92,7 @@ namespace WebForms
                 this.txtPostalCode.Text = "";
                 this.txtCountry.Text = "";
                 this.txtPhone.Text = "";
-                this.txtManagerID.Text = "";
+                this.cbManagerID.Text = "";
             }
             catch (Exception ex)
             {
@@ -96,7 +108,7 @@ namespace WebForms
             {
                 string newFilter = "jobStatus=1 ";
                 newFilter += this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
-                    txtRegion.Text, txtCountry.Text, txtPhone.Text, txtManagerID.Text);
+                    txtRegion.Text, txtCountry.Text, txtPhone.Text, cbManagerID.Text);
 
                 Session["emp_filter"] = newFilter;
                 this.gvEmployees.DataBind();

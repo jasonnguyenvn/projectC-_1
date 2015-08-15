@@ -298,21 +298,21 @@ namespace Employees
             if (this.firstname.Equals("")) 
                 result.Add( -1);
             if (this.lastname.Equals("")) 
-                result.Add(-2);
+                result.Add(-1);
             if (this.title.Equals("")) 
-                result.Add( -3);
+                result.Add( -1);
             if (this.titleofcourtesy.Equals("")) 
-                result.Add( -4);
+                result.Add( -1);
             if (DateTime.Now.Year-this.Birthdate.Year<18) 
                 result.Add( -5);
             if (this.address.Equals("")) 
-                result.Add( -6);
+                result.Add( -1);
             if (this.city.Equals("")) 
-                result.Add( -7);
+                result.Add( -1);
             if (this.country.Equals("")) 
-                result.Add( -10);
+                result.Add( -1);
             if (this.phone.Equals("")) 
-                result.Add( -11);
+                result.Add( -1);
 
             return result.ToArray();
         }
@@ -501,20 +501,29 @@ namespace Employees
 
         public override List<Employee> deleteRows(string where_filter)
         {
-            List<Employee> deletedList = this.getItems(where_filter);
-            if (deletedList.Count <= 0)
-                return new List<Employee>();
-
-            foreach (Employee emp in deletedList)
+            try
             {
-                emp.JobStatus = false;
-                this.updateRow(emp);
-                int delIndex = this.Data.IndexOf(emp);
-                this.Data.RemoveAt(delIndex);
-                this.DataSource.Rows.RemoveAt(delIndex);
+                return base.deleteRows(where_filter);
+            }
+            catch
+            {
+                List<Employee> deletedList = this.getItems(where_filter);
+                if (deletedList.Count <= 0)
+                    return new List<Employee>();
+                foreach (Employee emp in deletedList)
+                {
+
+                    emp.JobStatus = false;
+                    this.updateRow(emp);
+                    int delIndex = this.Data.IndexOf(emp);
+                    this.Data.RemoveAt(delIndex);
+                    this.DataSource.Rows.RemoveAt(delIndex);
+                }
+                return deletedList;
             }
 
-            return deletedList;
+            
+            
         }
 
         public string filter(string txtName, string txtTitle, string txtCity,
@@ -557,6 +566,18 @@ namespace Employees
 
             return sqlFilter;
             
+        }
+
+        public object[] getEmployeeIDs()
+        {
+            List<object> result = new List<object>();
+
+            foreach (Employee item in this.Data)
+            {
+                result.Add(item.Empid);
+            }
+
+            return result.ToArray();
         }
     }
 }

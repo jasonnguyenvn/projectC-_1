@@ -20,7 +20,8 @@ namespace CustomerControl
             set { customerid = value; }
         }
 
-        
+    
+
 
         public string Companyname
         {
@@ -174,7 +175,7 @@ namespace CustomerControl
 
         public override string getWhereFilterToUpdateSingleRow()
         {
-            return " custid=" + this.customerid;
+            return " custid= " + this.customerid;
         }
 
         public override bool Equals(object obj)
@@ -327,7 +328,7 @@ namespace CustomerControl
 
         public override string getPrimaryKey()
         {
-            return "customerid";
+            return "custid";
         }
     }
 
@@ -355,7 +356,7 @@ namespace CustomerControl
         public override List<SqlParameter> SqlParams(Customer item)
         {
             List<SqlParameter> list = new List<SqlParameter>();
-            SqlParameter CustomerID = this.createSQLParam("custid", SqlDbType.Int, item.CustomerID);
+            SqlParameter customerID = this.createSQLParam("custid", SqlDbType.Int, item.CustomerID);
             SqlParameter companyName = this.createSQLParam("companyname", SqlDbType.NVarChar, item.CompanyName, 40);
             SqlParameter contactName = this.createSQLParam("contactname", SqlDbType.NVarChar, item.Contactname, 30);
             SqlParameter contactTitle = this.createSQLParam("contacttitle", SqlDbType.NVarChar, item.ContactTitle, 30);
@@ -367,7 +368,7 @@ namespace CustomerControl
             SqlParameter phone = this.createSQLParam("phone", SqlDbType.NVarChar, item.Phone, 24);
             SqlParameter fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax, 24);
 
-            list.Add(CustomerID);
+            list.Add(customerID);
             list.Add(companyName);
             list.Add(contactName);
             list.Add(contactTitle);
