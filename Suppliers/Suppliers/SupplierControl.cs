@@ -190,9 +190,9 @@ namespace Suppliers
         {
             if (this.gvSuppliers.SelectedRows.Count > 0)
             {
-                this.editForm.clearForm();
-                int selectedIndex = this.gvSuppliers.Rows.IndexOf(this.gvSuppliers.SelectedRows[0]);
-                Supplier selectedItem = this.dataModel.Data[selectedIndex];
+                Supplier get = new Supplier();
+                get.SupplierID = int.Parse(this.gvSuppliers.SelectedRows[0].Cells[0].Value.ToString());
+                Supplier selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtCompName.Text = selectedItem.CompanyName;

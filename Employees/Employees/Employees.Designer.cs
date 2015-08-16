@@ -54,7 +54,6 @@
             this.tbCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClearForm = new System.Windows.Forms.Button();
             this.GridViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,6 +71,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnClearForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -96,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(122, 10);
+            this.label1.Location = new System.Drawing.Point(102, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
@@ -177,9 +177,9 @@
             // txtEmployeeID
             // 
             this.txtEmployeeID.Enabled = false;
-            this.txtEmployeeID.Location = new System.Drawing.Point(217, 3);
+            this.txtEmployeeID.Location = new System.Drawing.Point(194, 3);
             this.txtEmployeeID.Name = "txtEmployeeID";
-            this.txtEmployeeID.Size = new System.Drawing.Size(171, 20);
+            this.txtEmployeeID.Size = new System.Drawing.Size(194, 20);
             this.txtEmployeeID.TabIndex = 14;
             // 
             // gvEmployees
@@ -311,16 +311,6 @@
             this.tbManagerID.Name = "tbManagerID";
             this.tbManagerID.ReadOnly = true;
             this.tbManagerID.Width = 5;
-            // 
-            // btnClearForm
-            // 
-            this.btnClearForm.Location = new System.Drawing.Point(101, 3);
-            this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(90, 23);
-            this.btnClearForm.TabIndex = 32;
-            this.btnClearForm.Text = "Clear Filter";
-            this.btnClearForm.UseVisualStyleBackColor = true;
-            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // GridViewMenu
             // 
@@ -725,6 +715,18 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "Employees Manager";
             // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Image = global::Employees.Properties.Resources._17657;
+            this.btnClearForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearForm.Location = new System.Drawing.Point(89, 3);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(102, 23);
+            this.btnClearForm.TabIndex = 32;
+            this.btnClearForm.Text = "Clear Filter";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
+            // 
             // btnSearch
             // 
             this.btnSearch.Image = global::Employees.Properties.Resources.Filter2HS;
@@ -741,9 +743,9 @@
             // 
             this.btnAdd.Image = global::Employees.Properties.Resources.NewDocumentHS;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAdd.Location = new System.Drawing.Point(313, 31);
+            this.btnAdd.Location = new System.Drawing.Point(288, 31);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(100, 23);
             this.btnAdd.TabIndex = 29;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -753,7 +755,7 @@
             // 
             this.btnDelete.Image = global::Employees.Properties.Resources.DeleteHS1;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnDelete.Location = new System.Drawing.Point(125, 31);
+            this.btnDelete.Location = new System.Drawing.Point(105, 31);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 31;
@@ -765,9 +767,9 @@
             // 
             this.btnUpdate.Image = global::Employees.Properties.Resources.NewCardHS;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(217, 31);
+            this.btnUpdate.Location = new System.Drawing.Point(194, 31);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(95, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(93, 23);
             this.btnUpdate.TabIndex = 30;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;

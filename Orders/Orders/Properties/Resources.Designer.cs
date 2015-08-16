@@ -60,9 +60,58 @@ namespace Orders.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap BarCodeHS {
+        internal static System.Drawing.Bitmap _176571 {
             get {
-                object obj = ResourceManager.GetObject("BarCodeHS", resourceCulture);
+                object obj = ResourceManager.GetObject("176571", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap _2000px_Barcode_font_awesome_svg {
+            get {
+                object obj = ResourceManager.GetObject("2000px-Barcode_font_awesome.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap AddTableHS {
+            get {
+                object obj = ResourceManager.GetObject("AddTableHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DeleteHS {
+            get {
+                object obj = ResourceManager.GetObject("DeleteHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DeleteHS1 {
+            get {
+                object obj = ResourceManager.GetObject("DeleteHS1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Filter2HS {
+            get {
+                object obj = ResourceManager.GetObject("Filter2HS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap NewCardHS {
+            get {
+                object obj = ResourceManager.GetObject("NewCardHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap NewDocumentHS {
+            get {
+                object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -77,6 +126,20 @@ namespace Orders.Properties {
         internal static System.Drawing.Bitmap order21 {
             get {
                 object obj = ResourceManager.GetObject("order21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap saveHS {
+            get {
+                object obj = ResourceManager.GetObject("saveHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Shipping_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Shipping-Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

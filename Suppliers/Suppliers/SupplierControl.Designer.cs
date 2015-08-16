@@ -57,7 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnClearForm = new System.Windows.Forms.Button();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -71,6 +70,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClearForm = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.meUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.meDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -239,9 +239,9 @@
             // txtSupID
             // 
             this.txtSupID.Enabled = false;
-            this.txtSupID.Location = new System.Drawing.Point(207, 3);
+            this.txtSupID.Location = new System.Drawing.Point(182, 5);
             this.txtSupID.Name = "txtSupID";
-            this.txtSupID.Size = new System.Drawing.Size(159, 20);
+            this.txtSupID.Size = new System.Drawing.Size(179, 20);
             this.txtSupID.TabIndex = 21;
             // 
             // label11
@@ -311,7 +311,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 10);
+            this.label1.Location = new System.Drawing.Point(85, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 11;
@@ -325,16 +325,6 @@
             this.btnClear.TabIndex = 29;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            // 
-            // btnClearForm
-            // 
-            this.btnClearForm.Location = new System.Drawing.Point(88, 3);
-            this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(90, 23);
-            this.btnClearForm.TabIndex = 9;
-            this.btnClearForm.Text = "Clear Filter";
-            this.btnClearForm.UseVisualStyleBackColor = true;
-            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // contextMenu
             // 
@@ -680,7 +670,7 @@
             // 
             this.btnAdd.Image = global::SuppliersControl.Properties.Resources.NewDocumentHS;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAdd.Location = new System.Drawing.Point(286, 31);
+            this.btnAdd.Location = new System.Drawing.Point(281, 31);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 23);
             this.btnAdd.TabIndex = 11;
@@ -692,9 +682,9 @@
             // 
             this.btnRemove.Image = global::SuppliersControl.Properties.Resources.DeleteHS;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnRemove.Location = new System.Drawing.Point(108, 31);
+            this.btnRemove.Location = new System.Drawing.Point(88, 31);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(86, 23);
+            this.btnRemove.Size = new System.Drawing.Size(85, 23);
             this.btnRemove.TabIndex = 13;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -704,9 +694,9 @@
             // 
             this.btnUpdate.Image = global::SuppliersControl.Properties.Resources.NewCardHS;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(207, 31);
+            this.btnUpdate.Location = new System.Drawing.Point(182, 31);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(78, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(98, 23);
             this.btnUpdate.TabIndex = 12;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -716,13 +706,25 @@
             // 
             this.btnSearch.Image = global::SuppliersControl.Properties.Resources.Filter2HS;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(184, 3);
+            this.btnSearch.Location = new System.Drawing.Point(190, 3);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(86, 23);
+            this.btnSearch.Size = new System.Drawing.Size(80, 23);
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Image = global::SuppliersControl.Properties.Resources._17657;
+            this.btnClearForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearForm.Location = new System.Drawing.Point(91, 3);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(98, 23);
+            this.btnClearForm.TabIndex = 9;
+            this.btnClearForm.Text = "Clear Filter";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
             // pictureBox2
             // 

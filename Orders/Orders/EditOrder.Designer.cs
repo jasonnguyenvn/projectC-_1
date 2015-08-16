@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditOrder));
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,7 +45,6 @@
             this.txtShipRegion = new System.Windows.Forms.TextBox();
             this.txtShipPostalCode = new System.Windows.Forms.TextBox();
             this.gvProductDeatail = new System.Windows.Forms.DataGridView();
-            this.btnAddnewProduct = new System.Windows.Forms.Button();
             this.OrderInfor = new System.Windows.Forms.GroupBox();
             this.chEmpID = new System.Windows.Forms.ComboBox();
             this.cbCustID = new System.Windows.Forms.ComboBox();
@@ -61,13 +62,25 @@
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.cbShipperID = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnRemoveProducts = new System.Windows.Forms.Button();
+            this.listPanel = new System.Windows.Forms.Panel();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.proList_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeSelectedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAllItmesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemoveProducts = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAddnewProduct = new System.Windows.Forms.Button();
+            this.cboxNotShipped = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductDeatail)).BeginInit();
             this.OrderInfor.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.listPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.proList_menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -147,14 +160,14 @@
             this.txtFreight.Location = new System.Drawing.Point(124, 61);
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.Size = new System.Drawing.Size(180, 20);
-            this.txtFreight.TabIndex = 21;
+            this.txtFreight.TabIndex = 1;
             // 
             // txtShipName
             // 
             this.txtShipName.Location = new System.Drawing.Point(124, 96);
             this.txtShipName.Name = "txtShipName";
             this.txtShipName.Size = new System.Drawing.Size(180, 20);
-            this.txtShipName.TabIndex = 22;
+            this.txtShipName.TabIndex = 2;
             // 
             // txtShipAddress
             // 
@@ -162,52 +175,46 @@
             this.txtShipAddress.Multiline = true;
             this.txtShipAddress.Name = "txtShipAddress";
             this.txtShipAddress.Size = new System.Drawing.Size(180, 40);
-            this.txtShipAddress.TabIndex = 23;
+            this.txtShipAddress.TabIndex = 3;
             // 
             // txtShipCity
             // 
             this.txtShipCity.Location = new System.Drawing.Point(124, 176);
             this.txtShipCity.Name = "txtShipCity";
             this.txtShipCity.Size = new System.Drawing.Size(180, 20);
-            this.txtShipCity.TabIndex = 24;
+            this.txtShipCity.TabIndex = 4;
             // 
             // txtShipRegion
             // 
             this.txtShipRegion.Location = new System.Drawing.Point(124, 204);
             this.txtShipRegion.Name = "txtShipRegion";
             this.txtShipRegion.Size = new System.Drawing.Size(180, 20);
-            this.txtShipRegion.TabIndex = 25;
+            this.txtShipRegion.TabIndex = 5;
             // 
             // txtShipPostalCode
             // 
             this.txtShipPostalCode.Location = new System.Drawing.Point(124, 232);
             this.txtShipPostalCode.Name = "txtShipPostalCode";
             this.txtShipPostalCode.Size = new System.Drawing.Size(180, 20);
-            this.txtShipPostalCode.TabIndex = 26;
+            this.txtShipPostalCode.TabIndex = 6;
             // 
             // gvProductDeatail
             // 
             this.gvProductDeatail.AllowUserToAddRows = false;
             this.gvProductDeatail.AllowUserToDeleteRows = false;
+            this.gvProductDeatail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.gvProductDeatail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvProductDeatail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvProductDeatail.Location = new System.Drawing.Point(0, 0);
             this.gvProductDeatail.Name = "gvProductDeatail";
             this.gvProductDeatail.ReadOnly = true;
             this.gvProductDeatail.Size = new System.Drawing.Size(654, 134);
-            this.gvProductDeatail.TabIndex = 31;
-            // 
-            // btnAddnewProduct
-            // 
-            this.btnAddnewProduct.Location = new System.Drawing.Point(477, 469);
-            this.btnAddnewProduct.Name = "btnAddnewProduct";
-            this.btnAddnewProduct.Size = new System.Drawing.Size(192, 32);
-            this.btnAddnewProduct.TabIndex = 32;
-            this.btnAddnewProduct.Text = "Add New Product";
-            this.btnAddnewProduct.UseVisualStyleBackColor = true;
+            this.gvProductDeatail.TabIndex = 0;
             // 
             // OrderInfor
             // 
+            this.OrderInfor.Controls.Add(this.cboxNotShipped);
+            this.OrderInfor.Controls.Add(this.pictureBox1);
             this.OrderInfor.Controls.Add(this.chEmpID);
             this.OrderInfor.Controls.Add(this.cbCustID);
             this.OrderInfor.Controls.Add(this.dtpShippedDate);
@@ -224,35 +231,33 @@
             this.OrderInfor.Location = new System.Drawing.Point(12, 14);
             this.OrderInfor.Name = "OrderInfor";
             this.OrderInfor.Size = new System.Drawing.Size(319, 288);
-            this.OrderInfor.TabIndex = 33;
+            this.OrderInfor.TabIndex = 0;
             this.OrderInfor.TabStop = false;
             this.OrderInfor.Text = "Order Information";
             // 
             // chEmpID
             // 
-            this.chEmpID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chEmpID.FormattingEnabled = true;
             this.chEmpID.Location = new System.Drawing.Point(115, 83);
             this.chEmpID.Name = "chEmpID";
             this.chEmpID.Size = new System.Drawing.Size(180, 21);
-            this.chEmpID.TabIndex = 32;
+            this.chEmpID.TabIndex = 2;
             // 
             // cbCustID
             // 
-            this.cbCustID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustID.FormattingEnabled = true;
             this.cbCustID.Location = new System.Drawing.Point(115, 54);
             this.cbCustID.Name = "cbCustID";
             this.cbCustID.Size = new System.Drawing.Size(180, 21);
-            this.cbCustID.TabIndex = 31;
+            this.cbCustID.TabIndex = 1;
             // 
             // dtpShippedDate
             // 
             this.dtpShippedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpShippedDate.Location = new System.Drawing.Point(115, 168);
+            this.dtpShippedDate.Location = new System.Drawing.Point(115, 191);
             this.dtpShippedDate.Name = "dtpShippedDate";
             this.dtpShippedDate.Size = new System.Drawing.Size(180, 20);
-            this.dtpShippedDate.TabIndex = 30;
+            this.dtpShippedDate.TabIndex = 6;
             // 
             // dtpRequiredDate
             // 
@@ -260,7 +265,7 @@
             this.dtpRequiredDate.Location = new System.Drawing.Point(115, 140);
             this.dtpRequiredDate.Name = "dtpRequiredDate";
             this.dtpRequiredDate.Size = new System.Drawing.Size(180, 20);
-            this.dtpRequiredDate.TabIndex = 29;
+            this.dtpRequiredDate.TabIndex = 4;
             // 
             // dtpOrderDate
             // 
@@ -268,7 +273,7 @@
             this.dtpOrderDate.Location = new System.Drawing.Point(115, 112);
             this.dtpOrderDate.Name = "dtpOrderDate";
             this.dtpOrderDate.Size = new System.Drawing.Size(180, 20);
-            this.dtpOrderDate.TabIndex = 28;
+            this.dtpOrderDate.TabIndex = 3;
             // 
             // txtOrderID
             // 
@@ -276,12 +281,12 @@
             this.txtOrderID.Location = new System.Drawing.Point(115, 26);
             this.txtOrderID.Name = "txtOrderID";
             this.txtOrderID.Size = new System.Drawing.Size(180, 20);
-            this.txtOrderID.TabIndex = 14;
+            this.txtOrderID.TabIndex = 0;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 172);
+            this.label6.Location = new System.Drawing.Point(17, 197);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 5;
@@ -354,7 +359,7 @@
             this.groupBox1.Location = new System.Drawing.Point(347, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(322, 295);
-            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ship Information";
             // 
@@ -573,16 +578,15 @@
             this.cbCountry.Location = new System.Drawing.Point(124, 260);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(180, 21);
-            this.cbCountry.TabIndex = 69;
+            this.cbCountry.TabIndex = 7;
             // 
             // cbShipperID
             // 
-            this.cbShipperID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbShipperID.FormattingEnabled = true;
             this.cbShipperID.Location = new System.Drawing.Point(124, 33);
             this.cbShipperID.Name = "cbShipperID";
             this.cbShipperID.Size = new System.Drawing.Size(180, 21);
-            this.cbShipperID.TabIndex = 28;
+            this.cbShipperID.TabIndex = 0;
             // 
             // label15
             // 
@@ -591,59 +595,144 @@
             this.label15.Location = new System.Drawing.Point(12, 309);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(63, 13);
-            this.label15.TabIndex = 35;
+            this.label15.TabIndex = 2;
             this.label15.Text = "Product List";
             // 
-            // btnRemoveProducts
+            // listPanel
             // 
-            this.btnRemoveProducts.Location = new System.Drawing.Point(318, 469);
-            this.btnRemoveProducts.Name = "btnRemoveProducts";
-            this.btnRemoveProducts.Size = new System.Drawing.Size(153, 32);
-            this.btnRemoveProducts.TabIndex = 36;
-            this.btnRemoveProducts.Text = "Remove Selected Products";
-            this.btnRemoveProducts.UseVisualStyleBackColor = true;
+            this.listPanel.Controls.Add(this.gvProductDeatail);
+            this.listPanel.Location = new System.Drawing.Point(12, 328);
+            this.listPanel.Name = "listPanel";
+            this.listPanel.Size = new System.Drawing.Size(654, 134);
+            this.listPanel.TabIndex = 38;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // proList_menu
+            // 
+            this.proList_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addProductToolStripMenuItem,
+            this.removeSelectedItemsToolStripMenuItem,
+            this.removeAllItmesToolStripMenuItem});
+            this.proList_menu.Name = "proList_menu";
+            this.proList_menu.Size = new System.Drawing.Size(185, 70);
+            // 
+            // addProductToolStripMenuItem
+            // 
+            this.addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
+            this.addProductToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.addProductToolStripMenuItem.Text = "Add product";
+            // 
+            // removeSelectedItemsToolStripMenuItem
+            // 
+            this.removeSelectedItemsToolStripMenuItem.Name = "removeSelectedItemsToolStripMenuItem";
+            this.removeSelectedItemsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.removeSelectedItemsToolStripMenuItem.Text = "Remove selected items";
+            // 
+            // removeAllItmesToolStripMenuItem
+            // 
+            this.removeAllItmesToolStripMenuItem.Name = "removeAllItmesToolStripMenuItem";
+            this.removeAllItmesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.removeAllItmesToolStripMenuItem.Text = "Remove all itmes";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::Orders.Properties.Resources.saveHS;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(587, 527);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(82, 34);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnClear
             // 
+            this.btnClear.Image = global::Orders.Properties.Resources._176571;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClear.Location = new System.Drawing.Point(12, 469);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 32);
-            this.btnClear.TabIndex = 37;
+            this.btnClear.Size = new System.Drawing.Size(78, 32);
+            this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // btnRemoveProducts
             // 
-            this.panel1.Controls.Add(this.gvProductDeatail);
-            this.panel1.Location = new System.Drawing.Point(12, 328);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(654, 134);
-            this.panel1.TabIndex = 38;
+            this.btnRemoveProducts.Image = global::Orders.Properties.Resources.DeleteHS;
+            this.btnRemoveProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveProducts.Location = new System.Drawing.Point(346, 469);
+            this.btnRemoveProducts.Name = "btnRemoveProducts";
+            this.btnRemoveProducts.Size = new System.Drawing.Size(174, 32);
+            this.btnRemoveProducts.TabIndex = 4;
+            this.btnRemoveProducts.Text = "Remove Selected Products";
+            this.btnRemoveProducts.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Orders.Properties.Resources._2000px_Barcode_font_awesome_svg;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 225);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(273, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnAddnewProduct
+            // 
+            this.btnAddnewProduct.Image = global::Orders.Properties.Resources.AddTableHS;
+            this.btnAddnewProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAddnewProduct.Location = new System.Drawing.Point(521, 469);
+            this.btnAddnewProduct.Name = "btnAddnewProduct";
+            this.btnAddnewProduct.Size = new System.Drawing.Size(148, 32);
+            this.btnAddnewProduct.TabIndex = 3;
+            this.btnAddnewProduct.Text = "Add New Product";
+            this.btnAddnewProduct.UseVisualStyleBackColor = true;
+            // 
+            // cboxNotShipped
+            // 
+            this.cboxNotShipped.AutoSize = true;
+            this.cboxNotShipped.Location = new System.Drawing.Point(22, 171);
+            this.cboxNotShipped.Name = "cboxNotShipped";
+            this.cboxNotShipped.Size = new System.Drawing.Size(181, 17);
+            this.cboxNotShipped.TabIndex = 5;
+            this.cboxNotShipped.Text = "This Order has NOT shipped yet.";
+            this.cboxNotShipped.UseVisualStyleBackColor = true;
+            this.cboxNotShipped.CheckedChanged += new System.EventHandler(this.cboxNotShipped_CheckedChanged);
             // 
             // EditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 519);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(681, 573);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.listPanel);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRemoveProducts);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.OrderInfor);
             this.Controls.Add(this.btnAddnewProduct);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(689, 546);
+            this.MaximumSize = new System.Drawing.Size(689, 600);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(689, 546);
+            this.MinimumSize = new System.Drawing.Size(689, 600);
             this.Name = "EditOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit an Order";
+            this.Load += new System.EventHandler(this.EditOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvProductDeatail)).EndInit();
             this.OrderInfor.ResumeLayout(false);
             this.OrderInfor.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.listPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.proList_menu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,6 +775,14 @@
         private System.Windows.Forms.ComboBox chEmpID;
         private System.Windows.Forms.ComboBox cbCustID;
         private System.Windows.Forms.ComboBox cbCountry;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel listPanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ContextMenuStrip proList_menu;
+        private System.Windows.Forms.ToolStripMenuItem addProductToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeSelectedItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeAllItmesToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cboxNotShipped;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Orders
 {
-    partial class UserControl1
+    partial class OrderControl
     {
         /// <summary>
         /// Required designer variable.
@@ -70,9 +70,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbShipperID = new System.Windows.Forms.ComboBox();
+            this.chEmpID = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.cbCustID = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label24 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -80,18 +83,16 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.gvOrders = new System.Windows.Forms.DataGridView();
             this.panOrderDetail = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.btnRemoveProducts = new System.Windows.Forms.Button();
             this.btnAddnewProduct = new System.Windows.Forms.Button();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.cbCustID = new System.Windows.Forms.ComboBox();
-            this.chEmpID = new System.Windows.Forms.ComboBox();
-            this.cbShipperID = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.gvOrders = new System.Windows.Forms.DataGridView();
+            this.listpanel = new System.Windows.Forms.Panel();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -106,11 +107,11 @@
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
-            this.panOrderDetail.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panOrderDetail.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker3
@@ -120,7 +121,7 @@
             this.dateTimePicker3.Location = new System.Drawing.Point(105, 109);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(286, 20);
-            this.dateTimePicker3.TabIndex = 40;
+            this.dateTimePicker3.TabIndex = 4;
             // 
             // dateTimePicker2
             // 
@@ -129,7 +130,7 @@
             this.dateTimePicker2.Location = new System.Drawing.Point(105, 83);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(286, 20);
-            this.dateTimePicker2.TabIndex = 39;
+            this.dateTimePicker2.TabIndex = 3;
             // 
             // dateTimePicker1
             // 
@@ -138,7 +139,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(105, 57);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(286, 20);
-            this.dateTimePicker1.TabIndex = 38;
+            this.dateTimePicker1.TabIndex = 2;
             // 
             // label6
             // 
@@ -564,7 +565,25 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(394, 202);
-            this.tableLayoutPanel4.TabIndex = 70;
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // cbShipperID
+            // 
+            this.cbShipperID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbShipperID.FormattingEnabled = true;
+            this.cbShipperID.Location = new System.Drawing.Point(105, 135);
+            this.cbShipperID.Name = "cbShipperID";
+            this.cbShipperID.Size = new System.Drawing.Size(286, 21);
+            this.cbShipperID.TabIndex = 5;
+            // 
+            // chEmpID
+            // 
+            this.chEmpID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chEmpID.FormattingEnabled = true;
+            this.chEmpID.Location = new System.Drawing.Point(105, 30);
+            this.chEmpID.Name = "chEmpID";
+            this.chEmpID.Size = new System.Drawing.Size(286, 21);
+            this.chEmpID.TabIndex = 1;
             // 
             // panel4
             // 
@@ -577,22 +596,34 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(101, 3);
+            this.button1.Image = global::Orders.Properties.Resources._176571;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(89, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 32;
+            this.button1.Size = new System.Drawing.Size(102, 23);
+            this.button1.TabIndex = 1;
             this.button1.Text = "Clear Filter";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
+            this.button2.Image = global::Orders.Properties.Resources.Filter2HS;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(197, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 23);
-            this.button2.TabIndex = 33;
+            this.button2.TabIndex = 0;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // cbCustID
+            // 
+            this.cbCustID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbCustID.FormattingEnabled = true;
+            this.cbCustID.Location = new System.Drawing.Point(105, 3);
+            this.cbCustID.Name = "cbCustID";
+            this.cbCustID.Size = new System.Drawing.Size(286, 21);
+            this.cbCustID.TabIndex = 0;
             // 
             // panel6
             // 
@@ -617,21 +648,24 @@
             // 
             // button3
             // 
+            this.button3.Image = global::Orders.Properties.Resources.NewDocumentHS;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.button3.Location = new System.Drawing.Point(313, 31);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 29;
+            this.button3.TabIndex = 0;
             this.button3.Text = "Add";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.Image = global::Orders.Properties.Resources.DeleteHS;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.button4.Location = new System.Drawing.Point(125, 31);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 31;
+            this.button4.TabIndex = 2;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = true;
             // 
@@ -645,11 +679,12 @@
             // 
             // button5
             // 
+            this.button5.Image = global::Orders.Properties.Resources.NewCardHS;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.button5.Location = new System.Drawing.Point(212, 31);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(95, 23);
-            this.button5.TabIndex = 30;
+            this.button5.TabIndex = 1;
             this.button5.Text = "Update";
             this.button5.UseVisualStyleBackColor = true;
             // 
@@ -661,7 +696,18 @@
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(400, 54);
-            this.panel7.TabIndex = 66;
+            this.panel7.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox2.Image = global::Orders.Properties.Resources.order21;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(64, 54);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 35;
+            this.pictureBox2.TabStop = false;
             // 
             // label25
             // 
@@ -672,6 +718,67 @@
             this.label25.Size = new System.Drawing.Size(233, 26);
             this.label25.TabIndex = 36;
             this.label25.Text = "Orders Manager";
+            // 
+            // panOrderDetail
+            // 
+            this.panOrderDetail.Controls.Add(this.listpanel);
+            this.panOrderDetail.Controls.Add(this.panel8);
+            this.panOrderDetail.Controls.Add(this.panel9);
+            this.panOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panOrderDetail.Location = new System.Drawing.Point(5, 220);
+            this.panOrderDetail.Name = "panOrderDetail";
+            this.panOrderDetail.Size = new System.Drawing.Size(485, 161);
+            this.panOrderDetail.TabIndex = 29;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label16);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(485, 22);
+            this.panel8.TabIndex = 40;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(-3, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(66, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Order Detail:";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.btnRemoveProducts);
+            this.panel9.Controls.Add(this.btnAddnewProduct);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel9.Location = new System.Drawing.Point(0, 123);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(485, 38);
+            this.panel9.TabIndex = 39;
+            // 
+            // btnRemoveProducts
+            // 
+            this.btnRemoveProducts.Image = global::Orders.Properties.Resources.DeleteHS1;
+            this.btnRemoveProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveProducts.Location = new System.Drawing.Point(158, 3);
+            this.btnRemoveProducts.Name = "btnRemoveProducts";
+            this.btnRemoveProducts.Size = new System.Drawing.Size(179, 32);
+            this.btnRemoveProducts.TabIndex = 38;
+            this.btnRemoveProducts.Text = "Remove Selected Products";
+            this.btnRemoveProducts.UseVisualStyleBackColor = true;
+            // 
+            // btnAddnewProduct
+            // 
+            this.btnAddnewProduct.Image = global::Orders.Properties.Resources.AddTableHS;
+            this.btnAddnewProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAddnewProduct.Location = new System.Drawing.Point(338, 3);
+            this.btnAddnewProduct.Name = "btnAddnewProduct";
+            this.btnAddnewProduct.Size = new System.Drawing.Size(145, 32);
+            this.btnAddnewProduct.TabIndex = 37;
+            this.btnAddnewProduct.Text = "Add New Product";
+            this.btnAddnewProduct.UseVisualStyleBackColor = true;
             // 
             // gvOrders
             // 
@@ -685,111 +792,22 @@
             this.gvOrders.Name = "gvOrders";
             this.gvOrders.ReadOnly = true;
             this.gvOrders.Size = new System.Drawing.Size(485, 215);
-            this.gvOrders.TabIndex = 28;
+            this.gvOrders.TabIndex = 0;
             // 
-            // panOrderDetail
+            // listpanel
             // 
-            this.panOrderDetail.Controls.Add(this.panel8);
-            this.panOrderDetail.Controls.Add(this.panel9);
-            this.panOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panOrderDetail.Location = new System.Drawing.Point(5, 220);
-            this.panOrderDetail.Name = "panOrderDetail";
-            this.panOrderDetail.Size = new System.Drawing.Size(485, 161);
-            this.panOrderDetail.TabIndex = 29;
+            this.listpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listpanel.Location = new System.Drawing.Point(0, 22);
+            this.listpanel.Name = "listpanel";
+            this.listpanel.Size = new System.Drawing.Size(485, 101);
+            this.listpanel.TabIndex = 41;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(3, 4);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 13);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Order Detail:";
-            // 
-            // btnRemoveProducts
-            // 
-            this.btnRemoveProducts.Location = new System.Drawing.Point(221, 3);
-            this.btnRemoveProducts.Name = "btnRemoveProducts";
-            this.btnRemoveProducts.Size = new System.Drawing.Size(154, 32);
-            this.btnRemoveProducts.TabIndex = 38;
-            this.btnRemoveProducts.Text = "Remove Selected Products";
-            this.btnRemoveProducts.UseVisualStyleBackColor = true;
-            // 
-            // btnAddnewProduct
-            // 
-            this.btnAddnewProduct.Location = new System.Drawing.Point(381, 3);
-            this.btnAddnewProduct.Name = "btnAddnewProduct";
-            this.btnAddnewProduct.Size = new System.Drawing.Size(101, 32);
-            this.btnAddnewProduct.TabIndex = 37;
-            this.btnAddnewProduct.Text = "Add New Product";
-            this.btnAddnewProduct.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.btnRemoveProducts);
-            this.panel9.Controls.Add(this.btnAddnewProduct);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(0, 123);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(485, 38);
-            this.panel9.TabIndex = 39;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label16);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(485, 22);
-            this.panel8.TabIndex = 40;
-            // 
-            // cbCustID
-            // 
-            this.cbCustID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbCustID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCustID.FormattingEnabled = true;
-            this.cbCustID.Location = new System.Drawing.Point(105, 3);
-            this.cbCustID.Name = "cbCustID";
-            this.cbCustID.Size = new System.Drawing.Size(286, 21);
-            this.cbCustID.TabIndex = 67;
-            // 
-            // chEmpID
-            // 
-            this.chEmpID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chEmpID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.chEmpID.FormattingEnabled = true;
-            this.chEmpID.Location = new System.Drawing.Point(105, 30);
-            this.chEmpID.Name = "chEmpID";
-            this.chEmpID.Size = new System.Drawing.Size(286, 21);
-            this.chEmpID.TabIndex = 33;
-            // 
-            // cbShipperID
-            // 
-            this.cbShipperID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbShipperID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbShipperID.FormattingEnabled = true;
-            this.cbShipperID.Location = new System.Drawing.Point(105, 135);
-            this.cbShipperID.Name = "cbShipperID";
-            this.cbShipperID.Size = new System.Drawing.Size(286, 21);
-            this.cbShipperID.TabIndex = 32;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Image = global::Orders.Properties.Resources.order21;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(64, 54);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 35;
-            this.pictureBox2.TabStop = false;
-            // 
-            // UserControl1
+            // OrderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer2);
-            this.Name = "UserControl1";
+            this.Name = "OrderControl";
             this.Size = new System.Drawing.Size(899, 406);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             this.splitContainer1.ResumeLayout(false);
@@ -812,12 +830,12 @@
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panOrderDetail.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -881,12 +899,13 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panOrderDetail;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button btnRemoveProducts;
-        private System.Windows.Forms.Button btnAddnewProduct;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox cbCustID;
         private System.Windows.Forms.ComboBox chEmpID;
         private System.Windows.Forms.ComboBox cbShipperID;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button btnRemoveProducts;
+        private System.Windows.Forms.Button btnAddnewProduct;
+        private System.Windows.Forms.Panel listpanel;
     }
 }

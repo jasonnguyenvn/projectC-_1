@@ -212,8 +212,10 @@ namespace Employees
         {
             if (this.gvEmployees.SelectedRows.Count > 0)
             {
-                int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
-                Employee selectedItem = this.dataModel.Data[selectedIndex];
+                //int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
+                Employee get = new Employee();
+                get.Empid = int.Parse(this.gvEmployees.SelectedRows[0].Cells[0].Value.ToString());
+                Employee selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtEmployeeID.Text = selectedItem.Empid.ToString();
                 /*this.txtLastname.Text = selectedItem.Lastname;
                 this.txtFirstname.Text = selectedItem.Firstname;

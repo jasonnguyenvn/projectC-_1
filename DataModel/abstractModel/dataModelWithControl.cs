@@ -86,7 +86,7 @@ namespace DataModel
                 {
                     col.SortMode = System.Windows.Forms
                                         .DataGridViewColumnSortMode
-                                        .NotSortable;
+                                        .Automatic;
                 }
             }
 

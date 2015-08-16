@@ -9,6 +9,13 @@ namespace Orders
 {
     public class Order : BaseDataObject
     {
+        private bool _shipped = true;
+
+        public bool isShipped
+        {
+            get { return _shipped; }
+            set { _shipped = value; }
+        }
 
         private readonly List<OrderItem> orderItems;
 
@@ -159,13 +166,16 @@ namespace Orders
 
         public override object[] convertToRow()
         {
+            string shippedDate = "NOT SHIPPED YET";
+            if (this.isShipped == true)
+                shippedDate = this.shippeddate.ToShortDateString();
             object [] result = {
                 this.orderid,
                 this.custid,
                 this.empid,
-                this.orderdate,
-                this.requireddate,
-                this.shippeddate,
+                this.orderdate.ToShortDateString(),
+                this.requireddate.ToShortDateString(),
+                shippedDate,
                 this.shipperid,
                 this.freight,
                 this.shipname,
@@ -535,13 +545,35 @@ namespace Orders
                         result.Empid = int.Parse(param.Value.ToString());
                         break;
                     case "orderdate":
-                        result.Orderdate = DateTime.Parse(param.Value.ToString());
+                        try
+                        {
+                            result.Orderdate = DateTime.Parse(param.Value.ToString());
+                        }
+                        catch
+                        {
+                            throw new Exception(keys[i]+"INVALID DATE STRING: " + param.Value.ToString());
+                        }
                         break;
                     case "requireddate":
-                        result.Requireddate = DateTime.Parse(param.Value.ToString());
+                        try
+                        {
+                            result.Requireddate = DateTime.Parse(param.Value.ToString());
+                        }
+                        catch
+                        {
+                            throw new Exception(keys[i] + " INVALID DATE STRING: " + param.Value.ToString());
+                        }
                         break;
                     case "shippeddate":
-                        result.Shippeddate = DateTime.Parse(param.Value.ToString());
+                        try
+                        {
+                            result.Shippeddate = DateTime.Parse(param.Value.ToString());
+                        }
+                        catch
+                        {
+                            result.Shippeddate = DateTime.Now;
+                            result.isShipped = false;
+                        }
                         break;
                     case "shipperid":
                         result.Shipperid = int.Parse(param.Value.ToString());

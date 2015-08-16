@@ -12,6 +12,9 @@ using Base_Intefaces;
 using Employees;
 using Suppliers;
 using Productions;
+using Orders;
+
+using System.Threading;
 
 namespace ManagementSystem
 {
@@ -20,7 +23,10 @@ namespace ManagementSystem
         private EmployeeControl EmpControl;
         private SupplierControl SuppControl;
         private CategoryControl CatControl;
+        private OrderControl OrdControl;
         private AboutControl aboutBox;
+
+        private loadingControl _LoadingControl;
 
         private BaseControlInteface currentControl;
 
@@ -30,7 +36,28 @@ namespace ManagementSystem
             this.initControls();
         }
 
+        Loading loadForm;
+
         private void initControls()
+        {
+            loadForm = new Loading();
+            loadForm.Owner = this;
+            
+
+            Thread th1 = new Thread(new ThreadStart(initDataControls));
+
+            th1.Start();
+            loadForm.ShowDialog();
+            //loadForm.ShowDialog();
+
+            this.currentControl = EmpControl;
+
+            aboutBox = new AboutControl();
+            _LoadingControl = new loadingControl();
+            
+        }
+
+        private void initDataControls()
         {
             try
             {
@@ -38,7 +65,6 @@ namespace ManagementSystem
                 EmpControl.Dock = DockStyle.Fill;
                 EmpControl.AutoSize = true;
                 EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                this.currentControl = EmpControl;
 
                 SuppControl = new SupplierControl();
                 SuppControl.Dock = DockStyle.Fill;
@@ -49,28 +75,35 @@ namespace ManagementSystem
                 CatControl.Dock = DockStyle.Fill;
                 CatControl.AutoSize = true;
                 CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                OrdControl = new OrderControl();
+                
+                OrdControl.Dock = DockStyle.Fill;
+                OrdControl.AutoSize = true;
+                OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                this.Invoke(new CloseDelegate(loadForm.Close));
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-            aboutBox = new AboutControl();
-
-            
         }
+
+        public delegate void CloseDelegate();
 
         private void loadControl(BaseControlInteface control)
         {
             this.currentControl.resetControl();
             this.panel1.Controls.Clear();
-
+            this.panel1.Controls.Add(this._LoadingControl);
+            //System.Threading.Thread.Sleep(100);
             try
             {
                 if (control.isLoaded() == true)
                     control.resetData();
                 else control.setLoadStatus(true);
+                
+                this.panel1.Controls.Clear();
                 this.panel1.Controls.Add(control.getThis());
                 this.currentControl = control;
                 this.Text = this.currentControl.getName() + " - Company Mangement";
@@ -111,7 +144,7 @@ namespace ManagementSystem
 
         private void btnOders_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.OrdControl);
         }
 
         private void btnAbout_Click(object sender, EventArgs e)

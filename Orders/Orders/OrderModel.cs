@@ -123,6 +123,8 @@ namespace Orders
                 // init parent
                 base(control, host, port, dbname, username, password, table_name, parser)
             {
+                this._control.Columns.Clear();
+                this._initTable(Order.OrderItem.Sql_keys);
             }
 
             public void resetControl()

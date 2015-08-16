@@ -60,6 +60,13 @@ namespace Employees.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _17657 {
+            get {
+                object obj = ResourceManager.GetObject("17657", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Csearch_00 {
             get {
                 object obj = ResourceManager.GetObject("Csearch_00", resourceCulture);

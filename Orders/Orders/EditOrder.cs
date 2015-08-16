@@ -20,5 +20,18 @@ namespace Orders
         {
 
         }
+
+        private void cboxNotShipped_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cboxNotShipped.Checked == true)
+                this.dtpShippedDate.Enabled = false;
+            else
+                this.dtpShippedDate.Enabled = true;
+        }
+
+        private void EditOrder_Load(object sender, EventArgs e)
+        {
+            this.gvProductDeatail.Parent = this.listPanel;
+        }
     }
 }
