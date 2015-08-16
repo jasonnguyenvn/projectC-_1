@@ -20,13 +20,9 @@ namespace ManagementSystem
 {
     public partial class Loading : Form
     {
-        loadingControl control;
-
         public Loading()
         {
             InitializeComponent();
-            control = new loadingControl();
-            this.panel1.Controls.Add(control);
             
         }
 
@@ -62,6 +58,20 @@ namespace ManagementSystem
 
         private void Loading_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
+        }
+
+        private void Loading_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void Loading_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F4 && e.Alt)
+            {
+                e.SuppressKeyPress = true;
+
+            }
         }
     }
 }

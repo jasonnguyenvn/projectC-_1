@@ -60,6 +60,48 @@ namespace ManagementSystem.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap circle_loading_animation {
+            get {
+                object obj = ResourceManager.GetObject("circle-loading-animation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ind0x {
+            get {
+                object obj = ResourceManager.GetObject("ind0x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap lazy_loading {
+            get {
+                object obj = ResourceManager.GetObject("lazy-loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ops_mgmnt_1 {
+            get {
+                object obj = ResourceManager.GetObject("ops-mgmnt-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PEPloading {
+            get {
+                object obj = ResourceManager.GetObject("PEPloading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap spinner {
+            get {
+                object obj = ResourceManager.GetObject("spinner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap status_anim {
             get {
                 object obj = ResourceManager.GetObject("status_anim", resourceCulture);

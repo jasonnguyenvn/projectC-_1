@@ -134,7 +134,7 @@ namespace Suppliers
         public override object[] convertToRow()
         {
             object[] result = {
-                this.supplierid.ToString(),
+                this.supplierid,
                 this.companyname,
                 this.contactname,
                 this.contacttitle,

@@ -26,7 +26,6 @@ namespace ManagementSystem
         private OrderControl OrdControl;
         private AboutControl aboutBox;
 
-        private loadingControl _LoadingControl;
 
         private BaseControlInteface currentControl;
 
@@ -53,7 +52,6 @@ namespace ManagementSystem
             this.currentControl = EmpControl;
 
             aboutBox = new AboutControl();
-            _LoadingControl = new loadingControl();
             
         }
 
@@ -81,6 +79,7 @@ namespace ManagementSystem
                 OrdControl.Dock = DockStyle.Fill;
                 OrdControl.AutoSize = true;
                 OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                System.Threading.Thread.Sleep(500);
                 this.Invoke(new CloseDelegate(loadForm.Close));
             }
             catch (Exception ex)
@@ -91,19 +90,17 @@ namespace ManagementSystem
 
         public delegate void CloseDelegate();
 
+
         private void loadControl(BaseControlInteface control)
         {
             this.currentControl.resetControl();
             this.panel1.Controls.Clear();
-            this.panel1.Controls.Add(this._LoadingControl);
             //System.Threading.Thread.Sleep(100);
             try
             {
                 if (control.isLoaded() == true)
                     control.resetData();
                 else control.setLoadStatus(true);
-                
-                this.panel1.Controls.Clear();
                 this.panel1.Controls.Add(control.getThis());
                 this.currentControl = control;
                 this.Text = this.currentControl.getName() + " - Company Mangement";
@@ -157,6 +154,13 @@ namespace ManagementSystem
         private void btnShippers_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.panel1.Controls.Clear();
+            this.panel1.Controls.Add(this.picHome);
+            this.Text = "Company Mangement";
         }
     }
 }
