@@ -33,13 +33,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.proList_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeSelectedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeAllItmesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mitmAddProduct = new System.Windows.Forms.ToolStripMenuItem();
+            this.mitmRemoveSelected = new System.Windows.Forms.ToolStripMenuItem();
+            this.itmRemoveAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRemoveAll = new System.Windows.Forms.Button();
             this.btnRemoveProducts = new System.Windows.Forms.Button();
             this.btnAddnewProduct = new System.Windows.Forms.Button();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnRemoveAll = new System.Windows.Forms.Button();
+            this.mitmEditProduct = new System.Windows.Forms.ToolStripMenuItem();
+            this.itmSelector = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductDeatail)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,34 +89,55 @@
             // proList_menu
             // 
             this.proList_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addProductToolStripMenuItem,
-            this.removeSelectedItemsToolStripMenuItem,
+            this.mitmEditProduct,
+            this.itmSelector,
+            this.mitmAddProduct,
+            this.mitmRemoveSelected,
             this.toolStripSeparator1,
-            this.removeAllItmesToolStripMenuItem});
+            this.itmRemoveAll});
             this.proList_menu.Name = "proList_menu";
-            this.proList_menu.Size = new System.Drawing.Size(185, 76);
+            this.proList_menu.Size = new System.Drawing.Size(185, 126);
             // 
-            // addProductToolStripMenuItem
+            // toolStripSeparator1
             // 
-            this.addProductToolStripMenuItem.Image = global::Orders.Properties.Resources.AddTableHS;
-            this.addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            this.addProductToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.addProductToolStripMenuItem.Text = "Add product...";
-            this.addProductToolStripMenuItem.Click += new System.EventHandler(this.addProductToolStripMenuItem_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
             // 
-            // removeSelectedItemsToolStripMenuItem
+            // mitmAddProduct
             // 
-            this.removeSelectedItemsToolStripMenuItem.Image = global::Orders.Properties.Resources.DeleteHS;
-            this.removeSelectedItemsToolStripMenuItem.Name = "removeSelectedItemsToolStripMenuItem";
-            this.removeSelectedItemsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.removeSelectedItemsToolStripMenuItem.Text = "Remove selected items";
+            this.mitmAddProduct.Image = global::Orders.Properties.Resources.AddTableHS;
+            this.mitmAddProduct.Name = "mitmAddProduct";
+            this.mitmAddProduct.Size = new System.Drawing.Size(184, 22);
+            this.mitmAddProduct.Text = "Add product...";
+            this.mitmAddProduct.Click += new System.EventHandler(this.addProductToolStripMenuItem_Click);
             // 
-            // removeAllItmesToolStripMenuItem
+            // mitmRemoveSelected
             // 
-            this.removeAllItmesToolStripMenuItem.Image = global::Orders.Properties.Resources.DeleteFolderHS;
-            this.removeAllItmesToolStripMenuItem.Name = "removeAllItmesToolStripMenuItem";
-            this.removeAllItmesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.removeAllItmesToolStripMenuItem.Text = "Remove all itmes";
+            this.mitmRemoveSelected.Image = global::Orders.Properties.Resources.DeleteHS;
+            this.mitmRemoveSelected.Name = "mitmRemoveSelected";
+            this.mitmRemoveSelected.Size = new System.Drawing.Size(184, 22);
+            this.mitmRemoveSelected.Text = "Remove selected items";
+            // 
+            // itmRemoveAll
+            // 
+            this.itmRemoveAll.Image = global::Orders.Properties.Resources.DeleteFolderHS;
+            this.itmRemoveAll.Name = "itmRemoveAll";
+            this.itmRemoveAll.Size = new System.Drawing.Size(184, 22);
+            this.itmRemoveAll.Text = "Remove all itmes";
+            // 
+            // btnRemoveAll
+            // 
+            this.btnRemoveAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRemoveAll.Image = global::Orders.Properties.Resources.DeleteFolderHS;
+            this.btnRemoveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveAll.Location = new System.Drawing.Point(0, 5);
+            this.btnRemoveAll.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.btnRemoveAll.Name = "btnRemoveAll";
+            this.btnRemoveAll.Size = new System.Drawing.Size(96, 42);
+            this.btnRemoveAll.TabIndex = 41;
+            this.btnRemoveAll.Text = "       Remove All";
+            this.btnRemoveAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveAll.UseVisualStyleBackColor = true;
             // 
             // btnRemoveProducts
             // 
@@ -144,24 +167,16 @@
             this.btnAddnewProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddnewProduct.UseVisualStyleBackColor = true;
             // 
-            // toolStripSeparator1
+            // mitmEditProduct
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
+            this.mitmEditProduct.Name = "mitmEditProduct";
+            this.mitmEditProduct.Size = new System.Drawing.Size(184, 22);
+            this.mitmEditProduct.Text = "Edit...";
             // 
-            // btnRemoveAll
+            // itmSelector
             // 
-            this.btnRemoveAll.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRemoveAll.Image = global::Orders.Properties.Resources.DeleteFolderHS;
-            this.btnRemoveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveAll.Location = new System.Drawing.Point(0, 5);
-            this.btnRemoveAll.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.btnRemoveAll.Name = "btnRemoveAll";
-            this.btnRemoveAll.Size = new System.Drawing.Size(96, 42);
-            this.btnRemoveAll.TabIndex = 41;
-            this.btnRemoveAll.Text = "       Remove All";
-            this.btnRemoveAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveAll.UseVisualStyleBackColor = true;
+            this.itmSelector.Name = "itmSelector";
+            this.itmSelector.Size = new System.Drawing.Size(181, 6);
             // 
             // OrderDetailControl
             // 
@@ -187,10 +202,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ContextMenuStrip proList_menu;
-        private System.Windows.Forms.ToolStripMenuItem addProductToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeSelectedItemsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeAllItmesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mitmAddProduct;
+        private System.Windows.Forms.ToolStripMenuItem mitmRemoveSelected;
+        private System.Windows.Forms.ToolStripMenuItem itmRemoveAll;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnRemoveAll;
+        private System.Windows.Forms.ToolStripMenuItem mitmEditProduct;
+        private System.Windows.Forms.ToolStripSeparator itmSelector;
     }
 }

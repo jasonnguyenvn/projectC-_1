@@ -4,11 +4,33 @@ using System.Linq;
 using System.Text;
 using DataModel;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Orders
 {
     public class Order : BaseDataObject
     {
+        public OrderModel.IdItem getCustIdItem()
+        {
+            OrderModel.IdItem item = new OrderModel.IdItem();
+            item.Id = this.custid;
+            return item;
+        }
+
+        public OrderModel.IdItem getEmpIdItem()
+        {
+            OrderModel.IdItem item = new OrderModel.IdItem();
+            item.Id = this.empid;
+            return item;
+        }
+
+        public OrderModel.IdItem getShipperIdItem()
+        {
+            OrderModel.IdItem item = new OrderModel.IdItem();
+            item.Id = this.shipperid;
+            return item;
+        }
+
         private bool _shipped = true;
 
         public bool isShipped
@@ -22,11 +44,26 @@ namespace Orders
         public List<OrderItem> OrderItems
         {
             get { return orderItems; }
+            
         }
 
         public Order()
         {
             this.orderItems = new List<OrderItem>();
+            this.orderid = -1;
+            this.custid = -2905;
+            this.empid = -1;
+            this.orderdate = DateTime.Now;
+            this.requireddate = DateTime.Now;
+            this.shippeddate = DateTime.Now;
+            this.shipperid = -1;
+            this.freight = 0.0f;
+            this.shipname = "";
+            this.shipaddress = "";
+            this.shipcity = "";
+            this.shipregion = "";
+            this.shippostalcode = "";
+            this.shipcountry = "";
         }
 
         private int orderid;
@@ -85,9 +122,9 @@ namespace Orders
             set { shipperid = value; }
         }
 
-        private string freight;
+        private float freight;
 
-        public string Freight
+        public float Freight
         {
             get { return freight; }
             set { freight = value; }
@@ -171,7 +208,7 @@ namespace Orders
                 shippedDate = this.shippeddate.ToShortDateString();
             object [] result = {
                 this.orderid,
-                this.custid,
+                this.custid==-2905 ? "NULL" : this.Custid.ToString() ,
                 this.empid,
                 this.orderdate.ToShortDateString(),
                 this.requireddate.ToShortDateString(),
@@ -234,7 +271,9 @@ namespace Orders
                 return -4;
             if (shipperid < 0)
                 return -5;
-            if(freight.Equals(""))
+            if(freight<0)
+                return -7;
+            if (shipname.Equals(""))
                 return -6;
             if (shipaddress.Equals(""))
                 return -6;
@@ -258,8 +297,8 @@ namespace Orders
                 result.Add(-4);
             if (shipperid < 0)
                 result.Add(-5);
-            if (freight.Equals(""))
-                result.Add(-6);
+            if (freight<0)
+                result.Add(-7);
             if (shipname.Equals(""))
                 result.Add(-6);
             if (shipaddress.Equals(""))
@@ -279,7 +318,8 @@ namespace Orders
                 case -2: return "INVALID EMPLOYEE ID";
                 case -3: return "INVALID REQUIRED DATE";
                 case -4: return "INVALID SHIPPED DATE";
-                case -5: return "INVALID FREIGHT VALUE";
+                case -5: return "INVALID SHIPPER ID";
+                case -7: return "INVALID FREIGHT VALUE";
                 case -6: return "THIS FIELD CANNOT BE EMPTY";
             }
 
@@ -318,9 +358,9 @@ namespace Orders
                 set { productid = value; }
             }
 
-            private string uinitprice;
+            private float uinitprice;
 
-            public string Uinitprice
+            public float Uinitprice
             {
                 get { return uinitprice; }
                 set { uinitprice = value; }
@@ -340,6 +380,15 @@ namespace Orders
             {
                 get { return discount; }
                 set { discount = value; }
+            }
+
+            public OrderItem()
+            {
+                orderid = -1;
+                productid = -1;
+                uinitprice = 0.0f;
+                qty = 0;
+                discount = 0.0f;
             }
 
 
@@ -500,7 +549,7 @@ namespace Orders
                             result.Productid = int.Parse(param.Value.ToString());
                             break;
                         case "unitprice":
-                            result.Uinitprice = param.Value.ToString();
+                            result.Uinitprice = float.Parse(param.Value.ToString());
                             break;
                         case "qty":
                             result.Qty = int.Parse(param.Value.ToString());
@@ -527,6 +576,21 @@ namespace Orders
                 }
 
                 return this.parse(OrderItem.Sql_keys, Params);
+            }
+
+            public OrderItem parse(DataRow row)
+            {
+                if (row.Table.Columns.Count != OrderItem.Sql_keys.Length)
+                    throw new Exception("INVALID INPUT");
+
+                OrderItem result = new OrderItem();
+                result.Orderid = int.Parse(row[0].ToString());
+                result.Productid = int.Parse(row[1].ToString());
+                result.Uinitprice = float.Parse(row[2].ToString());
+                result.Qty = int.Parse(row[3].ToString());
+                result.Discount = float.Parse(row[4].ToString());
+
+                return result;
             }
         }
     }
@@ -568,6 +632,11 @@ namespace Orders
                         result.Orderid = int.Parse(param.Value.ToString());
                         break;
                     case "custid":
+                        if(param.Value.ToString().Equals(""))
+                        {
+                            result.Custid = -2905;
+                            break;
+                        }
                         result.Custid = int.Parse(param.Value.ToString());
                         break;
                     case "empid":
@@ -608,7 +677,7 @@ namespace Orders
                         result.Shipperid = int.Parse(param.Value.ToString());
                         break;
                     case "freight":
-                        result.Freight = param.Value.ToString();
+                        result.Freight = float.Parse(param.Value.ToString());
                         break;
                     case "shipname":
                         result.Shipname = param.Value.ToString();

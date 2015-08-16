@@ -33,6 +33,8 @@ namespace Suppliers
             this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
+
+            this.errorProvider.Clear();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -70,6 +72,7 @@ namespace Suppliers
 
         private void doSave_Update()
         {
+            this.errorProvider.Clear();
             Supplier newSup = new Supplier();
             newSup.SupplierID = -1;
             newSup.CompanyName = this.txtCompName.Text;

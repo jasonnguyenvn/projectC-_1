@@ -27,6 +27,12 @@ namespace DataModel
 
         protected readonly DataObjectParser<T> _parser;
 
+        public DataObjectParser<T> Parser
+        {
+            get { return _parser; }
+        } 
+
+
         protected readonly SqlConnection conn;
 
         private readonly string _tbname;

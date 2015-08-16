@@ -16,7 +16,6 @@ namespace Orders
             InitializeComponent();
             _controls = new Control[] 
             {
-                this.gvProductDeatail,
                 this.btnAddnewProduct,
                 this.btnRemoveProducts,
                 this.btnRemoveAll

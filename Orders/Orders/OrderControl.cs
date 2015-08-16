@@ -129,14 +129,26 @@ namespace Orders
 
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
+        private void clearAll()
         {
+            this.cbCustID.SelectedIndex = 0;
+            this.cbEmpID.SelectedIndex = 0;
+            this.cbShipperID.SelectedIndex = 0;
+            this.dtpOrderDate.Value = DateTime.Now;
+            this.dtpRequiredDate.Value = DateTime.Now;
+            this.dtpShippedDate.Value = DateTime.Now;
+
+            this.checkSearchOrderDate.Checked = false;
+            this.checkSearchRequiredDate.Checked = false;
+            this.checkSearchShippedDate.Checked = false;
+
+            this.txtSelectedID.Text = "";
+
+            this.gvOrders.ClearSelection();
+            this.dataModel.DetailModel.OrderID = -1;
+            this.dataModel.DetailModel.resetControl();
         }
 
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         #region ControlInteface<OrderModel,Order> Members
 
@@ -167,7 +179,7 @@ namespace Orders
 
         public void resetControl()
         {
-            
+            clearAll();
         }
 
         public void resetData()
@@ -184,6 +196,7 @@ namespace Orders
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            this.gvOrders.ClearSelection();
             this.editForm.ShowDialog();
         }
 
@@ -226,5 +239,51 @@ namespace Orders
         {
             checkSearchShippedDate.Checked = !checkSearchShippedDate.Checked;
         }
+
+        private void gvOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.gvOrders.SelectedRows.Count > 0)
+            {
+                Order get = new Order();
+                get.Orderid = int.Parse(this.gvOrders.SelectedRows[0].Cells[0].Value.ToString());
+                Order selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
+                this.txtSelectedID.Text = selectedItem.Orderid.ToString();
+                dataModel.DetailModel.OrderID = selectedItem.Orderid;
+                dataModel.DetailModel.resetControl();
+
+                this.editForm.CurrentData = selectedItem;
+
+                
+            }
+            else
+            {
+                dataModel.DetailModel.DataSource.Rows.Clear();
+                this.editForm.CurrentData = null;
+            }
+        }
+
+        private void menuTripOfGV_Opening(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                ContextMenuStrip cast = (ContextMenuStrip)sender;
+                if (this.gvOrders.SelectedRows.Count <= 0)
+                    e.Cancel = true;
+                else
+                    e.Cancel = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.clearAll();
+        }
+        
+
     }
 }

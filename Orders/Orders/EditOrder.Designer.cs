@@ -46,6 +46,7 @@
             this.txtShipPostalCode = new System.Windows.Forms.TextBox();
             this.OrderInfor = new System.Windows.Forms.GroupBox();
             this.cboxNotShipped = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbEmpID = new System.Windows.Forms.ComboBox();
             this.cbCustID = new System.Windows.Forms.ComboBox();
             this.dtpShippedDate = new System.Windows.Forms.DateTimePicker();
@@ -66,12 +67,11 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OrderInfor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.listPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -148,21 +148,21 @@
             // 
             // txtFreight
             // 
-            this.txtFreight.Location = new System.Drawing.Point(124, 54);
+            this.txtFreight.Location = new System.Drawing.Point(118, 54);
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.Size = new System.Drawing.Size(180, 20);
             this.txtFreight.TabIndex = 1;
             // 
             // txtShipName
             // 
-            this.txtShipName.Location = new System.Drawing.Point(124, 89);
+            this.txtShipName.Location = new System.Drawing.Point(118, 89);
             this.txtShipName.Name = "txtShipName";
             this.txtShipName.Size = new System.Drawing.Size(180, 20);
             this.txtShipName.TabIndex = 2;
             // 
             // txtShipAddress
             // 
-            this.txtShipAddress.Location = new System.Drawing.Point(124, 123);
+            this.txtShipAddress.Location = new System.Drawing.Point(118, 123);
             this.txtShipAddress.Multiline = true;
             this.txtShipAddress.Name = "txtShipAddress";
             this.txtShipAddress.Size = new System.Drawing.Size(180, 40);
@@ -170,21 +170,21 @@
             // 
             // txtShipCity
             // 
-            this.txtShipCity.Location = new System.Drawing.Point(124, 169);
+            this.txtShipCity.Location = new System.Drawing.Point(118, 169);
             this.txtShipCity.Name = "txtShipCity";
             this.txtShipCity.Size = new System.Drawing.Size(180, 20);
             this.txtShipCity.TabIndex = 4;
             // 
             // txtShipRegion
             // 
-            this.txtShipRegion.Location = new System.Drawing.Point(124, 197);
+            this.txtShipRegion.Location = new System.Drawing.Point(118, 197);
             this.txtShipRegion.Name = "txtShipRegion";
             this.txtShipRegion.Size = new System.Drawing.Size(180, 20);
             this.txtShipRegion.TabIndex = 5;
             // 
             // txtShipPostalCode
             // 
-            this.txtShipPostalCode.Location = new System.Drawing.Point(124, 225);
+            this.txtShipPostalCode.Location = new System.Drawing.Point(118, 225);
             this.txtShipPostalCode.Name = "txtShipPostalCode";
             this.txtShipPostalCode.Size = new System.Drawing.Size(180, 20);
             this.txtShipPostalCode.TabIndex = 6;
@@ -223,6 +223,16 @@
             this.cboxNotShipped.Text = "This Order has NOT shipped yet.";
             this.cboxNotShipped.UseVisualStyleBackColor = true;
             this.cboxNotShipped.CheckedChanged += new System.EventHandler(this.cboxNotShipped_CheckedChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Orders.Properties.Resources._2000px_Barcode_font_awesome_svg;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 225);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(273, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
             // 
             // cbEmpID
             // 
@@ -309,7 +319,6 @@
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Employee ID";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -566,7 +575,7 @@
             "Yemen",
             "Zambia",
             "Zimbabwe"});
-            this.cbCountry.Location = new System.Drawing.Point(124, 253);
+            this.cbCountry.Location = new System.Drawing.Point(118, 253);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(180, 21);
             this.cbCountry.TabIndex = 7;
@@ -575,7 +584,7 @@
             // 
             this.cbShipperID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbShipperID.FormattingEnabled = true;
-            this.cbShipperID.Location = new System.Drawing.Point(124, 26);
+            this.cbShipperID.Location = new System.Drawing.Point(118, 26);
             this.cbShipperID.Name = "cbShipperID";
             this.cbShipperID.Size = new System.Drawing.Size(180, 21);
             this.cbShipperID.TabIndex = 0;
@@ -613,6 +622,7 @@
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
@@ -624,16 +634,6 @@
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Orders.Properties.Resources._2000px_Barcode_font_awesome_svg;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 225);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(273, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
             // 
             // EditOrder
             // 
@@ -657,12 +657,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditOrder_FormClosing);
             this.OrderInfor.ResumeLayout(false);
             this.OrderInfor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.listPanel.ResumeLayout(false);
             this.listPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,10 +686,6 @@
         private System.Windows.Forms.GroupBox OrderInfor;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DateTimePicker dtpShippedDate;
-        private System.Windows.Forms.DateTimePicker dtpRequiredDate;
-        private System.Windows.Forms.DateTimePicker dtpOrderDate;
-        private System.Windows.Forms.TextBox txtOrderID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -697,14 +693,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.ComboBox cbShipperID;
-        private System.Windows.Forms.ComboBox cbEmpID;
-        private System.Windows.Forms.ComboBox cbCustID;
-        private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.Panel listPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.CheckBox cboxNotShipped;
+        public System.Windows.Forms.TextBox txtOrderID;
+        public System.Windows.Forms.DateTimePicker dtpShippedDate;
+        public System.Windows.Forms.DateTimePicker dtpRequiredDate;
+        public System.Windows.Forms.DateTimePicker dtpOrderDate;
+        public System.Windows.Forms.ComboBox cbShipperID;
+        public System.Windows.Forms.ComboBox cbEmpID;
+        public System.Windows.Forms.ComboBox cbCustID;
+        public System.Windows.Forms.ComboBox cbCountry;
+        public System.Windows.Forms.CheckBox cboxNotShipped;
     }
 }

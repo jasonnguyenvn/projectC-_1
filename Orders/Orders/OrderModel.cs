@@ -18,7 +18,6 @@ namespace Orders
         public OrderDetailModel DetailModel
         {
             get { return _detailModel; }
-            set { _detailModel = value; }
         }
 
         public OrderModel(DataGridView control, DataGridView deltail_control,
@@ -41,10 +40,32 @@ namespace Orders
             this.resetControl("");
         }
 
+        
+
         private void _initTable()
         {
             this._control.Columns.Clear();
             this._initTable(Order.Sql_keys);
+        }
+
+        public override Order insertNewRow(Order newItem)
+        {
+            Order result = base.insertNewRow(newItem);
+
+            _detailModel.OrderID = result.Orderid;
+            _detailModel.resetModel();
+
+            Order.OrderItem[] items = new Order.OrderItem[newItem.OrderItems.Count];
+            newItem.OrderItems.CopyTo(items);
+            result.OrderItems.AddRange(items);
+
+            foreach (Order.OrderItem eachItem in items)
+            {
+                eachItem.Orderid = result.Orderid;
+                _detailModel.insertNewRow(eachItem);
+            }
+
+            return result;
         }
 
         public override List<SqlParameter> SqlParams(Order item)
@@ -62,23 +83,34 @@ namespace Orders
 
             resultList.Add(custid);
 
+            SqlParameter empid = this.createSQLParam("empid", SqlDbType.Int, item.Empid);
+            resultList.Add(empid);
+
             SqlParameter orderdate = this.createSQLParam("orderdate", SqlDbType.DateTime, item.Orderdate);
             resultList.Add(orderdate);
 
             SqlParameter requireddate = this.createSQLParam("requireddate", SqlDbType.DateTime, item.Requireddate);
             resultList.Add(requireddate);
 
-            SqlParameter shippedate = this.createSQLParam("shippeddate", SqlDbType.DateTime, item.Shippeddate);
+            SqlParameter shippedate;
+            if(item.isShipped==false)
+                shippedate = this.createSQLParam("shippeddate", SqlDbType.DateTime, DBNull.Value);
+            else 
+                shippedate = this.createSQLParam("shippeddate", SqlDbType.DateTime, item.Shippeddate);
             resultList.Add(shippedate);
 
-            SqlParameter shipperid = this.createSQLParam("shipperid", SqlDbType.Int, item.Shipperid);
+            SqlParameter shipperid =  this.createSQLParam("shipperid", SqlDbType.Int, item.Shipperid);
             resultList.Add(shipperid);
+
+            SqlParameter freight = this.createSQLParam("freight", SqlDbType.Money, item.Freight);
+            resultList.Add(freight);
 
             SqlParameter shipname;
             if (item.Shipname.Equals(""))
                 shipname = this.createSQLParam("shipname", SqlDbType.NVarChar, DBNull.Value);
             else
                 shipname = this.createSQLParam("shipname", SqlDbType.NVarChar, item.Shipname);
+            resultList.Add(shipname);
 
             SqlParameter address = this.createSQLParam("shipaddress", SqlDbType.NVarChar, item.Shipaddress, 60);
             resultList.Add(address);
@@ -127,9 +159,17 @@ namespace Orders
                 this._initTable(Order.OrderItem.Sql_keys);
             }
 
+            public void resetModel()
+            {
+                base.resetModel("orderid=" + this._orderid);
+            }
+
             public void resetControl()
             {
-                this.resetControl("orderid="+this._orderid);
+                if (this._orderid >= 0)
+                    this.resetControl("orderid=" + this._orderid);
+                else
+                    this.DataSource.Rows.Clear();
             }
 
             public override List<SqlParameter> SqlParams(Order.OrderItem item)
@@ -155,6 +195,8 @@ namespace Orders
 
             }
 
+
+            
             
         }
     }

@@ -75,6 +75,7 @@ namespace Employees
 
         protected void doUpdate_Add()
         {
+            this.errProvider.Clear();
             Employee newEmp = new Employee();
             newEmp.Empid = -1;
             newEmp.Lastname = this.txtLastname.Text;
