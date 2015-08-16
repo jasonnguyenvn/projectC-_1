@@ -92,6 +92,8 @@ namespace Productions
 
         public override void copyTo(BaseDataObject other)
         {
+            if(other is Product == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Product.");
             Product otherEmp = (Product)other;
             otherEmp.productid = this.productid;
             otherEmp.productname = this.productname;
@@ -113,6 +115,8 @@ namespace Productions
 
         public override bool Equals(object obj)
         {
+            if (obj is Product == false)
+                return false;
             Product other = (Product)obj;
             return this.ProductID == other.ProductID;
         }

@@ -286,6 +286,20 @@ namespace Orders
             return "";
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Order == false)
+                return false;
+
+            Order other = (Order)obj;
+            return this.Orderid == other.Orderid;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public class OrderItem : BaseDataObject
         {
             private int orderid;
@@ -428,6 +442,21 @@ namespace Orders
                 if (discount < 0.0)
                     result.Add(-5);
                 return result.ToArray();
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is OrderItem == false)
+                    return false;
+
+                OrderItem other = (OrderItem)obj;
+                return this.Orderid == other.Orderid 
+                    && this.productid == other.productid;
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
             }
         }
 

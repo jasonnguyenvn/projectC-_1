@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using DataModel;
 namespace Employees
 {
     public partial class EmployeeEditForm : Form
@@ -26,7 +26,7 @@ namespace Employees
             InitializeComponent();
             this.dataModel = _dataModel;
             this.cbManagerID.Items.Add("");
-            this.cbManagerID.Items.AddRange(dataModel.getEmployeeIDs());
+            this.cbManagerID.Items.AddRange(dataModel.getIDItemArray("HR.Employees", 0, 1));
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -91,7 +91,8 @@ namespace Employees
             newEmp.Phone = this.txtPhone.Text;
             try
             {
-                newEmp.Mgrid = int.Parse(this.cbManagerID.Text);
+                EmployeeModel.IdItem cbItem = (EmployeeModel.IdItem)this.cbManagerID.SelectedItem;
+                newEmp.Mgrid = cbItem.Id;
             }
             catch { newEmp.Mgrid = -1; }
             newEmp.JobStatus = true;
@@ -143,6 +144,7 @@ namespace Employees
             this.txtPhone.Text = "";
             this.cbManagerID.Text = "";
             this.btnSave.Enabled = true;
+            this.errProvider.Clear();
         }
 
         public void setNewData(Employee data)
@@ -160,7 +162,17 @@ namespace Employees
             this.txtPostalCode.Text = data.Postalcode;
             this.cbCountry.Text = data.Country;
             this.txtPhone.Text = data.Phone;
-            this.cbManagerID.Text = data.Mgrid.ToString();
+
+            try
+            {
+                EmployeeModel.IdItem cbItem = new EmployeeModel.IdItem();
+                cbItem.Id = data.Mgrid;
+                this.cbManagerID.SelectedIndex = this.cbManagerID.Items.IndexOf((object)cbItem);
+            }
+            catch
+            {
+                this.cbManagerID.SelectedIndex = 0;
+            }
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)

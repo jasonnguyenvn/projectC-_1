@@ -72,7 +72,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.cbShipperID = new System.Windows.Forms.ComboBox();
-            this.chEmpID = new System.Windows.Forms.ComboBox();
+            this.cbEmpID = new System.Windows.Forms.ComboBox();
             this.cbCustID = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -556,7 +556,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74F));
             this.tableLayoutPanel4.Controls.Add(this.cbShipperID, 1, 5);
-            this.tableLayoutPanel4.Controls.Add(this.chEmpID, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.cbEmpID, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label7, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.dtpShippedDate, 1, 4);
@@ -596,12 +596,12 @@
             // 
             // chEmpID
             // 
-            this.chEmpID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chEmpID.FormattingEnabled = true;
-            this.chEmpID.Location = new System.Drawing.Point(105, 30);
-            this.chEmpID.Name = "chEmpID";
-            this.chEmpID.Size = new System.Drawing.Size(286, 21);
-            this.chEmpID.TabIndex = 1;
+            this.cbEmpID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbEmpID.FormattingEnabled = true;
+            this.cbEmpID.Location = new System.Drawing.Point(105, 30);
+            this.cbEmpID.Name = "chEmpID";
+            this.cbEmpID.Size = new System.Drawing.Size(286, 21);
+            this.cbEmpID.TabIndex = 1;
             // 
             // cbCustID
             // 
@@ -1012,7 +1012,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox cbCustID;
-        private System.Windows.Forms.ComboBox chEmpID;
+        private System.Windows.Forms.ComboBox cbEmpID;
         private System.Windows.Forms.ComboBox cbShipperID;
         private System.Windows.Forms.Panel rigthtPanel;
         private System.Windows.Forms.SplitContainer splitContainer3;

@@ -16,7 +16,12 @@ namespace Orders
         private EditOrder editForm;
         private OrderModel dataModel;
 
-        private void initEditForm()
+        public OrderModel DataModel
+        {
+            get { return dataModel; }
+        }
+
+        private void _initControls()
         {
             try
             {
@@ -37,7 +42,7 @@ namespace Orders
         public OrderControl()
         {
             InitializeComponent();
-            initEditForm();
+            _initControls();
             //this.gvCatetories.ContextMenuStrip = this.GridViewMenu;
             Settings setting = new Settings();
 
@@ -73,7 +78,7 @@ namespace Orders
         {
             this.InitializeComponent();
 
-            initEditForm();
+            _initControls();
 
             OrderParser newParser = new OrderParser();
             try
@@ -108,6 +113,12 @@ namespace Orders
             {
                 dataModel.resetControl();
                 //this.editForm = new EditCatetories(dataModel);
+                this.cbCustID.Items.Add("");
+                this.cbCustID.Items.AddRange(this.dataModel.getIDItemArray("Sales.Customers", 0, 1));
+                this.cbEmpID.Items.Add("");
+                this.cbEmpID.Items.AddRange(this.dataModel.getIDItemArray("HR.Employees", 0, 1));
+                this.cbShipperID.Items.Add("");
+                this.cbShipperID.Items.AddRange(this.dataModel.getIDItemArray("Sales.Shippers", 0, 1));
             }
             catch(Exception ex)
             {

@@ -182,6 +182,8 @@ namespace Employees
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Employee == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Employee.");
             Employee otherEmp = (Employee) other;
             otherEmp.empid = this.empid;
             otherEmp.lastname = this.lastname;
@@ -212,6 +214,9 @@ namespace Employees
 
         public override bool Equals(object obj)
         {
+            if (obj is Employee == false)
+                return false;
+
             Employee other = (Employee)obj;
             return this.Empid == other.Empid;
         }
@@ -574,7 +579,7 @@ namespace Employees
             
         }
 
-        public object[] getEmployeeIDs()
+        /*public object[] getEmployeeIDs()
         {
             List<object> result = new List<object>();
 
@@ -584,6 +589,6 @@ namespace Employees
             }
 
             return result.ToArray();
-        }
+        }*/
     }
 }

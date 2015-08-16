@@ -63,6 +63,8 @@ namespace Productions
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Category == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Category.");
             Category otherEmp = (Category)other;
             otherEmp.categoryid = this.categoryid;
             otherEmp.categoryname = this.categoryname;
@@ -81,6 +83,8 @@ namespace Productions
 
         public override bool Equals(object obj)
         {
+            if (obj is Category == false)
+                return false;
             Category other = (Category)obj;
             return this.CategoryID == other.CategoryID;
         }

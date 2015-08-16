@@ -47,6 +47,13 @@ namespace Orders
             this.listControl.Parent = this.listPanel;
             if (this.addNewMode == true)
                 this.listControl.enableControls(true);
+
+            this.cbCustID.Items.Add("");
+            this.cbCustID.Items.AddRange(itsParent.DataModel.getIDItemArray("Sales.Customers", 0, 1));
+            this.cbEmpID.Items.Add("");
+            this.cbEmpID.Items.AddRange(itsParent.DataModel.getIDItemArray("HR.Employees", 0, 1));
+            this.cbShipperID.Items.Add("");
+            this.cbShipperID.Items.AddRange(itsParent.DataModel.getIDItemArray("Sales.Shippers", 0, 1));
         }
 
         private void EditOrder_FormClosing(object sender, FormClosingEventArgs e)

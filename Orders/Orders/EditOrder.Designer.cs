@@ -46,7 +46,7 @@
             this.txtShipPostalCode = new System.Windows.Forms.TextBox();
             this.OrderInfor = new System.Windows.Forms.GroupBox();
             this.cboxNotShipped = new System.Windows.Forms.CheckBox();
-            this.chEmpID = new System.Windows.Forms.ComboBox();
+            this.cbEmpID = new System.Windows.Forms.ComboBox();
             this.cbCustID = new System.Windows.Forms.ComboBox();
             this.dtpShippedDate = new System.Windows.Forms.DateTimePicker();
             this.dtpRequiredDate = new System.Windows.Forms.DateTimePicker();
@@ -193,7 +193,7 @@
             // 
             this.OrderInfor.Controls.Add(this.cboxNotShipped);
             this.OrderInfor.Controls.Add(this.pictureBox1);
-            this.OrderInfor.Controls.Add(this.chEmpID);
+            this.OrderInfor.Controls.Add(this.cbEmpID);
             this.OrderInfor.Controls.Add(this.cbCustID);
             this.OrderInfor.Controls.Add(this.dtpShippedDate);
             this.OrderInfor.Controls.Add(this.dtpRequiredDate);
@@ -224,16 +224,18 @@
             this.cboxNotShipped.UseVisualStyleBackColor = true;
             this.cboxNotShipped.CheckedChanged += new System.EventHandler(this.cboxNotShipped_CheckedChanged);
             // 
-            // chEmpID
+            // cbEmpID
             // 
-            this.chEmpID.FormattingEnabled = true;
-            this.chEmpID.Location = new System.Drawing.Point(115, 83);
-            this.chEmpID.Name = "chEmpID";
-            this.chEmpID.Size = new System.Drawing.Size(180, 21);
-            this.chEmpID.TabIndex = 2;
+            this.cbEmpID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEmpID.FormattingEnabled = true;
+            this.cbEmpID.Location = new System.Drawing.Point(115, 83);
+            this.cbEmpID.Name = "cbEmpID";
+            this.cbEmpID.Size = new System.Drawing.Size(180, 21);
+            this.cbEmpID.TabIndex = 2;
             // 
             // cbCustID
             // 
+            this.cbCustID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustID.FormattingEnabled = true;
             this.cbCustID.Location = new System.Drawing.Point(115, 54);
             this.cbCustID.Name = "cbCustID";
@@ -571,6 +573,7 @@
             // 
             // cbShipperID
             // 
+            this.cbShipperID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbShipperID.FormattingEnabled = true;
             this.cbShipperID.Location = new System.Drawing.Point(124, 26);
             this.cbShipperID.Name = "cbShipperID";
@@ -695,7 +698,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ComboBox cbShipperID;
-        private System.Windows.Forms.ComboBox chEmpID;
+        private System.Windows.Forms.ComboBox cbEmpID;
         private System.Windows.Forms.ComboBox cbCustID;
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.Panel listPanel;

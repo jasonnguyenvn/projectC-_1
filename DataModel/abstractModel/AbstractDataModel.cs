@@ -356,6 +356,135 @@ namespace DataModel
             return deletedList;
         }
 
+        public class IdItem
+        {
+            public IdItem()
+            {
+            }
+
+            public IdItem(int id, string showText)
+            {
+                this._id = id;
+                this._showText = showText;
+            }
+
+            private int _id;
+
+            public int Id
+            {
+                get { return _id; }
+                set { _id = value; }
+            }
+
+            private string _showText;
+
+            public string ShowText
+            {
+                get { return _showText; }
+                set { _showText = value; }
+            }
+
+            public override string ToString()
+            {
+                return this._showText;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is IdItem == false)
+                    return false;
+
+                IdItem cast = (IdItem)obj;
+
+                return this._id == cast._id;
+
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
+        }
+
+        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex)
+        {
+            List<IdItem> result = new List<IdItem>();
+
+            this.conn.Open();
+            SqlDataReader dr = null;
+
+            try
+            {
+                string command = "SELECT * FROM " + tbName;
+                SqlCommand cmd = this.createSQLCommand(command);
+
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = int.Parse(dr.GetValue(keyIndex).ToString());
+                    string showText = id + " - " + dr.GetValue(showIndex).ToString();
+
+                    IdItem item = new IdItem(id, showText);
+                    result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GET ID LIST EXCEPTION: " + ex.Message + " ; TB_NAME: " + tbName);
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Close();
+                this.conn.Close();
+            }
+
+            return result;
+        }
+
+        public object[] getIDItemArray(string tbName, int keyIndex, int showIndex)
+        {
+            return this.getIDItemList(tbName, keyIndex, showIndex).ToArray();
+        }
+
+        public List<object> getIDList(string tbName, int keyIndex)
+        {
+            List<object> result = new List<object>();
+
+            this.conn.Open();
+            SqlDataReader dr = null;
+
+            try
+            {
+                string command = "SELECT * FROM " + tbName;
+                SqlCommand cmd = this.createSQLCommand(command);
+
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int get = int.Parse(dr.GetValue(keyIndex).ToString());
+                    result.Add(get);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GET ID LIST EXCEPTION: " + ex.Message + " ; TB_NAME: " + tbName);
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Close();
+                this.conn.Close();
+            }
+
+            return result;
+        }
+
+        public object [] getIDArray(string tbName, int keyIndex)
+        {
+            return this.getIDList(tbName, keyIndex).ToArray();
+        }
+
         public abstract List<SqlParameter> SqlParams(T item);
 
     }

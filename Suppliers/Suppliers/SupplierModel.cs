@@ -152,6 +152,8 @@ namespace Suppliers
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Supplier == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Supplier.");
             Supplier otherSupp = (Supplier)other;
             otherSupp.supplierid = this.supplierid;
             otherSupp.companyname = this.companyname;
@@ -178,6 +180,9 @@ namespace Suppliers
 
         public override bool Equals(object obj)
         {
+            if (obj is  Supplier == false)
+                return false;
+
             Supplier other = (Supplier)obj;
             return this.SupplierID == other.SupplierID;
         }
