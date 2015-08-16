@@ -21,28 +21,14 @@ namespace Orders
             get { return dataModel; }
         }
 
-        private void _initControls()
-        {
-            try
-            {
-                editForm = new EditOrder();
-                editForm.ItsParent = this;
-                editForm.listControl.Dock = DockStyle.Fill;
-                editForm.listControl.enableControls(false);
-                this.panOrderDetail.Controls.Add(editForm.listControl);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         
 
         public OrderControl()
         {
             InitializeComponent();
-            _initControls();
+            
             //this.gvCatetories.ContextMenuStrip = this.GridViewMenu;
             Settings setting = new Settings();
 
@@ -52,7 +38,6 @@ namespace Orders
 
                 dataModel = new OrderModel(
                                     this.gvOrders,
-                                    editForm.listControl.gvProductDeatail,
                                     setting.DB_HOST,
                                     setting.DB_PORT,
                                     setting.DB_NAME,
@@ -78,14 +63,11 @@ namespace Orders
         {
             this.InitializeComponent();
 
-            _initControls();
-
             OrderParser newParser = new OrderParser();
             try
             {
                 dataModel = new  OrderModel(
                                     this.gvOrders,
-                                    editForm.listControl.gvProductDeatail,
                                     host,
                                     port,
                                     dbname,
@@ -126,7 +108,25 @@ namespace Orders
             }
 
             
+             _initControls();
+        }
 
+        private void _initControls()
+        {
+            try
+            {
+                editForm = new EditOrder(this.dataModel);
+                editForm.ItsParent = this;
+                editForm.listControl.Dock = DockStyle.Fill;
+                editForm.listControl.enableControls(false);
+                this.panOrderDetail.Controls.Add(editForm.listControl);
+
+                dataModel.DetailModel.setNewControl(editForm.listControl.gvProductDeatail);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void clearAll()
@@ -257,8 +257,11 @@ namespace Orders
             }
             else
             {
-                dataModel.DetailModel.DataSource.Rows.Clear();
-                this.editForm.CurrentData = null;
+                if (dataModel.DetailModel.DataSource != null)
+                {
+                    dataModel.DetailModel.DataSource.Rows.Clear();
+                    this.editForm.CurrentData = null;
+                }
             }
         }
 
@@ -283,7 +286,24 @@ namespace Orders
         {
             this.clearAll();
         }
-        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (this.txtSelectedID.Equals("") == false)
+                doDelete();
+        }
+
+        protected void doDelete()
+        {
+            try
+            {
+                this.dataModel.deleteRow(int.Parse(this.txtSelectedID.Text.Trim()));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
     }
 }

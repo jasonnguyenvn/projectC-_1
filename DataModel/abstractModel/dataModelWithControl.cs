@@ -16,9 +16,9 @@ namespace DataModel
 {
     public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : BaseDataObject
     {
-        protected readonly GridView _webControl;
-        protected readonly DataGridView _control;
-        private readonly DataTable _datasource;
+        protected  GridView _webControl;
+        protected DataGridView _control;
+        protected  DataTable _datasource;
 
         public DataTable DataSource
         {
@@ -224,9 +224,9 @@ namespace DataModel
 
                 result = cmd.ExecuteNonQuery();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Delete exception");
+                throw new Exception("Delete exception "+ex.Message);
             }
             finally
             {

@@ -11,7 +11,10 @@ namespace Orders
 {
     public partial class OrderDetailControl : UserControl
     {
-        public OrderDetailControl()
+        AddItem addForm;
+        OrderModel.OrderDetailModel dataModel;
+
+        public OrderDetailControl(OrderModel.OrderDetailModel dataModel)
         {
             InitializeComponent();
             _controls = new Control[] 
@@ -20,6 +23,8 @@ namespace Orders
                 this.btnRemoveProducts,
                 this.btnRemoveAll
             };
+            this.dataModel = dataModel;
+            addForm = new AddItem();
         }
 
         private Control[] _controls;
@@ -33,7 +38,44 @@ namespace Orders
             }
         }
 
+        protected void doAdd()
+        {
+            addForm.cbProductID.Items.Add("");
+            addForm.cbProductID.Items.AddRange(this.dataModel.getIDItemArray("Production.Products", 0, 1));
+            addForm.ShowDialog();
+            if (addForm.Result == null)
+                return;
+            if (addForm.AddMode == true)
+                dataModel.DataSource.Rows.Add(addForm.Result.convertToRow());
+            else
+            {
+                DataRow row = dataModel.DataSource.Rows[addForm.EditIndex];
+                object[] rowData = addForm.Result.convertToRow();
+                for(int i=0; i<row.Table.Columns.Count;i++)
+                {
+                    row[i] = rowData[i];
+                }
+               // foreach(DataColumn col in row.
+            }
+
+        }
+
         private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddnewProduct_Click(object sender, EventArgs e)
+        {
+            doAdd();
+        }
+
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveProducts_Click(object sender, EventArgs e)
         {
 
         }

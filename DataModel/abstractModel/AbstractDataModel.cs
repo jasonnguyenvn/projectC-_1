@@ -218,7 +218,12 @@ namespace DataModel
                 valueParams += currentParam;
 
             }
-            commandText += ")  OUTPUT INSERTED." + this._parser.getPrimaryKey() + "  VALUES (" + valueParams + ")";
+            commandText += ") ";
+
+            if (this._parser.getPrimaryKey().Equals("") == false)
+                commandText += "  OUTPUT INSERTED." + this._parser.getPrimaryKey();
+
+            commandText +=  "  VALUES (" + valueParams + ")";
 
             T newItem;
             try
@@ -226,15 +231,17 @@ namespace DataModel
                 this.conn.Open();
                 SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                             parameters);
-            
-
-                int result = (int)cmd.ExecuteScalar();
-
-
+                int result;
+                if (this._parser.getPrimaryKey().Equals("") == false)
+                {
+                    result = (int)cmd.ExecuteScalar();
+                    changeIndex.Value = result;
+                }
+                else
+                    result = cmd.ExecuteNonQuery();
                 if (result < 0)
                     return null;
-
-                changeIndex.Value = result;
+               
                 newItem = this._parser.parse(keys, parameters);
                 
                 this._data.Add(newItem);

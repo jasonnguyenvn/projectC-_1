@@ -6,6 +6,7 @@ using DataModel;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Web.UI.WebControls;
 
 namespace Orders
 {
@@ -13,6 +14,37 @@ namespace Orders
 
     public class OrderModel : DataModelWithControl<Order>
     {
+        public void deleteRow(int orderID)
+        {
+            String command = "Delete_Order";
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            param.Add(this.createSQLParam("orderid", SqlDbType.Int, orderID));
+            this.conn.Open();
+            try
+            {
+                SqlCommand cm = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                cm.ExecuteNonQuery();
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("CANNOT DELETE ORDER " + ex.Message);
+
+            }
+            finally
+            {
+                this.conn.Close();
+                Order get = new Order();
+                get.Orderid = orderID;
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                this.DetailModel.OrderID = -1;
+                this.DetailModel.resetControl();
+            }
+        }
+
         private OrderDetailModel _detailModel;
 
         public OrderDetailModel DetailModel
@@ -20,7 +52,7 @@ namespace Orders
             get { return _detailModel; }
         }
 
-        public OrderModel(DataGridView control, DataGridView deltail_control,
+        public OrderModel(object control, 
              string host,  int port, string dbname, string username, string password, 
              string table_name, string detail_tb_name, OrderParser parser) :
             // init parent
@@ -30,7 +62,7 @@ namespace Orders
             this._initTable();
 
             Order.OrderItemParser newParser = new Order.OrderItemParser();
-            this._detailModel = new OrderDetailModel(deltail_control, host, port, dbname,
+            this._detailModel = new OrderDetailModel(host, port, dbname,
                                     username, password, detail_tb_name, newParser);
             newParser.DataModel = this._detailModel;                    
         }
@@ -59,10 +91,18 @@ namespace Orders
             newItem.OrderItems.CopyTo(items);
             result.OrderItems.AddRange(items);
 
-            foreach (Order.OrderItem eachItem in items)
+            try
             {
-                eachItem.Orderid = result.Orderid;
-                _detailModel.insertNewRow(eachItem);
+                foreach (Order.OrderItem eachItem in items)
+                {
+                    eachItem.Orderid = result.Orderid;
+                    _detailModel.insertNewRow(eachItem);
+                }
+            }
+            catch(Exception ex)
+            {
+                this.deleteRows("orderid=" + result.Orderid);
+                throw new Exception("EXCEPTION THROWED WHEN INSERT NEW ORDER: " + ex.Message);
             }
 
             return result;
@@ -149,7 +189,34 @@ namespace Orders
                 set { _orderid = value; }
             }
 
-            public OrderDetailModel( DataGridView control, string host, 
+            public void setNewControl(object con)
+            {
+                this._datasource = new DataTable();
+                if (con is DataGridView)
+                {
+                    this._control = (DataGridView)con;
+                    this._control.DataSource = this._datasource;
+                }
+                if (con is GridView)
+                {
+                    this._webControl = (GridView)con;
+                    this._webControl.DataSource = this._datasource;
+                }
+                this._initTable(Order.OrderItem.Sql_keys);
+                this.resetControl();
+            }
+
+            public OrderDetailModel( string host,
+                int port, string dbname, string username, string password,
+                string table_name, Order.OrderItemParser parser) :
+                // init parent
+                base(host, port, dbname, username, password, table_name, parser)
+            {
+                //this._control.Columns.Clear();
+                //this._initTable(Order.OrderItem.Sql_keys);
+            }
+
+            public OrderDetailModel(object control, string host, 
                 int port, string dbname, string username, string password, 
                 string table_name, Order.OrderItemParser parser) :
                 // init parent
@@ -188,7 +255,7 @@ namespace Orders
                 SqlParameter qty = this.createSQLParam("qty", SqlDbType.SmallInt, item.Qty);
                 resultList.Add(qty);
 
-                SqlParameter discount = this.createSQLParam("discount", SqlDbType.Decimal, item.Discount.ToString());
+                SqlParameter discount = this.createSQLParam("discount", SqlDbType.Decimal, item.Discount);
                 resultList.Add(discount);
 
                 return resultList;

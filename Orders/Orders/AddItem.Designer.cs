@@ -114,12 +114,13 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(181, 137);
+            this.btnAdd.Location = new System.Drawing.Point(178, 137);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(78, 23);
             this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "Add/Save";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // AddItem
             // 
@@ -141,7 +142,8 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(279, 200);
             this.Name = "AddItem";
-            this.Text = "Add Product";
+            this.Text = "Add/Edit Product";
+            this.Load += new System.EventHandler(this.AddItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

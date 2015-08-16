@@ -438,8 +438,6 @@ namespace Orders
             {
                 switch (errorCode)
                 {
-                    case -1:
-                        return "INVALID ORDER ID";
                     case -2:
                         return "INVALID PRODUCT ID";
                     case -3:
@@ -464,8 +462,6 @@ namespace Orders
 
             public override int isValid()
             {
-                if (orderid < 0)
-                    return -1;
                 if (productid < 0)
                     return -2;
                 if (this.uinitprice.Equals(""))
@@ -480,8 +476,6 @@ namespace Orders
             public override int[] isValid_multi()
             {
                 List<int> result = new List<int>();
-                if (orderid < 0)
-                    result.Add(-1);
                 if (productid < 0)
                     result.Add(-2);
                 if (this.uinitprice.Equals(""))

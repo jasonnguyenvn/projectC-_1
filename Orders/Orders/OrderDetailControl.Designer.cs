@@ -96,7 +96,7 @@
             this.toolStripSeparator1,
             this.itmRemoveAll});
             this.proList_menu.Name = "proList_menu";
-            this.proList_menu.Size = new System.Drawing.Size(185, 126);
+            this.proList_menu.Size = new System.Drawing.Size(185, 104);
             // 
             // toolStripSeparator1
             // 
@@ -138,6 +138,7 @@
             this.btnRemoveAll.Text = "       Remove All";
             this.btnRemoveAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRemoveAll.UseVisualStyleBackColor = true;
+            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
             // 
             // btnRemoveProducts
             // 
@@ -152,6 +153,7 @@
             this.btnRemoveProducts.Text = "Remove Selected Products";
             this.btnRemoveProducts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveProducts.UseVisualStyleBackColor = true;
+            this.btnRemoveProducts.Click += new System.EventHandler(this.btnRemoveProducts_Click);
             // 
             // btnAddnewProduct
             // 
@@ -166,6 +168,7 @@
             this.btnAddnewProduct.Text = "Add New Product";
             this.btnAddnewProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddnewProduct.UseVisualStyleBackColor = true;
+            this.btnAddnewProduct.Click += new System.EventHandler(this.btnAddnewProduct_Click);
             // 
             // mitmEditProduct
             // 

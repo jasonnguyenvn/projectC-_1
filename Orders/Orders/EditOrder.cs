@@ -22,12 +22,14 @@ namespace Orders
             set { itsParent = value; }
         }
         public OrderDetailControl listControl;
-        public EditOrder()
+        public EditOrder(OrderModel dataModel)
         {
             InitializeComponent();
-            listControl = new OrderDetailControl();
+            listControl = new OrderDetailControl(dataModel.DetailModel);
             listControl.Dock = DockStyle.Top;
             this.listPanel.Controls.Add(listControl);
+
+            this.dataModel = dataModel;
         }
 
 
@@ -49,11 +51,10 @@ namespace Orders
 
             this.resetComboBoxes();
 
-            this.dataModel = this.itsParent.DataModel;
-
             if (addNewMode == true)
             {
                 this.clearForm();
+                this.listControl.enableControls(true);
                 return;
             }
 
@@ -65,8 +66,8 @@ namespace Orders
 
         public void clearForm()
         {
-            this.itsParent.DataModel.DetailModel.OrderID = -1;
-            this.itsParent.DataModel.DetailModel.resetControl();
+            this.dataModel.DetailModel.OrderID = -1;
+            this.dataModel.DetailModel.resetControl();
 
             this.txtOrderID.Text = "";
             this.cbCustID.SelectedIndex = 0;
@@ -87,6 +88,7 @@ namespace Orders
             this.txtShipRegion.Text = "";
             this.txtShipPostalCode.Text = "";
             this.cbCountry.Text = "";
+            this.listControl.enableControls(true);
         }
 
         private void resetComboBoxes()
@@ -95,11 +97,11 @@ namespace Orders
             this.cbEmpID.Items.Clear();
             this.cbShipperID.Items.Clear();
             this.cbCustID.Items.Add("");
-            this.cbCustID.Items.AddRange(itsParent.DataModel.getIDItemArray("Sales.Customers", 0, 1));
+            this.cbCustID.Items.AddRange(dataModel.getIDItemArray("Sales.Customers", 0, 1));
             this.cbEmpID.Items.Add("");
-            this.cbEmpID.Items.AddRange(itsParent.DataModel.getIDItemArray("HR.Employees", 0, 1));
+            this.cbEmpID.Items.AddRange(dataModel.getIDItemArray("HR.Employees", 0, 1));
             this.cbShipperID.Items.Add("");
-            this.cbShipperID.Items.AddRange(itsParent.DataModel.getIDItemArray("Sales.Shippers", 0, 1));
+            this.cbShipperID.Items.AddRange(dataModel.getIDItemArray("Sales.Shippers", 0, 1));
         }
 
         private void doLoadCurrentData()
@@ -237,6 +239,7 @@ namespace Orders
             dataObj.Shippostalcode = this.txtShipPostalCode.Text;
             dataObj.Shipcountry = this.cbCountry.Text;
 
+            this._initDataObjProductList(dataObj);
             return dataObj;
         }
 
