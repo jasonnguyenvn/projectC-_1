@@ -67,6 +67,12 @@
     <Compile Include="OrderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="OrderDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderDetailControl.Designer.cs">
+      <DependentUpon>OrderDetailControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderControl.resx">
       <DependentUpon>OrderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderDetailControl.resx">
+      <DependentUpon>OrderDetailControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +148,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\saveHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteFolderHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClosePreviewHS.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

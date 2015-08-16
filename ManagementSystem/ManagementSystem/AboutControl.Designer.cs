@@ -31,10 +31,10 @@
             this.labelProductName = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +87,18 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(561, 292);
             this.tableLayoutPanel.TabIndex = 1;
             // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoPictureBox.Image = global::ManagementSystem.Properties.Resources.ind0x;
+            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
+            this.logoPictureBox.Size = new System.Drawing.Size(179, 286);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.TabIndex = 12;
+            this.logoPictureBox.TabStop = false;
+            // 
             // labelCopyright
             // 
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -124,18 +136,6 @@
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Github Link: https://github.com/jasonnguyenvn/projectC-_1";
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::ManagementSystem.Properties.Resources.ind0x;
-            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-            this.logoPictureBox.Size = new System.Drawing.Size(179, 286);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
             // 
             // AboutControl
             // 

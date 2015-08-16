@@ -90,6 +90,7 @@
             this.ClientSize = new System.Drawing.Size(575, 356);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
+            this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Loading";

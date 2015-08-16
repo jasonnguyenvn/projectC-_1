@@ -75,7 +75,6 @@ namespace ManagementSystem
                 CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                 OrdControl = new OrderControl();
-                
                 OrdControl.Dock = DockStyle.Fill;
                 OrdControl.AutoSize = true;
                 OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;

@@ -44,8 +44,8 @@
             this.txtShipCity = new System.Windows.Forms.TextBox();
             this.txtShipRegion = new System.Windows.Forms.TextBox();
             this.txtShipPostalCode = new System.Windows.Forms.TextBox();
-            this.gvProductDeatail = new System.Windows.Forms.DataGridView();
             this.OrderInfor = new System.Windows.Forms.GroupBox();
+            this.cboxNotShipped = new System.Windows.Forms.CheckBox();
             this.chEmpID = new System.Windows.Forms.ComboBox();
             this.cbCustID = new System.Windows.Forms.ComboBox();
             this.dtpShippedDate = new System.Windows.Forms.DateTimePicker();
@@ -64,29 +64,20 @@
             this.label15 = new System.Windows.Forms.Label();
             this.listPanel = new System.Windows.Forms.Panel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.proList_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeSelectedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeAllItmesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnRemoveProducts = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnAddnewProduct = new System.Windows.Forms.Button();
-            this.cboxNotShipped = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.gvProductDeatail)).BeginInit();
             this.OrderInfor.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.listPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            this.proList_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 36);
+            this.label7.Location = new System.Drawing.Point(20, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 6;
@@ -95,7 +86,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 64);
+            this.label8.Location = new System.Drawing.Point(20, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 7;
@@ -104,7 +95,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(20, 96);
+            this.label9.Location = new System.Drawing.Point(20, 89);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 8;
@@ -113,7 +104,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 130);
+            this.label10.Location = new System.Drawing.Point(20, 123);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 9;
@@ -122,7 +113,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 179);
+            this.label11.Location = new System.Drawing.Point(20, 172);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(24, 13);
             this.label11.TabIndex = 10;
@@ -131,7 +122,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 205);
+            this.label12.Location = new System.Drawing.Point(20, 198);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(41, 13);
             this.label12.TabIndex = 11;
@@ -140,7 +131,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 235);
+            this.label13.Location = new System.Drawing.Point(20, 228);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 12;
@@ -149,7 +140,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 263);
+            this.label14.Location = new System.Drawing.Point(20, 256);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 13);
             this.label14.TabIndex = 13;
@@ -157,21 +148,21 @@
             // 
             // txtFreight
             // 
-            this.txtFreight.Location = new System.Drawing.Point(124, 61);
+            this.txtFreight.Location = new System.Drawing.Point(124, 54);
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.Size = new System.Drawing.Size(180, 20);
             this.txtFreight.TabIndex = 1;
             // 
             // txtShipName
             // 
-            this.txtShipName.Location = new System.Drawing.Point(124, 96);
+            this.txtShipName.Location = new System.Drawing.Point(124, 89);
             this.txtShipName.Name = "txtShipName";
             this.txtShipName.Size = new System.Drawing.Size(180, 20);
             this.txtShipName.TabIndex = 2;
             // 
             // txtShipAddress
             // 
-            this.txtShipAddress.Location = new System.Drawing.Point(124, 130);
+            this.txtShipAddress.Location = new System.Drawing.Point(124, 123);
             this.txtShipAddress.Multiline = true;
             this.txtShipAddress.Name = "txtShipAddress";
             this.txtShipAddress.Size = new System.Drawing.Size(180, 40);
@@ -179,37 +170,24 @@
             // 
             // txtShipCity
             // 
-            this.txtShipCity.Location = new System.Drawing.Point(124, 176);
+            this.txtShipCity.Location = new System.Drawing.Point(124, 169);
             this.txtShipCity.Name = "txtShipCity";
             this.txtShipCity.Size = new System.Drawing.Size(180, 20);
             this.txtShipCity.TabIndex = 4;
             // 
             // txtShipRegion
             // 
-            this.txtShipRegion.Location = new System.Drawing.Point(124, 204);
+            this.txtShipRegion.Location = new System.Drawing.Point(124, 197);
             this.txtShipRegion.Name = "txtShipRegion";
             this.txtShipRegion.Size = new System.Drawing.Size(180, 20);
             this.txtShipRegion.TabIndex = 5;
             // 
             // txtShipPostalCode
             // 
-            this.txtShipPostalCode.Location = new System.Drawing.Point(124, 232);
+            this.txtShipPostalCode.Location = new System.Drawing.Point(124, 225);
             this.txtShipPostalCode.Name = "txtShipPostalCode";
             this.txtShipPostalCode.Size = new System.Drawing.Size(180, 20);
             this.txtShipPostalCode.TabIndex = 6;
-            // 
-            // gvProductDeatail
-            // 
-            this.gvProductDeatail.AllowUserToAddRows = false;
-            this.gvProductDeatail.AllowUserToDeleteRows = false;
-            this.gvProductDeatail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.gvProductDeatail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvProductDeatail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvProductDeatail.Location = new System.Drawing.Point(0, 0);
-            this.gvProductDeatail.Name = "gvProductDeatail";
-            this.gvProductDeatail.ReadOnly = true;
-            this.gvProductDeatail.Size = new System.Drawing.Size(654, 134);
-            this.gvProductDeatail.TabIndex = 0;
             // 
             // OrderInfor
             // 
@@ -234,6 +212,17 @@
             this.OrderInfor.TabIndex = 0;
             this.OrderInfor.TabStop = false;
             this.OrderInfor.Text = "Order Information";
+            // 
+            // cboxNotShipped
+            // 
+            this.cboxNotShipped.AutoSize = true;
+            this.cboxNotShipped.Location = new System.Drawing.Point(22, 171);
+            this.cboxNotShipped.Name = "cboxNotShipped";
+            this.cboxNotShipped.Size = new System.Drawing.Size(181, 17);
+            this.cboxNotShipped.TabIndex = 5;
+            this.cboxNotShipped.Text = "This Order has NOT shipped yet.";
+            this.cboxNotShipped.UseVisualStyleBackColor = true;
+            this.cboxNotShipped.CheckedChanged += new System.EventHandler(this.cboxNotShipped_CheckedChanged);
             // 
             // chEmpID
             // 
@@ -356,9 +345,9 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(347, 7);
+            this.groupBox1.Location = new System.Drawing.Point(347, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(322, 295);
+            this.groupBox1.Size = new System.Drawing.Size(322, 288);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ship Information";
@@ -575,7 +564,7 @@
             "Yemen",
             "Zambia",
             "Zimbabwe"});
-            this.cbCountry.Location = new System.Drawing.Point(124, 260);
+            this.cbCountry.Location = new System.Drawing.Point(124, 253);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(180, 21);
             this.cbCountry.TabIndex = 7;
@@ -583,7 +572,7 @@
             // cbShipperID
             // 
             this.cbShipperID.FormattingEnabled = true;
-            this.cbShipperID.Location = new System.Drawing.Point(124, 33);
+            this.cbShipperID.Location = new System.Drawing.Point(124, 26);
             this.cbShipperID.Name = "cbShipperID";
             this.cbShipperID.Size = new System.Drawing.Size(180, 21);
             this.cbShipperID.TabIndex = 0;
@@ -591,8 +580,9 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Top;
             this.label15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label15.Location = new System.Drawing.Point(12, 309);
+            this.label15.Location = new System.Drawing.Point(0, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(63, 13);
             this.label15.TabIndex = 2;
@@ -600,48 +590,21 @@
             // 
             // listPanel
             // 
-            this.listPanel.Controls.Add(this.gvProductDeatail);
-            this.listPanel.Location = new System.Drawing.Point(12, 328);
+            this.listPanel.Controls.Add(this.label15);
+            this.listPanel.Location = new System.Drawing.Point(12, 308);
             this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(654, 134);
+            this.listPanel.Size = new System.Drawing.Size(654, 154);
             this.listPanel.TabIndex = 38;
             // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // proList_menu
-            // 
-            this.proList_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addProductToolStripMenuItem,
-            this.removeSelectedItemsToolStripMenuItem,
-            this.removeAllItmesToolStripMenuItem});
-            this.proList_menu.Name = "proList_menu";
-            this.proList_menu.Size = new System.Drawing.Size(185, 70);
-            // 
-            // addProductToolStripMenuItem
-            // 
-            this.addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            this.addProductToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.addProductToolStripMenuItem.Text = "Add product";
-            // 
-            // removeSelectedItemsToolStripMenuItem
-            // 
-            this.removeSelectedItemsToolStripMenuItem.Name = "removeSelectedItemsToolStripMenuItem";
-            this.removeSelectedItemsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.removeSelectedItemsToolStripMenuItem.Text = "Remove selected items";
-            // 
-            // removeAllItmesToolStripMenuItem
-            // 
-            this.removeAllItmesToolStripMenuItem.Name = "removeAllItmesToolStripMenuItem";
-            this.removeAllItmesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.removeAllItmesToolStripMenuItem.Text = "Remove all itmes";
-            // 
             // btnSave
             // 
             this.btnSave.Image = global::Orders.Properties.Resources.saveHS;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(587, 527);
+            this.btnSave.Location = new System.Drawing.Point(584, 484);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
             this.btnSave.TabIndex = 6;
@@ -652,23 +615,12 @@
             // 
             this.btnClear.Image = global::Orders.Properties.Resources._176571;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(12, 469);
+            this.btnClear.Location = new System.Drawing.Point(15, 484);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(78, 32);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoveProducts
-            // 
-            this.btnRemoveProducts.Image = global::Orders.Properties.Resources.DeleteHS;
-            this.btnRemoveProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveProducts.Location = new System.Drawing.Point(346, 469);
-            this.btnRemoveProducts.Name = "btnRemoveProducts";
-            this.btnRemoveProducts.Size = new System.Drawing.Size(174, 32);
-            this.btnRemoveProducts.TabIndex = 4;
-            this.btnRemoveProducts.Text = "Remove Selected Products";
-            this.btnRemoveProducts.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -680,61 +632,35 @@
             this.pictureBox1.TabIndex = 33;
             this.pictureBox1.TabStop = false;
             // 
-            // btnAddnewProduct
-            // 
-            this.btnAddnewProduct.Image = global::Orders.Properties.Resources.AddTableHS;
-            this.btnAddnewProduct.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnAddnewProduct.Location = new System.Drawing.Point(521, 469);
-            this.btnAddnewProduct.Name = "btnAddnewProduct";
-            this.btnAddnewProduct.Size = new System.Drawing.Size(148, 32);
-            this.btnAddnewProduct.TabIndex = 3;
-            this.btnAddnewProduct.Text = "Add New Product";
-            this.btnAddnewProduct.UseVisualStyleBackColor = true;
-            // 
-            // cboxNotShipped
-            // 
-            this.cboxNotShipped.AutoSize = true;
-            this.cboxNotShipped.Location = new System.Drawing.Point(22, 171);
-            this.cboxNotShipped.Name = "cboxNotShipped";
-            this.cboxNotShipped.Size = new System.Drawing.Size(181, 17);
-            this.cboxNotShipped.TabIndex = 5;
-            this.cboxNotShipped.Text = "This Order has NOT shipped yet.";
-            this.cboxNotShipped.UseVisualStyleBackColor = true;
-            this.cboxNotShipped.CheckedChanged += new System.EventHandler(this.cboxNotShipped_CheckedChanged);
-            // 
             // EditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 573);
-            this.Controls.Add(this.btnSave);
+            this.ClientSize = new System.Drawing.Size(681, 529);
             this.Controls.Add(this.listPanel);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnRemoveProducts);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.OrderInfor);
-            this.Controls.Add(this.btnAddnewProduct);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(689, 600);
+            this.MaximumSize = new System.Drawing.Size(689, 556);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(689, 600);
+            this.MinimumSize = new System.Drawing.Size(689, 556);
             this.Name = "EditOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit an Order";
             this.Load += new System.EventHandler(this.EditOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gvProductDeatail)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditOrder_FormClosing);
             this.OrderInfor.ResumeLayout(false);
             this.OrderInfor.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.listPanel.ResumeLayout(false);
+            this.listPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.proList_menu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -754,8 +680,6 @@
         public System.Windows.Forms.TextBox txtShipCity;
         public System.Windows.Forms.TextBox txtShipRegion;
         public System.Windows.Forms.TextBox txtShipPostalCode;
-        public System.Windows.Forms.DataGridView gvProductDeatail;
-        private System.Windows.Forms.Button btnAddnewProduct;
         private System.Windows.Forms.GroupBox OrderInfor;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label15;
@@ -769,7 +693,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRemoveProducts;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ComboBox cbShipperID;
         private System.Windows.Forms.ComboBox chEmpID;
@@ -779,10 +702,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.ContextMenuStrip proList_menu;
-        private System.Windows.Forms.ToolStripMenuItem addProductToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeSelectedItemsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeAllItmesToolStripMenuItem;
         private System.Windows.Forms.CheckBox cboxNotShipped;
     }
 }

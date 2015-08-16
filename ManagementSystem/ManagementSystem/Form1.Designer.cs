@@ -81,7 +81,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 606F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 606F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1022, 573);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1022, 673);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -92,7 +92,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(207, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(812, 600);
+            this.panel1.Size = new System.Drawing.Size(812, 667);
             this.panel1.TabIndex = 1;
             // 
             // picHome
@@ -100,8 +100,9 @@
             this.picHome.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picHome.Image = global::ManagementSystem.Properties.Resources.ops_mgmnt_1;
             this.picHome.Location = new System.Drawing.Point(0, 0);
+            this.picHome.MinimumSize = new System.Drawing.Size(800, 700);
             this.picHome.Name = "picHome";
-            this.picHome.Size = new System.Drawing.Size(812, 600);
+            this.picHome.Size = new System.Drawing.Size(812, 700);
             this.picHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHome.TabIndex = 0;
             this.picHome.TabStop = false;
@@ -123,7 +124,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.MinimumSize = new System.Drawing.Size(150, 250);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(198, 600);
+            this.panel2.Size = new System.Drawing.Size(198, 667);
             this.panel2.TabIndex = 2;
             // 
             // btnAbout
@@ -274,10 +275,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1022, 573);
+            this.ClientSize = new System.Drawing.Size(1022, 673);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1030, 600);
+            this.MinimumSize = new System.Drawing.Size(1030, 700);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company Mangement";

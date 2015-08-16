@@ -18,9 +18,21 @@ namespace Orders
 
         private void initEditForm()
         {
-            editForm = new EditOrder();
-            this.listpanel.Controls.Add(editForm.gvProductDeatail);
+            try
+            {
+                editForm = new EditOrder();
+                editForm.ItsParent = this;
+                editForm.listControl.Dock = DockStyle.Fill;
+                editForm.listControl.enableControls(false);
+                this.panOrderDetail.Controls.Add(editForm.listControl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        
 
         public OrderControl()
         {
@@ -35,7 +47,7 @@ namespace Orders
 
                 dataModel = new OrderModel(
                                     this.gvOrders,
-                                    editForm.gvProductDeatail,
+                                    editForm.listControl.gvProductDeatail,
                                     setting.DB_HOST,
                                     setting.DB_PORT,
                                     setting.DB_NAME,
@@ -61,14 +73,14 @@ namespace Orders
         {
             this.InitializeComponent();
 
-            
+            initEditForm();
 
             OrderParser newParser = new OrderParser();
             try
             {
                 dataModel = new  OrderModel(
                                     this.gvOrders,
-                                    editForm.gvProductDeatail,
+                                    editForm.listControl.gvProductDeatail,
                                     host,
                                     port,
                                     dbname,
@@ -159,9 +171,49 @@ namespace Orders
 
         #endregion
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             this.editForm.ShowDialog();
+        }
+
+        public void doEnanbleSearchDate(DateTimePicker control, CheckBox checkControl)
+        {
+            if (checkControl.Checked == true)
+                control.Enabled = true;
+            else control.Enabled = false;
+        }
+
+        private void checkSearchOrderDate_CheckedChanged(object sender, EventArgs e)
+        {
+            this.doEnanbleSearchDate(dtpOrderDate, checkSearchOrderDate);
+            this.meEnableSearchByOrderDate.Checked = checkSearchOrderDate.Checked;
+        }
+
+        private void checkSearchRequiredDate_CheckedChanged(object sender, EventArgs e)
+        {
+            this.doEnanbleSearchDate(dtpRequiredDate, checkSearchRequiredDate);
+            this.meEnanbleSerchByRequiredDate.Checked = checkSearchRequiredDate.Checked;
+        }
+
+        private void checkSearchShippedDate_CheckedChanged(object sender, EventArgs e)
+        {
+            this.doEnanbleSearchDate(dtpShippedDate, checkSearchShippedDate);
+            this.meSearchByShippedDate.Checked = checkSearchShippedDate.Checked;
+        }
+
+        private void meEnableSearchByOrderDate_Click(object sender, EventArgs e)
+        {
+            checkSearchOrderDate.Checked = !checkSearchOrderDate.Checked;
+        }
+
+        private void meEnanbleSerchByRequiredDate_Click(object sender, EventArgs e)
+        {
+            checkSearchRequiredDate.Checked = !checkSearchRequiredDate.Checked;
+        }
+
+        private void meSearchByShippedDate_Click(object sender, EventArgs e)
+        {
+            checkSearchShippedDate.Checked = !checkSearchShippedDate.Checked;
         }
     }
 }

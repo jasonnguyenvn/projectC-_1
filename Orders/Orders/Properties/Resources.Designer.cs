@@ -81,6 +81,20 @@ namespace Orders.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ClosePreviewHS {
+            get {
+                object obj = ResourceManager.GetObject("ClosePreviewHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DeleteFolderHS {
+            get {
+                object obj = ResourceManager.GetObject("DeleteFolderHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DeleteHS {
             get {
                 object obj = ResourceManager.GetObject("DeleteHS", resourceCulture);
