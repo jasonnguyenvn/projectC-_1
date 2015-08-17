@@ -159,7 +159,7 @@ namespace ManagementSystem
 
         private void btnShippers_Click(object sender, EventArgs e)
         {
-
+            this.panel1.Controls.Clear();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
