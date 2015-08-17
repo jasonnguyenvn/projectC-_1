@@ -371,13 +371,18 @@ namespace Suppliers
     // to Database.
     public class SupplierModel : DataModelWithControl<Supplier>
     {
+        public SupplierModel( string host,
+            int port, string dbname, string username, string password, string table_name, SupplierParser parser) :
+            base(host, port, dbname, username, password, table_name, parser)
+        {
+        }
 
-        public SupplierModel(DataGridView control, string host, 
+
+        public SupplierModel(object control, string host, 
             int port, string dbname, string username, string password, string table_name, SupplierParser parser) :
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-            this._control.Columns.Clear();
             this._initTable(Supplier.Sql_keys);
         }
 
@@ -450,7 +455,39 @@ namespace Suppliers
             return deletedList;
         }
 
-        public void filter(string txtCompName, string txtContname, string txtAddr,
+        public Supplier BadDelete(int suppID)
+        {
+            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
+
+            string command = "Delete_Supp";
+
+            this.conn.Open();
+            try
+            {
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                int result =  cmd.ExecuteNonQuery();
+                if (result <= 0)
+                    get = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DATABASE ERROR. COULD NOT DELETE SUPPLIER. " + ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                if (this._webControl != null)
+                    this._webControl.DataBind();
+            }
+
+            return get;
+        }
+
+        public string filter(string txtCompName, string txtContname, string txtAddr,
             string txtCity, string cbCountry, string txtPhone, string txtFax)
         {
             string sqlFilter = " continued=1 ";
@@ -484,6 +521,8 @@ namespace Suppliers
             }
             
             this.resetControl(sqlFilter);
+
+            return sqlFilter;
             
         }
     }

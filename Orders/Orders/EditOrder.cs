@@ -287,5 +287,13 @@ namespace Orders
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (this.addNewMode == true)
+                this.clearForm();
+            else
+                MessageBox.Show("You can NOT clear this form in the MODIFY MODE");
+        }
     }
 }

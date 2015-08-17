@@ -709,7 +709,7 @@
             this.mitmAddAProduct,
             this.mitmClearAllProducts});
             this.menuTripOfGV.Name = "menuTripOfGV";
-            this.menuTripOfGV.Size = new System.Drawing.Size(158, 98);
+            this.menuTripOfGV.Size = new System.Drawing.Size(158, 120);
             this.menuTripOfGV.Opening += new System.ComponentModel.CancelEventHandler(this.menuTripOfGV_Opening);
             // 
             // mitmUpdateOrder
@@ -725,6 +725,7 @@
             this.mitmDeleteOrder.Name = "mitmDeleteOrder";
             this.mitmDeleteOrder.Size = new System.Drawing.Size(157, 22);
             this.mitmDeleteOrder.Text = "Delete";
+            this.mitmDeleteOrder.Click += new System.EventHandler(this.mitmDeleteOrder_Click);
             // 
             // toolStripSeparator2
             // 

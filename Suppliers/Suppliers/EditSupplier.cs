@@ -73,34 +73,34 @@ namespace Suppliers
         private void doSave_Update()
         {
             this.errorProvider.Clear();
-            Supplier newSup = new Supplier();
-            newSup.SupplierID = -1;
-            newSup.CompanyName = this.txtCompName.Text;
-            newSup.Contactname = this.txtContname.Text;
-            newSup.ContactTitle = this.txtContTitle.Text;
-            newSup.Address = this.txtAddr.Text;
-            newSup.City = this.txtCity.Text;
-            newSup.Region = this.txtRegion.Text;
-            newSup.Postalcode = this.txtPos.Text;
-            newSup.Country = this.cbCountry.Text;
-            newSup.Phone = this.txtPhone.Text;
-            newSup.Fax = this.txtFax.Text;
+            Supplier dataObj = new Supplier();
+            dataObj.SupplierID = -1;
+            dataObj.CompanyName = this.txtCompName.Text;
+            dataObj.Contactname = this.txtContname.Text;
+            dataObj.ContactTitle = this.txtContTitle.Text;
+            dataObj.Address = this.txtAddr.Text;
+            dataObj.City = this.txtCity.Text;
+            dataObj.Region = this.txtRegion.Text;
+            dataObj.Postalcode = this.txtPos.Text;
+            dataObj.Country = this.cbCountry.Text;
+            dataObj.Phone = this.txtPhone.Text;
+            dataObj.Fax = this.txtFax.Text;
 
-            int check = newSup.isValid();
+            int check = dataObj.isValid();
             if (check < 0)
             {
-                showErrors(newSup, check);
+                showErrors(dataObj, check);
             }
             else
             {
                 try
                 {
                     if (this.AddNewMode == true)
-                        this.dataModel.insertNewRow(newSup);
+                        this.dataModel.insertNewRow(dataObj);
                     else
                     {
-                        newSup.SupplierID = int.Parse(this.txtSupID.Text);
-                        this.dataModel.updateRow(newSup);
+                        dataObj.SupplierID = int.Parse(this.txtSupID.Text);
+                        this.dataModel.updateRow(dataObj);
                     }
                     
                     this.clearForm();

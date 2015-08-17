@@ -12,14 +12,14 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
 using DataModel;
-using Employees;
+using Suppliers;
 using System.Collections.Generic;
 
 namespace WebForms
 {
-    public partial class Employees : System.Web.UI.Page
+    public partial class Suppliers : System.Web.UI.Page
     {
-        private EmployeeModel dataModel;
+        private SupplierModel _dataModel;
         private List<Control> textboxs;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,12 +27,11 @@ namespace WebForms
             loadData();
             this.textboxs = new List<Control>();
             this.textboxs.Add(txtName);
-            this.textboxs.Add(txtTitle);
+            this.textboxs.Add(txtContactName);
             this.textboxs.Add(txtCity);
-            this.textboxs.Add(txtRegion);
             this.textboxs.Add(txtCountry);
             this.textboxs.Add(txtPhone);
-            this.textboxs.Add(cbManagerID);
+            this.textboxs.Add(txtFax);
         }
 
         protected void loadData()
@@ -40,21 +39,21 @@ namespace WebForms
             string currentFilter ;
             if (IsPostBack == false)
             {
-                Session["emp_filter"] = "jobStatus=1 ";
-                currentFilter = "jobStatus=1 "; 
+                Session["supp_filter"] = "continued=1 ";
+                currentFilter = "continued=1 "; 
             }
             else
-                currentFilter = (string)Session["emp_filter"];
+                currentFilter = (string)Session["supp_filter"];
             //this.scriptLb.Text = currentFilter;
-            EmployeeParser newParser = new EmployeeParser();
-            this.dataModel = new EmployeeModel(this.gvEmployees, @".\SQL2008",
-                 1433, "TSQLFundamentals2008","sa", "123456", "HR.Employees", newParser);
-            newParser.DataModel = this.dataModel;
+            SupplierParser newParser = new SupplierParser();
+            this._dataModel = new SupplierModel(this.gvSuppliers, @".\SQL2008",
+                 1433, "TSQLFundamentals2008","sa", "123456", "Production.Suppliers", newParser);
+            newParser.DataModel = this._dataModel;
             try
             {
-                this.dataModel.resetControl(currentFilter);
-                if (this.IsPostBack == false)
-                    this.loadEmpIDS();
+                this._dataModel.resetControl(currentFilter);
+                //if (this.IsPostBack == false)
+                  //  this.loadEmpIDS();
             }
             catch(Exception ex)
             {
@@ -65,29 +64,29 @@ namespace WebForms
             
         }
 
-        protected void gvEmployees_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.gvEmployees.SelectedIndex = -1;
-            this.txtID.Text = "";
-            this.bntDelete.Enabled = false;
-            this.btnUpdate.Enabled = false;
-            this.gvEmployees.PageIndex = e.NewPageIndex;
-            this.gvEmployees.DataBind();
-        }
-
-        protected void loadEmpIDS()
+        /*protected void loadEmpIDS()
         {
             this.cbManagerID.Items.Add("");
-            object[] getIds = this.dataModel.getIDItemArray("HR.Employees",0,1);
+            object[] getIds = this._dataModel.getSupplierIDs();
             foreach (object eachItem in getIds)
             {
                 this.cbManagerID.Items.Add(eachItem.ToString());
             }
+        }*/
+
+        protected void gvSuppliers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvSuppliers.SelectedIndex = -1;
+            this.txtID.Text = "";
+            this.bntDelete.Enabled = false;
+            this.btnUpdate.Enabled = false;
+            this.gvSuppliers.PageIndex = e.NewPageIndex;
+            this.gvSuppliers.DataBind();
         }
 
         protected void clearGVSelection()
         {
-            this.gvEmployees.SelectedIndex = -1;
+            this.gvSuppliers.SelectedIndex = -1;
             this.btnUpdate.Enabled = false;
             this.bntDelete.Enabled = false;
             this.txtID.Text = "";
@@ -95,24 +94,22 @@ namespace WebForms
 
         protected void clearFilter()
         {
-            string newFilter = "jobStatus=1 ";
-            Session["emp_filter"] = newFilter;
+            string newFilter = "continued=1 ";
+            Session["supp_filter"] = newFilter;
             try
             {
-                this.dataModel.resetControl(newFilter);
-                this.gvEmployees.PageIndex = 0;
-                this.gvEmployees.DataBind();
+                this._dataModel.resetControl(newFilter);
+                this.gvSuppliers.PageIndex = 0;
+                this.gvSuppliers.DataBind();
 
                 this.txtID.Text = "";
 
                 this.txtName.Text = "";
-                this.txtTitle.Text = "";
+                this.txtContactName.Text = "";
                 this.txtCity.Text = "";
-                this.txtRegion.Text = "";
-                this.txtPostalCode.Text = "";
                 this.txtCountry.Text = "";
                 this.txtPhone.Text = "";
-                this.cbManagerID.Text = "";
+                this.txtFax.Text = "";
             }
             catch (Exception ex)
             {
@@ -128,11 +125,10 @@ namespace WebForms
             try
             {
                 string newFilter = " ";
-                newFilter += this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
-                    txtRegion.Text, txtCountry.Text, txtPhone.Text, this.dataModel.getIDItemList("HR.Employees", 0, 1)[cbManagerID.SelectedIndex-1].Id.ToString());
+                newFilter += this._dataModel.filter(txtName.Text, txtContactName.Text, txtAddress.Text, txtCity.Text, txtCountry.Text, txtPhone.Text, txtFax.Text);
 
-                Session["emp_filter"] = newFilter;
-                this.gvEmployees.DataBind();
+                Session["supp_filter"] = newFilter;
+                this.gvSuppliers.DataBind();
             }
             catch (Exception ex)
             {
@@ -146,40 +142,55 @@ namespace WebForms
             int ID = int.Parse(this.txtID.Text.Trim());
             try
             {
-                this.dataModel.deleteRows(" empid=" + ID);
-                this.gvEmployees.DataBind();
+                this._dataModel.deleteRows(" supplierid=" + ID);
+                this.gvSuppliers.DataBind();
                 this.clearGVSelection();
             }
             catch (Exception ex)
             {
-                Session["current_error"] = ex.Message;
-                Response.Redirect("serverError.aspx");
+                this.doBadDelete(ID);
             }
         }
 
-        
+        private void doBadDelete(int idToDelete)
+        {
+            string mess = "";
+            try
+            {
+                Supplier supp = this._dataModel.BadDelete(idToDelete);
+                if (supp != null)
+                    mess = "DELETE SUCCESSFULLY";
+                else
+                    mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!";
+            }
+            catch (Exception ex)
+            {
+                mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE! ";
+            }
+
+            this.scriptLb.Text = "<script>alert(\"" + mess + "\");window.location.assign(\"Suppliers.aspx\")</script>";
+            
+        }
 
         protected void doUpdate()
         {
             int ID = int.Parse(this.txtID.Text.Trim());
-            Response.Redirect("Edit-Emp.aspx?empid=" + ID);
+            Response.Redirect("Edit-Supp.aspx?suppid=" + ID);
         }
 
-        protected void gvEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gvSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            this.txtID.Text = "";
             this.bntDelete.Enabled = true;
             this.btnUpdate.Enabled = true;
-            int selectedIndex = int.Parse(this.gvEmployees.SelectedRow.Cells[1].Text);
+            int selectedIndex = int.Parse(this.gvSuppliers.SelectedRow.Cells[1].Text);
             this.txtID.Text = selectedIndex.ToString();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            string newFilter = "jobStatus=1 ";
-            Session["emp_filter"] = newFilter;
-            Response.Redirect("Employees.aspx");
+            string newFilter = "continued=1 ";
+            Session["supp_filter"] = newFilter;
+            Response.Redirect("Suppliers.aspx");
             /*this.clearGVSelection();
             this.clearFilter();*/
         }
@@ -206,7 +217,7 @@ namespace WebForms
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Edit-Emp.aspx");
+            Response.Redirect("Edit-Supp.aspx");
         }
 
     }

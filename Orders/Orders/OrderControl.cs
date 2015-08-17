@@ -305,5 +305,10 @@ namespace Orders
             }
         }
 
+        private void mitmDeleteOrder_Click(object sender, EventArgs e)
+        {
+            this.doDelete();
+        }
+
     }
 }

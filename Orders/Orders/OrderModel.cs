@@ -14,6 +14,33 @@ namespace Orders
 
     public class OrderModel : DataModelWithControl<Order>
     {
+
+        public override Order updateRow(Order updateData)
+        {
+            Order result = base.updateRow(updateData);
+
+            Order.OrderItem[] items = new Order.OrderItem[updateData.OrderItems.Count];
+            updateData.OrderItems.CopyTo(items);
+            result.OrderItems.AddRange(items);
+
+            try
+            {
+                this.DetailModel.deleteRows("orderid=" + updateData.Orderid);
+                foreach (Order.OrderItem eachItem in items)
+                {
+                    eachItem.Orderid = result.Orderid;
+                    _detailModel.insertNewRow(eachItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("EXCEPTION THROWED WHEN UPDATE ORDER: " + ex.Message);
+            }
+
+
+            return result;
+        }
+
         public void deleteRow(int orderID)
         {
             String command = "Delete_Order";
@@ -42,6 +69,8 @@ namespace Orders
                 this.Data.Remove(get);
                 this.DetailModel.OrderID = -1;
                 this.DetailModel.resetControl();
+                if (this._webControl != null)
+                    this._webControl.DataBind();
             }
         }
 

@@ -253,6 +253,27 @@ namespace Suppliers
                 UserOption result = this.warningForm.GetUserOption;
                 if (result == UserOption.Option1)
                     this.dataModel.SafetyDelete(deleteSql);
+                if (result == UserOption.Option2)
+                {
+                    this.doBadDelete(idToDelete);
+                }
+            }
+        }
+
+        private void doBadDelete(int idToDelete)
+        {
+            try
+            {
+                Supplier supp = this.dataModel.BadDelete(idToDelete);
+                if (supp != null)
+                    MessageBox.Show("DELETE SUCCESSFULLY");
+                else
+                    MessageBox.Show("THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+                MessageBox.Show(ex.Message);
             }
         }
 

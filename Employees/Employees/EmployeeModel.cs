@@ -13,6 +13,14 @@ namespace Employees
     // This class describes Employees.
     public class Employee : BaseDataObject
     {
+        public EmployeeModel.IdItem getMrId()
+        {
+            EmployeeModel.IdItem result = new EmployeeModel.IdItem();
+            result.Id = this.mgrid;
+            return result;
+        }
+
+
         private int empid;
 
         public int Empid

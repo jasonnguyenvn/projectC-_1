@@ -114,7 +114,7 @@ namespace DataModel
                 this._webControl.DataBind();
         }
 
-        public T updateRow( T updateData)
+        public virtual T updateRow( T updateData)
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();

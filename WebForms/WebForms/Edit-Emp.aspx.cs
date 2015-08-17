@@ -64,7 +64,7 @@ namespace WebForms
         protected void loadEmpIDS()
         {
             this.cbManagerID.Items.Add("");
-            object[] getIds = this.dataModel.getEmployeeIDs();
+            object[] getIds = this.dataModel.getIDItemArray("HR.Employees",0,1);
             foreach (object eachItem in getIds)
             {
                 this.cbManagerID.Items.Add(eachItem.ToString());
@@ -90,6 +90,8 @@ namespace WebForms
                 this.txtPostalCode.Text = empData.Postalcode;
                 this.txtCountry.Text = empData.Country;
                 this.txtPhone.Text = empData.Phone;
+
+                this.cbManagerID.SelectedIndex = this.dataModel.getIDItemList("HR.Employees", 0, 1).IndexOf(empData.getMrId()) + 1;
             }
             catch (Exception ex)
             {

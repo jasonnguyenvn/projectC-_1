@@ -16,6 +16,8 @@ namespace Employees
         private EmployeeModel dataModel;
         private bool _loaded = false;
 
+        
+
         public bool Loaded
         {
             get { return _loaded; }
