@@ -45,6 +45,7 @@ namespace Orders
 
         private void EditOrder_Load(object sender, EventArgs e)
         {
+            this.errorProvider.Clear();
             this.listControl.Parent = this.listPanel;
             if (this.addNewMode == true)
                 this.listControl.enableControls(true);
@@ -89,6 +90,7 @@ namespace Orders
             this.txtShipPostalCode.Text = "";
             this.cbCountry.Text = "";
             this.listControl.enableControls(true);
+            this.errorProvider.Clear();
         }
 
         private void resetComboBoxes()

@@ -139,7 +139,9 @@
                                 Country:
                             </div>
                             <div class="row_right">
-                                <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                <asp:DropDownList ID="txtCountry" runat="server" 
+                                    CssClass="form-control input-sm">
+                                </asp:DropDownList>
                             </div>       
                         </div>
                         <div class="a_row">

@@ -121,7 +121,7 @@ namespace DataModel
             List<SqlParameter> getParams = this.SqlParams(updateData);
             List<T> result = this.updateRows(keys, getParams, where_filter);
 
-            if (result == null)
+            if (result.Count<=0)
                 return null;
             
             T updateItem = result[0];

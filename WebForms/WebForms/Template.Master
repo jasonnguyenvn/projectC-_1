@@ -182,12 +182,13 @@
             <!-- Optionally, you can add icons to the links -->
             <!-- <li class="active"><a href="#"><span>Link</span></a></li>
              -->
-            <li><a href="Default.aspx"><span>HomePage</span></a></li>
+            <li><a href="Default.aspx"> <span>HomePage</span></a></li>
             <li class="treeview">
-              <a href="#"><span>Human Resources</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#">
+              <span>Human Resources</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="Edit-Emp.aspx">Add new employee...</a></li>
-                <li><a href="Employees.aspx">Employee Manager</a></li>
+                <li><a href="Employees.aspx">Employees Manager</a></li>
                 
               </ul>
             </li>
@@ -197,8 +198,9 @@
               <ul class="treeview-menu">
                 <li><a href="#">Add new Product...</a></li>
                 <li><a href="#">Products Manager</a></li>
-                <li><a href="#">Categories Manager</a></li>
+                <li><a href="Categories.aspx">Categories Manager</a></li>
                 <li><a href="Suppliers.aspx">Suppliers Manager</a></li>
+                
               </ul>
             </li>
             
@@ -207,7 +209,8 @@
               <ul class="treeview-menu">
                 <li><a href="#">Add new Order...</a></li>
                 <li><a href="#">Orders Manager</a></li>
-                <li><a href="#">Customer Manager</a></li>
+                <li><a href="#">Customers Manager</a></li>
+                <li><a href="#">Shippers Manager</a></li>
                 
               </ul>
             </li>

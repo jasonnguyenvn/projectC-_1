@@ -155,7 +155,7 @@ namespace WebForms
                 else
                     mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!";
             }
-            catch (Exception ex)
+            catch
             {
                 mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE! ";
             }
@@ -167,7 +167,7 @@ namespace WebForms
         protected void doUpdate()
         {
             int ID = int.Parse(this.txtID.Text.Trim());
-            Response.Redirect("Edit-Supp.aspx?suppid=" + ID);
+            Response.Redirect("Edit-Cat.aspx?suppid=" + ID);
         }
 
         protected void gvCategories_SelectedIndexChanged(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace WebForms
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Edit-Supp.aspx");
+            Response.Redirect("Edit-Cat.aspx");
         }
 
     }

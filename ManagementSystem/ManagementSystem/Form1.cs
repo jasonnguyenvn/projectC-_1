@@ -22,9 +22,11 @@ namespace ManagementSystem
     {
         private EmployeeControl EmpControl;
         private SupplierControl SuppControl;
+        private ProductControl ProControl;
         private CategoryControl CatControl;
         private OrderControl OrdControl;
         private AboutControl aboutBox;
+
 
 
         private BaseControlInteface currentControl;
@@ -68,6 +70,11 @@ namespace ManagementSystem
                 SuppControl.Dock = DockStyle.Fill;
                 SuppControl.AutoSize = true;
                 SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                ProControl = new ProductControl();
+                ProControl.Dock = DockStyle.Fill;
+                ProControl.AutoSize = true;
+                ProControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                 CatControl = new CategoryControl();
                 CatControl.Dock = DockStyle.Fill;
@@ -119,7 +126,7 @@ namespace ManagementSystem
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.ProControl);
         }
 
         private void btnCategories_Click(object sender, EventArgs e)

@@ -181,18 +181,5 @@
 <asp:Content ID="endScript" ContentPlaceHolderID="endScript" Runat="Server">
 
     <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script>
-    $(function() {
-        $( "#txtBirthday" ).datepicker( );
-         $( "#txtHireday" ).datepicker( );
-            /* $( "#txtHireday" ).datepicker( {
-          showOn: "button",
-          buttonImage: "css/images/calendar.gif",
-          buttonImageOnly: true,
-          buttonText: "Select date"
-        });*/
-    });
-    
-    </script>
 </asp:Content>
 

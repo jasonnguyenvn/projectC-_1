@@ -161,11 +161,11 @@ namespace WebForms
                 if (supp != null)
                     mess = "DELETE SUCCESSFULLY";
                 else
-                    mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!";
+                    mess = "THIS Supplier'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!";
             }
-            catch (Exception ex)
+            catch
             {
-                mess = "THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE! ";
+                mess = "THIS Supplier'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE! ";
             }
 
             this.scriptLb.Text = "<script>alert(\"" + mess + "\");window.location.assign(\"Suppliers.aspx\")</script>";

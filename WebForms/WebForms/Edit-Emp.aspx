@@ -137,10 +137,12 @@
                     <div class="col-md-4">
                         Address:</div>
                     <div class="col-md-8">
-                        <asp:TextBox ID="txtAddress" CssClass="form-control input-sm" runat="server" ></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" CssClass="form-control input-sm" runat="server" 
+                            Rows="4" TextMode="MultiLine" ></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
                             ControlToValidate="txtAddress" ErrorMessage="Required Field" 
                             Display="Dynamic"></asp:RequiredFieldValidator>
+                        <br />
                     </div>
                 </div>
                 <div class="row">
@@ -171,7 +173,9 @@
                     <div class="col-md-4">
                         Country:</div>
                     <div class="col-md-8">
-                        <asp:TextBox ID="txtCountry"  CssClass="form-control input-sm" runat="server" ></asp:TextBox>
+                        <asp:DropDownList ID="txtCountry" runat="server" 
+                            CssClass="form-control input-sm">
+                        </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
                             ControlToValidate="txtCountry" ErrorMessage="Required Field" 
                             Display="Dynamic"></asp:RequiredFieldValidator>

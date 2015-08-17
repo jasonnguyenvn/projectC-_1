@@ -24,6 +24,7 @@ namespace Productions
 
         private void EditCatForm_Load(object sender, EventArgs e)
         {
+            this.errorProvider.Clear();
             if (AddNewMode == true)
             {
                 currentData = null;

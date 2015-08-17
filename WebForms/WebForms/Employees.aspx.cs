@@ -24,6 +24,12 @@ namespace WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.IsPostBack == false)
+            {
+                this.txtCountry.DataSource = EmployeeModel.GetCountries();
+                this.txtCountry.DataBind();
+            }
+
             loadData();
             this.textboxs = new List<Control>();
             this.textboxs.Add(txtName);
@@ -110,7 +116,7 @@ namespace WebForms
                 this.txtCity.Text = "";
                 this.txtRegion.Text = "";
                 this.txtPostalCode.Text = "";
-                this.txtCountry.Text = "";
+                this.txtCountry.SelectedIndex = 0;
                 this.txtPhone.Text = "";
                 this.cbManagerID.Text = "";
             }
@@ -127,9 +133,12 @@ namespace WebForms
             clearGVSelection();
             try
             {
+                string mrid = "";
+                if(cbManagerID.SelectedIndex>0)
+                    mrid = this.dataModel.getIDItemList("HR.Employees", 0, 1)[cbManagerID.SelectedIndex-1].Id.ToString();
                 string newFilter = " ";
                 newFilter += this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
-                    txtRegion.Text, txtCountry.Text, txtPhone.Text, this.dataModel.getIDItemList("HR.Employees", 0, 1)[cbManagerID.SelectedIndex-1].Id.ToString());
+                    txtRegion.Text, txtCountry.Text, txtPhone.Text, mrid);
 
                 Session["emp_filter"] = newFilter;
                 this.gvEmployees.DataBind();

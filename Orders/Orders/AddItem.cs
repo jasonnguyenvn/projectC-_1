@@ -34,8 +34,9 @@ namespace Orders
             result = null;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        protected void doAdd()
         {
+            this.errorProvider.Clear();
             this.errorProvider.Clear();
             result = new Order.OrderItem();
             if (cbProductID.SelectedIndex == 0)
@@ -73,9 +74,14 @@ namespace Orders
             this.Close();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            this.doAdd();
+        }
+
         private void AddItem_Load(object sender, EventArgs e)
         {
-            
+            this.errorProvider.Clear();
         }
     }
 }

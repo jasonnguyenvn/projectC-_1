@@ -41,7 +41,7 @@ namespace Orders
         protected void doAdd()
         {
             addForm.cbProductID.Items.Add("");
-            addForm.cbProductID.Items.AddRange(this.dataModel.getIDItemArray("Production.Products", 0, 1));
+            addForm.cbProductID.Items.AddRange(this.dataModel.getIDItemList("Production.Products", 0, 1, " discontinued=0" ).ToArray());
             addForm.ShowDialog();
             if (addForm.Result == null)
                 return;

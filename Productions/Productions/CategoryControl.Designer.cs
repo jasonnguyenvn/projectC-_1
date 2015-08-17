@@ -47,8 +47,8 @@
             this.txtSelectedID = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvCategories)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -156,7 +156,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 121);
             this.tableLayoutPanel1.TabIndex = 70;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // label4
             // 
@@ -203,6 +202,7 @@
             this.btnSearch.TabIndex = 33;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel5
             // 
@@ -228,6 +228,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Image = global::Productions.Properties.Resources.NewDocumentHS;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnAdd.Location = new System.Drawing.Point(288, 31);
             this.btnAdd.Name = "btnAdd";
@@ -239,6 +240,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Image = global::Productions.Properties.Resources.DeleteHS;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnDelete.Location = new System.Drawing.Point(105, 31);
             this.btnDelete.Name = "btnDelete";
@@ -258,6 +260,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Image = global::Productions.Properties.Resources.NewCardHS;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnUpdate.Location = new System.Drawing.Point(194, 31);
             this.btnUpdate.Name = "btnUpdate";
@@ -277,25 +280,26 @@
             this.panel4.Size = new System.Drawing.Size(400, 60);
             this.panel4.TabIndex = 66;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 60);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 35;
-            this.pictureBox2.TabStop = false;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(85, 16);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(282, 26);
+            this.label7.Size = new System.Drawing.Size(292, 26);
             this.label7.TabIndex = 36;
-            this.label7.Text = "Employees Manager";
+            this.label7.Text = "Categories Manager";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox2.Image = global::Productions.Properties.Resources.icon_03;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(79, 60);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 35;
+            this.pictureBox2.TabStop = false;
             // 
             // CategoryControl
             // 

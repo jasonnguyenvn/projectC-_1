@@ -499,6 +499,7 @@
             this.Name = "EditSupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Supplier";
+            this.Load += new System.EventHandler(this.EditSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

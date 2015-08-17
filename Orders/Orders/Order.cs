@@ -559,19 +559,6 @@ namespace Orders
                 return result;
             }
 
-            public override OrderItem parse(System.Data.SqlClient.SqlDataReader dr)
-            {
-                int count = dr.FieldCount;
-                List<SqlParameter> Params = new List<SqlParameter>();
-                for (int i = 0; i < count; i++)
-                {
-                    SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                    Params.Add(param);
-                }
-
-                return this.parse(OrderItem.Sql_keys, Params);
-            }
-
             public OrderItem parse(DataRow row)
             {
                 if (row.Table.Columns.Count != OrderItem.Sql_keys.Length)
@@ -697,19 +684,6 @@ namespace Orders
             }
 
             return result;
-        }
-
-        public override Order parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Order.Sql_keys, Params);
         }
     }
 }

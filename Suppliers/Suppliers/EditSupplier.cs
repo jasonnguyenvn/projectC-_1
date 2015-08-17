@@ -114,5 +114,10 @@ namespace Suppliers
             }
         }
 
+        private void EditSupplier_Load(object sender, EventArgs e)
+        {
+            this.errorProvider.Clear();
+        }
+
     }
 }

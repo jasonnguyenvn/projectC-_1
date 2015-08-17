@@ -419,18 +419,7 @@ namespace Employees
             return result;
         }
 
-        public override Employee parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Employee.Sql_keys, Params);
-        }
+        
 
         public override string getPrimaryKey()
         {
@@ -540,8 +529,6 @@ namespace Employees
                 }
                 return deletedList;
             }
-
-            
             
         }
 

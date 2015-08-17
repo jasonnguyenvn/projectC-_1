@@ -181,6 +181,11 @@ namespace Employees
             this.clearForm();
         }
 
+        private void EmployeeEditForm_Load(object sender, EventArgs e)
+        {
+            this.errProvider.Clear();
+        }
+
 
     }
 }

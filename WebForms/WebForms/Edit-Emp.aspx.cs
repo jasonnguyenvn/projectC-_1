@@ -24,7 +24,13 @@ namespace WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.IsPostBack == false)
+            {
+                this.txtCountry.DataSource = EmployeeModel.GetCountries();
+                this.txtCountry.DataBind();
+            }
             this.loadData();
+            
         }
 
         protected void loadData()
@@ -84,11 +90,12 @@ namespace WebForms
                 this.txtTitleOfCoursy.Text = empData.Titleofcourtesy;
                 this.txtBirthday.Text = empData.Birthdate.ToShortDateString();
                 this.txtHireday.Text = empData.Hiredate.ToShortDateString();
-                this.txtAddress.Text = empData.Address;
+                this.txtAddress.Text =  Server.HtmlDecode(empData.Address);
                 this.txtCity.Text = empData.City;
                 this.txtRegion.Text = empData.Region;
                 this.txtPostalCode.Text = empData.Postalcode;
-                this.txtCountry.Text = empData.Country;
+                ListItem itm = new ListItem(empData.Country);
+                this.txtCountry.SelectedIndex = this.txtCountry.Items.IndexOf(itm);
                 this.txtPhone.Text = empData.Phone;
 
                 this.cbManagerID.SelectedIndex = this.dataModel.getIDItemList("HR.Employees", 0, 1).IndexOf(empData.getMrId()) + 1;
@@ -120,15 +127,18 @@ namespace WebForms
                 this.script.Text = "<script>alert(\"INVALID DATE FORMAT AT BIRTHDATE OR HIREDATE\");</script>";
                 return;
             }
-            newEmp.Address = this.txtAddress.Text;
+            newEmp.Address =  Server.HtmlEncode(this.txtAddress.Text);
             newEmp.City = this.txtCity.Text;
             newEmp.Region = this.txtRegion.Text;
             newEmp.Postalcode = this.txtPostalCode.Text;
-            newEmp.Country = this.txtCountry.Text;
+            newEmp.Country = this.txtCountry.SelectedItem.ToString();
             newEmp.Phone = this.txtPhone.Text;
             try
             {
-                newEmp.Mgrid = int.Parse(this.cbManagerID.Text);
+                string mrid = "";
+                if (cbManagerID.SelectedIndex > 0)
+                    mrid = this.dataModel.getIDItemList("HR.Employees", 0, 1)[cbManagerID.SelectedIndex - 1].Id.ToString();
+                newEmp.Mgrid = int.Parse(mrid);
             }
             catch { newEmp.Mgrid = -1; }
             newEmp.JobStatus = true;

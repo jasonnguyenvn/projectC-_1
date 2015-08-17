@@ -13,13 +13,7 @@ namespace Productions
     // This class describes Categorys.
     public class Category : BaseDataObject
     {
-        private bool deactive;
-
-        public bool Deactive
-        {
-            get { return deactive; }
-            set { deactive = value; }
-        }
+       
 
         private int categoryid;
 
@@ -43,6 +37,14 @@ namespace Productions
         {
             get { return description; }
             set { description = value; }
+        }
+
+        private bool deactive;
+
+        public bool Deactive
+        {
+            get { return deactive; }
+            set { deactive = value; }
         }
 
         
@@ -195,20 +197,6 @@ namespace Productions
 
             return result;
         }
-
-        public override Category parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Category.Sql_keys, Params);
-        }
-
         
     }
 
@@ -222,15 +210,17 @@ namespace Productions
         public Category SafeDelete(int catID)
         {
             Category get = this.getItems(" categoryid=" + catID)[0];
-            List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(this.createSQLParam("categoryid", SqlDbType.Int, catID));
+
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(this.createSQLParam("categoryid", SqlDbType.Int, catID));
 
             string command = "Safe_Delete_Cat";
 
             this.conn.Open();
             try
             {
-                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, paramList);
                 int result = cmd.ExecuteNonQuery();
                 if (result <= 0)
                     get = null;

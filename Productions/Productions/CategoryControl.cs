@@ -181,14 +181,18 @@ namespace Productions
 
         #endregion
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnClearForm_Click(object sender, EventArgs e)
         {
             this.clearAll();
+
+            try
+            {
+                this.dataModel.resetControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -256,6 +260,25 @@ namespace Productions
             catch (Exception ex)
             {
                 MessageBox.Show("THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            doSearch();
+        }
+
+        public void doSearch()
+        {
+            this.gvCategories.ClearSelection();
+            try
+            {
+                string newFilter = " ";
+                newFilter += this.dataModel.filter(this.txtName.Text, this.txtDescription.Text);
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }

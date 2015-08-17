@@ -73,6 +73,11 @@
     <Compile Include="CategoryControl.Designer.cs">
       <DependentUpon>CategoryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -90,6 +95,10 @@
     <EmbeddedResource Include="ProductControl.resx">
       <DependentUpon>ProductControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -97,6 +106,23 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\17657.png" />
+    <None Include="Resources\AWS-icon.png" />
+    <Content Include="Resources\DeleteHS.png" />
+    <Content Include="Resources\DialHS.png" />
+    <Content Include="Resources\Filter2HS.png" />
+    <None Include="Resources\Image1.bmp" />
+    <Content Include="Resources\NewCardHS.png" />
+    <Content Include="Resources\NewDocumentHS.png" />
+    <Content Include="Resources\saveHS.png" />
+    <Content Include="Resources\supplierIcon2.png" />
+    <Content Include="Resources\Warning.bmp" />
+    <Content Include="Resources\WarningHS.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

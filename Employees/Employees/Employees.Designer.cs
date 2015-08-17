@@ -55,6 +55,8 @@
             this.tbPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,18 +69,16 @@
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cbManagerID = new System.Windows.Forms.ComboBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnClearForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.cbManagerID = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployees)).BeginInit();
             this.GridViewMenu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -320,6 +320,22 @@
             this.GridViewMenu.Name = "GridViewMenu";
             this.GridViewMenu.Size = new System.Drawing.Size(110, 48);
             // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Image = global::Employees.Properties.Resources.saveHS;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::Employees.Properties.Resources.DeleteHS1;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -407,6 +423,7 @@
             // 
             // cbCountry
             // 
+            this.cbCountry.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Items.AddRange(new object[] {
             "Afghanistan",
@@ -624,6 +641,7 @@
             // 
             // txtPhone
             // 
+            this.txtPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPhone.Location = new System.Drawing.Point(105, 160);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(286, 20);
@@ -631,6 +649,7 @@
             // 
             // txtPostalCode
             // 
+            this.txtPostalCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPostalCode.Location = new System.Drawing.Point(105, 107);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(286, 20);
@@ -638,6 +657,7 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTitle.Location = new System.Drawing.Point(105, 29);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(286, 20);
@@ -645,6 +665,7 @@
             // 
             // txtRegion
             // 
+            this.txtRegion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRegion.Location = new System.Drawing.Point(105, 81);
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(286, 20);
@@ -652,6 +673,7 @@
             // 
             // txtCity
             // 
+            this.txtCity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCity.Location = new System.Drawing.Point(105, 55);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(286, 20);
@@ -659,6 +681,7 @@
             // 
             // txtName
             // 
+            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtName.Location = new System.Drawing.Point(105, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(286, 20);
@@ -672,48 +695,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(286, 37);
             this.panel3.TabIndex = 66;
-            // 
-            // cbManagerID
-            // 
-            this.cbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbManagerID.FormattingEnabled = true;
-            this.cbManagerID.Location = new System.Drawing.Point(105, 186);
-            this.cbManagerID.Name = "cbManagerID";
-            this.cbManagerID.Size = new System.Drawing.Size(283, 21);
-            this.cbManagerID.TabIndex = 67;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.btnAdd);
-            this.panel5.Controls.Add(this.btnDelete);
-            this.panel5.Controls.Add(this.txtEmployeeID);
-            this.panel5.Controls.Add(this.btnUpdate);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(3, 277);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(394, 60);
-            this.panel5.TabIndex = 69;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 60);
-            this.panel2.TabIndex = 66;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(282, 26);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "Employees Manager";
             // 
             // btnClearForm
             // 
@@ -738,6 +719,29 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cbManagerID
+            // 
+            this.cbManagerID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbManagerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbManagerID.FormattingEnabled = true;
+            this.cbManagerID.Location = new System.Drawing.Point(105, 186);
+            this.cbManagerID.Name = "cbManagerID";
+            this.cbManagerID.Size = new System.Drawing.Size(286, 21);
+            this.cbManagerID.TabIndex = 67;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.btnAdd);
+            this.panel5.Controls.Add(this.btnDelete);
+            this.panel5.Controls.Add(this.txtEmployeeID);
+            this.panel5.Controls.Add(this.btnUpdate);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(3, 277);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(394, 60);
+            this.panel5.TabIndex = 69;
             // 
             // btnAdd
             // 
@@ -775,6 +779,16 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(400, 60);
+            this.panel2.TabIndex = 66;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -786,21 +800,15 @@
             this.pictureBox2.TabIndex = 35;
             this.pictureBox2.TabStop = false;
             // 
-            // updateToolStripMenuItem
+            // label2
             // 
-            this.updateToolStripMenuItem.Image = global::Employees.Properties.Resources.saveHS;
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.updateToolStripMenuItem.Text = "Update";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::Employees.Properties.Resources.DeleteHS1;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Algerian", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(85, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(282, 26);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Employees Manager";
             // 
             // EmployeeControl
             // 

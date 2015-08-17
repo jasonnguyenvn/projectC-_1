@@ -6,10 +6,44 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 
+using System.Diagnostics;
+
+using System.Globalization;
+
 namespace DataModel
 {
     public abstract class AbstractDataModel<T> : object where T : BaseDataObject
     {
+
+        public static List<string> GetCountries()
+        {
+
+            List<string> list = new List<string>();
+            
+
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures | CultureTypes.SpecificCultures);
+
+            foreach (CultureInfo info in cultures)
+            {
+                if(info.Name.Equals(""))
+                    continue;
+                //RegionInfo info2 = new RegionInfo(info.LCID);
+                RegionInfo info2 = new RegionInfo(info.Name);
+
+                if (!list.Contains(info2.EnglishName))
+                {
+
+                    list.Add(info2.EnglishName);
+
+                }
+
+            }
+            list.Sort();
+            list.Insert(0, "");
+            return list;
+        }
+
+
         private readonly List<T> _data;
 
         public List<T> Data
@@ -419,7 +453,7 @@ namespace DataModel
             }
         }
 
-        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex)
+        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex, string filter)
         {
             List<IdItem> result = new List<IdItem>();
 
@@ -430,6 +464,8 @@ namespace DataModel
             {
                 string command = "SELECT * FROM " + tbName;
                 SqlCommand cmd = this.createSQLCommand(command);
+                if (filter.Equals("") == false)
+                    command += " WHERE " + filter;
 
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -453,6 +489,11 @@ namespace DataModel
             }
 
             return result;
+        }
+
+        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex)
+        {
+            return this.getIDItemList(tbName, keyIndex, showIndex, "");
         }
 
         public object[] getIDItemArray(string tbName, int keyIndex, int showIndex)
