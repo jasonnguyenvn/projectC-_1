@@ -60,6 +60,62 @@ namespace SuppliersControl.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _17657 {
+            get {
+                object obj = ResourceManager.GetObject("17657", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DeleteHS {
+            get {
+                object obj = ResourceManager.GetObject("DeleteHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DialHS {
+            get {
+                object obj = ResourceManager.GetObject("DialHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Filter2HS {
+            get {
+                object obj = ResourceManager.GetObject("Filter2HS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap NewCardHS {
+            get {
+                object obj = ResourceManager.GetObject("NewCardHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap NewDocumentHS {
+            get {
+                object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap saveHS {
+            get {
+                object obj = ResourceManager.GetObject("saveHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap supplierIcon2 {
+            get {
+                object obj = ResourceManager.GetObject("supplierIcon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Warning {
             get {
                 object obj = ResourceManager.GetObject("Warning", resourceCulture);

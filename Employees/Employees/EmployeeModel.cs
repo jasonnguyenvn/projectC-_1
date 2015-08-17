@@ -13,6 +13,14 @@ namespace Employees
     // This class describes Employees.
     public class Employee : BaseDataObject
     {
+        public EmployeeModel.IdItem getMrId()
+        {
+            EmployeeModel.IdItem result = new EmployeeModel.IdItem();
+            result.Id = this.mgrid;
+            return result;
+        }
+
+
         private int empid;
 
         public int Empid
@@ -182,6 +190,8 @@ namespace Employees
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Employee == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Employee.");
             Employee otherEmp = (Employee) other;
             otherEmp.empid = this.empid;
             otherEmp.lastname = this.lastname;
@@ -212,6 +222,9 @@ namespace Employees
 
         public override bool Equals(object obj)
         {
+            if (obj is Employee == false)
+                return false;
+
             Employee other = (Employee)obj;
             return this.Empid == other.Empid;
         }
@@ -244,15 +257,8 @@ namespace Employees
         {
             switch(errorCode)
             {
-                case -1: return "Firstname is empty";
-                case -2: return "Lastname is empty";
-                case -3: return "Title is empty";
-                case -4: return "TitleofCourtesy is empty";
+                case -1: return "Some fields are empty";
                 case -5: return "Employee must be 18 or older";
-                case -6: return "Address is empty";
-                case -7: return "City is empty";
-                case -10: return "Country is empty";
-                case -11: return "Phone is empty";
                 
             }
             return "";
@@ -260,19 +266,68 @@ namespace Employees
 
         public override int isValid()
         {
-            if (this.firstname.Equals("")) return -1;
-            if (this.lastname.Equals("")) return -2;
-            if (this.title.Equals("")) return -3;
-            if (this.titleofcourtesy.Equals("")) return -4;
-            if (DateTime.Now.Year-this.Birthdate.Year<18) return -5;
-            if (this.address.Equals("")) return -6;
-            if (this.city.Equals("")) return -7;
-            if (this.country.Equals("")) return -10;
-            if (this.phone.Equals("")) return -11;
+            if (this.firstname.Equals("")) 
+                return -1;
+            if (this.lastname.Equals("")) 
+                return -1;
+            if (this.title.Equals("")) 
+                return -1;
+            if (this.titleofcourtesy.Equals("")) 
+                return -1;
+            if (this.address.Equals("")) 
+                return -1;
+            if (this.city.Equals("")) 
+                return -1;
+            if (this.country.Equals("")) 
+                return -1;
+            if (this.phone.Equals("")) 
+                return -1;
+
+            if (DateTime.Now.Year - this.Birthdate.Year < 18)
+                return -5;
             
 
             return 1;
 
+        }
+
+        /*public override string[] getErrorMessage(int[] errorCodes)
+        {
+            List<string> result = new List<string>();
+
+            foreach (int eachError in errorCodes)
+            {
+                result.Add(this.getErrorMessage(eachError));
+            }
+
+            return result.ToArray();
+        }*/
+
+        public override int[] isValid_multi()
+        {
+            List<int> result = new List<int>();
+            
+
+            if (this.firstname.Equals("")) 
+                result.Add( -1);
+            if (this.lastname.Equals("")) 
+                result.Add(-1);
+            if (this.title.Equals("")) 
+                result.Add( -1);
+            if (this.titleofcourtesy.Equals("")) 
+                result.Add( -1);
+            if (DateTime.Now.Year-this.Birthdate.Year<18) 
+                result.Add( -5);
+            if (this.address.Equals("")) 
+                result.Add( -1);
+            if (this.city.Equals("")) 
+                result.Add( -1);
+            if (this.country.Equals("")) 
+                result.Add( -1);
+            if (this.phone.Equals("")) 
+                result.Add( -1);
+
+            return result.ToArray();
         }
     }
 
@@ -364,18 +419,7 @@ namespace Employees
             return result;
         }
 
-        public override Employee parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Employee.Sql_keys, Params);
-        }
+        
 
         public override string getPrimaryKey()
         {
@@ -390,6 +434,13 @@ namespace Employees
     // to Database.
     public class EmployeeModel : DataModelWithControl<Employee>
     {
+        public EmployeeModel( string host,
+            int port, string dbname, string username, string password, string table_name, EmployeeParser parser) :
+            base( host, port, dbname, username, password, table_name, parser)
+        {
+           
+        }
+
         public EmployeeModel(object control,  string host, 
             int port, string dbname, string username, string password, string table_name, EmployeeParser parser) :
             base(control,host, port, dbname, username, password, table_name, parser)
@@ -413,8 +464,14 @@ namespace Employees
             SqlParameter hiredate = this.createSQLParam("hiredate", SqlDbType.DateTime, item.Hiredate);
             SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address, 60);
             SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City, 15);
-            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
-            SqlParameter postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+            SqlParameter region;
+            if(item.Region.Equals(""))
+               region = this.createSQLParam("region", SqlDbType.NVarChar,  DBNull.Value, 15);
+            else region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15); 
+            SqlParameter postalcode;
+            if(item.Postalcode.Equals(""))
+                postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, DBNull.Value, 10);
+            else postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
             SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
             SqlParameter mgrid = null;
@@ -452,20 +509,81 @@ namespace Employees
 
         public override List<Employee> deleteRows(string where_filter)
         {
-            List<Employee> deletedList = this.getItems(where_filter);
-            if (deletedList.Count <= 0)
-                return new List<Employee>();
-
-            foreach (Employee emp in deletedList)
+            try
             {
-                emp.JobStatus = false;
-                this.updateRow(emp);
-                int delIndex = this.Data.IndexOf(emp);
-                this.Data.RemoveAt(delIndex);
-                this.DataSource.Rows.RemoveAt(delIndex);
+                return base.deleteRows(where_filter);
+            }
+            catch
+            {
+                List<Employee> deletedList = this.getItems(where_filter);
+                if (deletedList.Count <= 0)
+                    return new List<Employee>();
+                foreach (Employee emp in deletedList)
+                {
+
+                    emp.JobStatus = false;
+                    this.updateRow(emp);
+                    int delIndex = this.Data.IndexOf(emp);
+                    this.Data.RemoveAt(delIndex);
+                    this.DataSource.Rows.RemoveAt(delIndex);
+                }
+                return deletedList;
+            }
+            
+        }
+
+        public string filter(string txtName, string txtTitle, string txtCity,
+            string txtRegion, string txtCountry, string txtPhone, string txtManagerID)
+        {
+            string sqlFilter = "jobStatus=1 ";
+            if (txtName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Trim());
+
+            }
+            if (txtTitle.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Trim());
+            }
+            if (txtCity.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Trim());
+            }
+            if (txtRegion.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Trim());
+            }
+            if (txtCountry.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Trim());
             }
 
-            return deletedList;
+            if (txtPhone.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Trim());
+            }
+
+            if (txtManagerID.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Trim());
+            }
+
+            this.resetControl(sqlFilter);
+
+            return sqlFilter;
+            
         }
+
+        /*public object[] getEmployeeIDs()
+        {
+            List<object> result = new List<object>();
+
+            foreach (Employee item in this.Data)
+            {
+                result.Add(item.Empid);
+            }
+
+            return result.ToArray();
+        }*/
     }
 }

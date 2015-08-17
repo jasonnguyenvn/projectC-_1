@@ -39,6 +39,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -52,19 +53,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryModel.cs" />
+    <Compile Include="EditCatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCatForm.Designer.cs">
+      <DependentUpon>EditCatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductModel.cs" />
-    <Compile Include="Products.cs">
+    <Compile Include="ProductControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Products.Designer.cs">
-      <DependentUpon>Products.cs</DependentUpon>
+    <Compile Include="ProductControl.Designer.cs">
+      <DependentUpon>ProductControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Categories.cs">
+    <Compile Include="CategoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Categories.Designer.cs">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <Compile Include="CategoryControl.Designer.cs">
+      <DependentUpon>CategoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -74,11 +86,18 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Categories.resx">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <EmbeddedResource Include="CategoryControl.resx">
+      <DependentUpon>CategoryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Products.resx">
-      <DependentUpon>Products.cs</DependentUpon>
+    <EmbeddedResource Include="EditCatForm.resx">
+      <DependentUpon>EditCatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductControl.resx">
+      <DependentUpon>ProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +106,23 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\17657.png" />
+    <None Include="Resources\AWS-icon.png" />
+    <Content Include="Resources\DeleteHS.png" />
+    <Content Include="Resources\DialHS.png" />
+    <Content Include="Resources\Filter2HS.png" />
+    <None Include="Resources\Image1.bmp" />
+    <Content Include="Resources\NewCardHS.png" />
+    <Content Include="Resources\NewDocumentHS.png" />
+    <Content Include="Resources\saveHS.png" />
+    <Content Include="Resources\supplierIcon2.png" />
+    <Content Include="Resources\Warning.bmp" />
+    <Content Include="Resources\WarningHS.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

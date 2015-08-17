@@ -102,12 +102,12 @@ namespace Suppliers
             set { fax = value; }
         }
 
-        private bool continued;
+        private bool deactive;
 
-        public bool Continued
+        public bool Deactive
         {
-            get { return continued; }
-            set { continued = value; }
+            get { return deactive; }
+            set { deactive = value; }
         }
 
         public static readonly string[] Sql_keys =
@@ -123,7 +123,7 @@ namespace Suppliers
             "country",
             "phone",
             "fax",
-            "continued"
+            "deactive"
         };
 
         public override string[] SqlKeys()
@@ -134,7 +134,7 @@ namespace Suppliers
         public override object[] convertToRow()
         {
             object[] result = {
-                this.supplierid.ToString(),
+                this.supplierid,
                 this.companyname,
                 this.contactname,
                 this.contacttitle,
@@ -145,13 +145,15 @@ namespace Suppliers
                 this.country,
                 this.phone,
                 this.fax,
-                this.continued.ToString()
+                this.deactive.ToString()
             };
             return result;
         }
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Supplier == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Supplier.");
             Supplier otherSupp = (Supplier)other;
             otherSupp.supplierid = this.supplierid;
             otherSupp.companyname = this.companyname;
@@ -163,7 +165,7 @@ namespace Suppliers
             otherSupp.country = this.country;
             otherSupp.phone = this.phone;
             otherSupp.fax = this.fax;
-            otherSupp.continued = this.continued;
+            otherSupp.deactive = this.deactive;
         }
 
         public override int getNoOfProp()
@@ -178,6 +180,9 @@ namespace Suppliers
 
         public override bool Equals(object obj)
         {
+            if (obj is  Supplier == false)
+                return false;
+
             Supplier other = (Supplier)obj;
             return this.SupplierID == other.SupplierID;
         }
@@ -200,7 +205,7 @@ namespace Suppliers
             this.country = "";
             this.phone = "";
             this.fax = "";
-            this.continued = true;
+            this.deactive = true;
         }
 
         public override string getErrorMessage(int errorCode)
@@ -235,6 +240,33 @@ namespace Suppliers
             /*if (this.fax.Equals(""))
                 return -2;*/
             return 1;
+        }
+
+
+        public override int[] isValid_multi()
+        {
+            List<int> result = new List<int>();
+            if (this.companyname.Equals(""))
+                result.Add(-2);
+            if (this.contactname.Equals(""))
+                result.Add(-2);
+            if (this.contacttitle.Equals(""))
+                result.Add(-2);
+            if (this.address.Equals(""))
+               result.Add(-2);
+            if (this.city.Equals(""))
+                result.Add(-2);
+            /*if (this.region.Equals(""))
+                return -2;
+            if (this.postalcode.Equals(""))
+                return -2;*/
+            if (this.country.Equals(""))
+                result.Add(-2);
+            if (this.phone.Equals(""))
+                result.Add(-2);
+            /*if (this.fax.Equals(""))
+                return -2;*/
+            return result.ToArray();
         }
     }
 
@@ -304,26 +336,13 @@ namespace Suppliers
                     case "fax":
                         result.Fax = param.Value.ToString();
                         break;
-                    case "continued":
-                        result.Continued = param.Value.Equals(true) ? true : false;
+                    case "deactive":
+                        result.Deactive = param.Value.Equals(true) ? true : false;
                         break;
                 }
             }
 
             return result;
-        }
-
-        public override Supplier parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Supplier.Sql_keys, Params);
         }
 
         public override string getPrimaryKey()
@@ -339,19 +358,24 @@ namespace Suppliers
     // to Database.
     public class SupplierModel : DataModelWithControl<Supplier>
     {
+        public SupplierModel( string host,
+            int port, string dbname, string username, string password, string table_name, SupplierParser parser) :
+            base(host, port, dbname, username, password, table_name, parser)
+        {
+        }
 
-        public SupplierModel(DataGridView control, string host, 
+
+        public SupplierModel(object control, string host, 
             int port, string dbname, string username, string password, string table_name, SupplierParser parser) :
             base(control,host, port, dbname, username, password, table_name, parser)
 
         {
-            this._control.Columns.Clear();
             this._initTable(Supplier.Sql_keys);
         }
 
         public void resetControl()
         {
-            this.resetControl(" continued=1");
+            this.resetControl(" deactive=0");
         }
 
         public override List<SqlParameter> SqlParams(Supplier item)
@@ -363,12 +387,25 @@ namespace Suppliers
             SqlParameter contactTitle = this.createSQLParam("contacttitle", SqlDbType.NVarChar, item.ContactTitle,30);
             SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address,60);
             SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City,15);
-            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region,15);
-            SqlParameter postalCode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+
+            SqlParameter region;
+            if (item.Region.Equals(""))
+                region = this.createSQLParam("region", SqlDbType.NVarChar, DBNull.Value, 15);
+            else region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
+            SqlParameter postalcode;
+            if (item.Postalcode.Equals(""))
+                postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, DBNull.Value, 10);
+            else postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country,15);
             SqlParameter phone = this.createSQLParam("phone", SqlDbType.NVarChar, item.Phone,24);
-            SqlParameter fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax,24);
-            SqlParameter continued = this.createSQLParam("continued", SqlDbType.Bit, item.Continued);
+
+            SqlParameter fax;
+            if(item.Fax.Equals(""))
+                 fax = this.createSQLParam("fax", SqlDbType.NVarChar, DBNull.Value, 24);
+            else fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax, 24);
+
+            SqlParameter deactive = this.createSQLParam("deactive", SqlDbType.Bit, item.Deactive);
 
             list.Add(supplierID);
             list.Add(companyName);
@@ -377,14 +414,117 @@ namespace Suppliers
             list.Add(address);
             list.Add(city);
             list.Add(region);
-            list.Add(postalCode);
+            list.Add(postalcode);
             list.Add(country);
             list.Add(phone);
             list.Add(fax);
-            list.Add(continued);
+            list.Add(deactive);
 
             return list;
 
+        }
+
+        public Supplier SafeDelete(int suppID)
+        {
+            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
+
+            string command = "Safe_Delete_Supp";
+
+            this.conn.Open();
+            try
+            {
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                int result = cmd.ExecuteNonQuery();
+                if (result <= 0)
+                    get = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DATABASE ERROR. COULD NOT SAFE DELETE SUPPLIER. " + ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                if (this._webControl != null)
+                    this._webControl.DataBind();
+            }
+
+            return get;
+        }
+
+        public Supplier BadDelete(int suppID)
+        {
+            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
+
+            string command = "Delete_Supp";
+
+            this.conn.Open();
+            try
+            {
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                int result =  cmd.ExecuteNonQuery();
+                if (result <= 0)
+                    get = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DATABASE ERROR. COULD NOT DELETE SUPPLIER. " + ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                if (this._webControl != null)
+                    this._webControl.DataBind();
+            }
+
+            return get;
+        }
+
+        public string filter(string txtCompName, string txtContname, string txtAddr,
+            string txtCity, string cbCountry, string txtPhone, string txtFax)
+        {
+            string sqlFilter = " deactive=0 ";
+            if (txtCompName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Trim());
+            }
+            if (txtContname.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  contactname LIKE '%{0}%' ", txtContname.Trim());
+            }
+            if (txtAddr.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  address LIKE '%{0}%' ", txtAddr.Trim());
+            }
+            if (txtCity.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  city LIKE '%{0}%' ", txtCity.Trim());
+            }
+            if (cbCountry.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  country LIKE '%{0}%' ", cbCountry.Trim());
+            }
+            if (txtPhone.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  phone LIKE '%{0}%' ", txtPhone.Trim());
+            }
+            if (txtFax.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  fax LIKE '%{0}%' ", txtFax.Trim());
+            }
+            
+            this.resetControl(sqlFilter);
+
+            return sqlFilter;
+            
         }
     }
 }

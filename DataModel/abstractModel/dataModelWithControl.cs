@@ -16,9 +16,9 @@ namespace DataModel
 {
     public abstract class DataModelWithControl<T> : AbstractDataModel<T> where T : BaseDataObject
     {
-        protected readonly GridView _webControl;
-        protected readonly DataGridView _control;
-        private readonly DataTable _datasource;
+        protected  GridView _webControl;
+        protected DataGridView _control;
+        protected  DataTable _datasource;
 
         public DataTable DataSource
         {
@@ -86,7 +86,7 @@ namespace DataModel
                 {
                     col.SortMode = System.Windows.Forms
                                         .DataGridViewColumnSortMode
-                                        .NotSortable;
+                                        .Automatic;
                 }
             }
 
@@ -114,14 +114,14 @@ namespace DataModel
                 this._webControl.DataBind();
         }
 
-        public T updateRow( T updateData)
+        public virtual T updateRow( T updateData)
         {
             string where_filter = updateData.getWhereFilterToUpdateSingleRow();
             string[] keys = updateData.SqlKeys();
             List<SqlParameter> getParams = this.SqlParams(updateData);
             List<T> result = this.updateRows(keys, getParams, where_filter);
 
-            if (result == null)
+            if (result.Count<=0)
                 return null;
             
             T updateItem = result[0];
@@ -171,6 +171,8 @@ namespace DataModel
                 this.resetForWebcontrol();
                 return result;
             }*/
+            if (this._webControl == null && this._control == null)
+                return result;
 
             this._datasource.Rows.Add(result.convertToRow());
 
@@ -222,9 +224,9 @@ namespace DataModel
 
                 result = cmd.ExecuteNonQuery();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Delete exception");
+                throw new Exception("Delete exception "+ex.Message);
             }
             finally
             {
@@ -234,6 +236,9 @@ namespace DataModel
 
             if (result <= 0)
                 return new List<T>();
+
+            if (this._control == null && this._webControl == null)
+                return deletedList;
 
             /*if (this._webControl != null)
             {

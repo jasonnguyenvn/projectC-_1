@@ -45,9 +45,9 @@ namespace Productions
             set { categoryid = value; }
         }
 
-        private string unitprice;
+        private float unitprice;
 
-        public string UnitPrice
+        public float UnitPrice
         {
             get { return unitprice; }
             set { unitprice = value; }
@@ -92,6 +92,8 @@ namespace Productions
 
         public override void copyTo(BaseDataObject other)
         {
+            if(other is Product == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Product.");
             Product otherEmp = (Product)other;
             otherEmp.productid = this.productid;
             otherEmp.productname = this.productname;
@@ -113,6 +115,8 @@ namespace Productions
 
         public override bool Equals(object obj)
         {
+            if (obj is Product == false)
+                return false;
             Product other = (Product)obj;
             return this.ProductID == other.ProductID;
         }
@@ -128,7 +132,7 @@ namespace Productions
             this.productname = "";
             this.supplierid = -1;
             this.categoryid = -1;
-            this.unitprice = "";
+            this.unitprice = 0.0f;
             this.discontinued = true;
         }
 
@@ -153,6 +157,11 @@ namespace Productions
                 return -5;
          
             return 1;
+        }
+
+        public override int[] isValid_multi()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -208,7 +217,7 @@ namespace Productions
                         result.SupplierID = int.Parse(param.Value.ToString());
                         break;
                     case "unitprice":
-                        result.UnitPrice = param.Value.ToString();
+                        result.UnitPrice = float.Parse(param.Value.ToString());
                         break;
                     case "discontinued":
                         if (param.Value.Equals(true))
@@ -220,19 +229,6 @@ namespace Productions
 
             return result;
         }
-
-        public override Product parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Product.Sql_keys, Params);
-        }
     }
 
 
@@ -242,6 +238,39 @@ namespace Productions
     // to Database.
     public class ProductModel : DataModelWithControl<Product>
     {
+
+        public string filter(string txtName, int txtSupplierID, int txtCategoryID, string txtUnitPrice, bool discontinue)
+        {
+            string sqlFilter = "";
+            if (discontinue == true)
+                sqlFilter = " discontinued=1";
+            else
+                sqlFilter = " discontinued=0";
+            if (txtName.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  productname LIKE '%{0}%' ", txtName.Trim());
+            }
+            if (txtSupplierID>=0)
+            {
+                sqlFilter += string.Format(" AND  supplierid=%{0}% ", txtSupplierID);
+            }
+            if (txtCategoryID>=0)
+            {
+                sqlFilter += string.Format(" AND  categoryid=%{0}% ", txtCategoryID);
+            }
+            if (txtUnitPrice.Equals("") == false)
+            {
+                sqlFilter += string.Format(" AND  unitprice LIKE '%{0}%' ", txtUnitPrice.Trim());
+            }
+
+
+            this.resetControl(sqlFilter);
+
+            return sqlFilter;
+
+        }
+
+
          public ProductModel(DataGridView control,  string host,
             int port, string dbname, string username, string password, string table_name, ProductParser parser) :
             base(control, host, port, dbname,username, password, table_name, parser)
@@ -250,16 +279,15 @@ namespace Productions
             this._initTable();
         }
 
+        public void resetControl()
+        {
+            this.resetControl("");
+        }
+
         private void _initTable()
         {
-            string[] keys = Product.Sql_keys;
-            foreach (string aKey in keys)
-            { 
-                System.Data.DataColumn column;
-                column = new System.Data.DataColumn();
-                column.ColumnName = aKey;
-                this.DataSource.Columns.Add(column);
-            }
+            this._control.Columns.Clear();
+            this._initTable(Product.Sql_keys);
 
         }
 

@@ -33,6 +33,8 @@ namespace Suppliers
             this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
+
+            this.errorProvider.Clear();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -40,36 +42,65 @@ namespace Suppliers
             this.doSave_Update();
         }
 
+        private void showErrors(Supplier supp, int code)
+        {
+            if (code == -2)
+            {
+                if (this.txtCompName.Text.Equals(""))
+                    this.errorProvider.SetError(txtCompName,
+                            supp.getErrorMessage(code));
+                if (this.txtContname.Text.Equals(""))
+                    this.errorProvider.SetError(txtContname,
+                            supp.getErrorMessage(code));
+                if (this.txtContTitle.Text.Equals(""))
+                    this.errorProvider.SetError(txtContTitle,
+                            supp.getErrorMessage(code));
+                if (this.txtAddr.Text.Equals(""))
+                    this.errorProvider.SetError(txtAddr,
+                            supp.getErrorMessage(code));
+                if (this.txtCity.Text.Equals(""))
+                    this.errorProvider.SetError(txtCity,
+                            supp.getErrorMessage(code));
+                if (this.cbCountry.Text.Equals(""))
+                    this.errorProvider.SetError(cbCountry,
+                            supp.getErrorMessage(code));
+                if (this.txtPhone.Text.Equals(""))
+                    this.errorProvider.SetError(txtPhone,
+                            supp.getErrorMessage(code));
+            }
+        }
+
         private void doSave_Update()
         {
-            Supplier newSup = new Supplier();
-            newSup.SupplierID = -1;
-            newSup.CompanyName = this.txtCompName.Text;
-            newSup.Contactname = this.txtContname.Text;
-            newSup.ContactTitle = this.txtContTitle.Text;
-            newSup.Address = this.txtAddr.Text;
-            newSup.City = this.txtCity.Text;
-            newSup.Region = this.txtRegion.Text;
-            newSup.Postalcode = this.txtPos.Text;
-            newSup.Country = this.cbCountry.Text;
-            newSup.Phone = this.txtPhone.Text;
-            newSup.Fax = this.txtFax.Text;
+            this.errorProvider.Clear();
+            Supplier dataObj = new Supplier();
+            dataObj.SupplierID = -1;
+            dataObj.CompanyName = this.txtCompName.Text;
+            dataObj.Contactname = this.txtContname.Text;
+            dataObj.ContactTitle = this.txtContTitle.Text;
+            dataObj.Address = this.txtAddr.Text;
+            dataObj.City = this.txtCity.Text;
+            dataObj.Region = this.txtRegion.Text;
+            dataObj.Postalcode = this.txtPos.Text;
+            dataObj.Country = this.cbCountry.Text;
+            dataObj.Phone = this.txtPhone.Text;
+            dataObj.Fax = this.txtFax.Text;
 
-            int check = newSup.isValid();
+            int check = dataObj.isValid();
             if (check < 0)
             {
-                MessageBox.Show(newSup.getErrorMessage(check));
+                showErrors(dataObj, check);
             }
             else
             {
                 try
                 {
                     if (this.AddNewMode == true)
-                        this.dataModel.insertNewRow(newSup);
+                        this.dataModel.insertNewRow(dataObj);
                     else
                     {
-                        newSup.SupplierID = int.Parse(this.txtSupID.Text);
-                        this.dataModel.updateRow(newSup);
+                        dataObj.SupplierID = int.Parse(this.txtSupID.Text);
+                        this.dataModel.updateRow(dataObj);
                     }
                     
                     this.clearForm();
@@ -81,6 +112,11 @@ namespace Suppliers
                     this.Close();
                 }
             }
+        }
+
+        private void EditSupplier_Load(object sender, EventArgs e)
+        {
+            this.errorProvider.Clear();
         }
 
     }

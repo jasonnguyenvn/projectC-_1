@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Suppliers.Properties;
+using Base_Intefaces;
+using WinForm_Dialogs;
 
 namespace Suppliers
 {
-    public partial class SupplierControl : UserControl
+    public partial class SupplierControl : UserControl , ControlInteface<SupplierModel, Supplier>
     {
         public bool Loadded = false;
         private EditSupplier editForm;
@@ -19,6 +21,31 @@ namespace Suppliers
         public SupplierControl()
         {
             InitializeComponent();
+            //this.gvSuppliers.ContextMenuStrip = this.GridViewMenu;
+            Settings setting = new Settings();
+
+            try
+            {
+                SupplierParser newParser = new SupplierParser();
+
+                dataModel = new SupplierModel(
+                                    this.gvSuppliers,
+                                    setting.DB_HOST,
+                                    setting.DB_PORT,
+                                    setting.DB_NAME,
+                                    setting.DB_USER,
+                                    setting.DB_PASS,
+                                    "Production.Suppliers",
+                                    newParser);
+                //dataModel = new SupplierModel(this.gvSuppliers, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "HR.Suppliers", newParser);
+
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             this._initModel();
         }
 
@@ -27,20 +54,48 @@ namespace Suppliers
         {
             this.InitializeComponent();
 
+            
+
             SupplierParser newParser = new SupplierParser();
-            dataModel = new SupplierModel(
-                                this.gvSuppliers,
-                                host,
-                                port,
-                                dbname,
-                                username,
-                                password,
-                                "HR.Employees",
-                                newParser);
-            newParser.DataModel = dataModel;
-            dataModel.resetControl();
+            try
+            {
+                dataModel = new SupplierModel(
+                                    this.gvSuppliers,
+                                    host,
+                                    port,
+                                    dbname,
+                                    username,
+                                    password,
+                                    "Production.Suppliers",
+                                    newParser);
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            this._initModel();
         }
 
+        protected void _initModel()
+        {
+            this.gvSuppliers.Columns.Clear();
+
+            try
+            {
+                dataModel.resetControl();
+                this.editForm = new EditSupplier(dataModel);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            this.warningForm = new DeleteOptionsForm();
+
+        }
 
 
         private SupplierModel dataModel;
@@ -49,29 +104,7 @@ namespace Suppliers
         {
             get { return dataModel; }
         }
-        protected void _initModel()
-        {
-            Settings  setting = new Settings();
-
-            SupplierParser newParser = new SupplierParser();
-
-            dataModel = new SupplierModel(
-                                this.gvSuppliers,
-                                setting.DB_HOST,
-                                setting.DB_PORT,
-                                setting.DB_NAME,
-                                setting.DB_USER,
-                                setting.DB_PASS,
-                                "Production.Suppliers",
-                                newParser);
-           //dataModel = new SupplierModel(this.gvSuppliers, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Suppliers", newParser);
-
-            newParser.DataModel = dataModel;
-
-            dataModel.resetControl();
-            this.editForm = new EditSupplier(dataModel);
-            this.warningForm = new DeleteOptionsForm();
-        }
+       
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -157,9 +190,9 @@ namespace Suppliers
         {
             if (this.gvSuppliers.SelectedRows.Count > 0)
             {
-                this.editForm.clearForm();
-                int selectedIndex = this.gvSuppliers.Rows.IndexOf(this.gvSuppliers.SelectedRows[0]);
-                Supplier selectedItem = this.dataModel.Data[selectedIndex];
+                Supplier get = new Supplier();
+                get.SupplierID = int.Parse(this.gvSuppliers.SelectedRows[0].Cells[0].Value.ToString());
+                Supplier selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtCompName.Text = selectedItem.CompanyName;
@@ -183,7 +216,6 @@ namespace Suppliers
             this.txtContname.Text = "";
             this.txtAddr.Text = "";
             this.txtCity.Text = "";
-            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
             this.gvSuppliers.ClearSelection();
@@ -203,28 +235,75 @@ namespace Suppliers
 
         private void doDelete()
         {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+                return;
+            int idToDelete = int.Parse(this.txtSupID.Text.Trim());
+            string deleteSql = "supplierid =" + idToDelete;
             try
             {
-                int idToDelete = int.Parse(this.txtSupID.Text.Trim());
-                this.dataModel.deleteRows("supplierid =" + idToDelete);
+
+                this.dataModel.deleteRows(deleteSql);
                 MessageBox.Show("Deleted");
                 clearAll();
             }
             catch 
             {
                 this.warningForm.ShowDialog();
+                UserOption result = this.warningForm.GetUserOption;
+                if (result == UserOption.Option1)
+                    this.dataModel.SafeDelete(idToDelete);
+                if (result == UserOption.Option2)
+                {
+                    this.doBadDelete(idToDelete);
+                }
+            }
+        }
+
+        private void doBadDelete(int idToDelete)
+        {
+            try
+            {
+                Supplier supp = this.dataModel.BadDelete(idToDelete);
+                if (supp != null)
+                    MessageBox.Show("DELETE SUCCESSFULLY");
+                else
+                    MessageBox.Show("THIS SUPPLIER'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("THIS SUPPLIER'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+                MessageBox.Show(ex.Message);
             }
         }
 
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            this.gvSuppliers.ClearSelection();
 
+            try
+            {
+                this.dataModel.filter(txtCompName.Text, txtContname.Text, txtAddr.Text,
+                    txtCity.Text, cbCountry.Text, txtPhone.Text, txtFax.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)
         {
             this.clearAll();
+            try
+            {
+                this.dataModel.resetControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void gvSuppliers_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -260,5 +339,51 @@ namespace Suppliers
                 this.contextMenu.Show(Cursor.Position);
             }
         }
+
+
+
+
+        #region ControlInteface<SupplierModel,Supplier> Members
+
+        public SupplierModel getDataModel()
+        {
+            return this.dataModel;
+        }
+
+        public bool isLoaded()
+        {
+            return this.Loadded;
+        }
+
+        public void resetControl()
+        {
+            this.clearAll();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.Loadded = status;
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Suppliers Manager";
+        }
+
+        #endregion
     }
 }

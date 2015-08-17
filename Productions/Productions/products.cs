@@ -9,32 +9,12 @@ using System.Windows.Forms;
 
 namespace Productions
 {
-    public partial class Products : UserControl
+    public partial class products : UserControl
     {
-        public Products()
+        public products()
         {
             InitializeComponent();
             this._initModel();
-        }
-
-        public Products(string host, int port, string dbname, string username,
-            string password, string table_name, ProductParser parser)
-        {
-            this.InitializeComponent();
-
-            ProductParser newParser = new ProductParser();
-            dataModel = new ProductModel(
-                                this.gvProducts,
-                                host,
-                                port,
-                                dbname,
-                                username,
-                                password,
-                                "HR.Employees",
-                                newParser);
-            newParser.DataModel = dataModel;
-
-            dataModel.resetControl();
         }
 
 
@@ -55,7 +35,7 @@ namespace Productions
                                 "Production.Products", 
                                 newParser);
             
-            dataModel = new ProductModel(this.gvProducts, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Products", newParser);
+            //dataModel = new ProductModel(this.gvProducts, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Products", newParser);
             
             newParser.DataModel = dataModel;
 
@@ -142,7 +122,7 @@ namespace Productions
                 this.cbxSupID.Text = selectedItem.SupplierID.ToString();
                 this.cbxCaID.Text = selectedItem.CategoryID.ToString();
                 this.txtUnitprice.Text = selectedItem.UnitPrice;
-                this.cbDiscontinued.Checked = selectedItem.Discontinued;
+                this.cbDiscontinued.Checked = false;
             }
         }
 

@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Employees.Properties;
+using Base_Intefaces;
 
 namespace Employees
 {
-    public partial class EmployeeControl : UserControl
+    public partial class EmployeeControl : UserControl, ControlInteface<EmployeeModel, Employee>
     {
         private EmployeeModel dataModel;
         private bool _loaded = false;
+
+        
 
         public bool Loaded
         {
@@ -31,6 +34,30 @@ namespace Employees
         {
             InitializeComponent();
             //this.gvEmployees.ContextMenuStrip = this.GridViewMenu;
+            Settings setting = new Settings();
+
+            try
+            {
+                EmployeeParser newParser = new EmployeeParser();
+
+                dataModel = new EmployeeModel(
+                                    this.gvEmployees,
+                                    setting.DB_HOST,
+                                    setting.DB_PORT,
+                                    setting.DB_NAME,
+                                    setting.DB_USER,
+                                    setting.DB_PASS,
+                                    "HR.Employees",
+                                    newParser);
+                //dataModel = new EmployeeModel(this.gvEmployees, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "HR.Employees", newParser);
+
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             this._initModel();
         }
 
@@ -42,42 +69,44 @@ namespace Employees
             
 
             EmployeeParser newParser = new EmployeeParser();
-            dataModel = new EmployeeModel(
-                                this.gvEmployees,
-                                host,
-                                port,
-                                dbname,
-                                username,
-                                password,
-                                "HR.Employees",
-                                newParser);
-            newParser.DataModel = dataModel;
+            try
+            {
+                dataModel = new EmployeeModel(
+                                    this.gvEmployees,
+                                    host,
+                                    port,
+                                    dbname,
+                                    username,
+                                    password,
+                                    "HR.Employees",
+                                    newParser);
+                newParser.DataModel = dataModel;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            dataModel.resetControl();
+
+            this._initModel();
         }
 
         protected void _initModel()
         {
             this.gvEmployees.Columns.Clear();
-            Settings setting = new Settings();
 
-            EmployeeParser newParser = new EmployeeParser();
+            try
+            {
+                dataModel.resetControl();
+                this.editItemForm = new EmployeeEditForm(dataModel);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            this.cbManagerID.Items.Add("");
+            this.cbManagerID.Items.AddRange(dataModel.getIDItemArray("HR.Employees", 0, 1));
 
-            dataModel = new EmployeeModel(
-                                this.gvEmployees,
-                                setting.DB_HOST,
-                                setting.DB_PORT,
-                                setting.DB_NAME,
-                                setting.DB_USER,
-                                setting.DB_PASS,
-                                "HR.Employees",
-                                newParser);
-            //dataModel = new EmployeeModel(this.gvEmployees, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "HR.Employees", newParser);
-
-            newParser.DataModel = dataModel;
-
-            dataModel.resetControl();
-            this.editItemForm = new EmployeeEditForm(dataModel);
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -93,40 +122,7 @@ namespace Employees
             this.editItemForm.clearForm();
             this.editItemForm.ShowDialog();
 
-            /*Employee newEmp = new Employee();
-            newEmp.Empid = -1;
-            newEmp.Lastname = this.txtLastname.Text;
-            newEmp.Firstname = this.txtFirstname.Text;
-            newEmp.Title = this.txtTitle.Text;
-            newEmp.Titleofcourtesy = this.txtTitleofCourtesy.Text;
-            newEmp.Birthdate = this.dTPBirthday.Value;
-            newEmp.Hiredate = this.dTPHireday.Value;
-            newEmp.Address = this.txtAddress.Text;
-            newEmp.City = this.txtCity.Text;
-            newEmp.Region = this.txtRegion.Text;
-            newEmp.Postalcode = this.txtPostalCode.Text;
-            newEmp.Country = this.txtCountry.Text;
-            newEmp.Phone = this.txtPhone.Text;
-            try
-            {
-                newEmp.Mgrid = int.Parse(this.txtManagerID.Text);
-            }
-            catch { newEmp.Mgrid = -1; }
-
-
-            int check = newEmp.isValid();
-
-            if (check < 0)
-            {
-                MessageBox.Show(newEmp.getErrorMessage(check));
-
-            }
-            else
-            {
-                this.dataModel.insertNewRow(newEmp);
-                MessageBox.Show("Completed adding");
-                this.clearForm();
-            }*/
+            
             
         }
 
@@ -134,6 +130,7 @@ namespace Employees
         {
             this.txtEmployeeID.Text = "";
             this.gvEmployees.ClearSelection();
+            this.editItemForm.NewEmpMode = false;
             this.editItemForm.ShowDialog();
         }
 
@@ -184,8 +181,10 @@ namespace Employees
         {
             if (this.gvEmployees.SelectedRows.Count > 0)
             {
-                int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
-                Employee selectedItem = this.dataModel.Data[selectedIndex];
+                //int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
+                Employee get = new Employee();
+                get.Empid = int.Parse(this.gvEmployees.SelectedRows[0].Cells[0].Value.ToString());
+                Employee selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtEmployeeID.Text = selectedItem.Empid.ToString();
                 /*this.txtLastname.Text = selectedItem.Lastname;
                 this.txtFirstname.Text = selectedItem.Firstname;
@@ -208,18 +207,18 @@ namespace Employees
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
-        {  
-              this.doDelete();
-        }
-
-        protected void doDelete()
         {
             if (this.txtEmployeeID.Text.Equals(""))
             {
                 MessageBox.Show("You must select an Employee first");
                 return;
             }
-           
+              this.doDelete();
+        }
+
+        protected void doDelete()
+        {
+            
             DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -237,16 +236,23 @@ namespace Employees
             this.txtCity.Text = "";
             this.txtRegion.Text = "";
             this.txtPostalCode.Text = "";
-            this.txtCountry.Text = "";
+            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
-            this.txtManagerID.Text = "";
+            this.cbManagerID.Text = "";
 
             this.gvEmployees.ClearSelection();
         }
 
         private void btnClearForm_Click(object sender, EventArgs e)
         {
-            this.dataModel.resetControl();
+            try
+            {
+                this.dataModel.resetControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             this.clearForm();
         }
 
@@ -260,7 +266,7 @@ namespace Employees
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            doUpdate();
+                doUpdate();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,43 +287,66 @@ namespace Employees
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.gvEmployees.ClearSelection();
-            string sqlFilter = "jobStatus=1 ";
-            if (this.txtName.Text.Equals("") == false)
+            
+            try
             {
-                sqlFilter += string.Format(" AND (lastname LIKE '%{0}%' OR firstname LIKE '%{0}%') ", txtName.Text.Trim());
-                
+                if(cbManagerID.SelectedIndex==0)
+                    this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
+                        txtRegion.Text, cbCountry.Text, txtPhone.Text, "");
+                else
+                    this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
+                        txtRegion.Text, cbCountry.Text, txtPhone.Text, ((EmployeeModel.IdItem) cbManagerID.SelectedItem).Id.ToString());
             }
-            if (this.txtTitle.Text.Equals("") == false)
+            catch (Exception ex)
             {
-                sqlFilter += string.Format(" AND title LIKE '%{0}%' ", txtTitle.Text.Trim());
+                MessageBox.Show(ex.Message);
             }
-            if (this.txtCity.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND city LIKE '%{0}%' ", txtCity.Text.Trim());
-            }
-            if (this.txtRegion.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND region LIKE '%{0}%' ", txtRegion.Text.Trim());
-            }
-            if (this.txtCountry.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND country LIKE '%{0}%' ", txtCountry.Text.Trim());
-            }
-
-            if (this.txtPhone.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND phone LIKE '%{0}%' ", txtPhone.Text.Trim());
-            }
-
-            if (this.txtManagerID.Text.Equals("") == false)
-            {
-                sqlFilter += string.Format(" AND mgrid={0} ", txtManagerID.Text.Trim());
-            }
-
-            this.dataModel.resetControl(sqlFilter);
         }
 
 
 
+
+        #region ControlInteface<EmployeeModel,Employee> Members
+
+        public EmployeeModel getDataModel()
+        {
+            return this.dataModel;
+        }
+
+        public bool isLoaded()
+        {
+            return this.Loaded;
+        }
+
+        public void resetControl()
+        {
+            this.clearForm();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.Loaded = status;
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Employees Manager";
+        }
+
+        #endregion
     }
 }
