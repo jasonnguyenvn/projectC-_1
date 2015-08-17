@@ -39,6 +39,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -52,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryModel.cs" />
+    <Compile Include="EditCatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCatForm.Designer.cs">
+      <DependentUpon>EditCatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductModel.cs" />
     <Compile Include="ProductControl.cs">
       <SubType>UserControl</SubType>
@@ -76,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCatForm.resx">
+      <DependentUpon>EditCatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductControl.resx">
       <DependentUpon>ProductControl.cs</DependentUpon>

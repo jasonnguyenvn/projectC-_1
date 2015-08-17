@@ -102,12 +102,12 @@ namespace Suppliers
             set { fax = value; }
         }
 
-        private bool continued;
+        private bool deactive;
 
-        public bool Continued
+        public bool Deactive
         {
-            get { return continued; }
-            set { continued = value; }
+            get { return deactive; }
+            set { deactive = value; }
         }
 
         public static readonly string[] Sql_keys =
@@ -123,7 +123,7 @@ namespace Suppliers
             "country",
             "phone",
             "fax",
-            "continued"
+            "deactive"
         };
 
         public override string[] SqlKeys()
@@ -145,7 +145,7 @@ namespace Suppliers
                 this.country,
                 this.phone,
                 this.fax,
-                this.continued.ToString()
+                this.deactive.ToString()
             };
             return result;
         }
@@ -165,7 +165,7 @@ namespace Suppliers
             otherSupp.country = this.country;
             otherSupp.phone = this.phone;
             otherSupp.fax = this.fax;
-            otherSupp.continued = this.continued;
+            otherSupp.deactive = this.deactive;
         }
 
         public override int getNoOfProp()
@@ -205,7 +205,7 @@ namespace Suppliers
             this.country = "";
             this.phone = "";
             this.fax = "";
-            this.continued = true;
+            this.deactive = true;
         }
 
         public override string getErrorMessage(int errorCode)
@@ -336,8 +336,8 @@ namespace Suppliers
                     case "fax":
                         result.Fax = param.Value.ToString();
                         break;
-                    case "continued":
-                        result.Continued = param.Value.Equals(true) ? true : false;
+                    case "deactive":
+                        result.Deactive = param.Value.Equals(true) ? true : false;
                         break;
                 }
             }
@@ -388,7 +388,7 @@ namespace Suppliers
 
         public void resetControl()
         {
-            this.resetControl(" continued=1");
+            this.resetControl(" deactive=0");
         }
 
         public override List<SqlParameter> SqlParams(Supplier item)
@@ -418,7 +418,7 @@ namespace Suppliers
                  fax = this.createSQLParam("fax", SqlDbType.NVarChar, DBNull.Value, 24);
             else fax = this.createSQLParam("fax", SqlDbType.NVarChar, item.Fax, 24);
 
-            SqlParameter continued = this.createSQLParam("continued", SqlDbType.Bit, item.Continued);
+            SqlParameter deactive = this.createSQLParam("deactive", SqlDbType.Bit, item.Deactive);
 
             list.Add(supplierID);
             list.Add(companyName);
@@ -431,28 +431,42 @@ namespace Suppliers
             list.Add(country);
             list.Add(phone);
             list.Add(fax);
-            list.Add(continued);
+            list.Add(deactive);
 
             return list;
 
         }
 
-        public List<Supplier> SafetyDelete(string where_filter)
+        public Supplier SafeDelete(int suppID)
         {
-            List<Supplier> deletedList = this.getItems(where_filter);
-            if (deletedList.Count <= 0)
-                return new List<Supplier>();
+            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
 
-            foreach (Supplier emp in deletedList)
+            string command = "Safe_Delete_Supp";
+
+            this.conn.Open();
+            try
             {
-                emp.Continued = false;
-                this.updateRow(emp);
-                int delIndex = this.Data.IndexOf(emp);
-                this.Data.RemoveAt(delIndex);
-                this.DataSource.Rows.RemoveAt(delIndex);
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                int result = cmd.ExecuteNonQuery();
+                if (result <= 0)
+                    get = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DATABASE ERROR. COULD NOT SAFE DELETE SUPPLIER. " + ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                if (this._webControl != null)
+                    this._webControl.DataBind();
             }
 
-            return deletedList;
+            return get;
         }
 
         public Supplier BadDelete(int suppID)
@@ -490,7 +504,7 @@ namespace Suppliers
         public string filter(string txtCompName, string txtContname, string txtAddr,
             string txtCity, string cbCountry, string txtPhone, string txtFax)
         {
-            string sqlFilter = " continued=1 ";
+            string sqlFilter = " deactive=0 ";
             if (txtCompName.Equals("") == false)
             {
                 sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Trim());

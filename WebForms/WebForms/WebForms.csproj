@@ -38,6 +38,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Employees\Employees\bin\Debug\Employees.dll</HintPath>
     </Reference>
+    <Reference Include="Productions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Productions\Productions\bin\Debug\Productions.dll</HintPath>
+    </Reference>
     <Reference Include="Suppliers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Suppliers\Suppliers\bin\Debug\Suppliers.dll</HintPath>
@@ -92,6 +96,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Edit-Supp.aspx.cs">
       <DependentUpon>Edit-Supp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -153,6 +164,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
+    <Content Include="Categories.aspx" />
     <Content Include="Edit-Supp.aspx" />
     <Content Include="Suppliers.aspx" />
     <Content Include="css\font-awesome.css" />

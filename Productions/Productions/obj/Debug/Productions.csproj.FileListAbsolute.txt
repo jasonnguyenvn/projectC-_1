@@ -38,3 +38,4 @@ C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.dll
 C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.pdb
 C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.CategoryControl.resources
 C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.ProductControl.resources
+C:\Projects\projectC-_1\Productions\Productions\obj\Debug\Productions.EditCatForm.resources
