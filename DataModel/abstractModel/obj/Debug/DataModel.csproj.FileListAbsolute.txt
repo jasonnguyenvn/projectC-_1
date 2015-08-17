@@ -10,12 +10,12 @@ E:\Project\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
 E:\Project\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
 E:\Project\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
 E:\Project\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb
-C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll.config
 C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.dll
 C:\Projects\projectC-_1\DataModel\abstractModel\bin\Debug\DataModel.pdb
-C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
-C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\WinForm_Dialogs.DeleteOptionsForm.resources
 C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.Properties.Resources.resources
 C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.csproj.GenerateResource.Cache
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.dll
+C:\Projects\projectC-_1\DataModel\abstractModel\obj\Debug\DataModel.pdb

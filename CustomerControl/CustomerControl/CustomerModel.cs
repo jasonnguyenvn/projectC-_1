@@ -113,20 +113,20 @@ namespace CustomerControl
       
 
         public static readonly string[] Sql_keys =
-    {
-        "custid",
-        "companyname",
-        "contactname",
-        "contacttitle",
-        "address",
-        "city",
-        "region",
-        "postalcode",
-        "country",
-        "phone",
-        "fax"
-        
-    };
+        {
+            "custid",
+            "companyname",
+            "contactname",
+            "contacttitle",
+            "address",
+            "city",
+            "region",
+            "postalcode",
+            "country",
+            "phone",
+            "fax"
+            
+        };
 
         public override string[] SqlKeys()
         {
@@ -154,6 +154,8 @@ namespace CustomerControl
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Customer == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Customer.");
             Customer otherSupp = (Customer)other;
             otherSupp.customerid = this.customerid;
             otherSupp.companyname = this.companyname;
@@ -176,17 +178,6 @@ namespace CustomerControl
         public override string getWhereFilterToUpdateSingleRow()
         {
             return " custid= " + this.customerid;
-        }
-
-        public override bool Equals(object obj)
-        {
-            Customer other = (Customer)obj;
-            return this.CustomerID == other.CustomerID;
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
         }
 
         public Customer()
@@ -237,6 +228,25 @@ namespace CustomerControl
             /*if (this.fax.Equals(""))
                 return -2;*/
             return 1;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Customer == false)
+                return false;
+
+            Customer other = (Customer)obj;
+            return this.customerid == other.customerid;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override int[] isValid_multi()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -311,19 +321,6 @@ namespace CustomerControl
             }
 
             return result;
-        }
-
-        public override Customer parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Customer.Sql_keys, Params);
         }
 
         public override string getPrimaryKey()

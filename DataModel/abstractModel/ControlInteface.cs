@@ -12,6 +12,7 @@ namespace Base_Intefaces
         void setLoadStatus(bool status);
         void resetControl();
         void resetData();
+        string getName();
         Control getThis(); 
     }
 

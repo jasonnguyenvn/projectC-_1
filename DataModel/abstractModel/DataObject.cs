@@ -19,7 +19,7 @@ namespace DataModel
         public abstract string getErrorMessage(int errorCode);
 
         public abstract int[] isValid_multi();
-        public abstract string[] getErrorMessage(int[] errorCodes);
+        //public abstract string[] getErrorMessage(int[] errorCodes);
 
     }
 }

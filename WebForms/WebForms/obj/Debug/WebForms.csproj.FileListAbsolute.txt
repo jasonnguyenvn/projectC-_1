@@ -1,10 +1,14 @@
+C:\Projects\projectC-_1\WebForms\WebForms\bin\css\jquery-ui-1.10.4.custom.min.css
 C:\Projects\projectC-_1\WebForms\WebForms\bin\WebForms.dll
 C:\Projects\projectC-_1\WebForms\WebForms\bin\WebForms.pdb
 C:\Projects\projectC-_1\WebForms\WebForms\bin\DataModel.dll
 C:\Projects\projectC-_1\WebForms\WebForms\bin\Employees.dll
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Productions.dll
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Suppliers.dll
 C:\Projects\projectC-_1\WebForms\WebForms\bin\Employees.pdb
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Suppliers.pdb
 C:\Projects\projectC-_1\WebForms\WebForms\bin\DataModel.pdb
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Productions.pdb
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\WebForms.dll
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\WebForms.pdb
-C:\Projects\projectC-_1\WebForms\WebForms\bin\css\jquery-ui-1.10.4.custom.min.css
