@@ -227,6 +227,10 @@ namespace Productions
 
         protected void doDelete()
         {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete ?", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+                return;
+
             int idToDelete = int.Parse(this.txtSelectedID.Text);
             string deleteSql = "categoryid=" + idToDelete;
             try

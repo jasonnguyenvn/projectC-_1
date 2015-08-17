@@ -176,7 +176,7 @@ namespace Productions
             catch
             {
                 MessageBox.Show("THISP PRODUCT CANNOT BE DELETE BECAUSE IT IS IN SOME ORDERS!");
-                dialogResult = MessageBox.Show("Do you want to discountinue it??", "DDiscontinue option", MessageBoxButtons.YesNo);
+                dialogResult = MessageBox.Show("Do you want to discountinue it?", "DDiscontinue option", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No)
                     return;
                 this.doDiscontinue(IdToDelete);
