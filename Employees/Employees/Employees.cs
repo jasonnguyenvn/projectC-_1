@@ -16,6 +16,8 @@ namespace Employees
         private EmployeeModel dataModel;
         private bool _loaded = false;
 
+        
+
         public bool Loaded
         {
             get { return _loaded; }
@@ -102,6 +104,8 @@ namespace Employees
             {
                 MessageBox.Show(ex.Message);
             }
+            this.cbManagerID.Items.Add("");
+            this.cbManagerID.Items.AddRange(dataModel.getIDItemArray("HR.Employees", 0, 1));
 
         }
 
@@ -118,40 +122,7 @@ namespace Employees
             this.editItemForm.clearForm();
             this.editItemForm.ShowDialog();
 
-            /*Employee newEmp = new Employee();
-            newEmp.Empid = -1;
-            newEmp.Lastname = this.txtLastname.Text;
-            newEmp.Firstname = this.txtFirstname.Text;
-            newEmp.Title = this.txtTitle.Text;
-            newEmp.Titleofcourtesy = this.txtTitleofCourtesy.Text;
-            newEmp.Birthdate = this.dTPBirthday.Value;
-            newEmp.Hiredate = this.dTPHireday.Value;
-            newEmp.Address = this.txtAddress.Text;
-            newEmp.City = this.txtCity.Text;
-            newEmp.Region = this.txtRegion.Text;
-            newEmp.Postalcode = this.txtPostalCode.Text;
-            newEmp.Country = this.txtCountry.Text;
-            newEmp.Phone = this.txtPhone.Text;
-            try
-            {
-                newEmp.Mgrid = int.Parse(this.txtManagerID.Text);
-            }
-            catch { newEmp.Mgrid = -1; }
-
-
-            int check = newEmp.isValid();
-
-            if (check < 0)
-            {
-                MessageBox.Show(newEmp.getErrorMessage(check));
-
-            }
-            else
-            {
-                this.dataModel.insertNewRow(newEmp);
-                MessageBox.Show("Completed adding");
-                this.clearForm();
-            }*/
+            
             
         }
 
@@ -210,8 +181,10 @@ namespace Employees
         {
             if (this.gvEmployees.SelectedRows.Count > 0)
             {
-                int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
-                Employee selectedItem = this.dataModel.Data[selectedIndex];
+                //int selectedIndex = this.gvEmployees.Rows.IndexOf(this.gvEmployees.SelectedRows[0]);
+                Employee get = new Employee();
+                get.Empid = int.Parse(this.gvEmployees.SelectedRows[0].Cells[0].Value.ToString());
+                Employee selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtEmployeeID.Text = selectedItem.Empid.ToString();
                 /*this.txtLastname.Text = selectedItem.Lastname;
                 this.txtFirstname.Text = selectedItem.Firstname;
@@ -263,9 +236,9 @@ namespace Employees
             this.txtCity.Text = "";
             this.txtRegion.Text = "";
             this.txtPostalCode.Text = "";
-            this.txtCountry.Text = "";
+            this.cbCountry.Text = "";
             this.txtPhone.Text = "";
-            this.txtManagerID.Text = "";
+            this.cbManagerID.Text = "";
 
             this.gvEmployees.ClearSelection();
         }
@@ -317,8 +290,12 @@ namespace Employees
             
             try
             {
-                this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
-                    txtRegion.Text, txtCountry.Text, txtPhone.Text, txtManagerID.Text);
+                if(cbManagerID.SelectedIndex==0)
+                    this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
+                        txtRegion.Text, cbCountry.Text, txtPhone.Text, "");
+                else
+                    this.dataModel.filter(txtName.Text, txtTitle.Text, txtCity.Text,
+                        txtRegion.Text, cbCountry.Text, txtPhone.Text, ((EmployeeModel.IdItem) cbManagerID.SelectedItem).Id.ToString());
             }
             catch (Exception ex)
             {
@@ -359,6 +336,15 @@ namespace Employees
         public Control getThis()
         {
             return this;
+        }
+
+        #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Employees Manager";
         }
 
         #endregion

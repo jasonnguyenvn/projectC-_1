@@ -6,10 +6,44 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 
+using System.Diagnostics;
+
+using System.Globalization;
+
 namespace DataModel
 {
     public abstract class AbstractDataModel<T> : object where T : BaseDataObject
     {
+
+        public static List<string> GetCountries()
+        {
+
+            List<string> list = new List<string>();
+            
+
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures | CultureTypes.SpecificCultures);
+
+            foreach (CultureInfo info in cultures)
+            {
+                if(info.Name.Equals(""))
+                    continue;
+                //RegionInfo info2 = new RegionInfo(info.LCID);
+                RegionInfo info2 = new RegionInfo(info.Name);
+
+                if (!list.Contains(info2.EnglishName))
+                {
+
+                    list.Add(info2.EnglishName);
+
+                }
+
+            }
+            list.Sort();
+            list.Insert(0, "");
+            return list;
+        }
+
+
         private readonly List<T> _data;
 
         public List<T> Data
@@ -26,6 +60,12 @@ namespace DataModel
         private readonly string _password;
 
         protected readonly DataObjectParser<T> _parser;
+
+        public DataObjectParser<T> Parser
+        {
+            get { return _parser; }
+        } 
+
 
         protected readonly SqlConnection conn;
 
@@ -145,7 +185,7 @@ namespace DataModel
                 while (dr.Read())
                 {
                     T temp = this._parser.parse(dr);
-                    result.Add(this.Data[this._data.IndexOf(temp)]);
+                    result.Add(this.Data[this.Data.IndexOf(temp)]);
                 }
 
                 dr.Close();
@@ -212,7 +252,12 @@ namespace DataModel
                 valueParams += currentParam;
 
             }
-            commandText += ")  OUTPUT INSERTED." + this._parser.getPrimaryKey() + "  VALUES (" + valueParams + ")";
+            commandText += ") ";
+
+            if (this._parser.getPrimaryKey().Equals("") == false)
+                commandText += "  OUTPUT INSERTED." + this._parser.getPrimaryKey();
+
+            commandText +=  "  VALUES (" + valueParams + ")";
 
             T newItem;
             try
@@ -220,16 +265,19 @@ namespace DataModel
                 this.conn.Open();
                 SqlCommand cmd = this.createSQLCommand(commandText, CommandType.Text,
                                                             parameters);
-            
-
-                int result = (int)cmd.ExecuteScalar();
-
-
+                int result;
+                if (this._parser.getPrimaryKey().Equals("") == false)
+                {
+                    result = (int)cmd.ExecuteScalar();
+                    changeIndex.Value = result;
+                }
+                else
+                    result = cmd.ExecuteNonQuery();
                 if (result < 0)
                     return null;
-
-                changeIndex.Value = result;
+               
                 newItem = this._parser.parse(keys, parameters);
+                
                 this._data.Add(newItem);
             }
             catch(Exception ex)
@@ -353,6 +401,142 @@ namespace DataModel
             this._data.RemoveRange(index, rangeToDelete);
 
             return deletedList;
+        }
+
+        public class IdItem
+        {
+            public IdItem()
+            {
+            }
+
+            public IdItem(int id, string showText)
+            {
+                this._id = id;
+                this._showText = showText;
+            }
+
+            private int _id;
+
+            public int Id
+            {
+                get { return _id; }
+                set { _id = value; }
+            }
+
+            private string _showText;
+
+            public string ShowText
+            {
+                get { return _showText; }
+                set { _showText = value; }
+            }
+
+            public override string ToString()
+            {
+                return this._showText;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is IdItem == false)
+                    return false;
+
+                IdItem cast = (IdItem)obj;
+
+                return this._id == cast._id;
+
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
+        }
+
+        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex, string filter)
+        {
+            List<IdItem> result = new List<IdItem>();
+
+            this.conn.Open();
+            SqlDataReader dr = null;
+
+            try
+            {
+                string command = "SELECT * FROM " + tbName;
+                SqlCommand cmd = this.createSQLCommand(command);
+                if (filter.Equals("") == false)
+                    command += " WHERE " + filter;
+
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = int.Parse(dr.GetValue(keyIndex).ToString());
+                    string showText = id + " - " + dr.GetValue(showIndex).ToString();
+
+                    IdItem item = new IdItem(id, showText);
+                    result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GET ID LIST EXCEPTION: " + ex.Message + " ; TB_NAME: " + tbName);
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Close();
+                this.conn.Close();
+            }
+
+            return result;
+        }
+
+        public List<IdItem> getIDItemList(string tbName, int keyIndex, int showIndex)
+        {
+            return this.getIDItemList(tbName, keyIndex, showIndex, "");
+        }
+
+        public object[] getIDItemArray(string tbName, int keyIndex, int showIndex)
+        {
+            return this.getIDItemList(tbName, keyIndex, showIndex).ToArray();
+        }
+
+        public List<object> getIDList(string tbName, int keyIndex)
+        {
+            List<object> result = new List<object>();
+
+            this.conn.Open();
+            SqlDataReader dr = null;
+
+            try
+            {
+                string command = "SELECT * FROM " + tbName;
+                SqlCommand cmd = this.createSQLCommand(command);
+
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int get = int.Parse(dr.GetValue(keyIndex).ToString());
+                    result.Add(get);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GET ID LIST EXCEPTION: " + ex.Message + " ; TB_NAME: " + tbName);
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Close();
+                this.conn.Close();
+            }
+
+            return result;
+        }
+
+        public object [] getIDArray(string tbName, int keyIndex)
+        {
+            return this.getIDList(tbName, keyIndex).ToArray();
         }
 
         public abstract List<SqlParameter> SqlParams(T item);
