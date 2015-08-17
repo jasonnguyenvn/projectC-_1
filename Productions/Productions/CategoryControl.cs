@@ -21,9 +21,13 @@ namespace Productions
         private DeleteOptionsForm warningForm;
         private bool loaded = false;
 
+        private EditCatForm editForm;
+
         public CategoryControl()
         {
             InitializeComponent();
+
+
             //this.gvCatetories.ContextMenuStrip = this.GridViewMenu;
             Settings setting = new Settings();
 
@@ -43,6 +47,7 @@ namespace Productions
                 dataModel = new CategoryModel(this.gvCategories, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "Production.Categories", newParser);
 
                 newParser.DataModel = dataModel;
+                this.editForm = new EditCatForm(dataModel);
             }
             catch(Exception ex)
             {
@@ -101,97 +106,32 @@ namespace Productions
                                 "(2) Delete this supplier and all of its data.");
 
         }
-        private void btnCaAdd_Click(object sender, EventArgs e)
-        {
-            Category newCat = new Category();
-            newCat.CategoryID = -1;
-            newCat.CategoryName = txtCatName.Text;
-            newCat.Description = rtxtDescription.Text;
-
-            int check = newCat.isValid();
-
-            if (check < -1)
-            {
-                MessageBox.Show(newCat.getErrorMessage(check));
-            }
-            else {
-                this.dataModel.insertNewRow(newCat);
-                //this.datamodel.resetControl();
-                MessageBox.Show("Completed");
-                clearAll();
-            }
-        }
 
         private void gvCategories_SelectionChanged(object sender, EventArgs e)
         {
-            if (this.gvCategories.SelectedRows.Count>0)
+            if (this.gvCategories.SelectedRows.Count > 0)
             {
-                int selectedIndex = this.gvCategories.Rows.IndexOf(this.gvCategories.SelectedRows[0]);
-                Category selectedItem = this.dataModel.Data[selectedIndex];
-                this.txtCatID.Text = selectedItem.CategoryID.ToString();
-                this.txtCatName.Text = selectedItem.CategoryName;
-                this.rtxtDescription.Text = selectedItem.Description;
+                Category get = new Category();
+                get.CategoryID = int.Parse(this.gvCategories.SelectedRows[0].Cells[0].Value.ToString());
+                Category selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
+                this.txtSelectedID.Text = selectedItem.CategoryID.ToString();
+                this.editForm.currentData = selectedItem;
+            }
+            else
+            {
+                this.txtSelectedID.Text = "";
             }
         }
 
-        private void btnCaRemove_Click(object sender, EventArgs e)
-        {
-            if(this.txtCatID.Text.Equals(""))
-            {
-                MessageBox.Show("You should select an Category first.");
-                return;
-            }
-
-            try {
-                int IdToDelete = int.Parse(this.txtCatID.Text.Trim());
-                this.dataModel.deleteRows("categoryid="+IdToDelete);
-                MessageBox.Show("Deleted.");
-                clearAll();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnCaUpdate_Click(object sender, EventArgs e)
-        {
-            if (this.txtCatID.Text.Equals(""))
-            {
-                MessageBox.Show("You should select an Category first.");
-                return;
-            }
-
-            try
-            {
-                Category updateData = new Category();
-                updateData.CategoryID = int.Parse(this.txtCatID.Text.Trim());
-                updateData.CategoryName = this.txtCatName.Text;
-                updateData.Description = this.rtxtDescription.Text;
-
-                //int IdOfRow = this.gvCategories.Rows.IndexOf(this.gvCategories.SelectedRows[0]);
-                this.dataModel.updateRow(updateData);
-                MessageBox.Show("Updated.");
-                clearAll();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         protected void clearAll()
         {
-            this.txtCatID.Text = "";
-            this.txtCatName.Text = "";
-            this.rtxtDescription.Text = "";
+            this.txtSelectedID.Text = "";
+            this.txtDescription.Text = "";
+            this.txtDescription.Text = "";
 
             this.gvCategories.ClearSelection();
 
-        }
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            clearAll();
         }
 
         #region ControlInteface<CategoryModel,Category> Members
@@ -231,5 +171,116 @@ namespace Productions
         }
 
         #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Categories Manager";
+        }
+
+        #endregion
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            this.clearAll();
+
+            try
+            {
+                this.dataModel.resetControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            this.editForm.AddNewMode = true;
+            this.editForm.ShowDialog();
+            this.gvCategories.ClearSelection();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (this.txtSelectedID.Text.Equals(""))
+            {
+                MessageBox.Show("You should select an Category first.");
+                return;
+            }
+            this.editForm.AddNewMode = false;
+            this.editForm.ShowDialog();
+            this.gvCategories.ClearSelection();
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (this.txtSelectedID.Text.Equals(""))
+            {
+                MessageBox.Show("You should select an Category first.");
+                return;
+            }
+            this.doDelete();
+        }
+
+        protected void doDelete()
+        {
+            int idToDelete = int.Parse(this.txtSelectedID.Text);
+            string deleteSql = "categoryid=" + idToDelete;
+            try
+            {
+                dataModel.deleteRows(deleteSql);
+            }
+            catch
+            {
+                this.warningForm.ShowDialog();
+                UserOption result = this.warningForm.GetUserOption;
+                if (result == UserOption.Option1)
+                    this.dataModel.SafeDelete(idToDelete);
+                if (result == UserOption.Option2)
+                {
+                    this.doBadDelete(idToDelete);
+                }
+            }
+
+        }
+
+        protected void doBadDelete(int idToDelete)
+        {
+            try
+            {
+                Category supp = this.dataModel.BadDelete(idToDelete);
+                if (supp != null)
+                    MessageBox.Show("DELETE SUCCESSFULLY");
+                else
+                    MessageBox.Show("THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("THIS CATEGORY'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            doSearch();
+        }
+
+        public void doSearch()
+        {
+            this.gvCategories.ClearSelection();
+            try
+            {
+                string newFilter = " ";
+                newFilter += this.dataModel.filter(this.txtName.Text, this.txtDescription.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

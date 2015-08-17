@@ -13,6 +13,14 @@ namespace Employees
     // This class describes Employees.
     public class Employee : BaseDataObject
     {
+        public EmployeeModel.IdItem getMrId()
+        {
+            EmployeeModel.IdItem result = new EmployeeModel.IdItem();
+            result.Id = this.mgrid;
+            return result;
+        }
+
+
         private int empid;
 
         public int Empid
@@ -182,6 +190,8 @@ namespace Employees
 
         public override void copyTo(BaseDataObject other)
         {
+            if (other is Employee == false)
+                throw new Exception("BAD TYPE TO CLONE. Class Employee.");
             Employee otherEmp = (Employee) other;
             otherEmp.empid = this.empid;
             otherEmp.lastname = this.lastname;
@@ -212,6 +222,9 @@ namespace Employees
 
         public override bool Equals(object obj)
         {
+            if (obj is Employee == false)
+                return false;
+
             Employee other = (Employee)obj;
             return this.Empid == other.Empid;
         }
@@ -278,7 +291,7 @@ namespace Employees
 
         }
 
-        public override string[] getErrorMessage(int[] errorCodes)
+        /*public override string[] getErrorMessage(int[] errorCodes)
         {
             List<string> result = new List<string>();
 
@@ -288,7 +301,7 @@ namespace Employees
             }
 
             return result.ToArray();
-        }
+        }*/
 
         public override int[] isValid_multi()
         {
@@ -406,18 +419,7 @@ namespace Employees
             return result;
         }
 
-        public override Employee parse(System.Data.SqlClient.SqlDataReader dr)
-        {
-            int count = dr.FieldCount;
-            List<SqlParameter> Params = new List<SqlParameter>();
-            for (int i = 0; i < count; i++)
-            {
-                SqlParameter param = new SqlParameter(dr.GetName(i), dr.GetValue(i));
-                Params.Add(param);
-            }
-
-            return this.parse(Employee.Sql_keys, Params);
-        }
+        
 
         public override string getPrimaryKey()
         {
@@ -462,8 +464,14 @@ namespace Employees
             SqlParameter hiredate = this.createSQLParam("hiredate", SqlDbType.DateTime, item.Hiredate);
             SqlParameter address = this.createSQLParam("address", SqlDbType.NVarChar, item.Address, 60);
             SqlParameter city = this.createSQLParam("city", SqlDbType.NVarChar, item.City, 15);
-            SqlParameter region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15);
-            SqlParameter postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
+            SqlParameter region;
+            if(item.Region.Equals(""))
+               region = this.createSQLParam("region", SqlDbType.NVarChar,  DBNull.Value, 15);
+            else region = this.createSQLParam("region", SqlDbType.NVarChar, item.Region, 15); 
+            SqlParameter postalcode;
+            if(item.Postalcode.Equals(""))
+                postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, DBNull.Value, 10);
+            else postalcode = this.createSQLParam("postalcode", SqlDbType.NVarChar, item.Postalcode, 10);
             SqlParameter country = this.createSQLParam("country", SqlDbType.NVarChar, item.Country, 15);
             SqlParameter phone = this.createSQLParam("phone",SqlDbType.NVarChar,item.Phone,24);
             SqlParameter mgrid = null;
@@ -521,8 +529,6 @@ namespace Employees
                 }
                 return deletedList;
             }
-
-            
             
         }
 
@@ -568,7 +574,7 @@ namespace Employees
             
         }
 
-        public object[] getEmployeeIDs()
+        /*public object[] getEmployeeIDs()
         {
             List<object> result = new List<object>();
 
@@ -578,6 +584,6 @@ namespace Employees
             }
 
             return result.ToArray();
-        }
+        }*/
     }
 }

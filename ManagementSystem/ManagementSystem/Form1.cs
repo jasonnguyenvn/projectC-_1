@@ -12,6 +12,9 @@ using Base_Intefaces;
 using Employees;
 using Suppliers;
 using Productions;
+using Orders;
+
+using System.Threading;
 
 namespace ManagementSystem
 {
@@ -19,8 +22,12 @@ namespace ManagementSystem
     {
         private EmployeeControl EmpControl;
         private SupplierControl SuppControl;
+        private ProductControl ProControl;
         private CategoryControl CatControl;
+        private OrderControl OrdControl;
         private AboutControl aboutBox;
+
+
 
         private BaseControlInteface currentControl;
 
@@ -30,7 +37,27 @@ namespace ManagementSystem
             this.initControls();
         }
 
+        Loading loadForm;
+
         private void initControls()
+        {
+            loadForm = new Loading();
+            loadForm.Owner = this;
+            
+
+            Thread th1 = new Thread(new ThreadStart(initDataControls));
+
+            th1.Start();
+            loadForm.ShowDialog();
+            //loadForm.ShowDialog();
+
+            this.currentControl = EmpControl;
+
+            aboutBox = new AboutControl();
+            
+        }
+
+        private void initDataControls()
         {
             try
             {
@@ -38,34 +65,43 @@ namespace ManagementSystem
                 EmpControl.Dock = DockStyle.Fill;
                 EmpControl.AutoSize = true;
                 EmpControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                this.currentControl = EmpControl;
 
                 SuppControl = new SupplierControl();
                 SuppControl.Dock = DockStyle.Fill;
                 SuppControl.AutoSize = true;
                 SuppControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
+                ProControl = new ProductControl();
+                ProControl.Dock = DockStyle.Fill;
+                ProControl.AutoSize = true;
+                ProControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
                 CatControl = new CategoryControl();
                 CatControl.Dock = DockStyle.Fill;
                 CatControl.AutoSize = true;
                 CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                OrdControl = new OrderControl();
+                OrdControl.Dock = DockStyle.Fill;
+                OrdControl.AutoSize = true;
+                OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                System.Threading.Thread.Sleep(500);
+                this.Invoke(new CloseDelegate(loadForm.Close));
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-            aboutBox = new AboutControl();
-
-            
         }
+
+        public delegate void CloseDelegate();
+
 
         private void loadControl(BaseControlInteface control)
         {
             this.currentControl.resetControl();
             this.panel1.Controls.Clear();
-
+            //System.Threading.Thread.Sleep(100);
             try
             {
                 if (control.isLoaded() == true)
@@ -73,6 +109,8 @@ namespace ManagementSystem
                 else control.setLoadStatus(true);
                 this.panel1.Controls.Add(control.getThis());
                 this.currentControl = control;
+                this.Text = this.currentControl.getName() + " - Company Mangement";
+
             }
             catch (Exception ex)
             {
@@ -88,7 +126,7 @@ namespace ManagementSystem
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.ProControl);
         }
 
         private void btnCategories_Click(object sender, EventArgs e)
@@ -109,13 +147,26 @@ namespace ManagementSystem
 
         private void btnOders_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.OrdControl);
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
             this.panel1.Controls.Clear();
             this.panel1.Controls.Add(this.aboutBox);
+            this.Text = "About Company Mangement 0.6.9.1";
+        }
+
+        private void btnShippers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.panel1.Controls.Clear();
+            this.panel1.Controls.Add(this.picHome);
+            this.Text = "Company Mangement";
         }
     }
 }

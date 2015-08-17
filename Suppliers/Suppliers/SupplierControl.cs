@@ -115,7 +115,7 @@ namespace Suppliers
             this.editForm.ShowDialog();
 
 
-           /* Supplier newSup = new Supplier();
+            /*Supplier newSup = new Supplier();
             newSup.SupplierID = -1;
             newSup.CompanyName = this.txtCompName.Text;
             newSup.Contactname = this.txtContname.Text;
@@ -190,9 +190,9 @@ namespace Suppliers
         {
             if (this.gvSuppliers.SelectedRows.Count > 0)
             {
-                this.editForm.clearForm();
-                int selectedIndex = this.gvSuppliers.Rows.IndexOf(this.gvSuppliers.SelectedRows[0]);
-                Supplier selectedItem = this.dataModel.Data[selectedIndex];
+                Supplier get = new Supplier();
+                get.SupplierID = int.Parse(this.gvSuppliers.SelectedRows[0].Cells[0].Value.ToString());
+                Supplier selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtSupID.Text = selectedItem.SupplierID.ToString();
                 this.editForm.txtCompName.Text = selectedItem.CompanyName;
@@ -252,7 +252,28 @@ namespace Suppliers
                 this.warningForm.ShowDialog();
                 UserOption result = this.warningForm.GetUserOption;
                 if (result == UserOption.Option1)
-                    this.dataModel.SafetyDelete(deleteSql);
+                    this.dataModel.SafeDelete(idToDelete);
+                if (result == UserOption.Option2)
+                {
+                    this.doBadDelete(idToDelete);
+                }
+            }
+        }
+
+        private void doBadDelete(int idToDelete)
+        {
+            try
+            {
+                Supplier supp = this.dataModel.BadDelete(idToDelete);
+                if (supp != null)
+                    MessageBox.Show("DELETE SUCCESSFULLY");
+                else
+                    MessageBox.Show("THIS SUPPLIER'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("THIS SUPPLIER'S PRODUCTS MAY BE LIST ON ORDER. CANNOT DELETE!");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -352,6 +373,15 @@ namespace Suppliers
         public Control getThis()
         {
             return this;
+        }
+
+        #endregion
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Suppliers Manager";
         }
 
         #endregion
