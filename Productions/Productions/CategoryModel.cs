@@ -209,7 +209,10 @@ namespace Productions
     {
         public Category SafeDelete(int catID)
         {
-            Category get = this.getItems(" categoryid=" + catID)[0];
+            List<Category> tmp = this.getItems(" supplierid=" + catID);
+            if (tmp.Count <= 0)
+                return null;
+            Category get = tmp[0];
 
 
             List<SqlParameter> paramList = new List<SqlParameter>();
@@ -241,11 +244,15 @@ namespace Productions
             return get;
         }
 
-        public Category BadDelete(int suppID)
+        public Category BadDelete(int catID)
         {
-            Category get = this.getItems(" categoryid=" + suppID)[0];
+            List<Category> tmp = this.getItems(" supplierid=" + catID);
+            if (tmp.Count <= 0)
+                return null;
+            Category get = tmp[0];
+
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(this.createSQLParam("categoryid", SqlDbType.Int, suppID));
+            param.Add(this.createSQLParam("categoryid", SqlDbType.Int, catID));
 
             string command = "Delete_Cat";
 

@@ -18,3 +18,5 @@ C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSy
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.csproj.GenerateResource.Cache
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.exe
 C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\obj\Debug\ManagementSystem.pdb
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\CustomerControl.dll
+C:\Projects\projectC-_1\ManagementSystem\ManagementSystem\bin\Debug\CustomerControl.pdb

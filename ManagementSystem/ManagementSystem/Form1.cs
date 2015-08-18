@@ -13,6 +13,7 @@ using Employees;
 using Suppliers;
 using Productions;
 using Orders;
+using Customers;
 
 using System.Threading;
 
@@ -25,6 +26,8 @@ namespace ManagementSystem
         private ProductControl ProControl;
         private CategoryControl CatControl;
         private OrderControl OrdControl;
+        private CustomerControl CustControl;
+
         private AboutControl aboutBox;
 
 
@@ -80,6 +83,11 @@ namespace ManagementSystem
                 CatControl.Dock = DockStyle.Fill;
                 CatControl.AutoSize = true;
                 CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                CustControl = new CustomerControl();
+                CustControl.Dock = DockStyle.Fill;
+                CustControl.AutoSize = true;
+                CustControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                 OrdControl = new OrderControl();
                 OrdControl.Dock = DockStyle.Fill;
@@ -142,7 +150,7 @@ namespace ManagementSystem
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.CustControl);
         }
 
         private void btnOders_Click(object sender, EventArgs e)

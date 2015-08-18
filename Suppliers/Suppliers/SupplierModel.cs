@@ -426,7 +426,10 @@ namespace Suppliers
 
         public Supplier SafeDelete(int suppID)
         {
-            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<Supplier> tmp = this.getItems(" supplierid=" + suppID);
+            if (tmp.Count <= 0)
+                return null;
+            Supplier get = tmp[0];
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
 
@@ -458,7 +461,11 @@ namespace Suppliers
 
         public Supplier BadDelete(int suppID)
         {
-            Supplier get = this.getItems(" supplierid=" + suppID)[0];
+            List<Supplier> tmp = this.getItems(" supplierid=" + suppID);
+            if (tmp.Count <= 0)
+                return null;
+            Supplier get = tmp[0];
+
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(this.createSQLParam("supplierid", SqlDbType.Int, suppID));
 

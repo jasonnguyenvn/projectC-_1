@@ -8,10 +8,13 @@ using DataModel;
 using System.Data;
 using System.Windows.Forms;
 
-namespace CustomerControl
+namespace Customers
 {
     public class Customer : BaseDataObject
     {
+
+
+
         private int customerid;
 
         public int CustomerID
@@ -337,11 +340,54 @@ namespace CustomerControl
     public class CustomerModel : DataModelWithControl<Customer>
     {
 
-        public CustomerModel(DataGridView control, string host,
+        // Hau added this func
+        public Customer deepDelete(int custID)
+        {
+            List<Customer> tmp = this.getItems(" custid=" + custID);
+            if (tmp.Count <= 0)
+                return null;
+            Customer get = tmp[0];
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(this.createSQLParam("custid", SqlDbType.Int, custID));
+
+            string command = "Delete_Cust";
+
+            this.conn.Open();
+            try
+            {
+                SqlCommand cmd = this.createSQLCommand(command, CommandType.StoredProcedure, param);
+                int result = cmd.ExecuteNonQuery();
+                if (result <= 0)
+                    get = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DATABASE ERROR. COULD NOT SAFE DELETE Customer. " + ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+                this.DataSource.Rows.RemoveAt(this.Data.IndexOf(get));
+                this.Data.Remove(get);
+                if (this._webControl != null)
+                    this._webControl.DataBind();
+            }
+
+            return get;
+        }
+
+        public CustomerModel( string host,
+            int port, string dbname, string username, string password, string table_name, CustomerParser parser) :
+            base( host, port, dbname, username, password, table_name, parser)
+        {
+            this._control.Columns.Clear();
+            this._initTable(Customer.Sql_keys);
+        }
+
+        public CustomerModel(object control, string host,
             int port, string dbname, string username, string password, string table_name, CustomerParser parser) :
             base(control, host, port, dbname, username, password, table_name, parser)
         {
-            this._control.Columns.Clear();
             this._initTable(Customer.Sql_keys);
         }
 
@@ -400,36 +446,84 @@ namespace CustomerControl
         }*/
 
         public void filter(string txtCompName, string txtContname, string txtAddr,
-            string txtCity, string cbCountry, string txtPhone, string txtFax)
+            string txtCity, string txtRegion, string txtPos, string cbCountry, string txtPhone, string txtFax)
         {
-            string sqlFilter = " d";
+            string sqlFilter = "";
+            bool first = true;
+
             if (txtCompName.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  companyname LIKE '%{0}%' ", txtCompName.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" companyname LIKE '%{0}%' ", txtCompName.Trim());
             }
             if (txtContname.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  contactname LIKE '%{0}%' ", txtContname.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" contactname LIKE '%{0}%' ", txtContname.Trim());
             }
             if (txtAddr.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  address LIKE '%{0}%' ", txtAddr.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" address LIKE '%{0}%' ", txtAddr.Trim());
             }
             if (txtCity.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  city LIKE '%{0}%' ", txtCity.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" city LIKE '%{0}%' ", txtCity.Trim());
             }
             if (cbCountry.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  country LIKE '%{0}%' ", cbCountry.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" country LIKE '%{0}%' ", cbCountry.Trim());
             }
             if (txtPhone.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  phone LIKE '%{0}%' ", txtPhone.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format("  phone LIKE '%{0}%' ", txtPhone.Trim());
             }
             if (txtFax.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  fax LIKE '%{0}%' ", txtFax.Trim());
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" fax LIKE '%{0}%' ", txtFax.Trim());
+            }
+
+            if (txtRegion.Equals("") == false)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" region LIKE '%{0}%' ", txtRegion.Trim());
+            }
+
+            if (txtPos.Equals("") == false)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else
+                    first = false;
+                sqlFilter += string.Format(" postalcode LIKE '%{0}%' ", txtPos.Trim());
             }
 
             this.resetControl(sqlFilter);

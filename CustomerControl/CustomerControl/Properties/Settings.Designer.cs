@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CustomerControl.Properties {
+namespace Customers.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

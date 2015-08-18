@@ -177,10 +177,11 @@ namespace DataModel
         public List<T> getItems(string where_filter)
         {
             List<T> result = new List<T>();
+            SqlDataReader dr = null;
             try
             {
                 this.conn.Open();
-                SqlDataReader dr = this.getRows(where_filter);
+                dr = this.getRows(where_filter);
                 
                 while (dr.Read())
                 {
@@ -188,7 +189,7 @@ namespace DataModel
                     result.Add(this.Data[this.Data.IndexOf(temp)]);
                 }
 
-                dr.Close();
+                
 
             }
             catch(Exception ex)
@@ -197,6 +198,8 @@ namespace DataModel
             }
             finally
             {
+                if(dr!=null)
+                    dr.Close();
                 this.conn.Close();
             }
 
