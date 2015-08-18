@@ -205,7 +205,7 @@ namespace Suppliers
             this.country = "";
             this.phone = "";
             this.fax = "";
-            this.deactive = true;
+            this.deactive = false;
         }
 
         public override string getErrorMessage(int errorCode)

@@ -26,6 +26,7 @@ namespace ManagementSystem
         private ProductControl ProControl;
         private CategoryControl CatControl;
         private OrderControl OrdControl;
+        private ShipperControl _shipperControl;
         private CustomerControl CustControl;
 
         private AboutControl aboutBox;
@@ -93,6 +94,12 @@ namespace ManagementSystem
                 OrdControl.Dock = DockStyle.Fill;
                 OrdControl.AutoSize = true;
                 OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                System.Threading.Thread.Sleep(500);
+
+                _shipperControl = new ShipperControl();
+                _shipperControl.Dock = DockStyle.Fill;
+                _shipperControl.AutoSize = true;
+                _shipperControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 System.Threading.Thread.Sleep(500);
                 this.Invoke(new CloseDelegate(loadForm.Close));
             }
@@ -167,7 +174,7 @@ namespace ManagementSystem
 
         private void btnShippers_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(_shipperControl);
         }
 
         private void btnHome_Click(object sender, EventArgs e)

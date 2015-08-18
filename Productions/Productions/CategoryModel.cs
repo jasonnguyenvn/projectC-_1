@@ -246,7 +246,7 @@ namespace Productions
 
         public Category BadDelete(int catID)
         {
-            List<Category> tmp = this.getItems(" supplierid=" + catID);
+            List<Category> tmp = this.getItems(" categoryid=" + catID);
             if (tmp.Count <= 0)
                 return null;
             Category get = tmp[0];

@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Employees\Employees\bin\Debug\Employees.dll</HintPath>
     </Reference>
+    <Reference Include="Orders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Orders\Orders\bin\Debug\Orders.dll</HintPath>
+    </Reference>
     <Reference Include="Productions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Productions\Productions\bin\Debug\Productions.dll</HintPath>
@@ -106,6 +110,27 @@
     </Compile>
     <Compile Include="Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shippers.aspx.cs">
+      <DependentUpon>Shippers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shippers.aspx.designer.cs">
+      <DependentUpon>Shippers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit-Shipp.aspx.cs">
+      <DependentUpon>Edit-Shipp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit-Shipp.aspx.designer.cs">
+      <DependentUpon>Edit-Shipp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customers.aspx.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
@@ -197,6 +222,9 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Categories.aspx" />
+    <Content Include="Shippers.aspx" />
+    <Content Include="Edit-Shipp.aspx" />
+    <Content Include="Orders.aspx" />
     <Content Include="Customers.aspx" />
     <Content Include="Edit-Pro.aspx" />
     <Content Include="Products.aspx" />

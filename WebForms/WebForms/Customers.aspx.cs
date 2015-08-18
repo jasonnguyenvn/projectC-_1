@@ -147,7 +147,7 @@ namespace WebForms
                     +" SOME ORDERS OF THIS CUSTOMER. PLEASE USE DESKTOP APP TO" 
                     +" DELETE THIS OR YOU CAN USE ORDERS MANAGER TO DELETE ALL " 
                     +"ORDERS OF THIS CUSTOEMRS AND THEN GO BACK TO DELETE IT.";
-                this.scriptLb.Text = "<script>alert(\"" + mess + "\");window.location.assign(\"Products.aspx\")</script>";
+                this.scriptLb.Text = "<script>alert(\"" + mess + "\");window.location.assign(\"Customers.aspx\")</script>";
             }
         }
 

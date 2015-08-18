@@ -14,3 +14,5 @@ C:\Projects\projectC-_1\WebForms\WebForms\bin\Productions.pdb
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\WebForms.dll
 C:\Projects\projectC-_1\WebForms\WebForms\obj\Debug\WebForms.pdb
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Orders.dll
+C:\Projects\projectC-_1\WebForms\WebForms\bin\Orders.pdb

@@ -35,8 +35,7 @@ namespace Productions
                                 "Production.Products",
                                 newParser);
             newParser.DataModel = dataModel;
-
-            dataModel.resetControl();
+            this._initModel();
         }
 
 
@@ -82,9 +81,17 @@ namespace Productions
             catch
             {
                 MessageBox.Show("SupplierID or CatogoryID isValid");
+                return;
             }
-
-            dataObj.UnitPrice = float.Parse(txtUnitprice.Text);
+            try
+            {
+                dataObj.UnitPrice = float.Parse(txtUnitprice.Text);
+            }
+            catch
+            {
+                MessageBox.Show("INVALID VALUE FOR UNIT PRICE");
+                return;
+            }
             dataObj.Discontinued = this.cbDiscontinued.Checked;
             int check = dataObj.isValid();
             if (check < -1)
@@ -251,7 +258,14 @@ namespace Productions
 
         public void resetControl()
         {
+            this.cbxCaID.Items.Clear();
+            this.cbxSupID.Items.Clear();
+            this.cbxCaID.Items.Add("");
+            this.cbxCaID.Items.AddRange(dataModel.getIDItemList("Production.Categories", 0, 1, " deactive=0").ToArray());
+            this.cbxSupID.Items.Add("");
+            this.cbxSupID.Items.AddRange(dataModel.getIDItemList("Production.Suppliers", 0, 1, " deactive=0").ToArray());
             this.clearAll();
+
         }
 
         public void resetData()

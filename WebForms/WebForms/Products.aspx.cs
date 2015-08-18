@@ -144,8 +144,23 @@ namespace WebForms
                 {
                     catID = ((ProductModel.IdItem) this.catList[cbCatID.SelectedIndex ]).Id;
                 }
+                string unitText = "";
+                if (txtUnitPrice.Text.Equals("") == false)
+                {
+                    float unit;
+                    try
+                    {
+                        unit = float.Parse(this.txtUnitPrice.Text);
+                        unitText = unit.ToString();
+                    }
+                    catch
+                    {
+                        this.scriptLb.Text = "<script>alert(\"INALID UNIT PRICE VALUE\");</script>";
+                        return;
+                    }
+                }
                 newFilter += this._dataModel.filter(txtName.Text, supID, catID,
-                                            this.txtUnitPrice.Text, this.checkDiscontinue.Checked);
+                                            unitText, this.checkDiscontinue.Checked);
 
                 Session["pro_filter"] = newFilter;
                 this.gvProducts.DataBind();

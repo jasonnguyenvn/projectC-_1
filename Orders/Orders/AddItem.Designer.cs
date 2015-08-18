@@ -60,6 +60,7 @@
             this.cbProductID.Name = "cbProductID";
             this.cbProductID.Size = new System.Drawing.Size(189, 21);
             this.cbProductID.TabIndex = 1;
+            this.cbProductID.SelectedIndexChanged += new System.EventHandler(this.cbProductID_SelectedIndexChanged);
             // 
             // label2
             // 

@@ -185,7 +185,7 @@
                             onpageindexchanging="gvCustomers_PageIndexChanging" 
                             onselectedindexchanged="gvCustomers_SelectedIndexChanged" 
                             CssClass="table table-bordered table-hover dataTable" >
-                            <PagerSettings Position="TopAndBottom" />
+                            <PagerSettings Position="TopAndBottom" Mode="NumericFirstLast" />
                             <RowStyle ForeColor="#000066" Height="20px" 
                                 HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
                             <FooterStyle BackColor="White" ForeColor="#000066" />

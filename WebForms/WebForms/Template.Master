@@ -208,7 +208,7 @@
               <a href="#"><span>Sales</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#">Add new Order...</a></li>
-                <li><a href="#">Orders Manager</a></li>
+                <li><a href="Orders">Orders Manager</a></li>
                 <li><a href="Customers.aspx">Customers Manager</a></li>
                 <li><a href="#">Shippers Manager</a></li>
                 

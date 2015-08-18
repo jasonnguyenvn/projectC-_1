@@ -466,9 +466,11 @@ namespace DataModel
             try
             {
                 string command = "SELECT * FROM " + tbName;
-                SqlCommand cmd = this.createSQLCommand(command);
                 if (filter.Equals("") == false)
                     command += " WHERE " + filter;
+
+                SqlCommand cmd = this.createSQLCommand(command);
+                
 
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
