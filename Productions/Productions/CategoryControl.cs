@@ -103,7 +103,7 @@ namespace Productions
 
             this.warningForm = new DeleteOptionsForm("WARNING: This category holds some products", 
                                 "(1) SAFETY DELETE: Deactive this category in the manager.", 
-                                "(2) Delete this supplier and all of its data.");
+                                "(2) Delete this category and all of its data.");
 
         }
 

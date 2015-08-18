@@ -103,6 +103,20 @@
     <Compile Include="Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Edit-Pro.aspx.cs">
+      <DependentUpon>Edit-Pro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit-Pro.aspx.designer.cs">
+      <DependentUpon>Edit-Pro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Edit-Cat.aspx.cs">
       <DependentUpon>Edit-Cat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,6 +186,8 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Categories.aspx" />
+    <Content Include="Edit-Pro.aspx" />
+    <Content Include="Products.aspx" />
     <Content Include="country.xml" />
     <Content Include="Edit-Cat.aspx" />
     <Content Include="Edit-Supp.aspx" />
@@ -773,7 +789,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58905</DevelopmentServerPort>
+          <DevelopmentServerPort>49252</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

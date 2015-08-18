@@ -196,8 +196,8 @@
             <li class="treeview">
               <a href="#"><span>Productions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Add new Product...</a></li>
-                <li><a href="#">Products Manager</a></li>
+                <li><a href="Edit-Pro.aspx">Add new Product...</a></li>
+                <li><a href="Products.aspx">Products Manager</a></li>
                 <li><a href="Categories.aspx">Categories Manager</a></li>
                 <li><a href="Suppliers.aspx">Suppliers Manager</a></li>
                 

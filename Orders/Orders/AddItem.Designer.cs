@@ -54,6 +54,7 @@
             // 
             // cbProductID
             // 
+            this.cbProductID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProductID.FormattingEnabled = true;
             this.cbProductID.Location = new System.Drawing.Point(67, 17);
             this.cbProductID.Name = "cbProductID";
@@ -142,6 +143,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(279, 200);
             this.Name = "AddItem";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Product";
             this.Load += new System.EventHandler(this.AddItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
