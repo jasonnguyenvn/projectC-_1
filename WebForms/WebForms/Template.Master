@@ -209,7 +209,7 @@
               <ul class="treeview-menu">
                 <li><a href="#">Add new Order...</a></li>
                 <li><a href="#">Orders Manager</a></li>
-                <li><a href="#">Customers Manager</a></li>
+                <li><a href="Customers.aspx">Customers Manager</a></li>
                 <li><a href="#">Shippers Manager</a></li>
                 
               </ul>

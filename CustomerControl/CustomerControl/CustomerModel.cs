@@ -445,7 +445,7 @@ namespace Customers
             return deletedList;
         }*/
 
-        public void filter(string txtCompName, string txtContname, string txtAddr,
+        public string filter(string txtCompName, string txtContname, string txtAddr,
             string txtCity, string txtRegion, string txtPos, string cbCountry, string txtPhone, string txtFax)
         {
             string sqlFilter = "";
@@ -528,6 +528,7 @@ namespace Customers
 
             this.resetControl(sqlFilter);
 
+            return sqlFilter;
         }
     }
 

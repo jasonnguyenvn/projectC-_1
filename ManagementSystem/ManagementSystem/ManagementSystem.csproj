@@ -47,9 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CustomerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Customers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\CustomerControl\CustomerControl\bin\Debug\CustomerControl.dll</HintPath>
+      <HintPath>..\..\CustomerControl\CustomerControl\bin\Debug\Customers.dll</HintPath>
     </Reference>
     <Reference Include="DataModel, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
