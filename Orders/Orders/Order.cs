@@ -267,7 +267,7 @@ namespace Orders
                 return -2;
             if (requireddate.CompareTo(orderdate) < 0)
                 return -3;
-            if (shippeddate.CompareTo(orderdate) < 0)
+            if (shippeddate.CompareTo(orderdate) < 0 || shippeddate.CompareTo(DateTime.Now)>0)
                 return -4;
             if (shipperid < 0)
                 return -5;
@@ -293,7 +293,7 @@ namespace Orders
                 result.Add(-2);
             if (requireddate.CompareTo(orderdate) < 0)
                 result.Add(-3);
-            if (shippeddate.CompareTo(orderdate) < 0)
+            if (isShipped==true && (shippeddate.CompareTo(orderdate) < 0 || shippeddate.CompareTo(DateTime.Now)> 0))
                 result.Add(-4);
             if (shipperid < 0)
                 result.Add(-5);
@@ -342,6 +342,8 @@ namespace Orders
 
         public class OrderItem : BaseDataObject
         {
+
+
             private int orderid;
 
             public int Orderid

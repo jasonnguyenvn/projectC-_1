@@ -13,6 +13,7 @@ using Employees;
 using Suppliers;
 using Productions;
 using Orders;
+using Customers;
 
 using System.Threading;
 
@@ -25,6 +26,9 @@ namespace ManagementSystem
         private ProductControl ProControl;
         private CategoryControl CatControl;
         private OrderControl OrdControl;
+        private ShipperControl _shipperControl;
+        private CustomerControl CustControl;
+
         private AboutControl aboutBox;
 
 
@@ -81,10 +85,21 @@ namespace ManagementSystem
                 CatControl.AutoSize = true;
                 CatControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
+                CustControl = new CustomerControl();
+                CustControl.Dock = DockStyle.Fill;
+                CustControl.AutoSize = true;
+                CustControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
                 OrdControl = new OrderControl();
                 OrdControl.Dock = DockStyle.Fill;
                 OrdControl.AutoSize = true;
                 OrdControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                System.Threading.Thread.Sleep(500);
+
+                _shipperControl = new ShipperControl();
+                _shipperControl.Dock = DockStyle.Fill;
+                _shipperControl.AutoSize = true;
+                _shipperControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 System.Threading.Thread.Sleep(500);
                 this.Invoke(new CloseDelegate(loadForm.Close));
             }
@@ -142,7 +157,7 @@ namespace ManagementSystem
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(this.CustControl);
         }
 
         private void btnOders_Click(object sender, EventArgs e)
@@ -159,7 +174,7 @@ namespace ManagementSystem
 
         private void btnShippers_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
+            this.loadControl(_shipperControl);
         }
 
         private void btnHome_Click(object sender, EventArgs e)

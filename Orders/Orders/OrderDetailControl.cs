@@ -24,7 +24,7 @@ namespace Orders
                 this.btnRemoveAll
             };
             this.dataModel = dataModel;
-            addForm = new AddItem();
+            addForm = new AddItem(this.dataModel);
         }
 
         private Control[] _controls;
@@ -40,6 +40,8 @@ namespace Orders
 
         protected void doAdd()
         {
+            addForm.clearAll();
+            addForm.cbProductID.Items.Clear();
             addForm.cbProductID.Items.Add("");
             addForm.cbProductID.Items.AddRange(this.dataModel.getIDItemList("Production.Products", 0, 1, " discontinued=0" ).ToArray());
             addForm.ShowDialog();
@@ -72,12 +74,53 @@ namespace Orders
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
         {
+            this.doRemoveAll();
+        }
 
+        protected void doRemoveAll()
+        {
+            int count = this.gvProductDeatail.Rows.Count;
+            this.removeItems(0, count - 1);
         }
 
         private void btnRemoveProducts_Click(object sender, EventArgs e)
         {
+            this.doRemoveItems();
 
+        }
+
+        protected void doRemoveItems()
+        {
+            int count = this.gvProductDeatail.SelectedRows.Count;
+            if (count <= 0)
+            {
+                MessageBox.Show("YOU SHOUD SELECT ITEMS FIRST");
+                return;
+            }
+            int start = this.gvProductDeatail.Rows.IndexOf(gvProductDeatail.SelectedRows[0]);
+            int end = this.gvProductDeatail.Rows.IndexOf(gvProductDeatail.SelectedRows[count - 1]);
+            this.removeItems(start, end);
+        }
+
+        private void removeItems(int start, int end)
+        {
+            if (end < start)
+            {
+                int tmp = end;
+                end = start;
+                start = tmp;
+            }
+            try
+            {
+                for (int i = start; i <= end; i++)
+                {
+                    this.dataModel.DataSource.Rows.RemoveAt(start);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

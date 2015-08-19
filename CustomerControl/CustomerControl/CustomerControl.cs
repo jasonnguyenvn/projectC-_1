@@ -6,11 +6,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CustomerControl.Properties;
+using Customers.Properties;
+using Base_Intefaces;
 
-namespace CustomerControl
+namespace Customers
 {
-    public partial class CustomerControl : UserControl
+    public partial class CustomerControl : UserControl, BaseControlInteface
     {
 
 
@@ -36,6 +37,8 @@ namespace CustomerControl
                 //dataModel = new CustomerModel(this.gvCustomers, ".\\SQL2008", setting.DB_PORT, setting.DB_NAME, setting.DB_USER, setting.DB_PASS, "HR.Customers", newParser);
 
                 newParser.DataModel = dataModel;
+                this.cbCountry.Items.Clear();
+                this.cbCountry.Items.AddRange(CustomerModel.GetCountries().ToArray());
             }
             catch (Exception ex)
             {
@@ -114,10 +117,14 @@ namespace CustomerControl
             this.txtCusID.Text = "";
             this.txtCompName.Text = "";
             this.txtContName.Text = "";
+            this.txtContTitle.Text = "";
             this.txtAddr.Text = "";
             this.txtCity.Text = "";
             this.txtPhone.Text = "";
             this.txtFax.Text = "";
+            this.cbCountry.Text = "";
+            this.txtRegion.Text = "";
+            this.txtPos.Text = "";
             this.gvCustomers.ClearSelection();
         }
 
@@ -205,9 +212,9 @@ namespace CustomerControl
         {
             if (this.gvCustomers.SelectedRows.Count > 0)
             {
-              
-                int selectedIndex = this.gvCustomers.Rows.IndexOf(this.gvCustomers.SelectedRows[0]);
-                Customer selectedItem = this.dataModel.Data[selectedIndex];
+                Customer get = new Customer();
+                get.CustomerID = int.Parse(this.gvCustomers.SelectedRows[0].Cells[0].Value.ToString());
+                Customer selectedItem = this.dataModel.Data[dataModel.Data.IndexOf(get)];
                 this.txtCusID.Text = selectedItem.CustomerID.ToString();
                 this.txtCompName.Text = selectedItem.CompanyName;
                 this.txtContName.Text = selectedItem.Contactname;
@@ -220,6 +227,10 @@ namespace CustomerControl
                 this.txtPhone.Text = selectedItem.Phone;
                 this.txtFax.Text = selectedItem.Fax;
 
+            }
+            else
+            {
+                this.txtCusID.Text = "";
             }
         }
 
@@ -239,7 +250,26 @@ namespace CustomerControl
             }
             catch
             {
-               
+               dialogResult = MessageBox.Show("This customer holds some orders. "
+                                +"Delete it means delete all of these orders. Are you sure?",
+                                    "WARING!!!", MessageBoxButtons.YesNo);
+               if (dialogResult == DialogResult.No)
+                   return;
+
+               this.doDeepDelete(idToDelete);
+            }
+        }
+
+        protected void doDeepDelete(int custID)
+        {
+            try
+            {
+                this.dataModel.deepDelete(custID);
+                MessageBox.Show("Deleted");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -255,5 +285,66 @@ namespace CustomerControl
 
             this.doDelete();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            this.dataModel.resetControl();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            doSearch();
+        }
+
+
+        protected void doSearch()
+        {
+            try
+            {
+                this.dataModel.filter(txtCompName.Text, txtContName.Text, txtAddr.Text,
+                    txtCity.Text, txtRegion.Text, txtPos.Text,  cbCountry.Text, txtPhone.Text, txtFax.Text); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        #region BaseControlInteface Members
+
+        public string getName()
+        {
+            return "Customers Manager";
+        }
+
+        public Control getThis()
+        {
+            return this;
+        }
+
+        bool loaded = false;
+        public bool isLoaded()
+        {
+            return loaded;
+        }
+
+        public void resetControl()
+        {
+            clearAll();
+        }
+
+        public void resetData()
+        {
+            this.dataModel.resetControl();
+        }
+
+        public void setLoadStatus(bool status)
+        {
+            this.loaded = status;
+        }
+
+        #endregion
     }
 }

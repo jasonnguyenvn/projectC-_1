@@ -58,6 +58,12 @@
     <Compile Include="AddItem.Designer.cs">
       <DependentUpon>AddItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditShipperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditShipperForm.designer.cs">
+      <DependentUpon>EditShipperForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ShipperControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShipperControl.Designer.cs">
+      <DependentUpon>ShipperControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShipperModel.cs" />
     <Compile Include="UserControl1.Designer.cs">
       <DependentUpon>OrderControl.cs</DependentUpon>
     </Compile>
@@ -94,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AddItem.resx">
       <DependentUpon>AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditShipperForm.resx">
+      <DependentUpon>EditShipperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditOrder.resx">
       <DependentUpon>EditOrder.cs</DependentUpon>
@@ -107,6 +123,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShipperControl.resx">
+      <DependentUpon>ShipperControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

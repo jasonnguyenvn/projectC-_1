@@ -98,9 +98,9 @@ namespace Orders
                 this.cbCustID.Items.Add("");
                 this.cbCustID.Items.AddRange(this.dataModel.getIDItemArray("Sales.Customers", 0, 1));
                 this.cbEmpID.Items.Add("");
-                this.cbEmpID.Items.AddRange(this.dataModel.getIDItemArray("HR.Employees", 0, 1));
+                this.cbEmpID.Items.AddRange(this.dataModel.getIDItemList("HR.Employees", 0, 1, " jobStatus=1").ToArray());
                 this.cbShipperID.Items.Add("");
-                this.cbShipperID.Items.AddRange(this.dataModel.getIDItemArray("Sales.Shippers", 0, 1));
+                this.cbShipperID.Items.AddRange(this.dataModel.getIDItemList("Sales.Shippers", 0, 1, " deactive=0").ToArray());
             }
             catch(Exception ex)
             {
@@ -308,6 +308,45 @@ namespace Orders
         private void mitmDeleteOrder_Click(object sender, EventArgs e)
         {
             this.doDelete();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.editForm.addNewMode = false;
+            this.editForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int custID = -1;
+                int empID = -1;
+                int shipperID = -1;
+                if(cbCustID.SelectedIndex>0)
+                    custID = ((OrderModel.IdItem)cbCustID.SelectedItem).Id;
+                if(cbEmpID.SelectedIndex>0)
+                    empID = ((OrderModel.IdItem)cbEmpID.SelectedItem).Id;
+                if(cbShipperID.SelectedIndex>0)
+                    shipperID = ((OrderModel.IdItem)cbShipperID.SelectedItem).Id;
+
+                string orderDate = "";
+                string reqDate = "";
+                string shippedDate = "";
+
+                if (checkSearchOrderDate.Checked == true)
+                    orderDate = dtpOrderDate.Value.ToShortDateString();
+                if (checkSearchRequiredDate.Checked == true)
+                    reqDate = dtpRequiredDate.Value.ToShortDateString();
+                if (checkSearchShippedDate.Checked == true)
+                    shippedDate = dtpShippedDate.Value.ToShortDateString();
+
+                dataModel.filter(custID, empID, orderDate, reqDate, shippedDate, shipperID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }

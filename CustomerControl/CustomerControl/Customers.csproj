@@ -8,8 +8,8 @@
     <ProjectGuid>{EF6902C7-5767-48BB-BFCA-31360613CF01}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomerControl</RootNamespace>
-    <AssemblyName>CustomerControl</AssemblyName>
+    <RootNamespace>Customers</RootNamespace>
+    <AssemblyName>Customers</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,6 +39,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>

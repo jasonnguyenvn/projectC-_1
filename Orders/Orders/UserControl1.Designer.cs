@@ -513,6 +513,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "   Search";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel9
             // 
@@ -622,6 +623,7 @@
             this.button5.TabIndex = 1;
             this.button5.Text = "    Update  ";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel7
             // 
@@ -709,7 +711,7 @@
             this.mitmAddAProduct,
             this.mitmClearAllProducts});
             this.menuTripOfGV.Name = "menuTripOfGV";
-            this.menuTripOfGV.Size = new System.Drawing.Size(158, 120);
+            this.menuTripOfGV.Size = new System.Drawing.Size(158, 98);
             this.menuTripOfGV.Opening += new System.ComponentModel.CancelEventHandler(this.menuTripOfGV_Opening);
             // 
             // mitmUpdateOrder
