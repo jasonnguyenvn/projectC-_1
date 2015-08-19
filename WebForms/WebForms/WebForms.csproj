@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Customers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CustomerControl\CustomerControl\bin\Debug\Customers.dll</HintPath>
+    </Reference>
     <Reference Include="DataModel, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DataModel\abstractModel\bin\Debug\DataModel.dll</HintPath>
@@ -37,6 +41,10 @@
     <Reference Include="Employees, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Employees\Employees\bin\Debug\Employees.dll</HintPath>
+    </Reference>
+    <Reference Include="Orders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Orders\Orders\bin\Debug\Orders.dll</HintPath>
     </Reference>
     <Reference Include="Productions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -102,6 +110,48 @@
     </Compile>
     <Compile Include="Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shippers.aspx.cs">
+      <DependentUpon>Shippers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shippers.aspx.designer.cs">
+      <DependentUpon>Shippers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit-Shipp.aspx.cs">
+      <DependentUpon>Edit-Shipp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit-Shipp.aspx.designer.cs">
+      <DependentUpon>Edit-Shipp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customers.aspx.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customers.aspx.designer.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit-Pro.aspx.cs">
+      <DependentUpon>Edit-Pro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit-Pro.aspx.designer.cs">
+      <DependentUpon>Edit-Pro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Edit-Cat.aspx.cs">
       <DependentUpon>Edit-Cat.aspx</DependentUpon>
@@ -172,6 +222,12 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Categories.aspx" />
+    <Content Include="Shippers.aspx" />
+    <Content Include="Edit-Shipp.aspx" />
+    <Content Include="Orders.aspx" />
+    <Content Include="Customers.aspx" />
+    <Content Include="Edit-Pro.aspx" />
+    <Content Include="Products.aspx" />
     <Content Include="country.xml" />
     <Content Include="Edit-Cat.aspx" />
     <Content Include="Edit-Supp.aspx" />
@@ -773,7 +829,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58905</DevelopmentServerPort>
+          <DevelopmentServerPort>49252</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

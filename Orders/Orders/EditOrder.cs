@@ -35,10 +35,13 @@ namespace Orders
 
         private void cboxNotShipped_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.cboxNotShipped.Checked == true)
-                this.dtpShippedDate.Enabled = false;
-            else
-                this.dtpShippedDate.Enabled = true;
+            if (this.viewOnly == false)
+            {
+                if (this.cboxNotShipped.Checked == true)
+                    this.dtpShippedDate.Enabled = false;
+                else
+                    this.dtpShippedDate.Enabled = true;
+            }
         }
 
         public Order CurrentData = null;
@@ -54,8 +57,7 @@ namespace Orders
 
             if (addNewMode == true)
             {
-                this.clearForm();
-                this.listControl.enableControls(true);
+                this.setEnable(true);
                 return;
             }
 
@@ -76,8 +78,8 @@ namespace Orders
             this.cbShipperID.SelectedIndex = 0;
 
             this.dtpOrderDate.Value = DateTime.Now;
-            
-            
+
+            System.Threading.Thread.Sleep(1050);
             this.dtpRequiredDate.Value = DateTime.Now;
             this.cboxNotShipped.Checked = true;
             this.dtpShippedDate.Value = DateTime.Now;
@@ -101,13 +103,45 @@ namespace Orders
             this.cbCustID.Items.Add("");
             this.cbCustID.Items.AddRange(dataModel.getIDItemArray("Sales.Customers", 0, 1));
             this.cbEmpID.Items.Add("");
-            this.cbEmpID.Items.AddRange(dataModel.getIDItemArray("HR.Employees", 0, 1));
+            this.cbEmpID.Items.AddRange(dataModel.getIDItemList("HR.Employees", 0, 1, " jobStatus=1").ToArray());
             this.cbShipperID.Items.Add("");
-            this.cbShipperID.Items.AddRange(dataModel.getIDItemArray("Sales.Shippers", 0, 1));
+            this.cbShipperID.Items.AddRange(dataModel.getIDItemList("Sales.Shippers", 0, 1, " deactive=0").ToArray());
+        }
+
+        bool viewOnly = false;
+        public void setEnable(bool set)
+        {
+            cbCustID.Enabled = set;
+            cbEmpID.Enabled = set;
+            cbShipperID.Enabled = set;
+            viewOnly = !set;
+
+            dtpOrderDate.Enabled = set;
+            dtpRequiredDate.Enabled = set;
+            dtpShippedDate.Enabled = set;
+            txtFreight.Enabled = set;
+            this.txtShipName.Enabled = set;
+            this.txtShipAddress.Enabled = set;
+            this.txtShipCity.Enabled = set;
+            this.txtShipRegion.Enabled = set;
+            this.txtShipPostalCode.Enabled = set;
+            this.cbCountry.Enabled = set;
+            this.listControl.enableControls(set);
+            this.cboxNotShipped.Enabled = set;
         }
 
         private void doLoadCurrentData()
         {
+            if (CurrentData.isShipped == true)
+            {
+                this.setEnable(false);
+            }
+            else
+            {
+                this.setEnable(true);
+            }
+
+
             this.txtOrderID.Text = CurrentData.Orderid.ToString();
             this.cbCustID.SelectedIndex = this.cbCustID.Items.IndexOf((object)CurrentData.getCustIdItem());
             this.cbEmpID.SelectedIndex = this.cbEmpID.Items.IndexOf((object)CurrentData.getEmpIdItem());
@@ -116,18 +150,23 @@ namespace Orders
             this.dtpOrderDate.Value = CurrentData.Orderdate;
             this.dtpOrderDate.Value = CurrentData.Requireddate;
 
-            if (CurrentData.isShipped == true)
+            if (this.viewOnly == false)
             {
-                this.dtpShippedDate.Value = CurrentData.Shippeddate;
-                this.dtpShippedDate.Enabled = true;
-                this.cboxNotShipped.Checked = false;
+                if (CurrentData.isShipped == true)
+                {
+                    this.dtpShippedDate.Value = CurrentData.Shippeddate;
+                    this.dtpShippedDate.Enabled = true;
+                    this.cboxNotShipped.Checked = false;
+                }
+                else
+                {
+                    this.cboxNotShipped.Checked = true;
+                    this.dtpShippedDate.Enabled = false;
+                    this.dtpShippedDate.Value = DateTime.Now;
+                }
             }
             else
-            {
-                this.cboxNotShipped.Checked = true;
-                this.dtpShippedDate.Enabled = false;
-                this.dtpShippedDate.Value = DateTime.Now;
-            }
+                this.dtpShippedDate.Value = CurrentData.Shippeddate;
 
             this.txtFreight.Text = CurrentData.Freight.ToString();
             this.txtShipName.Text = CurrentData.Shipname;
@@ -193,9 +232,9 @@ namespace Orders
 
         protected void raiseSelectIdErrors()
         {
-            if (this.cbEmpID.SelectedIndex == 0)
+            if (this.cbEmpID.SelectedIndex <= 0)
                 this.errorProvider.SetError(cbEmpID, "##THIS FIELD CANNOT BE EMPTY");
-            if (this.cbShipperID.SelectedIndex == 0)
+            if (this.cbShipperID.SelectedIndex <= 0)
                 this.errorProvider.SetError(cbShipperID, "##THIS FIELD CANNOT BE EMPTY");
         }
 
@@ -204,7 +243,7 @@ namespace Orders
             Order dataObj = new Order();
             dataObj.Orderid = -1;
 
-            if (this.cbCustID.SelectedIndex == 0)
+            if (this.cbCustID.SelectedIndex <= 0)
                 dataObj.Custid = -2905;
             else
                 dataObj.Custid = ((OrderModel.IdItem)this.cbCustID.SelectedItem).Id;
@@ -287,6 +326,7 @@ namespace Orders
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                this.Close();
             }
         }
 
@@ -297,5 +337,7 @@ namespace Orders
             else
                 MessageBox.Show("You can NOT clear this form in the MODIFY MODE");
         }
+
+        
     }
 }
