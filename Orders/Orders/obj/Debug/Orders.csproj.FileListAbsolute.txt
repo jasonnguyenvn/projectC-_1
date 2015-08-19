@@ -17,3 +17,5 @@ C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.Properties.Resources.reso
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.csproj.GenerateResource.Cache
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.dll
 C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.pdb
+C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.ShipperControl.resources
+C:\Projects\projectC-_1\Orders\Orders\obj\Debug\Orders.EditShipperForm.resources

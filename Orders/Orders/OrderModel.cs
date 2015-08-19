@@ -25,7 +25,9 @@ namespace Orders
 
             try
             {
+                DataTable copy =  this.DetailModel.DataSource.Copy();
                 this.DetailModel.deleteRows("orderid=" + updateData.Orderid);
+                this.DetailModel.DataSource.Rows.Clear();
                 foreach (Order.OrderItem eachItem in items)
                 {
                     eachItem.Orderid = result.Orderid;
@@ -40,6 +42,8 @@ namespace Orders
 
             return result;
         }
+
+        
 
         public void deleteRow(int orderID)
         {
@@ -81,6 +85,78 @@ namespace Orders
             get { return _detailModel; }
         }
 
+
+
+        public string filter(int custID, int empID, string orderDate, string reqDate,
+            string shippedDate, int shipperID)
+        {
+            string sqlFilter = "";
+            
+            bool first = true;
+
+            if(custID>=0)
+            {
+                first = false;
+                sqlFilter += string.Format(" custID={0} ", custID);
+            }
+
+            if(empID>=0)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else first = false;
+                sqlFilter += string.Format(" empid={0} ", empID);
+            }
+            if (orderDate.Equals("") == false)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else first = false;
+                sqlFilter += string.Format(" orderdate='{0}' ", orderDate);
+            }
+            if (reqDate.Equals("") == false)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else first = false;
+                sqlFilter += string.Format(" requireddate='{0}' ", reqDate);
+            }
+            if (shippedDate.Equals("") == false)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else first = false;
+                sqlFilter += string.Format(" shippeddate='{0}' ", shippedDate);
+            }
+            if (shipperID >= 0)
+            {
+                if (first == false)
+                    sqlFilter += " AND ";
+                else first = false;
+                sqlFilter += string.Format(" shipper={0} ", shipperID);
+            }
+
+
+            this.resetControl(sqlFilter);
+
+            return sqlFilter;
+
+        }
+
+        public OrderModel(
+             string host, int port, string dbname, string username, string password,
+             string table_name, string detail_tb_name, OrderParser parser) :
+            // init parent
+            base( host, port, dbname, username, password, table_name, parser)
+        {
+
+            Order.OrderItemParser newParser = new Order.OrderItemParser();
+            this._detailModel = new OrderDetailModel(host, port, dbname,
+                                    username, password, detail_tb_name, newParser);
+            newParser.DataModel = this._detailModel;
+        }
+
+
         public OrderModel(object control, 
              string host,  int port, string dbname, string username, string password, 
              string table_name, string detail_tb_name, OrderParser parser) :
@@ -89,6 +165,8 @@ namespace Orders
 
         {
             this._initTable();
+            if (_webControl != null)
+                _webControl.PageSize = 100;
 
             Order.OrderItemParser newParser = new Order.OrderItemParser();
             this._detailModel = new OrderDetailModel(host, port, dbname,
@@ -105,7 +183,6 @@ namespace Orders
 
         private void _initTable()
         {
-            this._control.Columns.Clear();
             this._initTable(Order.Sql_keys);
         }
 
@@ -210,6 +287,70 @@ namespace Orders
 
         public class OrderDetailModel : DataModelWithControl<Order.OrderItem>
         {
+            public override List<Order.OrderItem> deleteRows(string where_filter)
+            {
+                List<Order.OrderItem> deletedList = this.getItems(where_filter);
+                if (deletedList.Count <= 0)
+                    return deletedList;
+
+                string commandText = "DELETE FROM " + this.Tbname;
+                if (where_filter.Equals("") == false)
+                    commandText += " WHERE " + where_filter;
+
+
+                int result = 0;
+                try
+                {
+                    this.conn.Open();
+                    SqlCommand cmd = this.createSQLCommand(commandText);
+
+                    result = cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Delete exception: " + ex.Message);
+                }
+                finally
+                {
+                    this.conn.Close();
+                }
+
+                if (result <= 0)
+                    return new List<Order.OrderItem>();
+
+                return deletedList;
+            }
+
+
+            public float getUnitPrice(int proID)
+            {
+                SqlDataReader dr = null;
+                float result = 0.0f;
+                string command = "SELECT unitprice FROM Production.Products WHERE productid=" + proID;
+
+                this.conn.Open();
+                try
+                {
+                    SqlCommand cmd = this.createSQLCommand(command);
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        result = float.Parse(dr[0].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (dr != null)
+                        dr.Close();
+                    this.conn.Close();
+                }
+                return result;
+            }
+
             private int _orderid = -1;
 
             public int OrderID
@@ -251,17 +392,26 @@ namespace Orders
                 // init parent
                 base(control, host, port, dbname, username, password, table_name, parser)
             {
-                this._control.Columns.Clear();
                 this._initTable(Order.OrderItem.Sql_keys);
+                setPrimaryKey();
+            }
+
+            public void setPrimaryKey()
+            {
+                this.DataSource.PrimaryKey = new DataColumn[] {
+                    this.DataSource.Columns[1]
+                };
             }
 
             public void resetModel()
             {
+                setPrimaryKey();
                 base.resetModel("orderid=" + this._orderid);
             }
 
             public void resetControl()
             {
+                setPrimaryKey();
                 if (this._orderid >= 0)
                     this.resetControl("orderid=" + this._orderid);
                 else

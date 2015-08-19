@@ -8,8 +8,8 @@
 <asp:Content ID="content_header" ContentPlaceHolderID="content_header" runat=server>
     <section class="content-header">
       <h1>
-        Production - Suppliers Manager
-        <small>Add/Edit an Supplier</small>
+        Production - Categories Manager
+        <small>Add/Edit an Category</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -50,7 +50,7 @@
      <div class="box box-primary"  >
         <div class="box-header with-border">
         <i class="fa fa-edit"></i>
-          <h3 class="box-title">Add/Edit an Supplier</h3>
+          <h3 class="box-title">Add/Edit an Category</h3>
           
         </div><!-- /.box-header -->
         <div class="box-body no-padding" style="min-height:700px;width:100%;padding-top:15px;pading-left:15px;">

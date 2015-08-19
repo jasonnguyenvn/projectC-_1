@@ -252,15 +252,15 @@ namespace Productions
             }
             if (txtSupplierID>=0)
             {
-                sqlFilter += string.Format(" AND  supplierid=%{0}% ", txtSupplierID);
+                sqlFilter += string.Format(" AND  supplierid={0} ", txtSupplierID);
             }
             if (txtCategoryID>=0)
             {
-                sqlFilter += string.Format(" AND  categoryid=%{0}% ", txtCategoryID);
+                sqlFilter += string.Format(" AND  categoryid={0} ", txtCategoryID);
             }
             if (txtUnitPrice.Equals("") == false)
             {
-                sqlFilter += string.Format(" AND  unitprice LIKE '%{0}%' ", txtUnitPrice.Trim());
+                sqlFilter += string.Format(" AND  unitprice={0} ", txtUnitPrice.Trim());
             }
 
 
@@ -270,8 +270,13 @@ namespace Productions
 
         }
 
+        public ProductModel( string host,
+            int port, string dbname, string username, string password, string table_name, ProductParser parser) :
+            base( host, port, dbname, username, password, table_name, parser)
+        {
+        }
 
-         public ProductModel(DataGridView control,  string host,
+         public ProductModel(object control,  string host,
             int port, string dbname, string username, string password, string table_name, ProductParser parser) :
             base(control, host, port, dbname,username, password, table_name, parser)
 
@@ -286,7 +291,6 @@ namespace Productions
 
         private void _initTable()
         {
-            this._control.Columns.Clear();
             this._initTable(Product.Sql_keys);
 
         }
